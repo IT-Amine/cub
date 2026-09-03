@@ -11,8 +11,13 @@ repo_name = "IT-Amine/cub"
 edit_uri = "edit/main/docs/"
 
 nav = [
-  { "Get started" = "index.md" },
-  { "Markdown in 5min" = "markdown.md" },
+  { "Accueil" = "index.md" },
+  { "BLOC 3 (CUB)" = [
+      { "Commande" = "BLOC 3 - Commande CUB.md" },
+      { "Cybersécurité" = "BLOC 3 - Cybersécurité CUB.md" },
+      { "VLSM & Routage" = "BLOC 3 - Cybersécurité VLSM & Table de routage CUB.md" }
+  ]},
+  { "Guide Markdown" = "markdown.md" },
 ]
 
 # extra_css = ["stylesheets/extra.css"]

@@ -1,173 +1,36 @@
 ---
-icon: lucide/rocket
+icon: lucide/home
 ---
 
-# Get started
+# 🎓 Contexte CUB - BTS SIO
 
-For full documentation visit [zensical.org](https://zensical.org/docs/).
+Bienvenue sur la documentation officielle du projet **CUB** pour le BTS SIO du lycée Paul-Louis Courier.
 
-## Commands
+Cette base de connaissances centralise l'ensemble des fiches de révision, des procédures techniques et des concepts clés abordés durant la formation, avec un accent particulier sur le **BLOC 3** (Cybersécurité, Réseaux, Administration système).
 
-* [`zensical new`][new] - Create a new project
-* [`zensical serve`][serve] - Start local web server
-* [`zensical build`][build] - Build your site
+---
 
-  [new]: https://zensical.org/docs/usage/new/
-  [serve]: https://zensical.org/docs/usage/preview/
-  [build]: https://zensical.org/docs/usage/build/
+## 📚 Fiches disponibles
 
-## Examples
+Retrouvez ci-dessous les accès rapides vers les dernières fiches ajoutées :
 
-### Admonitions
+### 🛡️ BLOC 3 - Cybersécurité & Réseaux
 
-> Go to [documentation](https://zensical.org/docs/authoring/admonitions/)
+* [**Commande CUB**](BLOC%203%20-%20Commande%20CUB.md) : Les commandes essentielles et l'administration système.
+* [**Cybersécurité CUB**](BLOC%203%20-%20Cybers%C3%A9curit%C3%A9%20CUB.md) : Concepts fondamentaux de la sécurité des systèmes d'information.
+* [**VLSM & Table de routage CUB**](BLOC%203%20-%20Cybers%C3%A9curit%C3%A9%20VLSM%20%26%20Table%20de%20routage%20CUB.md) : Sous-réseaux, adressage IP et principes de routage.
 
-!!! note
+---
 
-    This is a **note** admonition. Use it to provide helpful information.
+## 🛠️ À propos de ce site
 
-!!! warning
+Ce site est généré statiquement via [Zensical](https://zensical.org/) et hébergé gratuitement sur GitHub Pages.
 
-    This is a **warning** admonition. Be careful!
+> **💡 Astuce :** Vous pouvez contribuer à cette documentation ou corriger une erreur directement depuis GitHub en cliquant sur le bouton d'édition (✏️) présent en haut à droite de chaque page !
 
-### Details
+---
 
-> Go to [documentation](https://zensical.org/docs/authoring/admonitions/#collapsible-blocks)
-
-??? info "Click to expand for more info"
-
-    This content is hidden until you click to expand it.
-    Great for FAQs or long explanations.
-
-## Code Blocks
-
-> Go to [documentation](https://zensical.org/docs/authoring/code-blocks/)
-
-``` python hl_lines="2" title="Code blocks"
-def greet(name):
-    print(f"Hello, {name}!") # (1)!
-
-greet("Python")
-```
-
-1.  > Go to [documentation](https://zensical.org/docs/authoring/code-blocks/#code-annotations)
-
-    Code annotations allow to attach notes to lines of code.
-
-Code can also be highlighted inline: `#!python print("Hello, Python!")`.
-
-## Content tabs
-
-> Go to [documentation](https://zensical.org/docs/authoring/content-tabs/)
-
-=== "Python"
-
-    ``` python
-    print("Hello from Python!")
-    ```
-
-=== "Rust"
-
-    ``` rs
-    println!("Hello from Rust!");
-    ```
-
-## Diagrams
-
-> Go to [documentation](https://zensical.org/docs/authoring/diagrams/)
-
-``` mermaid
-graph LR
-  A[Start] --> B{Error?};
-  B -->|Yes| C[Hmm...];
-  C --> D[Debug];
-  D --> B;
-  B ---->|No| E[Yay!];
-```
-
-## Footnotes
-
-> Go to [documentation](https://zensical.org/docs/authoring/footnotes/)
-
-Here's a sentence with a footnote.[^1]
-
-Hover it, to see a tooltip.
-
-[^1]: This is the footnote.
-
-
-## Formatting
-
-> Go to [documentation](https://zensical.org/docs/authoring/formatting/)
-
-- ==This was marked (highlight)==
-- ^^This was inserted (underline)^^
-- ~~This was deleted (strikethrough)~~
-- H~2~O
-- A^T^A
-- ++ctrl+alt+del++
-
-## Icons, Emojis
-
-> Go to [documentation](https://zensical.org/docs/authoring/icons-emojis/)
-
-* :sparkles: `:sparkles:`
-* :rocket: `:rocket:`
-* :tada: `:tada:`
-* :memo: `:memo:`
-* :eyes: `:eyes:`
-
-## Maths
-
-> Go to [documentation](https://zensical.org/docs/authoring/math/)
-
-$$
-\cos x=\sum_{k=0}^{\infty}\frac{(-1)^k}{(2k)!}x^{2k}
-$$
-
-!!! warning "Needs configuration"
-    Note that MathJax is included via a `script` tag on this page and is not
-    configured in the generated default configuration to avoid including it
-    in a pages that do not need it. See the documentation for details on how
-    to configure it on all your pages if they are more Maths-heavy than these
-    simple starter pages.
-
-<script id="MathJax-script" src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
-<script>
-  window.MathJax = {
-    tex: {
-      inlineMath: [["\\(", "\\)"]],
-      displayMath: [["\\[", "\\]"]],
-      processEscapes: true,
-      processEnvironments: true
-    },
-    options: {
-      ignoreHtmlClass: ".*|",
-      processHtmlClass: "arithmatex"
-    }
-  };
-
-  document$.subscribe(() => {
-    MathJax.startup.output.clearCache()
-    MathJax.typesetClear()
-    MathJax.texReset()
-    MathJax.typesetPromise()
-  })
-</script>
-
-## Task Lists
-
-> Go to [documentation](https://zensical.org/docs/authoring/lists/#using-task-lists)
-
-* [x] Install Zensical
-* [x] Configure `zensical.toml`
-* [x] Write amazing documentation
-* [ ] Deploy anywhere
-
-## Tooltips
-
-> Go to [documentation](https://zensical.org/docs/authoring/tooltips/)
-
-[Hover me][example]
-
-  [example]: https://example.com "I'm a tooltip!"
+<div align="center">
+  <br>
+  <small><i>Créé et maintenu par Amine Kada.</i></small>
+</div>
