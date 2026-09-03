@@ -67,4 +67,4 @@ Site en ligne : [https://IT-Amine.github.io/cub](https://IT-Amine.github.io/cub)
 ## Mainteneurs
 
 - **Amine KADA** | [GitHub](https://github.com/IT-Amine)
-- ** Louis MEDO** | [CUB Partenaire](https://github.com/FireToak/cub-docs)
+- **Louis MEDO** | [CUB Partenaire](https://github.com/FireToak/cub-docs)
