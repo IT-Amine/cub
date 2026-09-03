@@ -1,3 +1,6 @@
+# Script local d'auto-push (ne pas versionner)
+autopush.sh
+
 # macOS
 .DS_Store
 .DS_Store?
