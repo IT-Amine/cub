@@ -7,6 +7,7 @@
 
 # Zensical build output
 site/
+.cache/
 
 # Python
 __pycache__/
@@ -15,6 +16,3 @@ __pycache__/
 .venv/
 venv/
 env/
-
-# Dépendances (installer via pip install -r requirements.txt)
-# requirements.txt intentionnellement inclus dans le repo
