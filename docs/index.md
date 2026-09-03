@@ -2,7 +2,9 @@
 icon: lucide/home
 ---
 
-# 🎓 Contexte CUB - BTS SIO
+# Contexte CUB - BTS SIO
+
+![Bannière CUB](assets/banniere_cub.png)
 
 Bienvenue sur la documentation officielle du projet **CUB** pour le BTS SIO du lycée Paul-Louis Courier.
 
@@ -10,11 +12,11 @@ Cette base de connaissances centralise l'ensemble des fiches de révision, des p
 
 ---
 
-## 📚 Fiches disponibles
+## Fiches disponibles
 
 Retrouvez ci-dessous les accès rapides vers les dernières fiches ajoutées :
 
-### 🛡️ BLOC 3 - Cybersécurité & Réseaux
+### LOC 3 - Cybersécurité & Réseaux
 
 * [**Commande CUB**](BLOC%203%20-%20Commande%20CUB.md) : Les commandes essentielles et l'administration système.
 * [**Cybersécurité CUB**](BLOC%203%20-%20Cybers%C3%A9curit%C3%A9%20CUB.md) : Concepts fondamentaux de la sécurité des systèmes d'information.
@@ -22,11 +24,9 @@ Retrouvez ci-dessous les accès rapides vers les dernières fiches ajoutées :
 
 ---
 
-## 🛠️ À propos de ce site
+## À propos de ce site
 
 Ce site est généré statiquement via [Zensical](https://zensical.org/) et hébergé gratuitement sur GitHub Pages.
-
-> **💡 Astuce :** Vous pouvez contribuer à cette documentation ou corriger une erreur directement depuis GitHub en cliquant sur le bouton d'édition (✏️) présent en haut à droite de chaque page !
 
 ---
 
