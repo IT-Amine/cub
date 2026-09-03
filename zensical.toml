@@ -16,8 +16,7 @@ nav = [
       { "Commande" = "BLOC 3 - Commande CUB.md" },
       { "Cybersécurité" = "BLOC 3 - Cybersécurité CUB.md" },
       { "VLSM & Routage" = "BLOC 3 - Cybersécurité VLSM & Table de routage CUB.md" }
-  ]},
-  { "Guide Markdown" = "markdown.md" },
+  ]}
 ]
 
 # extra_css = ["stylesheets/extra.css"]
