@@ -60,9 +60,9 @@ Créez un fichier `.md` dans le dossier `docs/`, puis référencez-le dans la se
 
 Le site est automatiquement déployé sur **GitHub Pages** à chaque push sur la branche `main` via le workflow `.github/workflows/docs.yml`.
 
-Site en ligne : [Docs CUB Amine](https://IT-Amine.github.io/cub)
-Site en ligne : [Docs CUB Louis (Partenaire)](https://firetoak.github.io/cub-docs/)
-Site en ligne : [Docs CUB Prof](https://cubdocumentation.sioplc.fr/)
+- Site en ligne : [Docs CUB Amine](https://IT-Amine.github.io/cub)
+- Site en ligne : [Docs CUB Louis (Partenaire)](https://firetoak.github.io/cub-docs/)
+- Site en ligne : [Docs CUB Prof](https://cubdocumentation.sioplc.fr/)
 
 ---
 
