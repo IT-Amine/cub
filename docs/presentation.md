@@ -39,12 +39,3 @@ Le siège social est le cœur du système d'information interne de CUB, mais un 
 ## A propos de ce site
 
 Ce site est généré statiquement via [Zensical](https://zensical.org/) et hébergé gratuitement sur GitHub Pages.
-
-> **Astuce :** Contribuez ou corrigez une erreur directement depuis GitHub en cliquant sur le bouton d'édition (✏️) en haut à droite de chaque page !
-
----
-
-<div align="center">
-  <br>
-  <small><i>Créé et maintenu par Amine Kada — BTS SIO 2, option SISR.</i></small>
-</div>
