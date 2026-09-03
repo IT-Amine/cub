@@ -1,5 +1,4 @@
-![Bannière CUB](assets/banniere_cub.png)
----
+![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere_cub.png?raw=true)
 
 <div style="margin-top: 70px; border: 1px solid #ccc; padding: 20px; border-radius: 10px;">
     <p><strong>Auteur :</strong> KADA Amine</p>
@@ -55,7 +54,7 @@ end
 write
 ```
 
-1. Cœur de Réseau Layer 3 (SW_L3_Dortmund)
+2. Cœur de Réseau Layer 3 (SW_L3_Dortmund)
 
 ```
 ! Passage en mode configuration
@@ -125,7 +124,7 @@ end
 write
 ```
 
-1. Pare-feu / Routeur (Stormshield SNS 210 - Dortmund)
+3. Pare-feu / Routeur (Stormshield SNS 210 - Dortmund)
 
 ```
 ! Passage en mode configuration

@@ -1,5 +1,4 @@
-![Bannière CUB](assets/banniere_cub.png)
----
+![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere_cub.png?raw=true)
 
 <div style="margin-top: 70px; border: 1px solid #ccc; padding: 20px; border-radius: 10px;">
     <p><strong>Auteur :</strong> KADA Amine</p>
@@ -9,7 +8,6 @@
 </div>
 
 ---
-
 ### Calcul VLSM - Agence Dortmund
 
 - VLAN 54 - Production - 120 Hôtes
@@ -20,7 +18,6 @@
 #### Sous-réseau 1 : Production — 120 hôtes
 
 120 + 2 = 122 → 2⁷ = 128 → 32 - 7 = 25 → **CIDR /25**
-
 - Réseau : 192.168.4.0 /25
 - Masque : 255.255.255.128
 - IP utilisables : 192.168.4.1 à 192.168.4.125
@@ -30,7 +27,6 @@
 #### Sous-réseau 2 : Clients — 32 hôtes
 
 32 + 2 = 34 → 2⁶ = 64 → 32 - 6 = 26 → **CIDR /26**
-
 - Réseau : 192.168.4.128 /26
 - Masque : 255.255.255.192
 - IP utilisables : 192.168.4.129 à 192.168.4.189
@@ -40,7 +36,6 @@
 #### Sous-réseau 3 : Admin Sys.Réseau — 6 hôtes
 
 6 + 2 = 8 → 2⁴ = 16 → 32 - 4 = 28 → **CIDR /28**
-
 - Réseau : 192.168.4.192 /28
 - Masque : 255.255.255.240
 - IP utilisables (hôtes) : 192.168.4.193 à 192.168.4.205
@@ -48,8 +43,8 @@
 - Broadcast : 192.168.4.207
 
 ---
-
 ## Table de routage CUB
+
 
 ### Table de routage coeur du réseau SW_L3_Dortmund
 
@@ -70,6 +65,7 @@
 | **Réseau WAN**                  | 192.36.253.0              | 255.255.255.0 (/24)   | -                 | 192.36.253.40           | **C**    |
 | **LANs Internes**               | 192.168.4.0               | 255.255.255.0 (/24)   | 192.168.44.253    | 192.168.44.254          | **S**    |
 | **Route par défaut (Internet)** | 0.0.0.0                   | 0.0.0.0 (/0)          | 192.36.253.254    | 192.36.253.40           | **S**    |
+
 
 ---
 
