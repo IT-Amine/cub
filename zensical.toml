@@ -11,7 +11,11 @@ repo_name = "IT-Amine/cub"
 edit_uri = "edit/main/docs/"
 
 nav = [
-  { "Accueil" = "index.md" },
+  { "Contexte" = [
+      { "Présentation" = "presentation.md" },
+      { "Description de l'infrastructure" = "description.md" },
+      { "Plan & Schémas" = "plan.md" }
+  ]},
   { "BLOC 2" = [
       { "Commande" = "BLOC 2 - Commande CUB.md" },
       { "Exploitation des services" = "BLOC 2 - Exploitation des services.md" }
