@@ -8,6 +8,7 @@ autopush.log
 ._*
 .Spotlight-V100
 .Trashes
+.fseventsd
 
 # Zensical build output
 site/
@@ -17,6 +18,15 @@ site/
 __pycache__/
 *.py[cod]
 *.pyo
+*.pyd
 .venv/
 venv/
 env/
+pip-log.txt
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
