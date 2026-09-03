@@ -69,4 +69,4 @@ Le site est automatiquement déployé sur **GitHub Pages** à chaque push sur la
 ## Mainteneurs
 
 - **Amine KADA** | [GitHub](https://github.com/IT-Amine)
-- **Louis MEDO** | [CUB Partenaire](https://github.com/FireToak/cub-docs)
+- **Louis MEDO** | [CUB Partenaire](https://github.com/FireToak)
