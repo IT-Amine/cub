@@ -50,14 +50,6 @@ cd cub
 python3 -m pip install zensical
 ```
 
-### 3. Lancer le serveur local
-
-```bash
-zensical serve
-```
-
-Le site est accessible sur [http://localhost:8000](http://localhost:8000).
-
 ### 4. Ajouter une fiche
 
 Créez un fichier `.md` dans le dossier `docs/`, puis référencez-le dans la section `nav` du fichier `zensical.toml`.
@@ -75,10 +67,3 @@ Site en ligne : [https://IT-Amine.github.io/cub](https://IT-Amine.github.io/cub)
 ## Mainteneurs
 
 - **Amine Kada** | [GitHub](https://github.com/IT-Amine)
-
----
-
-<div align="center">
-  <br>
-  <small><i>Dernière mise à jour : 3 septembre 2026</i></small>
-</div>
