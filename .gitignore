@@ -1,5 +1,6 @@
-# Script local d'auto-push (ne pas versionner)
+# Scripts et logs locaux (ne pas versionner)
 autopush.sh
+autopush.log
 
 # macOS
 .DS_Store
