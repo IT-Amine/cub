@@ -43,9 +43,16 @@
 - Broadcast : 192.168.4.207
 
 ---
+## Maquette de notre Agence à Dortmund - CUB 
+
+1. Maquette logique
+![Maquette logique](assets/maquette_logique.jpg)
+
+2. Maquette physique
+![Maquette physique](assets/maquette_physical.jpg)
+
+---
 ## Table de routage CUB
-
-
 ### Table de routage coeur du réseau SW_L3_Dortmund
 
 | **Name**                        | **Réseau de destination** | **Masque**            | **Passerelle IP (Next Hop)** | **Interface de sortie** | **Type** |
