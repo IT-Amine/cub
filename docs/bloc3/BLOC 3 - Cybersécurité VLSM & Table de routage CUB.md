@@ -46,10 +46,10 @@
 ## Maquette de notre Agence à Dortmund - CUB 
 
 1. Maquette logique
-![Maquette logique](assets/maquette_logique.jpg)
+![Maquette logique](../assets/maquette_logique.jpg)
 
 2. Maquette physique
-![Maquette physique](assets/maquette_physical.jpg)
+![Maquette physique](../assets/maquette_physical.jpg)
 
 ---
 ## Table de routage CUB

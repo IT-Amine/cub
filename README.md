@@ -21,13 +21,16 @@ cub-docs/
 │   └── pull_request_template.md
 ├── docs/
 │   ├── assets/               → Bannière et schémas (logique, physique)
+│   ├── bloc2/                → Fichiers relatifs au BLOC 2
+│   │   ├── BLOC 2 - Commande CUB.md
+│   │   ├── BLOC 2 - Exploitation des services.md
+│   │   └── BLOC 2 - Windows Server Core Configuration.md
+│   ├── bloc3/                → Fichiers relatifs au BLOC 3
+│   │   ├── BLOC 3 - Cybersécurité CUB.md
+│   │   └── BLOC 3 - Cybersécurité VLSM & Table de routage CUB.md
 │   ├── presentation.md       → Présentation du contexte CUB
 │   ├── description.md        → Plan d'adressage, serveurs, administration
-│   ├── plan.md               → Schéma logique & schéma physique
-│   ├── BLOC 2 - Commande CUB.md
-│   ├── BLOC 2 - Exploitation des services.md
-│   ├── BLOC 3 - Cybersécurité CUB.md
-│   └── BLOC 3 - Cybersécurité VLSM & Table de routage CUB.md
+│   └── plan.md               → Schéma logique & schéma physique
 ├── .gitignore
 ├── README.md
 └── zensical.toml             → Configuration du site de documentation

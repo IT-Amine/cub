@@ -37,9 +37,9 @@ Puis mettre dans le FilePath : "D:\virtio-win-guest-tools.exe"
 
 - Start-Process : Exécute le binaire d'installation de l'agent invité QEMU.
 
-![Dossier CD](assets/ad/lscd.png)
-![Start Process](assets/ad/startprocess.png)
-![QEMU1](assets/ad/qemu1.png)
+![Dossier CD](../assets/ad/lscd.png)
+![Start Process](../assets/ad/startprocess.png)
+![QEMU1](../assets/ad/qemu1.png)
 
 ### 3.2. Configuration du service QEMU-GA. Définition du lancement automatique pour assurer la communication hyperviseur/machine virtuelle.
 ```powershell
@@ -49,7 +49,7 @@ Start-Service QEMU-GA
 
 - -StartupType Automatic : Garantit la disponibilité du service QEMU Guest Agent dès le démarrage de Windows Server.
 
-![QEMU-GA](assets/ad/qemu2.png)
+![QEMU-GA](../assets/ad/qemu2.png)
 
 ## 4. Configuration NTP
 
@@ -63,7 +63,7 @@ w32tm /resync
 - /manualpeerlist : Spécifie les adresses des pairs NTP externes.
 - /reliable:yes : Indique que cet ordinateur est une source de temps fiable (nécessaire pour un futur contrôleur de domaine).
 
-![Configuration NTP](assets/ad/ntp.png)
+![Configuration NTP](../assets/ad/ntp.png)
 
 ### 4.2. Validation des homologues NTP. Contrôle de l'état du service de temps local.
 ```powershell
@@ -73,7 +73,7 @@ w32tm /query /status
 - /peers : Affiche l'état des connexions avec les serveurs de temps configurés.
 - /status : Renvoie les détails sur la latence, la précision et la dernière synchronisation effectuée.
 
-![Validation NTP](assets/ad/ntp23.png)
+![Validation NTP](../assets/ad/ntp23.png)
 
 ## 5. Paramétrage Sécurité et Pare-feu
 
@@ -84,7 +84,7 @@ Get-NetFirewallProfile
 Select-Object Name, Enabled # Filtre l'affichage pour confirmer que chaque profil réseau dispose du pare-feu actif.
 ```
 
-![Profils Pare-feu](assets/ad/firewall.png)
+![Profils Pare-feu](../assets/ad/firewall.png)
 
 ## 6. Mise à jour du système
 
@@ -102,7 +102,7 @@ Restart-Computer
 - UsoClient StartScan : Force le lancement asynchrone de la recherche de mises à jour.
 - -AcceptAll -Install : Approuve et installe automatiquement tous les correctifs approuvés sans interaction manuelle.
 
-![Mise à jour](assets/ad/update.png)
+![Mise à jour](../assets/ad/update.png)
 
 !!! warning "Action requise"
 Un redémarrage du système (Restart-Computer) est strictement requis après la passe d'installation des correctifs cumulatifs.
@@ -119,5 +119,5 @@ Set-LocalUser -Name "ADM-SRV-01" -Password (Read-Host "Nouveau mot de passe" -As
 - Rename-LocalUser : Modifie le SAMAccountName local.
 - -AsSecureString : Chiffre la saisie du mot de passe stocké en mémoire vive pendant la transaction.
 
-![Sécurisation SID](assets/ad/SID.png)
-![Renommage SID](assets/ad/SID2.png)
+![Sécurisation SID](../assets/ad/SID.png)
+![Renommage SID](../assets/ad/SID2.png)
