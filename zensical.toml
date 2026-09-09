@@ -17,12 +17,13 @@ nav = [
       { "Plan & Schémas" = "plan.md" }
   ]},
   { "BLOC 2" = [
-      { "Commande" = "BLOC 2 - Commande CUB.md" },
-      { "Exploitation des services" = "BLOC 2 - Exploitation des services.md" }
+      { "Commande" = "bloc2/BLOC 2 - Commande CUB.md" },
+      { "Configuration AD1 Core" = "bloc2/BLOC 2 - Windows Server Core Configuration.md" },
+      { "Exploitation des services" = "bloc2/BLOC 2 - Exploitation des services.md" }
   ]},
   { "BLOC 3" = [
-      { "Cybersécurité" = "BLOC 3 - Cybersécurité CUB.md" },
-      { "VLSM & Routage" = "BLOC 3 - Cybersécurité VLSM & Table de routage CUB.md" }
+      { "Cybersécurité" = "bloc3/BLOC 3 - Cybersécurité CUB.md" },
+      { "VLSM & Routage" = "bloc3/BLOC 3 - Cybersécurité VLSM & Table de routage CUB.md" }
   ]}
 ]
 
