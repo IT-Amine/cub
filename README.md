@@ -20,7 +20,9 @@ cub-docs/
 │   │   └── security.yml      → Scan de secrets (TruffleHog)
 │   └── pull_request_template.md
 ├── docs/
-│   ├── assets/               → Bannière et schémas (logique, physique)
+│   ├── assets/               → Bannière
+│   │   ├── cisco/            → Maquettes Cisco
+│   │   └── schema/           → Schémas logiques et physiques
 │   ├── bloc2/                → Fichiers relatifs au BLOC 2
 │   │   ├── BLOC 2 - Commande CUB.md
 │   │   ├── BLOC 2 - Exploitation des services.md
@@ -30,9 +32,11 @@ cub-docs/
 │   │   └── BLOC 3 - Cybersécurité VLSM & Table de routage CUB.md
 │   ├── presentation.md       → Présentation du contexte CUB
 │   ├── description.md        → Plan d'adressage, serveurs, administration
+│   ├── index.md              → Page d'accueil
 │   └── plan.md               → Schéma logique & schéma physique
 ├── .gitignore
 ├── README.md
+├── autopush.sh               → Script d'automatisation des sauvegardes Git
 └── zensical.toml             → Configuration du site de documentation
 ```
 

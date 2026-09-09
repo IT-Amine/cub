@@ -8,7 +8,7 @@ L'entreprise CUB dispose d'une infrastructure complexe avec un site central et d
 
 Le schéma logique représente l'organisation logique du réseau : les adresses IP, les VLANs, les zones (LAN, DMZ, WAN) et les flux entre les équipements.
 
-![Schéma logique CUB](assets/schemalogique.png)
+![Schéma logique CUB](assets/schema/schemalogiquecub.png)
 
 ---
 
@@ -16,4 +16,4 @@ Le schéma logique représente l'organisation logique du réseau : les adresses 
 
 Le schéma physique représente l'implantation matérielle de l'infrastructure : les équipements réels (switchs, routeurs, pare-feux, serveurs) et leurs interconnexions câblées.
 
-![Schéma physique CUB](assets/schemaphysique.png)
+![Schéma physique CUB](assets/schema/schemaphysiquecub.png)
