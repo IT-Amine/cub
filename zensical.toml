@@ -14,8 +14,13 @@ nav = [
   { "Accueil" = "index.md" },
   { "Contexte" = [
       { "Présentation" = "presentation.md" },
-      { "Description de l'infrastructure" = "description.md" },
-      { "Plan & Schémas" = "plan.md" }
+      { "Description de l'infrastructure" = "description.md" }
+  ]},
+  { "Plan & Schéma" = [
+      { "Schémas CUB" = "plan.md" },
+      { "Schéma de brassage Dortmund" = "assets/schema/dortmund-schema-brassage-gp4.pdf" },
+      { "Schéma logique Dortmund" = "assets/schema/dortmund-schema-logique-gp4.drawio.pdf" },
+      { "Schéma physique Dortmund" = "assets/schema/dortmund-schema-physique-gp4.drawio.pdf" }
   ]},
   { "BLOC 2" = [
       { "Configuration Commutateur / FireWall" = "bloc2/BLOC 2 - Commande CUB.md" },
