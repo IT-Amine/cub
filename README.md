@@ -1,6 +1,6 @@
 # cub-docs
 
-![Bannière CUB](docs/assets/banniere_cub.png)
+![Bannière CUB](docs/assets/banniere-cub.png)
 
 ## Contexte
 
@@ -22,18 +22,20 @@ cub-docs/
 ├── docs/
 │   ├── assets/               → Bannière
 │   │   ├── cisco/            → Maquettes Cisco
+│   │   ├── resource/         → Modèles et référentiels (BTS SIO)
 │   │   └── schema/           → Schémas logiques et physiques
 │   ├── bloc2/                → Fichiers relatifs au BLOC 2
-│   │   ├── BLOC 2 - Commande CUB.md
-│   │   ├── BLOC 2 - Exploitation des services.md
-│   │   └── BLOC 2 - Windows Server Core Configuration.md
+│   │   ├── commande-cub.md
+│   │   ├── config-ad.md
+│   │   └── exploitation-services.md
 │   ├── bloc3/                → Fichiers relatifs au BLOC 3
-│   │   ├── BLOC 3 - Cybersécurité CUB.md
-│   │   └── BLOC 3 - Cybersécurité VLSM & Table de routage CUB.md
-│   ├── presentation.md       → Présentation du contexte CUB
+│   │   ├── config-dns-recursif.md
+│   │   ├── cybersecurite-cub.md
+│   │   └── vlsm-routage.md
 │   ├── description.md        → Plan d'adressage, serveurs, administration
 │   ├── index.md              → Page d'accueil
-│   └── plan.md               → Schéma logique & schéma physique
+│   ├── plan.md               → Schémas
+│   └── presentation.md       → Présentation du contexte CUB
 ├── .gitignore
 ├── README.md
 ├── autopush.sh               → Script d'automatisation des sauvegardes Git

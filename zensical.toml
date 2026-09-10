@@ -16,23 +16,23 @@ nav = [
       { "Présentation" = "presentation.md" },
       { "Contexte CUB" = "assets/resource/contexte-cub.pdf"},
       { "Description de l'infrastructure" = "description.md" },
-      { "Référentiel BTS SIO" = "assets/resource/referentiel-competences-bts-sio.pdf"}
+      { "Référentiel BTS SIO" = "assets/resource/referentiel-bts.pdf"}
   ]},
   { "Plan & Schéma" = [
       { "Schémas CUB" = "plan.md" },
-      { "Schéma de brassage Dortmund" = "assets/schema/dortmund-schema-brassage-gp4.pdf" },
-      { "Schéma logique Dortmund" = "assets/schema/dortmund-schema-logique-gp4.drawio.pdf" },
-      { "Schéma physique Dortmund" = "assets/schema/dortmund-schema-physique-gp4.drawio.pdf" }
+      { "Schéma de brassage Dortmund" = "assets/schema/schema-brassage.pdf" },
+      { "Schéma logique Dortmund" = "assets/schema/schema-logique.pdf" },
+      { "Schéma physique Dortmund" = "assets/schema/schema-physique.pdf" }
   ]},
   { "BLOC 2" = [
-      { "Configuration Commutateur / FireWall" = "bloc2/BLOC 2 - Commande CUB.md" },
-      { "Configuration AD1 Core" = "bloc2/BLOC 2 - Windows Server Core Configuration.md" },
-      { "Configuration Debian OTP" = "bloc2/BLOC 2 - Exploitation des services.md" }
+      { "Configuration Commutateur / FireWall" = "bloc2/commande-cub.md" },
+      { "Configuration AD1 Core" = "bloc2/config-ad.md" },
+      { "Configuration Debian OTP" = "bloc2/exploitation-services.md" }
   ]},
   { "BLOC 3" = [
-      { "Cybersécurité" = "bloc3/BLOC 3 - Cybersécurité CUB.md" },
-      { "VLSM & Routage" = "bloc3/BLOC 3 - Cybersécurité VLSM & Table de routage CUB.md" },
-      { "Configuration DNS Récursif" = "bloc3/BLOC 3 - Config DNS Recursif.md" }
+      { "Cybersécurité" = "bloc3/cybersecurite-cub.md" },
+      { "VLSM & Routage" = "bloc3/vlsm-routage.md" },
+      { "Configuration DNS Récursif" = "bloc3/config-dns-recursif.md" }
   ]}
 ]
 

@@ -18,7 +18,7 @@ CONTRAINTES DE SORTIE :
 ```markdown
 # [Titre de la procédure]
 
-![Bannière CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere_cub.png)
+![Bannière CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png)
 
 ---
 

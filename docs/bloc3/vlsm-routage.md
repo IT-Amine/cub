@@ -1,4 +1,4 @@
-![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere_cub.png?raw=true)
+![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
 
 <div style="margin-top: 70px; border: 1px solid #ccc; padding: 20px; border-radius: 10px;">
     <p><strong>Auteur :</strong> KADA Amine</p>
@@ -57,10 +57,10 @@
 ## Maquette de notre Agence à Dortmund - CUB 
 
 1. Maquette logique
-![Maquette logique](../assets/cisco/maquette_logique.jpg)
+![Maquette logique](../assets/cisco/maquette-logique.jpg)
 
 2. Maquette physique
-![Maquette physique](../assets/cisco/maquette_physical.jpg)
+![Maquette physique](../assets/cisco/maquette-physique.jpg)
 
 ---
 ## Table de routage CUB

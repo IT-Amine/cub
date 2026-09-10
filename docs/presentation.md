@@ -4,7 +4,7 @@ icon: lucide/home
 
 # Contexte CUB - BTS SIO
 
-![Bannière CUB](assets/banniere_cub.png)
+![Bannière CUB](assets/banniere-cub.png)
 
 ## Présentation du contexte CUB
 

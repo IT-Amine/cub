@@ -4,7 +4,7 @@ description: Procédure de déploiement et de configuration initiale pour le ser
 
 # BLOC 2 - AD1 Core
 
-![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere_cub.png?raw=true)
+![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
 
 <div style="margin-top: 70px; border: 1px solid #ccc; padding: 20px; border-radius: 10px;">
     <p><strong>Auteur :</strong> KADA Amine</p>

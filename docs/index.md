@@ -4,7 +4,7 @@ icon: lucide/home
 
 # Contexte CUB - BTS SIO
 
-![Bannière CUB](assets/banniere_cub.png)
+![Bannière CUB](assets/banniere-cub.png)
 
 Bienvenue sur la documentation officielle du projet **CUB** pour le BTS SIO du lycée Paul-Louis Courier.
 
