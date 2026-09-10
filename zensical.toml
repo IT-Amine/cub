@@ -15,7 +15,8 @@ nav = [
   { "Contexte" = [
       { "Présentation" = "presentation.md" },
       { "Contexte CUB" = "assets/resource/contexte-cub.pdf"},
-      { "Description de l'infrastructure" = "description.md" }
+      { "Description de l'infrastructure" = "description.md" },
+      { "Référentiel BTS SIO" = "assets/resource/referentiel-competences-bts-sio.pdf"}
   ]},
   { "Plan & Schéma" = [
       { "Schémas CUB" = "plan.md" },
@@ -41,7 +42,7 @@ nav = [
 [project.theme]
 # variant = "classic"
 # custom_dir = "overrides"
-# favicon = "images/favicon.png"
+favicon = "assets/banniere_cub.png"
 language = "fr"
 logo = "assets/banniere_cub.png"
 features = [

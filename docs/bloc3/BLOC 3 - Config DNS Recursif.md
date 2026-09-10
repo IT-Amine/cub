@@ -112,3 +112,4 @@ dig google.com @192.168.X.X
 # Lancez la commande deux fois. La deuxième fois, le "Query time" 
 # devrait être de 0 msec grâce à la mise en cache de Bind9.
 ```
+
