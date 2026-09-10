@@ -30,7 +30,8 @@ nav = [
   ]},
   { "BLOC 3" = [
       { "Cybersécurité" = "bloc3/BLOC 3 - Cybersécurité CUB.md" },
-      { "VLSM & Routage" = "bloc3/BLOC 3 - Cybersécurité VLSM & Table de routage CUB.md" }
+      { "VLSM & Routage" = "bloc3/BLOC 3 - Cybersécurité VLSM & Table de routage CUB.md" },
+      { "Configuration DNS Récursif" = "bloc3/BLOC 3 - Config DNS Recursif.md" }
   ]}
 ]
 
