@@ -19,10 +19,11 @@ description: Procédure de déploiement et de configuration initiale pour le ser
 - [1. Sommaire](#1-sommaire)
 - [2. Contexte](#2-contexte)
 - [3. Déploiement des utilitaires de virtualisation](#3-déploiement-des-utilitaires-de-virtualisation)
-- [4. Configuration NTP](#4-configuration-ntp)
-- [5. Paramétrage Sécurité et Pare-feu](#5-paramétrage-sécurité-et-pare-feu)
-- [6. Mise à jour du système](#6-mise-à-jour-du-système)
-- [7. Sécurisation du compte local Administrateur](#7-sécurisation-du-compte-local-administrateur)
+- [4. Configuration réseau statique](#4-configuration-reseau-statique)
+- [5. Configuration NTP](#5-configuration-ntp)
+- [6. Paramétrage Sécurité et Pare-feu](#6-paramétrage-securite-et-pare-feu)
+- [7. Mise à jour du système](#7-mise-a-jour-du-systeme)
+- [8. Sécurisation du compte local Administrateur](#8-securisation-du-compte-local-administrateur)
 
 ## 2. Contexte
 Ce document détaille la procédure d'initialisation et de sécurisation (Hardening) du serveur Windows Server 2025 (édition Core) nommé AD1 Core. Il couvre la synchronisation temporelle indispensable à Active Directory, la configuration du pare-feu, la gestion des mises à jour centralisées via PowerShell, la sécurisation du compte administrateur local, ainsi que l'intégration des pilotes VirtIO/QEMU nécessaires au fonctionnement optimal sur l'hyperviseur.
@@ -51,9 +52,37 @@ Start-Service QEMU-GA
 
 ![QEMU-GA](../../assets/ad/qemu2.png)
 
-## 4. Configuration NTP
+## 4. Configuration réseau statique
 
-### 4.1. Configuration des pools de serveurs. Établissement de la synchronisation manuelle sur les serveurs de temps publics pour garantir l'intégrité de l'horloge système.
+### 8.1. Identification de l'interface réseau
+Il faut d'abord repérer le numéro d'index (`ifIndex`) de la carte réseau virtuelle pour lui appliquer les paramètres.
+```powershell
+Get-NetAdapter
+```
+- Repérez la valeur dans la colonne `ifIndex` correspondant à votre carte réseau (généralement nommée Ethernet).
+
+### 5.2. Attribution de l'adresse IP, du Masque et de la Passerelle
+Utilisez l'index récupéré pour définir les paramètres IP statiques. *(Exemple avec l'index `3`, l'IP `192.168.4.10`, masque `/25` et la passerelle `192.168.4.126`)*.
+
+```powershell
+New-NetIPAddress -InterfaceIndex 3 -IPAddress "192.168.4.10" -PrefixLength 25 -DefaultGateway "192.168.4.126"
+```
+- `-InterfaceIndex` : L'index de la carte réseau (ici `3`).
+- `-IPAddress` : L'adresse IP statique du serveur AD.
+- `-PrefixLength` : La longueur du masque de sous-réseau en notation CIDR (ex: `25` pour `255.255.255.128`).
+- `-DefaultGateway` : L'adresse IP de la passerelle par défaut.
+
+### 4.3. Configuration des serveurs DNS
+Définition des serveurs DNS. Pour un serveur AD, on renseigne généralement lui-même en boucle locale (`127.0.0.1`) et/ou le DNS récursif de l'agence en secondaire.
+
+```powershell
+Set-DnsClientServerAddress -InterfaceIndex 3 -ServerAddresses ("127.0.0.1", "1.1.1.1")
+```
+- `-ServerAddresses` : Liste des adresses IP des serveurs DNS séparées par une virgule.
+
+## 5. Configuration NTP
+
+### 8.1. Configuration des pools de serveurs. Établissement de la synchronisation manuelle sur les serveurs de temps publics pour garantir l'intégrité de l'horloge système.
 
 ```powershell title="Configuration W32Time"
 w32tm /config /manualpeerlist:"0.fr.pool.ntp.org 1.fr.pool.ntp.org" /syncfromflags:manual /reliable:yes /update
@@ -65,7 +94,7 @@ w32tm /resync
 
 ![Configuration NTP](../../assets/ad/ntp.png)
 
-### 4.2. Validation des homologues NTP. Contrôle de l'état du service de temps local.
+### 5.2. Validation des homologues NTP. Contrôle de l'état du service de temps local.
 ```powershell
 w32tm /query /peers
 w32tm /query /status
@@ -75,9 +104,9 @@ w32tm /query /status
 
 ![Validation NTP](../../assets/ad/ntp23.png)
 
-## 5. Paramétrage Sécurité et Pare-feu
+## 6. Paramétrage Sécurité et Pare-feu
 
-### 5.1. Vérification UAC et Profils Pare-feu. Audit des politiques de pare-feu globales (Domaine, Privé, Public).
+### 8.1. Vérification UAC et Profils Pare-feu. Audit des politiques de pare-feu globales (Domaine, Privé, Public).
 ```powershell
 Get-NetFirewallProfile | Select-Object Name, Enabled
 Get-NetFirewallProfile
@@ -86,9 +115,9 @@ Select-Object Name, Enabled # Filtre l'affichage pour confirmer que chaque profi
 
 ![Profils Pare-feu](../../assets/ad/firewall.png)
 
-## 6. Mise à jour du système
+## 7. Mise à jour du système
 
-### 6.1. Téléchargement et installation des KBs. Utilisation de l'API Windows Update pour mettre le système en conformité via le module PSWindowsUpdate.
+### 8.1. Téléchargement et installation des KBs. Utilisation de l'API Windows Update pour mettre le système en conformité via le module PSWindowsUpdate.
 ```powershell
 Get-Service -Name wuauserv
 Start-Service -Name wuauserv
@@ -107,9 +136,9 @@ Restart-Computer
 !!! warning "Action requise"
 Un redémarrage du système (Restart-Computer) est strictement requis après la passe d'installation des correctifs cumulatifs.
 
-## 7. Sécurisation du compte local Administrateur
+## 8. Sécurisation du compte local Administrateur
 
-### 7.1. Renommage et changement de mot de passe. Modification du nom d'utilisateur associé au SID 500 pour compliquer les attaques par énumération, et renouvellement du mot de passe avec une entrée sécurisée.
+### 8.1. Renommage et changement de mot de passe. Modification du nom d'utilisateur associé au SID 500 pour compliquer les attaques par énumération, et renouvellement du mot de passe avec une entrée sécurisée.
 ```powershell
 Get-LocalUser -Name "Administrateur" | Select-Object Name, SID, Enabled
 Rename-LocalUser -Name "Administrateur" -NewName "ADM-SRV-01"
