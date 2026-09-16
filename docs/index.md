@@ -2,6 +2,8 @@
 description: Documentation et procédure technique.
 ---
 
+![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
+
 # GÉNÉRAL - Contexte CUB - BTS SIO
 
 
