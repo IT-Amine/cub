@@ -1,9 +1,3 @@
-# Scripts et logs locaux (ne pas versionner)
-autopush.sh
-autopush.log
-launchd.log
-Logs/
-
 # macOS
 .DS_Store
 .DS_Store?
