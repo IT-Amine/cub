@@ -41,6 +41,7 @@ cub-docs/
 │   ├── windows/                  → Administration Windows
 │   │   └── core/
 │   │       ├── configuration-windows-core.md  → Config Windows Core
+│   │       ├── extension-volume-windows.md    → Procédure d'extension de volume (C:)
 │   │       ├── config-ad.md                   → Déploiement & hardening AD1 Core
 │   │       └── config-dhcp.md                 → Déploiement & hardening DHCP Core
 │   │

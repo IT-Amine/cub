@@ -24,44 +24,66 @@ nav = [
       { "Schéma logique Dortmund" = "assets/schema/schema-logique.pdf" },
       { "Schéma physique Dortmund" = "assets/schema/schema-physique.pdf" }
   ]},
-  
-    { "Réseau" = [
+  { "Réseau" = [
       { "Accueil" = "reseau/index.md" },
-      { "VLSM & Routage" = "reseau/vlsm-routage.md" },
-      { "Configurations Cisco" = "reseau/cisco/configurations/commande-cub.md" },
-      { "Cisco - NAT" = "reseau/cisco/nat/configuration-nat-routeur-cisco.md" },
-      { "Cisco - DHCP" = "reseau/cisco/dhcp/implementation-relais-dhcp-cisco.md" },
-      { "Cisco - Recette SW L3" = "reseau/cisco/recettes/recette-commutateur-l3-cisco.md" },
-      { "Cisco - Routage" = "reseau/cisco/routage/implementation-routage-statique-cisco.md" },
-      { "Cisco - Sécurité accès" = "reseau/cisco/securite/implementation-mots-de-passe-niveau-acces.md" },
-      { "Cisco - SSH Commutateur" = "reseau/cisco/ssh/configuration-ssh-commutateur-cisco.md" },
-      { "Cisco - SSH Routeur" = "reseau/cisco/ssh/configuration-ssh-routeur-cisco.md" },
-      { "Cisco - VTP" = "reseau/cisco/vtp/implementation-vtp-cisco.md" }
+      { "Architecture & Routage" = [
+          { "VLSM & Routage" = "reseau/vlsm-routage.md" },
+          { "Routage Statique" = "reseau/cisco/routage/implementation-routage-statique-cisco.md" }
+      ]},
+      { "Cisco - Configuration" = [
+          { "Commandes de base" = "reseau/cisco/configurations/commande-cub.md" },
+          { "Sécurité accès" = "reseau/cisco/securite/implementation-mots-de-passe-niveau-acces.md" },
+          { "SSH Commutateur" = "reseau/cisco/ssh/configuration-ssh-commutateur-cisco.md" },
+          { "SSH Routeur" = "reseau/cisco/ssh/configuration-ssh-routeur-cisco.md" }
+      ]},
+      { "Cisco - Services" = [
+          { "NAT" = "reseau/cisco/nat/configuration-nat-routeur-cisco.md" },
+          { "DHCP Relais" = "reseau/cisco/dhcp/implementation-relais-dhcp-cisco.md" },
+          { "VTP" = "reseau/cisco/vtp/implementation-vtp-cisco.md" }
+      ]},
+      { "Cisco - Recettes" = [
+          { "Recette Switch L3" = "reseau/cisco/recettes/recette-commutateur-l3-cisco.md" }
+      ]}
   ]},
   { "Windows" = [
       { "Accueil" = "windows/index.md" },
-      { "Configuration Windows Core" = "windows/core/configuration-windows-core.md" },
-      { "AD1 Core" = "windows/core/config-ad.md" },
-      { "DHCP Core" = "windows/core/config-dhcp.md" }
+      { "Système Windows Core" = [
+          { "Initialisation" = "windows/core/configuration-windows-core.md" },
+          { "Extension Volume (C:)" = "windows/core/extension-volume-windows.md" }
+      ]},
+      { "Serveurs & Rôles" = [
+          { "AD1 Core" = "windows/core/config-ad.md" },
+          { "DHCP Core" = "windows/core/config-dhcp.md" }
+      ]}
   ]},
   { "Sécurité" = [
       { "Accueil" = "securite/index.md" },
-      { "Théorie UTM & Sécurité" = "securite/cybersecurite-cub.md" },
-      { "Stormshield - Interface" = "securite/stormshield/procedures/configuration-interface-stormshield.md" },
-      { "Stormshield - NAT" = "securite/stormshield/procedures/configuration-nat-stormshield.md" },
-      { "Stormshield - Routage" = "securite/stormshield/procedures/configuration-routage-stormshield.md" },
-      { "Stormshield - Sous-interface" = "securite/stormshield/procedures/configuration-sous-interface-stormshield.md" },
-      { "Stormshield - Sauvegarde" = "securite/stormshield/procedures/sauvegarde-configuration-stormshield.md" },
-      { "Stormshield - Erreur Dérives" = "securite/stormshield/problemes/resolution-erreur-derives-ethernet.md" },
-      { "Stormshield - Recette" = "securite/stormshield/recettes/recette-pare-feu-stormshield.md" }
+      { "Théorie" = [
+          { "UTM & Sécurité globale" = "securite/cybersecurite-cub.md" }
+      ]},
+      { "Stormshield - Configuration" = [
+          { "Interface" = "securite/stormshield/procedures/configuration-interface-stormshield.md" },
+          { "Sous-interface" = "securite/stormshield/procedures/configuration-sous-interface-stormshield.md" },
+          { "Routage" = "securite/stormshield/procedures/configuration-routage-stormshield.md" },
+          { "NAT" = "securite/stormshield/procedures/configuration-nat-stormshield.md" },
+          { "Sauvegarde" = "securite/stormshield/procedures/sauvegarde-configuration-stormshield.md" }
+      ]},
+      { "Stormshield - Exploitation" = [
+          { "Recette Firewall" = "securite/stormshield/recettes/recette-pare-feu-stormshield.md" },
+          { "Erreur Dérives (Ethernet)" = "securite/stormshield/problemes/resolution-erreur-derives-ethernet.md" }
+      ]}
   ]},
   { "Services" = [
       { "Accueil" = "services/index.md" },
-      { "Résumé Debian OTP" = "services/exploitation-services.md" },
-      { "DNS Récursif (Bind9)" = "services/dns/config-dns-recursif.md" },
-      { "Etckeeper" = "services/etckeeper/installation-configuration-etckeeper.md" },
-      { "Services communs Debian" = "services/communs/installation-paquets-commun-debian.md" },
-      { "TOTP" = "services/totp/installation-configuration-totp.md" }
+      { "Système Debian" = [
+          { "Installation Paquets Communs" = "services/communs/installation-paquets-commun-debian.md" },
+          { "Etckeeper" = "services/etckeeper/installation-configuration-etckeeper.md" }
+      ]},
+      { "Applicatif" = [
+          { "Serveur DNS Récursif" = "services/dns/config-dns-recursif.md" },
+          { "Serveur OTP" = "services/exploitation-services.md" },
+          { "Configuration TOTP" = "services/totp/installation-configuration-totp.md" }
+      ]}
   ]},
   { "Ressources" = [
       { "Accueil" = "ressources/index.md" },
