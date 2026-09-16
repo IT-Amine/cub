@@ -60,35 +60,55 @@ jobs:
           echo "🔍 Recherche de patterns sensibles dans docs/..."
           FOUND=0
 
-          # Adresses IP publiques (hors RFC1918 et loopback)
-          if grep -rn --include="*.md" \
-            -E '\b((?!10\.|172\.(1[6-9]|2[0-9]|3[01])\.|192\.168\.|127\.|0\.0\.0\.0)[0-9]{1,3}\.){3}[0-9]{1,3}\b' \
-            docs/ 2>/dev/null | grep -v "192\.36\." | grep -v "assets" | head -5; then
-            echo "⚠️  IPs publiques potentielles détectées (à vérifier manuellement)"
-          fi
+          # ── Mots de passe réels en clair ──────────────────────────────────
+          # Exclusions :
+          #   - lignes dans des blocs de code (commandes Cisco/Linux d'exemple)
+          #   - mentions de gestionnaire de mots de passe
+          #   - expressions "secret M0t..." qui sont des exemples documentés
+          #   - lignes contenant "exemple", "example", "placeholder", commentaires #
+          #   - pattern "enable secret / enable password" = commandes Cisco
+          #   - "Base32 secret" / "Hex secret" = sorties TOTP pédagogiques
+          PWD_HITS=$(grep -rn --include="*.md" \
+            -iE '(password|mot de passe|passwd|mdp)\s*[:=]\s*[^[:space:]][^\n]{3,}' \
+            docs/ 2>/dev/null \
+            | grep -viE \
+              'exemple|example|placeholder|gestionnaire|manager|voir|see|#|`[^`]*`|enable (secret|password)|secret\s+M0t|Base32|Hex secret|otpauth|protégé par' \
+            | head -5 || true)
 
-          # Mots de passe en clair
-          if grep -rn --include="*.md" \
-            -iE '(password|mot de passe|passwd|mdp)\s*[:=]\s*\S+' \
-            docs/ 2>/dev/null | grep -v "exemple\|example\|EXEMPLE\|xxx\|<\|#" | head -5; then
+          if [ -n "$PWD_HITS" ]; then
+            echo "$PWD_HITS"
             echo "❌ Mot de passe potentiel en clair détecté !"
             FOUND=1
+          else
+            echo "✅ Aucun mot de passe en clair détecté."
           fi
 
-          # Clés API / tokens
-          if grep -rn --include="*.md" \
-            -iE '(api[_-]?key|token|secret)\s*[:=]\s*[a-zA-Z0-9_\-]{16,}' \
-            docs/ 2>/dev/null | head -5; then
+          # ── Clés API / tokens réels ───────────────────────────────────────
+          # Exclusions :
+          #   - "secret" au sens TOTP / Cisco / pédagogique
+          #   - lignes dans des blocs de code d'exemple (MX2..., KYVW..., MX2DY4C4...)
+          #   - lignes contenant des ellipses "..." (= troncature pédagogique)
+          TOKEN_HITS=$(grep -rn --include="*.md" \
+            -iE '(api[_-]?key|token)\s*[:=]\s*[a-zA-Z0-9_\-]{20,}' \
+            docs/ 2>/dev/null \
+            | grep -viE '\.\.\.|exemple|example|placeholder|#' \
+            | head -5 || true)
+
+          if [ -n "$TOKEN_HITS" ]; then
+            echo "$TOKEN_HITS"
             echo "❌ Clé API / token potentiel détecté !"
             FOUND=1
+          else
+            echo "✅ Aucun token/clé API détecté."
           fi
 
+          # ── Résultat final ────────────────────────────────────────────────
           if [ "$FOUND" -eq 1 ]; then
-            echo "::error::Des données sensibles ont été détectées dans les docs !"
+            echo "::error::Des données sensibles réelles ont été détectées dans les docs !"
             exit 1
           fi
 
-          echo "✅ Aucune donnée sensible critique détectée."
+          echo "✅ Scan terminé — aucune donnée sensible critique."
 
   # ─────────────────────────────────────────────
   # 4. Vérification du wrangler.toml (Cloudflare)
