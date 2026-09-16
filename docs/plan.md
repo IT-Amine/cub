@@ -1,6 +1,17 @@
-# Plan de l'infrastructure CUB
+---
+description: Documentation et procédure technique.
+---
 
-L'entreprise CUB dispose d'une infrastructure complexe avec un site central et différentes agences interconnectées. De plus, cette infrastructure est transposée dans le laboratoire SISR 2 du BTS SIO. Ainsi, il est indispensable de disposer de ces informations afin d'avoir une vue complète et précise de l'architecture.
+# GÉNÉRAL - Plan de l'infrastructure CUB
+
+![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
+
+<div style="margin-top: 70px; border: 1px solid #ccc; padding: 20px; border-radius: 10px;">
+    <p><strong>Auteur :</strong> KADA Amine</p>
+    <p><strong>Classe :</strong> BTS SIO 2 - Option SISR</p>
+    <p><strong>Date :</strong> 16/09/2026</p>
+    <p><strong>Contexte :</strong> Configuration Plan de l'infrastructure CUB</p>
+</div>
 
 ---
 

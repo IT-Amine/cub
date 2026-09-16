@@ -1,12 +1,19 @@
 ---
-icon: lucide/home
+description: Documentation et procédure technique.
 ---
 
-# Contexte CUB - BTS SIO
+# GÉNÉRAL - Contexte CUB - BTS SIO
 
-![Bannière CUB](assets/banniere-cub.png)
+![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
 
-Bienvenue sur la documentation officielle du projet **CUB** pour le BTS SIO du lycée Paul-Louis Courier.
+<div style="margin-top: 70px; border: 1px solid #ccc; padding: 20px; border-radius: 10px;">
+    <p><strong>Auteur :</strong> KADA Amine</p>
+    <p><strong>Classe :</strong> BTS SIO 2 - Option SISR</p>
+    <p><strong>Date :</strong> 16/09/2026</p>
+    <p><strong>Contexte :</strong> Configuration Contexte CUB - BTS SIO</p>
+</div>
+
+---
 
 ## 🧭 Navigation
 
