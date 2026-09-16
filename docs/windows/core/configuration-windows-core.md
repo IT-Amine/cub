@@ -1,6 +1,17 @@
-# Configuration Windows Core
+---
+description: Documentation et procédure technique.
+---
 
-![Bannière CUB](https://IT-Amine.github.io/cub/assets/banniere-cub.png)
+# BLOC 2 - Configuration Windows Core
+
+![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
+
+<div style="margin-top: 70px; border: 1px solid #ccc; padding: 20px; border-radius: 10px;">
+    <p><strong>Auteur :</strong> KADA Amine</p>
+    <p><strong>Classe :</strong> BTS SIO 2 - Option SISR</p>
+    <p><strong>Date :</strong> 09/09/2026</p>
+    <p><strong>Contexte :</strong> Configuration Configuration Windows Core</p>
+</div>
 
 ---
 

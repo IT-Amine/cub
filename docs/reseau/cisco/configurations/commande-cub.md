@@ -1,3 +1,9 @@
+---
+description: Documentation et procédure technique.
+---
+
+# BLOC 2 - Commande Cub
+
 ![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
 
 <div style="margin-top: 70px; border: 1px solid #ccc; padding: 20px; border-radius: 10px;">
@@ -247,4 +253,3 @@ end
 write
 ```
 
----

@@ -1,8 +1,5 @@
-
 ---
-
-description: Procédure de déploiement et de configuration initiale pour le serveur BLOC 2 - DHCP Core.
-
+description: Documentation et procédure technique.
 ---
 
 # BLOC 2 - DHCP Core

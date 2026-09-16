@@ -1,6 +1,8 @@
-# Procédure : Extension du volume système (C:) sur machine virtuelle
+---
+description: Documentation et procédure technique.
+---
 
-# BLOC 2 - AD1 Core
+# BLOC 2 - Procédure : Extension du volume système (C:) sur machine virtuelle
 
 ![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
 
