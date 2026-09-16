@@ -7,7 +7,14 @@
     <p><strong>Contexte :</strong> VLSM & Table de routage CUB - Situation 1</p>
 </div>
 
+> [!NOTE]
+> Ce fichier est une **fiche de révision BLOC 3**. Les tableaux complets et finaux sont disponibles dans la section Ressources :
+> - 📄 [Plan d'adressage complet](../ressources/plan-adressage.md)
+> - 📄 [Tables de routage](../ressources/tables-routage.md)
+> - 📄 [Tables NAT](../ressources/tables-nat.md)
+
 ---
+
 ### Calcul VLSM - Agence Dortmund
 
 - VLAN 54 - Production - 120 Hôtes

@@ -7,7 +7,15 @@
     <p><strong>Contexte :</strong> Question bases SOC - Situation 1</p>
 </div>
 
+> [!TIP]
+> Ce fichier contient les **justifications théoriques** (SOC, UTM vs Stateful, VLAN). Pour les **procédures techniques pas-à-pas** sur le Stormshield, consultez la section dédiée :
+> - 📄 [Configuration des interfaces Stormshield](../securite/stormshield/procedures/configuration-interface-stormshield.md)
+> - 📄 [Configuration NAT Stormshield](../securite/stormshield/procedures/configuration-nat-stormshield.md)
+> - 📄 [Configuration routage Stormshield](../securite/stormshield/procedures/configuration-routage-stormshield.md)
+> - 📄 [Recette pare-feu Stormshield](../securite/stormshield/recettes/recette-pare-feu-stormshield.md)
+
 ---
+
 ### Schéma OSI :
 
 ![Schéma réseau ou description](https://datasave.qsfptek.com/resources/image/2023-03-25177434.png)

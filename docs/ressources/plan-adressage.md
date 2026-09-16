@@ -10,7 +10,11 @@
 - **Date :** 04/09/2026
 - **Domaine :** Réseaux
 
+> [!TIP]
+> Une **fiche de révision rapide** avec les calculs VLSM et tables de routage/NAT est disponible dans la section BLOC 3 : [VLSM & Routage](../../bloc3/vlsm-routage.md)
+
 ---
+
 
 ## 1. Sommaire
 
