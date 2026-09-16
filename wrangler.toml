@@ -1,0 +1,16 @@
+# =============================================================
+# wrangler.toml — Configuration Cloudflare Workers
+# Projet : cub-docs (Documentation BTS SIO - CUB)
+# =============================================================
+
+name = "cub"
+compatibility_date = "2026-09-16"
+
+# Pas de Worker script — on sert uniquement les assets statiques
+# générés par Zensical (SSG Python → dossier site/)
+
+[assets]
+directory = "./site"
+
+# Pas de redirection SPA : c'est une doc statique multi-pages
+# not_found_handling = "single-page-application"
