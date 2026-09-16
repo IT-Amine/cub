@@ -1,5 +1,7 @@
 ---
-description: Documentation et procédure technique.
+
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=300&duration=9000&pause=1000&width=435&lines=Agence+Dortmund+-+CUB)](https://git.io/typing-svg)
+
 ---
 
 ![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
