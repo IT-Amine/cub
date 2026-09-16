@@ -28,13 +28,13 @@ Le déploiement d'une sous-interface tagguée (VLAN 802.1Q) sur un pare-feu Stor
 
 3.1. **Ajout de l'interface virtuelle.** Dans le menu **CONFIGURATION** > **RÉSEAU** > **INTERFACES**, sélectionner **Ajouter**, puis **VLAN** et **Sans interface parente**.
 
-![Sélection de "VLAN" sur l'interface physique cible](./assets/configuration-sous-interface-stormshield/ajout-vlan.png)
+![Sélection de "VLAN" sur l'interface physique cible](../assets/configuration-sous-interface-stormshield/ajout-vlan.png)
 
 ## 4. Configuration IP de la sous-interface
 
 4.1. **Définition du plan d'adressage.** Activer la sous-interface et lui attribuer une adresse IP statique qui agira en tant que passerelle par défaut (Gateway) pour les hôtes raccordés à ce VLAN ainsi que choisir l'interface physique parente.
 
-![Fenêtre de configuration de la sous-interface montrant le champ "État" sur ON et la saisie de l'Adresse/Masque](./assets/configuration-sous-interface-stormshield/configuration-ip-vlan.png)
+![Fenêtre de configuration de la sous-interface montrant le champ "État" sur ON et la saisie de l'Adresse/Masque](../assets/configuration-sous-interface-stormshield/configuration-ip-vlan.png)
 
 - `État` : `ON` pour activer administrativement la sous-interface.
 - `Interface parente` : Nom de l'interface parente.
