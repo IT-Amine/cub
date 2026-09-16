@@ -41,7 +41,8 @@ cub-docs/
 │   ├── windows/                  → Administration Windows
 │   │   └── core/
 │   │       ├── configuration-windows-core.md  → Config Windows Core
-│   │       └── config-ad.md                   → Déploiement & hardening AD1 Core
+│   │       ├── config-ad.md                   → Déploiement & hardening AD1 Core
+│   │       └── config-dhcp.md                 → Déploiement & hardening DHCP Core
 │   │
 │   ├── securite/                 → Cybersécurité
 │   │   ├── cybersecurite-cub.md  → Théorie UTM, Stormshield vs Stateful, VLAN

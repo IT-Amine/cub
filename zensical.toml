@@ -41,7 +41,8 @@ nav = [
   { "Windows" = [
       { "Accueil" = "windows/index.md" },
       { "Configuration Windows Core" = "windows/core/configuration-windows-core.md" },
-      { "AD1 Core" = "windows/core/config-ad.md" }
+      { "AD1 Core" = "windows/core/config-ad.md" },
+      { "DHCP Core" = "windows/core/config-dhcp.md" }
   ]},
   { "Sécurité" = [
       { "Accueil" = "securite/index.md" },
