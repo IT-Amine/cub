@@ -78,9 +78,9 @@ nav = [
 [project.theme]
 # variant = "classic"
 # custom_dir = "overrides"
-favicon = "assets/banniere_cub.png"
+favicon = "assets/banniere-cub.png"
 language = "fr"
-logo = "assets/banniere_cub.png"
+logo = "assets/banniere-cub.png"
 features = [
   "announce.dismiss",
   "content.action.edit",
