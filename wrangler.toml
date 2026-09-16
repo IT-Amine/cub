@@ -12,6 +12,9 @@ compatibility_date = "2026-09-16"
 [assets]
 directory = "./site"
 
+[observability]
+enabled = false
+
 # Pas de redirection SPA : c'est une doc statique multi-pages
 # not_found_handling = "single-page-application"
 
