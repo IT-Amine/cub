@@ -18,10 +18,10 @@ description: Procédure de déploiement et de configuration initiale pour le ser
 ## 1. Sommaire
 - [1. Sommaire](#1-sommaire)
 - [2. Contexte](#2-contexte)
-- [3. Déploiement des utilitaires de virtualisation](#3-déploiement-des-utilitaires-de-virtualisation)
+- [3. Déploiement des utilitaires de virtualisation](#3-deploiement-des-utilitaires-de-virtualisation)
 - [4. Configuration réseau statique](#4-configuration-reseau-statique)
 - [5. Configuration NTP](#5-configuration-ntp)
-- [6. Paramétrage Sécurité et Pare-feu](#6-paramétrage-securite-et-pare-feu)
+- [6. Paramétrage Sécurité et Pare-feu](#6-parametrage-securite-et-pare-feu)
 - [7. Mise à jour du système](#7-mise-a-jour-du-systeme)
 - [8. Sécurisation du compte local Administrateur](#8-securisation-du-compte-local-administrateur)
 
@@ -54,14 +54,14 @@ Start-Service QEMU-GA
 
 ## 4. Configuration réseau statique
 
-### 8.1. Identification de l'interface réseau
+### 4.1. Identification de l'interface réseau
 Il faut d'abord repérer le numéro d'index (`ifIndex`) de la carte réseau virtuelle pour lui appliquer les paramètres.
 ```powershell
 Get-NetAdapter
 ```
 - Repérez la valeur dans la colonne `ifIndex` correspondant à votre carte réseau (généralement nommée Ethernet).
 
-### 5.2. Attribution de l'adresse IP, du Masque et de la Passerelle
+### 4.2. Attribution de l'adresse IP, du Masque et de la Passerelle
 Utilisez l'index récupéré pour définir les paramètres IP statiques. *(Exemple avec l'index `3`, l'IP `192.168.4.10`, masque `/25` et la passerelle `192.168.4.126`)*.
 
 ```powershell
@@ -82,7 +82,7 @@ Set-DnsClientServerAddress -InterfaceIndex 3 -ServerAddresses ("127.0.0.1", "1.1
 
 ## 5. Configuration NTP
 
-### 8.1. Configuration des pools de serveurs. Établissement de la synchronisation manuelle sur les serveurs de temps publics pour garantir l'intégrité de l'horloge système.
+### 5.1. Configuration des pools de serveurs. Établissement de la synchronisation manuelle sur les serveurs de temps publics pour garantir l'intégrité de l'horloge système.
 
 ```powershell title="Configuration W32Time"
 w32tm /config /manualpeerlist:"0.fr.pool.ntp.org 1.fr.pool.ntp.org" /syncfromflags:manual /reliable:yes /update
@@ -106,7 +106,7 @@ w32tm /query /status
 
 ## 6. Paramétrage Sécurité et Pare-feu
 
-### 8.1. Vérification UAC et Profils Pare-feu. Audit des politiques de pare-feu globales (Domaine, Privé, Public).
+### 6.1. Vérification UAC et Profils Pare-feu. Audit des politiques de pare-feu globales (Domaine, Privé, Public).
 ```powershell
 Get-NetFirewallProfile | Select-Object Name, Enabled
 Get-NetFirewallProfile
@@ -117,7 +117,7 @@ Select-Object Name, Enabled # Filtre l'affichage pour confirmer que chaque profi
 
 ## 7. Mise à jour du système
 
-### 8.1. Téléchargement et installation des KBs. Utilisation de l'API Windows Update pour mettre le système en conformité via le module PSWindowsUpdate.
+### 7.1. Téléchargement et installation des KBs. Utilisation de l'API Windows Update pour mettre le système en conformité via le module PSWindowsUpdate.
 ```powershell
 Get-Service -Name wuauserv
 Start-Service -Name wuauserv

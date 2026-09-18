@@ -18,13 +18,13 @@ description: Documentation et procédure technique.
 ## 1. Sommaire
 - [1. Sommaire](#1-sommaire)
 - [2. Contexte](#2-contexte)
-- [3. Déploiement des utilitaires de virtualisation](#3-déploiement-des-utilitaires-de-virtualisation)
+- [3. Déploiement des utilitaires de virtualisation](#3-deploiement-des-utilitaires-de-virtualisation)
 - [4. Configuration réseau statique](#4-configuration-reseau-statique)
 - [5. Configuration NTP](#5-configuration-ntp)
-- [6. Paramétrage Sécurité et Pare-feu](#6-paramétrage-securite-et-pare-feu)
+- [6. Paramétrage Sécurité et Pare-feu](#6-parametrage-securite-et-pare-feu)
 - [7. Mise à jour du système](#7-mise-a-jour-du-systeme)
 - [8. Sécurisation du compte local Administrateur](#8-securisation-du-compte-local-administrateur)
-- [9. Installation et configuration du rôle DHCP](#9-installation-et-configuration-du-rôle-dhcp)
+- [9. Installation et configuration du rôle DHCP](#9-installation-et-configuration-du-role-dhcp)
 
 ## 2. Contexte
 Ce document détaille la procédure d'initialisation et de sécurisation (Hardening) du serveur Windows Server 2025 (édition Core) dédié au rôle DHCP. Il couvre la synchronisation temporelle indispensable à la cohérence des baux réseau, la configuration du pare-feu, la gestion des mises à jour centralisées via PowerShell, la sécurisation du compte administrateur local, l'intégration des pilotes VirtIO/QEMU nécessaires au fonctionnement optimal sur l'hyperviseur, ainsi que le déploiement du service DHCP.
@@ -54,14 +54,14 @@ Start-Service QEMU-GA
 
 ## 4. Configuration réseau statique
 
-### 9.1. Identification de l'interface réseau
+### 4.1. Identification de l'interface réseau
 Il faut d'abord repérer le numéro d'index (`ifIndex`) de la carte réseau virtuelle pour lui appliquer les paramètres.
 ```powershell
 Get-NetAdapter
 ```
 - Repérez la valeur dans la colonne `ifIndex` correspondant à votre carte réseau (généralement nommée Ethernet).
 
-### 5.2. Attribution de l'adresse IP, du Masque et de la Passerelle
+### 4.2. Attribution de l'adresse IP, du Masque et de la Passerelle
 Utilisez l'index récupéré pour définir les paramètres IP statiques. *(Exemple avec l'index `3`, l'IP `192.168.4.11`, masque `/25` et la passerelle `192.168.4.126`)*.
 
 ```powershell
@@ -82,7 +82,7 @@ Set-DnsClientServerAddress -InterfaceIndex 3 -ServerAddresses ("192.168.4.10", "
 
 ## 5. Configuration NTP
 
-### 9.1. Configuration des pools de serveurs.
+### 5.1. Configuration des pools de serveurs.
 
 Établissement de la synchronisation manuelle sur les serveurs de temps publics pour garantir l'intégrité de l'horloge système.
 
@@ -109,7 +109,7 @@ w32tm /query /status
 
 ## 6. Paramétrage Sécurité et Pare-feu
 
-### 9.1. Vérification UAC et Profils Pare-feu.
+### 6.1. Vérification UAC et Profils Pare-feu.
 
 Audit des politiques de pare-feu globales (Domaine, Privé, Public).
 
@@ -121,7 +121,7 @@ Get-NetFirewallProfile | Select-Object Name, Enabled
 
 ## 7. Mise à jour du système
 
-### 9.1. Téléchargement et installation des KBs.
+### 7.1. Téléchargement et installation des KBs.
 
 Utilisation de l'API Windows Update pour mettre le système en conformité via le module PSWindowsUpdate.
 
@@ -143,7 +143,7 @@ Restart-Computer
 
 ## 8. Sécurisation du compte local Administrateur
 
-### 9.1. Renommage et changement de mot de passe.
+### 8.1. Renommage et changement de mot de passe.
 
 Modification du nom d'utilisateur associé au SID 500 pour compliquer les attaques par énumération, et renouvellement du mot de passe avec une entrée sécurisée.
 
@@ -157,3 +157,28 @@ Set-LocalUser -Name "ADM-SRV-01" -Password (Read-Host "Nouveau mot de passe" -As
 - `Rename-LocalUser` : Modifie le SAMAccountName local.
 - `-AsSecureString` : Chiffre la saisie du mot de passe stocké en mémoire vive pendant la transaction.
 
+
+## 9. Installation et configuration du rôle DHCP
+
+### 9.1. Lancement de l'installation du composant
+
+Installation du rôle DHCP et de ses outils d'administration locaux.
+
+```powershell
+Install-WindowsFeature -Name DHCP -IncludeManagementTools
+```
+
+### 9.2. Création de l'étendue et configuration des options
+
+Création d'une étendue d'adresses IP pour le réseau ciblé (ex: VLAN Admin) avec les options de passerelle et de DNS.
+
+```powershell
+Add-DhcpServerv4Scope -Name "VLAN_Admin" -StartRange 192.168.4.50 -EndRange 192.168.4.150 -SubnetMask 255.255.255.0
+Set-DhcpServerv4OptionValue -ScopeId 192.168.4.0 -Router 192.168.4.206 -DnsServer 192.168.4.10
+```
+
+### 9.3. Redémarrage du service DHCP
+
+```powershell
+Restart-Service DHCPServer
+```
