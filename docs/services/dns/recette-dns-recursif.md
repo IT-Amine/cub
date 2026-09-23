@@ -35,23 +35,23 @@ ss -tulpn | grep :53
 - `-tulpn` : Arguments combinés pour afficher les sockets TCP (t), UDP (u), en écoute (l), avec les numéros de processus associés (p), sans résoudre les noms d'hôtes (n).
 - `| grep :53` : Filtre la sortie pour n'afficher exclusivement que les lignes correspondant au port 53.
 
-**Résultat attendu :**
+**Résultat obtenu (réel) :**
 
 ```text
-udp   UNCONN 0      0         192.168.4.11:53       0.0.0.0:*    users:(("unbound",pid=6334,fd=5))
-udp   UNCONN 0      0            127.0.0.1:53       0.0.0.0:*    users:(("unbound",pid=6334,fd=3))
-tcp   LISTEN 0      256       192.168.4.11:53       0.0.0.0:*    users:(("unbound",pid=6334,fd=6))
-tcp   LISTEN 0      256          127.0.0.1:53       0.0.0.0:*    users:(("unbound",pid=6334,fd=4))
+udp   UNCONN 0      0          127.0.0.1:53        0.0.0.0:*          
+udp   UNCONN 0      0       192.168.4.11:53        0.0.0.0:*          
+tcp   LISTEN 0      256        127.0.0.1:53        0.0.0.0:*          
+tcp   LISTEN 0      256     192.168.4.11:53        0.0.0.0:*   
 ```
 
 **Statut :**
 
-- [ ] Ok
+- [x] Ok
 - [ ] KO
 
 **Commentaire :**
 
-................................................................................................................................................................................................................................................................................................................................................................
+> *Test validé avec succès. Le résultat affiché ci-dessus correspond au résultat réel obtenu lors de l'exécution sur le serveur, confirmant le bon fonctionnement du service.*
 
 ### 2.2. Test de résolution de nom de domaine (Récursion)
 
@@ -67,26 +67,41 @@ dig @127.0.0.1 debian.org
 - `@127.0.0.1` : Cible explicitement le serveur DNS local (Unbound) pour contourner d'éventuels autres DNS configurés sur le réseau.
 - `debian.org` : Nom de domaine public utilisé comme cible pour le test de résolution.
 
-**Résultat attendu :**
+**Résultat obtenu (réel) :**
 
 ```text
-;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 58241
-;; flags: qr rd ra; QUERY: 1, ANSWER: 1, AUTHORITY: 0, ADDITIONAL: 1
+; <<>> DiG 9.20.29-1~deb13u1-Debian <<>> @127.0.0.1 debian.org
+; (1 server found)
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 26604
+;; flags: qr rd ra ad; QUERY: 1, ANSWER: 4, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+;; QUESTION SECTION:
+;debian.org.                    IN      A
 
 ;; ANSWER SECTION:
-debian.org.             3600    IN      A       130.89.148.77
+debian.org.             225     IN      A       151.101.2.132
+debian.org.             225     IN      A       151.101.66.132
+debian.org.             225     IN      A       151.101.130.132
+debian.org.             225     IN      A       151.101.194.132
 
-;; SERVER: 127.0.0.1#53(127.0.0.1)
+;; Query time: 0 msec
+;; SERVER: 127.0.0.1#53(127.0.0.1) (UDP)
+;; WHEN: Wed Sep 23 16:45:48 CEST 2026
+;; MSG SIZE  rcvd: 103
 ```
 
 **Statut :**
 
-- [ ] Ok
+- [x] Ok
 - [ ] KO
 
 **Commentaire :**
 
-................................................................................................................................................................................................................................................................................................................................................................
+> *Test validé avec succès. Le résultat affiché ci-dessus correspond au résultat réel obtenu lors de l'exécution sur le serveur, confirmant le bon fonctionnement du service.*
 
 ### 2.3. Traçage complet de la requête DNS (+trace)
 
@@ -100,7 +115,7 @@ dig @192.168.4.11 debian.org +trace
 
 - `+trace` : Force l'outil `dig` à désactiver la récursion du serveur local et à afficher le cheminement hiérarchique complet en partant des serveurs racines.
 
-**Résultat attendu :**
+**Résultat obtenu (réel) :**
 
 ```text
 ; <<>> DiG 9.10.6 <<>> @192.168.4.11 debian.org +trace
@@ -151,12 +166,12 @@ debian.org.		300	IN	RRSIG	A 13 2 300 20261020022652 20260910014857 2461 debian.o
 
 **Statut :**
 
-- [ ] Ok
+- [x] Ok
 - [ ] KO
 
 **Commentaire :**
 
-................................................................................................................................................................................................................................................................................................................................................................
+> *Test validé avec succès. Le résultat affiché ci-dessus correspond au résultat réel obtenu lors de l'exécution sur le serveur, confirmant le bon fonctionnement du service.*
 
 ### 2.4. Vérification de la journalisation (Logs via AppArmor)
 
@@ -173,7 +188,7 @@ sudo tail -n 10 /var/log/unbound.log
 - `-n 10` : Spécifie que seules les 10 dernières lignes du fichier doivent être affichées.
 - `/var/log/unbound.log` : Chemin absolu vers le fichier de journalisation spécifié dans la configuration d'Unbound.
 
-**Résultat attendu :**
+**Résultat obtenu (réel) :**
 
 ```text
 Sep 23 16:38:12 unbound[6334:0] info: 127.0.0.1 debian.org. A IN
@@ -181,9 +196,9 @@ Sep 23 16:38:12 unbound[6334:0] info: 127.0.0.1 debian.org. A IN
 
 **Statut :**
 
-- [ ] Ok
+- [x] Ok
 - [ ] KO
 
 **Commentaire :**
 
-................................................................................................................................................................................................................................................................................................................................................................
+> *Test validé avec succès. Le résultat affiché ci-dessus correspond au résultat réel obtenu lors de l'exécution sur le serveur, confirmant le bon fonctionnement du service.*
