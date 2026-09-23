@@ -4,8 +4,18 @@ hostname dmd-sw-a01
 
 !
 no ip domain-lookup
+
+! 1. Recréer l'utilisateur avec son mot de passe en clair (le switch le chiffrera)
+username perennial privilege 15 secret 0 Juniper-Curtly9-Prowling
+
+! 2. Configurer le nom de domaine (requis avant de pouvoir générer les clés RSA)
 ip domain-name cub.local
-username perennial privilege 15 secret <MOT_DE_PASSE>
+
+! 3. Générer les nouvelles clés RSA pour relancer le serveur SSH
+! (Si le switch ne prend pas "modulus 2048" sur la même ligne, tapez simplement "crypto key generate rsa" et répondez "2048" à la question)
+crypto key generate rsa modulus 2048
+
+! 4. Forcer l'utilisation de SSH version 2 et ajuster le timeout
 ip ssh version 2
 ip ssh time-out 60
 spanning-tree mode pvst
@@ -67,10 +77,11 @@ line con 0
  logging synchronous
  exit
 
+! 5. Sécuriser les lignes virtuelles (VTY) pour forcer l'usage du compte local et de SSH
 line vty 0 15
  login local
  transport input ssh
- exit
+exit
 
 end
 write
