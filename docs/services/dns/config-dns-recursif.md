@@ -9,7 +9,7 @@ description: Procédure de déploiement et de configuration d'un serveur DNS Ré
 <div style="margin-top: 70px; border: 1px solid #ccc; padding: 20px; border-radius: 10px;">
     <p><strong>Auteur :</strong> KADA Amine</p>
     <p><strong>Classe :</strong> BTS SIO 2 - Option SISR</p>
-    <p><strong>Date :</strong> 16/09/2026</p>
+    <p><strong>Date :</strong> 23/09/2026</p>
     <p><strong>Contexte :</strong> Configuration d'un DNS récursif (Unbound sur Debian)</p>
 </div>
 
@@ -40,7 +40,7 @@ On édite le fichier de configuration principal d'Unbound :
 sudoedit /etc/unbound/unbound.conf
 ```
 
-Ajoutez/Modifiez le contenu suivant (en l'adaptant à vos adresses réseau, ici l'interface `192.168.1.10`) :
+Ajoutez/Modifiez le contenu suivant (en l'adaptant à vos adresses réseau, ici l'interface `192.168.4.11`) :
 
 ```text
 # Unbound configuration file for Debian.
@@ -52,13 +52,13 @@ include: "/etc/unbound/unbound.conf.d/*.conf"
 
 server:
     # Interface d'écoute IPv4 sur le réseau
-    interface: 192.168.1.10
+    interface: 192.168.4.11
     interface: 127.0.0.1
 
     # Quels réseaux ont le droit de se servir du serveur DNS recursif
     # Attention !! Ne pas laisser votre serveur récursif ouvert à tous !
     # Allow_snoop autorise le traçage des requêtes DNS avec la commande dig +trace
-    access-control: 192.168.1.0/24 allow_snoop
+    access-control: 192.168.4.0/24 allow_snoop
     access-control: 127.0.0.0/8 allow_snoop
 
     # Fichier indiquant les serveurs DNS racines
@@ -88,7 +88,7 @@ sudo unbound-checkconf
 
 ## 4. Configuration des domaines locaux (Stub Zones)
 
-Notre serveur récursif va nativement s’adresser aux serveurs faisant autorité sur Internet. Dans le cas où il doit traiter des domaines locaux (ex : `btssio.lan` ou `epoka.local`) en dehors de l'arborescence officielle, il faut lui indiquer les serveurs internes.
+Notre serveur récursif va nativement s'adresser aux serveurs faisant autorité sur Internet. Dans le cas où il doit traiter des domaines locaux (ex : `btssio.lan` ou `epoka.local`) en dehors de l'arborescence officielle, il faut lui indiquer les serveurs internes.
 
 Ajoutez ces lignes à la fin de la section `server:` (ou à la racine) dans votre `/etc/unbound/unbound.conf` :
 
@@ -135,7 +135,7 @@ sudo chown unbound:unbound /var/log/unbound.log
 sudoedit /etc/apparmor.d/usr.sbin.unbound
 ```
 
-Ajoutez la ligne suivante (à l'intérieur du bloc d'autorisation principal) pour permettre l'écriture des logs :
+Ajoutez la ligne suivante (à l'intérieur du bloc d'autorisation principal, avant l'accolade finale `}`) pour permettre l'écriture des logs :
 
 ```text
   # On autorise le daemon unbound à lire et ecrire dans son fichier de log
@@ -154,7 +154,17 @@ sudo systemctl status unbound
 
 ---
 
-## 7. Suivi et maintenance
+## 7. Configuration du client DNS local (resolv.conf)
+
+Afin que les utilitaires locaux de la machine (comme `dig`) puissent s'appuyer sur le service Unbound nouvellement installé sans générer d'erreur de parsing, il est nécessaire de définir l'interface de bouclage local comme serveur de nom principal.
+
+```bash
+echo "nameserver 127.0.0.1" | sudo tee /etc/resolv.conf
+```
+
+---
+
+## 8. Suivi et maintenance
 
 Pour observer les événements journalisés (requêtes DNS entrantes, erreurs, etc.) :
 
