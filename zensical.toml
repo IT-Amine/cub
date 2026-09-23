@@ -81,6 +81,7 @@ nav = [
       ]},
       { "Applicatif" = [
           { "Serveur DNS Récursif" = "services/dns/config-dns-recursif.md" },
+          { "Recette DNS Récursif" = "services/dns/recette-dns-recursif.md" },
           { "Serveur OTP" = "services/exploitation-services.md" },
           { "Configuration TOTP" = "services/totp/installation-configuration-totp.md" }
       ]}
