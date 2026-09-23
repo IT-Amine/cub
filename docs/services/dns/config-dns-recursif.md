@@ -1,5 +1,5 @@
 ---
-description: Procédure de déploiement et de configuration d'un serveur DNS Récursif.
+description: Procédure de déploiement et de configuration d'un serveur DNS Récursif avec Unbound.
 ---
 
 # BLOC 2 - Configuration DNS Récursif
@@ -10,107 +10,158 @@ description: Procédure de déploiement et de configuration d'un serveur DNS Ré
     <p><strong>Auteur :</strong> KADA Amine</p>
     <p><strong>Classe :</strong> BTS SIO 2 - Option SISR</p>
     <p><strong>Date :</strong> 16/09/2026</p>
-    <p><strong>Contexte :</strong> Configuration d'un DNS récursif (Bind9 sur Debian)</p>
+    <p><strong>Contexte :</strong> Configuration d'un DNS récursif (Unbound sur Debian)</p>
 </div>
 
 ---
 
 ## 1. Contexte
-Un serveur DNS **récursif** (ou résolveur) a pour rôle de répondre aux requêtes DNS des postes clients de l'entreprise. Contrairement à un DNS faisant autorité (qui gère sa propre zone, ex: `cub.sioplc.fr`), le récursif va interroger les serveurs racine (Root Servers) et les serveurs d'autorité sur Internet pour trouver les adresses IP demandées par les utilisateurs, puis va **mettre en cache** les réponses pour accélérer les requêtes futures.
+Un serveur DNS **récursif** (ou résolveur) a pour rôle de répondre aux requêtes DNS des postes clients de l'entreprise. Contrairement à un DNS faisant autorité, le récursif va interroger les serveurs racine sur Internet pour trouver les adresses IP demandées par les utilisateurs, puis va **mettre en cache** les réponses.
 
-Dans l'infrastructure CUB, ce service peut être installé sur un serveur Debian via le paquet `bind9`.
+Dans l'infrastructure CUB, ce service est mis en place sur un serveur Debian via la solution **Unbound**.
 
 ---
 
-## 2. Installation de Bind9
+## 2. Installation de Unbound et des outils
 
-Sur votre serveur Debian (par exemple, dans la DMZ ou le LAN Admin) :
+On installe Unbound ainsi que quelques utilitaires d'administration réseaux indispensables :
 
 ```bash
-# Mise à jour des paquets
-sudo apt update && sudo apt upgrade -y
-
-# Installation du service DNS Bind9 et de ses utilitaires (dig, nslookup)
-sudo apt install bind9 bind9utils bind9-doc dnsutils -y
+sudo apt install unbound dnsutils tcpdump tmux curl
 ```
 
 ---
 
-## 3. Configuration en mode Récursif (Cache)
+## 3. Configuration de base de Unbound
 
-Le fichier de configuration principal pour les options de Bind9 est `/etc/bind/named.conf.options`.
+On édite le fichier de configuration principal d'Unbound :
 
 ```bash
-# Édition du fichier de configuration
-sudo nano /etc/bind/named.conf.options
+sudoedit /etc/unbound/unbound.conf
 ```
 
-Modifiez le fichier pour l'adapter à la configuration suivante :
+Ajoutez/Modifiez le contenu suivant (en l'adaptant à vos adresses réseau, ici l'interface `192.168.1.10`) :
 
 ```text
-acl "trusted" {
-    127.0.0.0/8;
-    192.168.0.0/16;   # Autoriser le réseau local CUB
-    172.16.0.0/12;    # Autoriser les réseaux pédagogiques
-};
+# Unbound configuration file for Debian.
+#
+# See the unbound.conf(5) man page.
+# See /usr/share/doc/unbound/examples/unbound.conf for a commented reference config file.
 
-options {
-    directory "/var/cache/bind";
+include: "/etc/unbound/unbound.conf.d/*.conf"
 
-    # Activer la récursion (Essentiel pour un DNS récursif)
-    recursion yes;
+server:
+    # Interface d'écoute IPv4 sur le réseau
+    interface: 192.168.1.10
+    interface: 127.0.0.1
 
-    # N'autoriser que nos réseaux internes à faire des requêtes
-    allow-query { trusted; };
+    # Quels réseaux ont le droit de se servir du serveur DNS recursif
+    # Attention !! Ne pas laisser votre serveur récursif ouvert à tous !
+    # Allow_snoop autorise le traçage des requêtes DNS avec la commande dig +trace
+    access-control: 192.168.1.0/24 allow_snoop
+    access-control: 127.0.0.0/8 allow_snoop
 
-    # Sécurité : Cacher la version de Bind pour éviter le fingerprinting
-    version "Non communiquée";
+    # Fichier indiquant les serveurs DNS racines
+    root-hints: "/var/lib/unbound/root.hints"
 
-    # Forwarders (Optionnel) : 
-    # Si Bind ne connaît pas la réponse, il peut demander directement 
-    # à un autre DNS récursif (ex: Quad9 ou FDN) plutôt qu'aux serveurs racines.
-    forwarders {
-        9.9.9.9;      # Quad9 (Filtrage malware)
-        80.67.169.12; # FDN (Neutre)
-    };
-    forward only;
+    # On cache la version de Unbound et on augmente la sécurité
+    hide-version: yes
+    hide-identity: yes
+    qname-minimisation: yes
 
-    dnssec-validation auto;
-    listen-on-v6 { any; };
-};
+    # On autorise l'IPv4
+    do-ip4: yes
+
+    # On journalise et garde une trace des événements (Très important)
+    logfile: /var/log/unbound.log
+    verbosity: 1
+    log-queries: yes
+```
+
+Il est important de vérifier ensuite que la syntaxe des lignes contenues dans le fichier de configuration est correcte :
+
+```bash
+sudo unbound-checkconf
 ```
 
 ---
 
-## 4. Validation et Redémarrage
+## 4. Configuration des domaines locaux (Stub Zones)
 
-Avant de relancer le service, il est indispensable de vérifier que la syntaxe du fichier de configuration est correcte :
+Notre serveur récursif va nativement s’adresser aux serveurs faisant autorité sur Internet. Dans le cas où il doit traiter des domaines locaux (ex : `btssio.lan` ou `epoka.local`) en dehors de l'arborescence officielle, il faut lui indiquer les serveurs internes.
 
-```bash
-# Vérification de la syntaxe
-sudo named-checkconf
+Ajoutez ces lignes à la fin de la section `server:` (ou à la racine) dans votre `/etc/unbound/unbound.conf` :
 
-# Si la commande ne retourne rien, la syntaxe est bonne !
-# On redémarre le service :
-sudo systemctl restart bind9
+```text
+    # Précision que le domaine local ne gère pas DNSSEC (désactivation de la vérification)
+    domain-insecure: "btssio.lan."
+    private-domain: btssio.lan.
 
-# On vérifie que le service tourne correctement :
-sudo systemctl status bind9
+# Déclaration de la zone locale et des serveurs internes faisant autorité
+stub-zone:
+    name: "btssio.lan."
+    stub-addr: 172.16.20.10
+    stub-addr: 172.16.20.11
 ```
 
 ---
 
-## 5. Tests de résolution (Client)
+## 5. Téléchargement des serveurs racines (Root Hints)
 
-Depuis un poste client (ex: VLAN 10 ou 54), configurez l'adresse IP de ce serveur Debian comme DNS principal.
-Ensuite, effectuez un test avec l'outil `nslookup` ou `dig`.
+On récupère les adresses des serveurs racines et nous les stockons dans `/var/lib/unbound/root.hints`. Ce fichier est indispensable au service Unbound pour contacter le serveur racine le plus proche.
 
 ```bash
-# Test de résolution externe
-dig google.com @192.168.X.X
-
-# Test de temps de réponse (Cache)
-# Lancez la commande deux fois. La deuxième fois, le "Query time" 
-# devrait être de 0 msec grâce à la mise en cache de Bind9.
+sudo curl --output /var/lib/unbound/root.hints https://www.internic.net/domain/named.cache
+sudo chown -R unbound:unbound /var/lib/unbound/
 ```
 
+---
+
+## 6. Journalisation (Logs) et configuration AppArmor
+
+On crée le fichier de log spécifique à Unbound :
+
+```bash
+sudo touch /var/log/unbound.log
+sudo chown unbound:unbound /var/log/unbound.log
+```
+
+!!! warning "Attention - AppArmor"
+    Sur les systèmes Debian récents, le module de sécurité **AppArmor** est activé par défaut. Il empêche nativement le service `unbound` de lire et d'écrire dans le répertoire `/var/log/`. Il est donc indispensable d'adapter ses permissions.
+
+Éditez le profil AppArmor de Unbound :
+
+```bash
+sudoedit /etc/apparmor.d/usr.sbin.unbound
+```
+
+Ajoutez la ligne suivante (à l'intérieur du bloc d'autorisation principal) pour permettre l'écriture des logs :
+
+```text
+  # On autorise le daemon unbound à lire et ecrire dans son fichier de log
+  /var/log/unbound.log rw,
+```
+
+Vérifiez que le fichier AppArmor ne contient pas d'erreurs et redémarrez les services :
+
+```bash
+sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.unbound
+sudo systemctl restart apparmor
+
+sudo systemctl restart unbound
+sudo systemctl status unbound
+```
+
+---
+
+## 7. Suivi et maintenance
+
+Pour observer les événements journalisés (requêtes DNS entrantes, erreurs, etc.) :
+
+```bash
+# Afficher l'intégralité du journal
+sudo cat /var/log/unbound.log
+
+# Observer les événements en temps réel
+sudo tail -f /var/log/unbound.log
+```
