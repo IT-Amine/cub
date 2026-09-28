@@ -54,6 +54,11 @@ nav = [
       { "Serveurs & Rôles" = [
           { "AD1 Core" = "windows/core/config-ad.md" },
           { "DHCP Core" = "windows/core/config-dhcp.md" }
+      ]},
+      { "Windows Admin Center" = [
+          { "Installation WAC" = "windows/wac/installation-wac.md" },
+          { "Création compte WAC" = "windows/wac/creation-compte-administrer-wac.md" },
+          { "Ajout d'un serveur" = "windows/wac/ajout-serveur-wac.md" }
       ]}
   ]},
   { "Sécurité" = [
