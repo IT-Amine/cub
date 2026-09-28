@@ -39,11 +39,15 @@ cub-docs/
 │   │       └── recettes/         → Recette commutateur L3
 │   │
 │   ├── windows/                  → Administration Windows
-│   │   └── core/
-│   │       ├── configuration-windows-core.md  → Config Windows Core
-│   │       ├── extension-volume-windows.md    → Procédure d'extension de volume (C:)
-│   │       ├── config-ad.md                   → Déploiement & hardening AD1 Core
-│   │       └── config-dhcp.md                 → Déploiement & hardening DHCP Core
+│   │   ├── core/
+│   │   │   ├── configuration-windows-core.md  → Config Windows Core
+│   │   │   ├── extension-volume-windows.md    → Procédure d'extension de volume (C:)
+│   │   │   ├── config-ad.md                   → Déploiement & hardening AD1 Core
+│   │   │   └── config-dhcp.md                 → Déploiement & hardening DHCP Core
+│   │   └── wac/                  → Windows Admin Center
+│   │       ├── installation-wac.md            → Installation de WAC
+│   │       ├── ajout-serveur-wac.md           → Ajout d'un serveur dans WAC
+│   │       └── creation-compte-administrer-wac.md → Création de compte admin
 │   │
 │   ├── securite/                 → Cybersécurité
 │   │   ├── cybersecurite-cub.md  → Théorie UTM, Stormshield vs Stateful, VLAN
@@ -54,7 +58,7 @@ cub-docs/
 │   │
 │   ├── services/                 → Exploitation des services
 │   │   ├── exploitation-services.md  → Résumé Etckeeper + TOTP (fiche révision)
-│   │   ├── dns/                  → DNS Récursif Bind9 sur Debian
+│   │   ├── dns/                  → DNS Récursif Unbound sur Debian
 │   │   ├── etckeeper/            → Versioning /etc avec Git
 │   │   ├── totp/                 → Authentification TOTP (2FA SSH)
 │   │   └── communs/              → Paquets communs Debian
@@ -72,10 +76,8 @@ cub-docs/
 │   ├── plan.md                   → Schémas logique & physique
 │   └── presentation.md           → Présentation du contexte CUB
 │
-├── Logs/                         → Journaux du script autopush
 ├── .gitignore
 ├── README.md
-├── autopush.sh                   → Script d'automatisation des sauvegardes Git
 └── zensical.toml                 → Configuration du site de documentation
 ```
 
