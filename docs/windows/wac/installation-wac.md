@@ -62,7 +62,7 @@ winget install Microsoft.WindowsAdminCenter --interactive
 
 ![Création du certificat TLS](./assets/installation-wac/05-creation-certificat-tls.png)
 
-3.7. **Définition du nom de domaine.** Renseigner le Nom de domaine complet (FQDN) cible : `wac0.local.dortmund.cub.siopic.fr`.
+3.7. **Définition du nom de domaine.** Renseigner le Nom de domaine complet (FQDN) cible : `wac1.local.dortmund.cub.siopic.fr`.
 
 ![Définition du FQDN](./assets/installation-wac/06-definition-fqdn.png)
 
@@ -101,7 +101,7 @@ Sélectionner un certificat TLS
         Générer un certificat auto-signé (expire dans 60 jours)
 
 Nom de domaine complet
-        wac0.local.dortmund.cub.sioplc.fr
+        wac1.local.dortmund.cub.sioplc.fr
 
 Hôtes approuvés
         Autoriser l’accès à n’importe quel ordinateur
