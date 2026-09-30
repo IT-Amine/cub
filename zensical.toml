@@ -91,6 +91,7 @@ nav = [
           { "Configuration TOTP" = "services/totp/installation-configuration-totp.md" }
       ]},
       { "Bastion (Guacamole)" = [
+          { "Activité 1 : Réflexion" = "services/bastion/activite1-reflexion-bastion.md" },
           { "Installation" = "services/bastion/guacamole-installation.md" },
           { "Configuration" = "services/bastion/guacamole-configuration.md" }
       ]}
