@@ -33,7 +33,7 @@ Pour la traçabilité. Ça permet de savoir exactement "qui a fait quoi et quand
 
 Cela consiste à créer un dossier caché .git à la racine du projet (via la commande git init). À partir de là, Git commence à surveiller les fichiers de ce dossier.
 
-![Init et Status](./git-img/git-init-status.jpg)
+![Init et Status](../assets/git-img/git-init-status.jpg)
 
 ## Question 5 :  Quel est le rôle de la commande "git status" ?
 
@@ -68,25 +68,25 @@ Modifications qui seront validées :
     nouveau fichier : diagnostic-reseau.ps1
 ```
 
-![Git Add](./git-img/git-add.jpg)
+![Git Add](../assets/git-img/git-add.jpg)
 
 ## Question 7 : Qu'est-ce qu'un commit ?
 
 C'est une sauvegarde (un "instantané") de l'état du projet à un instant T. Il fige les modifications ajoutées dans l'index.
 
-![Git Commit](./git-img/git-commit-script.jpg)
+![Git Commit](../assets/git-img/git-commit-script.jpg)
 
 ## Question 8 : Pourquoi faut-il utiliser un message de commit précis et explicite ?
 
 Pour que moi-même plus tard, ou d'autres membres de l'équipe, puissions comprendre ce qui a été ajouté ou corrigé sans avoir besoin d'ouvrir et de relire tout le code source.
 
-![Git TCP Log](./git-img/git-tcp-log.jpg)
+![Git TCP Log](../assets/git-img/git-tcp-log.jpg)
 
 ## Question 9 : Que permet d'afficher la commande "git diff" ?
 
 Elle montre les différences ligne par ligne (ce qui a été ajouté en vert ou retiré en rouge) entre l'état actuel de nos fichiers et la dernière version sauvegardée.
 
-![Git Diff Status](./git-img/git-diff-status.jpg)
+![Git Diff Status](../assets/git-img/git-diff-status.jpg)
 
 ## Question 10 : Combien de versions du projet sont maintenant présentes dans l'historique ?
 
@@ -98,7 +98,7 @@ caff784 (HEAD -> master) Ajout du test TCP IP local
 23ff690 Création du script de diagnostic réseau
 ```
 
-![Git Log](./git-img/git-diag-dns.jpg)
+![Git Log](../assets/git-img/git-diag-dns.jpg)
 
 ## Question 11 : Indiquer le rôle de chacune des commandes : git status, git diff, git add, git commit et git log.
 
@@ -112,13 +112,13 @@ caff784 (HEAD -> master) Ajout du test TCP IP local
 
 5. git log : Afficher l'historique de tous les commits.
 
-![Git Diff](./git-img/git-diff.jpg)
+![Git Diff](../assets/git-img/git-diff.jpg)
 
 ## Question 12 : Quel est l'intérêt de la commande "git restore" ?
 
 Elle permet d'annuler les modifications non commitées d'un fichier dans notre répertoire de travail pour revenir à la dernière version sauvegardée.
 
-![Git Restore](./git-img/git-restore.jpg)
+![Git Restore](../assets/git-img/git-restore.jpg)
 
 ## Question 13 : La modification supprimée avait-elle déjà été enregistrée dans un commit ? Justifier.
 
@@ -150,15 +150,15 @@ Parce qu'il pourrait accidentellement publier des informations sensibles liées 
 
 C'est le nom par défaut ("l'alias") que Git donne au dépôt distant principal (souvent hébergé sur GitHub) auquel notre dépôt local est relié.
 
-![Git Remote Origin](./git-img/git-remote-origin.jpg)
+![Git Remote Origin](../assets/git-img/git-remote-origin.jpg)
 
 ## Question 20 : Quelle commande permet d'envoyer les commits locaux vers Github ?
 
 git push
 
-![Connect Github](./git-img/connect-github.jpg)
+![Connect Github](../assets/git-img/connect-github.jpg)
 
-![Git Push](./git-img/git-push.jpg)
+![Git Push](../assets/git-img/git-push.jpg)
 
 ## Question 21 : Quelle différence existe-t-il entre "git commit" et "git push" ?
 
@@ -180,7 +180,7 @@ Pour éviter les conflits de fusion (merge conflicts). Si un collègue a modifi�
 
 Avec la commande "git branch", la branche active est précédée d'une étoile (*) et souvent affichée en vert. La commande "git status" indique également "Sur la branche <nom_de_la_branche>" en première ligne.
 
-![Git Branch Switch](./git-img/git-branch-switch.jpg)
+![Git Branch Switch](../assets/git-img/git-branch-switch.jpg)
 
 ## Question 26 : Quel est l'intérêt de travailler dans une branche plutôt que directement dans "main" ?
 
@@ -190,19 +190,19 @@ Cela permet de développer une nouvelle fonctionnalité ou de tester un script s
 
 Non, pas tant qu'on n'a pas fusionné les branches. Les modifications restent strictement isolées dans la branche "feature-diagnostic-dns" jusqu'à ce qu'on décide de les intégrer.
 
-![Git Commit Feature](./git-img/git-commit-feature.jpg)
+![Git Commit Feature](../assets/git-img/git-commit-feature.jpg)
 
 ## Question 28 : Quel est le rôle de la commande "git merge" ?
 
 Elle permet de fusionner l'historique et les modifications d'une branche (par exemple une branche de test) vers la branche sur laquelle on se trouve actuellement (généralement vers main) pour y intégrer le travail terminé.
 
-![Git Merge Main](./git-img/git-merge-main.jpg)
+![Git Merge Main](../assets/git-img/git-merge-main.jpg)
 
 ## Question 29 : La branche apparaît-elle maintenant sur Github ?
 
 Pas automatiquement après sa création locale. Il faut la pousser explicitement vers le dépôt distant avec une commande comme "git push -u origin nom-de-la-branche".
 
-![Git Push New Branch](./git-img/git-push-new-branch.jpg)
+![Git Push New Branch](../assets/git-img/git-push-new-branch.jpg)
 
 ## Question 30 : Quelle différence existe t-il entre une branche uniquement locale et une branche publiée sur Github ?
 

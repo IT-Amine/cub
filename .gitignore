@@ -18,6 +18,7 @@ __pycache__/
 .venv/
 venv/
 env/
+.env
 pip-log.txt
 
 # Éditeurs
@@ -26,3 +27,4 @@ pip-log.txt
 *.swp
 *.swo
 *~
+memo.md

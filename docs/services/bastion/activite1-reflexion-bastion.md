@@ -27,7 +27,7 @@ Le schéma ci-dessous illustre le fonctionnement d'Apache Guacamole en tant que 
 
 [Image - source It-Connect](https://www.it-connect.fr/wp-content-itc/uploads/2023/06/Bastion-Apache-Guacamole-Schema.png)
 
-![Schéma Architecture Bastion Guacamole](./assets/Bastion-Apache-Guacamole-Schema.png)
+![Schéma Architecture Bastion Guacamole](../../../assets/bastion/Bastion-Apache-Guacamole-Schema.png)
 
 ---
 

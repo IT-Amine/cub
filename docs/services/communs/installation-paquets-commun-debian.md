@@ -51,7 +51,7 @@ sudo update-alternatives --set editor /usr/bin/vim.basic
 
 4.2.  **Mise en place du MOTD.** Désactivation des messages d'accueil dynamiques par défaut d'Ubuntu/Debian et ajout d'un script d'accueil personnalisé.
 
-**MOTD personnalisé : [MOTD - Paul-Louis Courier](./assets/motd.txt)**
+**MOTD personnalisé : [MOTD - Paul-Louis Courier](../../../assets/communs/motd.txt)**
 
 ```bash
 sudo sh -c 'echo "" > /etc/motd'

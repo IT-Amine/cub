@@ -38,45 +38,45 @@ winget install Microsoft.WindowsAdminCenter --interactive
 
 3.2. **Sélection du mode d'installation.** Sélectionner l'option **Installation personnalisée**.
 
-![Installation personnalisée](./assets/installation-wac/01-installation-personalisee.png)
+![Installation personnalisée](../../../assets/windows-wac/installation-wac/01-installation-personalisee.png)
 
 3.3. **Configuration de l'accès réseau.** Cocher **Accès à distance** pour permettre l'administration depuis d'autres appareils via un nom de machine ou un FQDN.
 
-![Configuration de l'accès réseau](./assets/installation-wac/02-configuration-acces-reseau.png)
+![Configuration de l'accès réseau](../../../assets/windows-wac/installation-wac/02-configuration-acces-reseau.png)
 
 3.4. **Choix de l'authentification.** Sélectionner **Connexion au formulaire HTML**.
 
 > [!note] Information
 > Cette méthode est choisie car le serveur n'est pas encore connecté au domaine Active Directory. L'authentification Windows classique (NTLM/Kerberos) n'est donc pas requise à ce stade.
 
-![Choix de l'authentification](./assets/installation-wac/03-choix-authentification.png)
+![Choix de l'authentification](../../../assets/windows-wac/installation-wac/03-choix-authentification.png)
 
 3.5. **Configuration du port d'écoute.** Définir le **Port externe** sur **10443** (au lieu de 443).
 
-![Configuration du port d'écoute](./assets/installation-wac/04-configuration-port-ecoute.png)
+![Configuration du port d'écoute](../../../assets/windows-wac/installation-wac/04-configuration-port-ecoute.png)
 
 3.6. **Création du certificat TLS.** Sélectionner **Générer un certificat auto-signé (expire dans 60 jours)**.
 
 > [!warning] Attention
 > Action temporaire requise car l'infrastructure ne dispose pas encore de PKI (Public Key Infrastructure) pour délivrer des certificats officiels.
 
-![Création du certificat TLS](./assets/installation-wac/05-creation-certificat-tls.png)
+![Création du certificat TLS](../../../assets/windows-wac/installation-wac/05-creation-certificat-tls.png)
 
 3.7. **Définition du nom de domaine.** Renseigner le Nom de domaine complet (FQDN) cible : `wac1.local.dortmund.cub.sioplc.fr`.
 
-![Définition du FQDN](./assets/installation-wac/06-definition-fqdn.png)
+![Définition du FQDN](../../../assets/windows-wac/installation-wac/06-definition-fqdn.png)
 
 3.8. **Sécurisation des hôtes.** Choisir **Autoriser l'accès à n'importe quel ordinateur**.
 
-![Sécurisation des hôtes](./assets/installation-wac/07-securisation-hotes.png)
+![Sécurisation des hôtes](../../../assets/windows-wac/installation-wac/07-securisation-hotes.png)
 
 3.9. **Configuration WinRM.** Conserver le mécanisme de communication par défaut : **HTTP**.
 
-![Configuration WinRM](./assets/installation-wac/08-configuration-winrm.png)
+![Configuration WinRM](../../../assets/windows-wac/installation-wac/08-configuration-winrm.png)
 
 3.10. **Télémétrie et Mises à jour.** Conserver les options **Installer les mises à jour automatiquement** et **Données requises pour le diagnostic**.
 
-![Mises à jour](./assets/installation-wac/09-mise-a-jour.png)
+![Mises à jour](../../../assets/windows-wac/installation-wac/09-mise-a-jour.png)
 
 3.11. **Lancement du déploiement.** Vérifier le résumé des paramètres puis cliquer sur **Installer**.
 

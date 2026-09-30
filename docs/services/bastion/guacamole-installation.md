@@ -13,7 +13,7 @@ description: Procédure de déploiement et de configuration initiale pour un Bas
     <p><strong>Contexte :</strong> Déploiement d'un Bastion Guacamole sécurisé sous Debian 13</p>
 </div>
 
-📄 **Ressource PDF :** [Télécharger la Fiche 2B - Installation Debian 13 Docker](./assets/Fiche%202B%20-%20BASTION%20GUACAMOLE%20-%20Installation%20Debian%2013%20Docker.pdf)
+📄 **Ressource PDF :** [Télécharger la Fiche 2B - Installation Debian 13 Docker](../../../assets/bastion/Fiche%202B%20-%20BASTION%20GUACAMOLE%20-%20Installation%20Debian%2013%20Docker.pdf)
 
 ---
 
