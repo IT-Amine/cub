@@ -15,14 +15,6 @@ description: Documentation et procédure technique.
 
 ---
 
-## Informations
-
-* **Auteur :** Amine Kada
-* **Date :** 05/09/2026
-* **Domaine :** Réseaux
-
----
-
 ## 1. Sommaire
 
 * [1. Sommaire](#1-sommaire)

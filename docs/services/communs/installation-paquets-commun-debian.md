@@ -15,14 +15,6 @@ description: Documentation et procédure technique.
 
 ---
 
-## Informations
-
-* **Auteur :** Amine Kada
-* **Date :** 07/09/2026
-* **Domaine :** Exploitation des services
-
----
-
 ## 1. Sommaire
 
 * [1. Sommaire](#1-sommaire)
@@ -40,7 +32,7 @@ Déploiement des paquets standards sur les serveurs Debian de l'infrastructure C
 3.1.  **Installation via APT.** Mise à jour des index et installation non interactive des utilitaires.
 
 ```bash
-sudo apt update && apt install -y btop tcpdump tmux rsyslog vim
+sudo apt update && sudo apt install -y btop tcpdump tmux rsyslog vim
 ```
 
 - `update` : Actualise la liste locale des paquets depuis les dépôts.
@@ -92,7 +84,7 @@ btop version: 1.3.2
 tcpdump --version
 ```
 
-**Résutltat attendu :**
+**Résultat attendu :**
 
 ```bash
 tcpdump version 4.99.5
@@ -107,7 +99,7 @@ OpenSSL 3.5.7 9 Jun 2026
 tmux -V
 ```
 
-**Résutltat attendu :**
+**Résultat attendu :**
 
 ```bash
 tmux 3.5a
@@ -119,7 +111,7 @@ tmux 3.5a
 systemctl is-active rsyslog
 ```
 
-**Résutltat attendu :**
+**Résultat attendu :**
 
 ```bash
 active
@@ -131,7 +123,7 @@ active
 vim --version | head -n 1
 ```
 
-**Résutltat attendu :**
+**Résultat attendu :**
 
 ```bash
 VIM - Vi IMproved 9.1 (2024 Jan 02, compilé May 23 2025 00:48:59)

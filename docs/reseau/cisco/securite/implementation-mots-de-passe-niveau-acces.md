@@ -2,7 +2,7 @@
 description: Documentation et procédure technique.
 ---
 
-# BLOC 3 - Implémentation des mots de passe par niveau d'accès (Cisco)
+# BLOC 2 - Implémentation des mots de passe par niveau d'accès (Cisco)
 
 ![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
 
@@ -12,14 +12,6 @@ description: Documentation et procédure technique.
     <p><strong>Date :</strong> 05/09/2026</p>
     <p><strong>Contexte :</strong> Configuration Implémentation des mots de passe par niveau d'accès (Cisco)</p>
 </div>
-
----
-
-## Informations
-
-* **Auteur :** Amine Kada
-* **Date :** 05/09/2026
-* **Domaine :** Réseaux
 
 ---
 

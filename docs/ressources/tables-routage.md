@@ -15,25 +15,17 @@ description: Documentation et procédure technique.
 
 ---
 
-## Informations
-
-- **Auteur :** Amine Kada
-- **Date :** 04/09/2026
-- **Domaine :** Réseaux
-
----
-
 ## 1. Sommaire
 
 - [1. Sommaire](#1-sommaire)
 - [2. Contexte](#2-contexte)
-- [4. Tables de routage](#4-tables-de-routage)
+- [3. Tables de routage](#3-tables-de-routage)
 
 ## 2. Contexte
 
 Ce document définit les règles de routage statique et les réseaux directement connectés appliqués aux équipements cœur de l'infrastructure. Il détaille les tables de routage du commutateur de niveau 3 (dmd-sw-coeur01), responsable du routage inter-VLAN (Production, Clients, Administration), et du pare-feu (dmd-fw-coeur01), qui gère les flux vers la DMZ et l'accès extérieur (WAN). L'objectif est de garantir l'acheminement des paquets entre les différents segments logiques tout en centralisant le contrôle des flux réseaux.
 
-## 4. Tables de routage
+## 3. Tables de routage
 
 ### 4.1. Switch dmd-sw-coeur01
 

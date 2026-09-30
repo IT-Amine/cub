@@ -74,4 +74,4 @@ Le schéma ci-dessous illustre le fonctionnement d'Apache Guacamole en tant que 
 
 **8. Des mesures de continuité et de résilience sont-elles prévues pour garantir les accès critiques en cas d'indisponibilité du bastion ?**
 
-> C'est le point faible, si le bastion tombe en panne, on ne peut plus rien administrer. Il faut donc prévoir des sauvegardes régulières (snapshots / instannée) ou de la redondance (deux serveurs Guacamole) pour pouvoir vite rétablir le service en cas de crash. On peut aussi garder une porte dérobée ultra-sécurisée (ex: accès direct depuis le port console physique ou une IP de secours) en cas d'urgence absolue.
+> C'est le point faible, si le bastion tombe en panne, on ne peut plus rien administrer. Il faut donc prévoir des sauvegardes régulières (snapshots / instantanée) ou de la redondance (deux serveurs Guacamole) pour pouvoir vite rétablir le service en cas de crash. On peut aussi garder une porte dérobée ultra-sécurisée (ex: accès direct depuis le port console physique ou une IP de secours) en cas d'urgence absolue.

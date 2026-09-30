@@ -2,7 +2,7 @@
 description: Configuration des accès, utilisateurs et connexions sur le bastion Guacamole.
 ---
 
-# BLOC 3 - Gestion des utilisateurs et des sessions (Guacamole)
+# BLOC 2 - Gestion des utilisateurs et des sessions (Guacamole)
 
 ![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
 

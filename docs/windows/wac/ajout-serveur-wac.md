@@ -27,7 +27,7 @@ Cette procédure détaille l'intégration d'un nouveau serveur au sein de l'inte
 
 ## 3. Ajout d'une machine sur WAC
 
-3.1. **Accès au portail WAC et aux paramètres.** Accéder au site [wac0.local.dortmound.cub.sioplc.fr](https://wac0.local.dortmound.cub.sioplc.fr), puis aller dans les paramètres de WAC.
+3.1. **Accès au portail WAC et aux paramètres.** Accéder au site [wac0.local.dortmund.cub.sioplc.fr](https://wac0.local.dortmund.cub.sioplc.fr), puis aller dans les paramètres de WAC.
 
 ![Accès aux paramètres](./assets/ajout-serveur-wac/01-acces-parametres.png)
 

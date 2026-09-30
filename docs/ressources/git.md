@@ -2,7 +2,7 @@
 description: Gestion des versions avec GIT & Github.
 ---
 
-# BLOC 2 - Admin.Sys
+# BLOC 2 - Gestion de versions avec Git & GitHub
 
 ![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
 

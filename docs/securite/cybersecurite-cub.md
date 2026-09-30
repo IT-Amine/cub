@@ -15,12 +15,6 @@ description: Documentation et procédure technique.
 
 ---
 
-## Informations
-
-- **Auteur :** Amine Kada
-- **Date :** 09/09/2026
-- **Domaine :** Question base SOC
-
 > [!TIP]
 > Ce fichier contient les **justifications théoriques** (SOC, UTM vs Stateful, VLAN). Pour les **procédures techniques pas-à-pas** sur le Stormshield, consultez la section dédiée :
 > - 📄 [Configuration des interfaces Stormshield](../securite/stormshield/procedures/configuration-interface-stormshield.md)

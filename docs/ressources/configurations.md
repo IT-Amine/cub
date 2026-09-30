@@ -15,14 +15,6 @@ description: Documentation et procédure technique.
 
 ---
 
-## Informations
-
-- **Auteur :** Amine Kada
-- **Date :** 11/09/2026
-- **Domaine :** Réseaux
-
----
-
 ## Configuration `dmd-fw-c1` (Pare-feu)
 
 - **Ficher de configuration :** [dmd-fw-c1 (Protégé par mot de passe : voir gestionnaire de mots de passe)](./configurations/dmd-fw-c1.na)

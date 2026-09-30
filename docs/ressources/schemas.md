@@ -15,14 +15,6 @@ description: Documentation et procédure technique.
 
 ---
 
-## Informations
-
-- **Auteur :** Amine Kada
-- **Date :** 04/09/2026
-- **Domaine :** Réseaux
-
----
-
 ## Schéma physique
 
 - **PDF :** [Schéma physique de l'infrastructure CUB (PDF)](./schemas/cub-schema-physique-gp4.pdf)

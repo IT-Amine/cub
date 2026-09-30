@@ -173,8 +173,8 @@ Install-WindowsFeature -Name DHCP -IncludeManagementTools
 Création d'une étendue d'adresses IP pour le réseau ciblé (ex: VLAN Admin) avec les options de passerelle et de DNS.
 
 ```powershell
-Add-DhcpServerv4Scope -Name "VLAN_Admin" -StartRange 192.168.4.50 -EndRange 192.168.4.150 -SubnetMask 255.255.255.0
-Set-DhcpServerv4OptionValue -ScopeId 192.168.4.0 -Router 192.168.4.206 -DnsServer 192.168.4.10
+Add-DhcpServerv4Scope -Name "VLAN_Clients" -StartRange 192.168.4.130 -EndRange 192.168.4.180 -SubnetMask 255.255.255.192
+Set-DhcpServerv4OptionValue -ScopeId 192.168.4.128 -Router 192.168.4.190 -DnsServer 192.168.4.10
 ```
 
 ### 9.3. Redémarrage du service DHCP

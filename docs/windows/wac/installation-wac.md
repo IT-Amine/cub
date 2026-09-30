@@ -62,7 +62,7 @@ winget install Microsoft.WindowsAdminCenter --interactive
 
 ![Création du certificat TLS](./assets/installation-wac/05-creation-certificat-tls.png)
 
-3.7. **Définition du nom de domaine.** Renseigner le Nom de domaine complet (FQDN) cible : `wac1.local.dortmund.cub.siopic.fr`.
+3.7. **Définition du nom de domaine.** Renseigner le Nom de domaine complet (FQDN) cible : `wac1.local.dortmund.cub.sioplc.fr`.
 
 ![Définition du FQDN](./assets/installation-wac/06-definition-fqdn.png)
 

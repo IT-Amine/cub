@@ -2,8 +2,6 @@
 description: Procédure de déploiement et de configuration initiale pour un Bastion Guacamole (via Docker).
 ---
 
-
-
 # BLOC 2 - Bastion Guacamole (Docker)
 
 ![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)

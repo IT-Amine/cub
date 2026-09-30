@@ -15,14 +15,6 @@ description: Documentation et procédure technique.
 
 ---
 
-## Informations
-
-- **Auteur :** Amine Kada
-- **Date :** 11/09/2026
-- **Domaine :** Réseau
-
----
-
 ## 1. Contexte du test
 
 Validation de l'infrastructure réseau (couches 2 et 3 du modèle OSI) du commutateur L3 `dmd-sw-c1` de l'agence de Dortmund. Ce document vérifie la bonne configuration des interfaces de routage (SVI), la connectivité interne vers la passerelle par défaut (`192.168.44.254`), ainsi que le routage externe (accès Internet) nécessitant l'intervention du pare-feu et de ses règles NAT.
@@ -54,12 +46,12 @@ Vlan54                 192.168.4.126   YES manual up                    up
 
 **Statut :**
 
-* [ ] Ok
+* [x] Ok
 * [ ] KO
 
 **Commentaire :**
 
-................................................................................................................................................................................................................................................................................................................................................................
+> Test validé avec succès. Les résultats obtenus sont conformes aux attentes.
 
 ### 2.2. Vérification de la table de routage globale
 
@@ -82,12 +74,12 @@ S*    0.0.0.0/0 [1/0] via 192.168.44.254
 
 **Statut :**
 
-* [ ] Ok
+* [x] Ok
 * [ ] KO
 
 **Commentaire :**
 
-................................................................................................................................................................................................................................................................................................................................................................
+> Test validé avec succès. Les résultats obtenus sont conformes aux attentes.
 
 ### 2.3. Communication avec la passerelle par défaut
 
@@ -113,12 +105,12 @@ Success rate is 100 percent (5/5), round-trip min/avg/max = 1/2/4 ms
 
 **Statut :**
 
-* [ ] Ok
+* [x] Ok
 * [ ] KO
 
 **Commentaire :**
 
-................................................................................................................................................................................................................................................................................................................................................................
+> Test validé avec succès. Les résultats obtenus sont conformes aux attentes.
 
 ### 2.4. Validation de l'accès à Internet
 
@@ -148,9 +140,9 @@ Success rate is 100 percent (5/5), round-trip min/avg/max = 12/15/20 ms
 
 **Statut :**
 
-* [ ] Ok
+* [x] Ok
 * [ ] KO
 
 **Commentaire :**
 
-................................................................................................................................................................................................................................................................................................................................................................
+> Test validé avec succès. Les résultats obtenus sont conformes aux attentes.

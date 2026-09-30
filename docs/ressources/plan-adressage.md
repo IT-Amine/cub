@@ -15,12 +15,6 @@ description: Documentation et procédure technique.
 
 ---
 
-## Informations
-
-- **Auteur :** Amine Kada
-- **Date :** 04/09/2026
-- **Domaine :** Réseaux
-
 > [!TIP]
 > Une **fiche de révision rapide** avec les calculs VLSM et tables de routage/NAT est disponible dans la section BLOC 3 : [VLSM & Routage](../reseau/vlsm-routage.md)
 
@@ -46,6 +40,7 @@ Ce document définit le plan d'adressage IP (IPv4) de l'infrastructure réseau. 
 | 54 | Production | 192.168.4.0 | /25 | 255.255.255.128 | 192.168.4.1 | 192.168.4.126 | 192.168.4.127 |
 | 10 | Clients | 192.168.4.128 | /26 | 255.255.255.192 | 192.168.4.129 | 192.168.4.190 | 192.168.4.191 |
 | 20 | Administration | 192.168.4.192 | /28 | 255.255.255.240 | 192.168.4.193 | 192.168.4.206 | 192.168.4.207 |
+| 53 | Bastion | 192.168.4.208 | /28 | 255.255.255.240 | 192.168.4.209 | 192.168.4.222 | 192.168.4.223 |
 | 2 | Inter-co SW L3 et FW | 192.168.44.248 | /29 | 255.255.255.248 | 192.168.44.249 | 192.168.44.254 | 192.168.44.255 |
 
 ## 4. Calcul du plan d'adressage

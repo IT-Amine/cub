@@ -15,14 +15,6 @@ description: Documentation et procédure technique.
 
 ---
 
-## Informations
-
-* **Auteur :** Amine Kada
-* **Date :** 09/09/2026
-* **Domaine :** Administration Windows
-
----
-
 ## 2. Contexte
 
 Ce document détaille la procédure de configuration post-déploiement d'un serveur Windows Core 2025 dans un environnement virtualisé. La configuration inclut l'installation des pilotes VirtIO (QEMU), le paramétrage réseau statique, la jonction DNS, ainsi que le durcissement du système (Hardening) selon les recommandations de l'ANSSI. Ces étapes garantissent que le serveur s'intègre correctement à l'infrastructure, communique sur le réseau de manière sécurisée, et prévient les vulnérabilités de configuration par défaut.

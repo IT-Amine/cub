@@ -82,6 +82,7 @@ nav = [
       { "Accueil" = "services/index.md" },
       { "Système Debian" = [
           { "Installation Paquets Communs" = "services/communs/installation-paquets-commun-debian.md" },
+          { "Configuration Hostname" = "services/communs/configuration-hostname-debian.md" },
           { "Etckeeper" = "services/etckeeper/installation-configuration-etckeeper.md" }
       ]},
       { "Applicatif" = [
@@ -102,7 +103,8 @@ nav = [
       { "Plan d'adressage" = "ressources/plan-adressage.md" },
       { "Schémas" = "ressources/schemas.md" },
       { "Tables NAT" = "ressources/tables-nat.md" },
-      { "Tables Routage" = "ressources/tables-routage.md" }
+      { "Tables Routage" = "ressources/tables-routage.md" },
+      { "Git & GitHub" = "ressources/git.md" }
   ]}
 ]
 
