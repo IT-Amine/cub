@@ -20,13 +20,16 @@ description: Activité de réflexion sur le rôle et la sécurité d'un Bastion 
 - [Partie 1 - Bastion et rupture protocolaire](#partie-1-bastion-et-rupture-protocolaire)
 - [Partie 2 - Bastion et son positionnement dans l'architecture réseau](#partie-2-bastion-et-son-positionnement-dans-larchitecture-reseau)
 
----
 
 ## Architecture du Bastion Guacamole
 
-Le schéma ci-dessous illustre le fonctionnement d'Apache Guacamole en tant que Bastion d'administration. Il joue le rôle d'intermédiaire unique et sécurisé (passerelle) entre les administrateurs et les serveurs internes.
+Le schéma ci-dessous illustre le fonctionnement d'Apache Guacamole en tant que Bastion d'administration. Il joue le rôle d'intermédiaire unique et sécurisé (passerelle) entre les administrateurs et les serveurs internes. 
+
+[Image - source It-Connect](https://www.it-connect.fr/wp-content-itc/uploads/2023/06/Bastion-Apache-Guacamole-Schema.png)
 
 ![Schéma Architecture Bastion Guacamole](./assets/Bastion-Apache-Guacamole-Schema.png)
+
+---
 
 ## Partie 1 - Bastion et rupture protocolaire
 
@@ -40,7 +43,12 @@ Le schéma ci-dessous illustre le fonctionnement d'Apache Guacamole en tant que 
 
 **3. Est-il impossible techniquement d'établir une connexion directe entre l'utilisateur et la ressource ?**
 
-> Dans une architecture bien sécurisée, ça doit être impossible. On doit configurer le pare-feu (comme notre Stormshield) pour bloquer toutes les tentatives de connexion SSH (port 22) ou RDP (port 3389) provenant des PC des administrateurs vers les serveurs. La seule machine autorisée à passer le pare-feu pour joindre les serveurs, c'est le bastion.
+> Dans une architecture sécurisée, cela doit être impossible. Pour y parvenir, on met en place une double protection :
+> 
+> - **Sur le commutateur Layer 3 :** On configure une liste de contrôle d'accès (ACL) pour restreindre le réseau d'administration afin qu'il ne puisse joindre que le bastion. De même, cette ACL garantit que **seul** le bastion est autorisé à accéder au VLAN Production.
+> - **Sur le pare-feu (Stormshield) :** On crée des règles de filtrage strictes qui interdisent toute connexion directe (comme SSH sur le port 22 ou RDP sur le port 3389) depuis les postes des administrateurs vers les serveurs cibles.
+> 
+> Au final, la seule machine autorisée à franchir ces équipements de sécurité pour joindre les serveurs est le bastion.
 
 **4. Le bastion est-il l'unique point d'entrée pour les accès d'administration ?**
 
@@ -52,7 +60,7 @@ Le schéma ci-dessous illustre le fonctionnement d'Apache Guacamole en tant que 
 
 **5. Le bastion est-il isolé dans une zone réseau spécifique ?**
 
-> En principe oui, on le place souvent dans une zone réseau bien isolée comme une DMZ ou un VLAN dédié à l'administration. Cela évite que si un poste utilisateur classique est infecté par un malware, l'attaque puisse se propager facilement jusqu'au bastion.
+> Oui, on le place souvent dans une zone réseau bien isolée comme une DMZ ou un VLAN dédié. Cela évite que si un poste utilisateur classique est infecté par un malware, l'attaque puisse se propager facilement jusqu'au bastion.
 
 **6. Les flux réseau entrants et sortants du bastion sont-ils documentés, contrôlés et limités aux protocoles strictement nécessaires ?**
 
@@ -66,4 +74,4 @@ Le schéma ci-dessous illustre le fonctionnement d'Apache Guacamole en tant que 
 
 **8. Des mesures de continuité et de résilience sont-elles prévues pour garantir les accès critiques en cas d'indisponibilité du bastion ?**
 
-> C'est le point faible du système centralisé : si le bastion tombe en panne, on ne peut plus rien administrer ! Il faut donc prévoir des sauvegardes régulières (snapshots de la VM) ou de la redondance (deux serveurs Guacamole) pour pouvoir vite rétablir le service en cas de crash. On peut aussi garder une porte dérobée ultra-sécurisée (ex: accès direct depuis le port console physique ou une IP de secours) en cas d'urgence absolue.
+> C'est le point faible, si le bastion tombe en panne, on ne peut plus rien administrer ! Il faut donc prévoir des sauvegardes régulières (snapshots / instannée) ou de la redondance (deux serveurs Guacamole) pour pouvoir vite rétablir le service en cas de crash. On peut aussi garder une porte dérobée ultra-sécurisée (ex: accès direct depuis le port console physique ou une IP de secours) en cas d'urgence absolue.
