@@ -2,6 +2,8 @@
 description: Procédure de déploiement et de configuration initiale pour un Bastion Guacamole (via Docker).
 ---
 
+
+
 # BLOC 2 - Bastion Guacamole (Docker)
 
 ![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
@@ -12,6 +14,8 @@ description: Procédure de déploiement et de configuration initiale pour un Bas
     <p><strong>Date :</strong> 30/09/2026</p>
     <p><strong>Contexte :</strong> Déploiement d'un Bastion Guacamole sécurisé sous Debian 13</p>
 </div>
+
+📄 **Ressource PDF :** [Télécharger la Fiche 2B - Installation Debian 13 Docker](./assets/Fiche%202B%20-%20BASTION%20GUACAMOLE%20-%20Installation%20Debian%2013%20Docker.pdf)
 
 ---
 
