@@ -29,7 +29,7 @@ cub-docs/
 │   ├── reseau/                   → Administration & supervision des réseaux
 │   │   ├── vlsm-routage.md       → Calculs VLSM, tables de routage & NAT
 │   │   └── cisco/
-│   │       ├── configurations/   → Configs complètes SW L2, L3, routeur
+│   │       ├── configurations/   → Commandes de base CUB
 │   │       ├── dhcp/             → Relais DHCP
 │   │       ├── nat/              → NAT Cisco
 │   │       ├── routage/          → Routage statique
@@ -57,18 +57,24 @@ cub-docs/
 │   │       └── recettes/         → Recette pare-feu
 │   │
 │   ├── services/                 → Exploitation des services
-│   │   ├── exploitation-services.md  → Résumé Etckeeper + TOTP (fiche révision)
+│   │   ├── exploitation-services.md  → Fiche de révision
 │   │   ├── bastion/              → Bastion Apache Guacamole
+│   │   ├── communs/
+│   │   │   ├── configuration-hostname-debian.md
+│   │   │   └── installation-paquets-commun-debian.md
 │   │   ├── dns/                  → DNS Récursif Unbound sur Debian
 │   │   ├── etckeeper/            → Versioning /etc avec Git
-│   │   ├── totp/                 → Authentification TOTP (2FA SSH)
-│   │   └── communs/              → Paquets communs Debian
+│   │   └── totp/                 → Authentification TOTP (2FA SSH)
 │   │
 │   ├── ressources/               → Base documentaire commune
-│   │   ├── configurations/       → Fichiers de config switch & firewall
+│   │   ├── configurations/       → Fichiers de config bruts (.txt)
+│   │   ├── git-img/              → Images pour la documentation Git
 │   │   ├── maquettes/            → Maquette Packet Tracer (.pkt)
-│   │   ├── schemas/              → Schémas brassage, logique, physique (.drawio & .pdf)
+│   │   ├── schemas/              → Schémas logiques, physiques (.pdf, .drawio)
+│   │   ├── configurations.md     → Configurations brutes
+│   │   ├── git.md                → Fiche de révision Git & GitHub
 │   │   ├── plan-adressage.md     → Plan d'adressage IP complet
+│   │   ├── schemas.md            → Schémas de l'infrastructure
 │   │   ├── tables-nat.md         → Tables NAT
 │   │   └── tables-routage.md     → Tables de routage
 │   │
