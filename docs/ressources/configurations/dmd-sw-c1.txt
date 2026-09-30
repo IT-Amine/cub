@@ -166,8 +166,8 @@ interface GigabitEthernet1/0/6
  no shutdown
 !
 interface GigabitEthernet1/0/7
- description VLAN PRODUCTION
- switchport access vlan 54
+ description VLAN BASTION
+ switchport access vlan 53
  switchport mode access
  no shutdown
 !
@@ -258,6 +258,12 @@ interface Vlan20
  description VLAN ADMINISTRATION
  ip address 192.168.4.206 255.255.255.240
  no shutdown
+!
+interface Vlan53
+ description VLAN BASTION
+ ip address 192.168.4.214 255.255.255.248
+ no shutdown
+!
 !
 interface Vlan54
  description VLAN PRODUCTION

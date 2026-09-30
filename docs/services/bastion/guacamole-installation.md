@@ -95,7 +95,7 @@ sudo docker run --rm 'guacamole/guacamole:1.6.0' /opt/guacamole/bin/initdb.sh --
 Création d'un certificat auto-signé pour sécuriser l'accès web via HTTPS.
 
 ```bash
-sudo openssl req -nodes -newkey rsa:2048 -new -x509  -keyout nginx/ssl/self-ssl.key  -out nginx/ssl/self.cert  -subj '/C=FR/ST=Centre-Val-de-Loire/L=Tours/O=CUB/CN=guac.cub.local'
+sudo openssl req -nodes -newkey rsa:2048 -new -x509  -keyout nginx/ssl/self-ssl.key  -out nginx/ssl/self.cert  -subj '/C=FR/ST=Centre-Val-de-Loire/L=Tours/O=CUB/CN=bastion1.dortmund.cub.sioplc.fr'
 ```
 
 ---

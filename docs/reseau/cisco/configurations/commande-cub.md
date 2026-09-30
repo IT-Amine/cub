@@ -29,9 +29,6 @@ Veuillez vous référer directement aux fichiers de sauvegarde (sauvegardés dan
 
 ## 3. Pare-feu Stormshield (dmd-fw-c1)
 
-- 🛡️ **Fichier de configuration chiffré :** [dmd-fw-c1.na](../../../ressources/configurations/dmd-fw-c1.na) *(Nécessite le mot de passe d'archive)*
+- 📄 **Fichier de configuration chiffré :** [dmd-fw-c1.na](../../../ressources/configurations/dmd-fw-c1.na) *(Nécessite le mot de passe d'archive)*
 
----
 
-!!! tip "Bonnes Pratiques Git"
-    Si vous modifiez la configuration sur un commutateur (ex: ajout d'un VLAN, modification d'un mot de passe), **n'oubliez pas d'écraser le fichier texte correspondant** et de faire un commit + push pour garder la documentation synchronisée avec la production !
