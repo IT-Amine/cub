@@ -170,6 +170,7 @@ icon = "fontawesome/brands/github"
 link = "https://github.com/IT-Amine"
 
 [project.markdown_extensions]
+tables = {}
 abbr = {}
 admonition = {}
 attr_list = {}
