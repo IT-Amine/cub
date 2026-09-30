@@ -13,12 +13,20 @@ description: Activité de réflexion sur le rôle et la sécurité d'un Bastion 
     <p><strong>Contexte :</strong> Réflexion théorique sur le positionnement du Bastion</p>
 </div>
 
+## Sommaire
+
+- [Sommaire](#sommaire)
+- [Architecture du Bastion Guacamole](#architecture-du-bastion-guacamole)
+- [Partie 1 - Bastion et rupture protocolaire](#partie-1-bastion-et-rupture-protocolaire)
+- [Partie 2 - Bastion et son positionnement dans l'architecture réseau](#partie-2-bastion-et-son-positionnement-dans-larchitecture-reseau)
+
 ---
 
-Met un sommaire,
-Met ici l'image dans assets pour explication du bastion guacamole
+## Architecture du Bastion Guacamole
 
----
+Le schéma ci-dessous illustre le fonctionnement d'Apache Guacamole en tant que Bastion d'administration. Il joue le rôle d'intermédiaire unique et sécurisé (passerelle) entre les administrateurs et les serveurs internes.
+
+![Schéma Architecture Bastion Guacamole](./assets/Bastion-Apache-Guacamole-Schema.png)
 
 ## Partie 1 - Bastion et rupture protocolaire
 
