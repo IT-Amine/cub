@@ -113,7 +113,7 @@ nano .env
 ```text
 POSTGRES_DB=guacamole
 POSTGRES_USER=guacamole
-POSTGRES_PASSWORD=MotDePasseRootFort!
+POSTGRES_PASSWORD=example_postgres_password_to_change
 ```
 
 ### 4.2. Configuration du reverse proxy (Nginx)

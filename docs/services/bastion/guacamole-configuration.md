@@ -24,7 +24,7 @@ Création d'un compte administrateur dédié et suppression du compte par défau
 
 1. Naviguer vers **Paramètres** (en haut à droite) > onglet **Utilisateurs** > **Nouvel utilisateur**.
 2. Nom d'utilisateur : `adminbastion`.
-3. Mot de passe : *Saisir un mot de passe robuste*.
+3. Mot de passe : *Saisir un mot de passe robuste via un gestionnaire dédié*.
 4. **Autorisations :** Cocher toutes les cases (Administrer le système, Créer des utilisateurs, etc.) **SAUF** le droit d'audit (`audit system`).
 5. Enregistrer, se déconnecter, puis se reconnecter avec `adminbastion`.
 6. Retourner dans **Utilisateurs** et **supprimer le compte `guacadmin`** par défaut.
