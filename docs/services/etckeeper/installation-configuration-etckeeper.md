@@ -15,12 +15,6 @@ description: Documentation et procédure technique.
 
 ---
 
-## Informations
-
-* **Auteur :** Amine Kada
-* **Date :** 05/09/2026
-* **Domaine :** Exploitation des services
-
 > [!TIP]
 > Une **fiche de révision rapide** couvrant etckeeper et TOTP est disponible dans la section BLOC 2 : [Configuration Debian OTP](../exploitation-services.md)
 

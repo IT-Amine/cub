@@ -16,13 +16,8 @@ nav = [
       { "Présentation" = "presentation.md" },
       { "Contexte CUB" = "assets/resource/contexte-cub.pdf"},
       { "Description de l'infrastructure" = "description.md" },
+      { "Plan de l'infrastructure" = "plan.md" },
       { "Référentiel BTS SIO" = "assets/resource/referentiel-bts.pdf"}
-  ]},
-  { "Plan & Schéma" = [
-      { "Schémas CUB" = "plan.md" },
-      { "Schéma de brassage Dortmund" = "ressources/schemas/cub-schema-brassage-gp4.pdf" },
-      { "Schéma logique Dortmund" = "assets/schema/schema-logique.pdf" },
-      { "Schéma physique Dortmund" = "assets/schema/schema-physique.pdf" }
   ]},
   { "Réseau" = [
       { "Accueil" = "reseau/index.md" },
@@ -80,6 +75,7 @@ nav = [
   ]},
   { "Services" = [
       { "Accueil" = "services/index.md" },
+      { "Fiche de Révision" = "services/exploitation-services.md" },
       { "Système Debian" = [
           { "Installation Paquets Communs" = "services/communs/installation-paquets-commun-debian.md" },
           { "Configuration Hostname" = "services/communs/configuration-hostname-debian.md" },
@@ -88,7 +84,6 @@ nav = [
       { "Applicatif" = [
           { "Serveur DNS Récursif" = "services/dns/config-dns-recursif.md" },
           { "Recette DNS Récursif" = "services/dns/recette-dns-recursif.md" },
-          { "Serveur OTP" = "services/exploitation-services.md" },
           { "Configuration TOTP" = "services/totp/installation-configuration-totp.md" }
       ]},
       { "Bastion (Guacamole)" = [
@@ -99,9 +94,9 @@ nav = [
   ]},
   { "Ressources" = [
       { "Accueil" = "ressources/index.md" },
-      { "Configurations" = "ressources/configurations.md" },
+      { "Configurations brutes" = "ressources/configurations.md" },
       { "Plan d'adressage" = "ressources/plan-adressage.md" },
-      { "Schémas" = "ressources/schemas.md" },
+      { "Schémas CUB" = "ressources/schemas.md" },
       { "Tables NAT" = "ressources/tables-nat.md" },
       { "Tables Routage" = "ressources/tables-routage.md" },
       { "Git & GitHub" = "ressources/git.md" }
