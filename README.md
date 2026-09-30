@@ -58,6 +58,7 @@ cub-docs/
 │   │
 │   ├── services/                 → Exploitation des services
 │   │   ├── exploitation-services.md  → Résumé Etckeeper + TOTP (fiche révision)
+│   │   ├── bastion/              → Bastion Apache Guacamole
 │   │   ├── dns/                  → DNS Récursif Unbound sur Debian
 │   │   ├── etckeeper/            → Versioning /etc avec Git
 │   │   ├── totp/                 → Authentification TOTP (2FA SSH)

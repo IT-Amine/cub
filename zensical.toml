@@ -89,6 +89,10 @@ nav = [
           { "Recette DNS Récursif" = "services/dns/recette-dns-recursif.md" },
           { "Serveur OTP" = "services/exploitation-services.md" },
           { "Configuration TOTP" = "services/totp/installation-configuration-totp.md" }
+      ]},
+      { "Bastion (Guacamole)" = [
+          { "Installation" = "services/bastion/guacamole-installation.md" },
+          { "Configuration" = "services/bastion/guacamole-configuration.md" }
       ]}
   ]},
   { "Ressources" = [
