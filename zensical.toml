@@ -19,6 +19,15 @@ nav = [
       { "Plan de l'infrastructure" = "plan.md" },
       { "Référentiel BTS SIO" = "assets/resource/referentiel-bts.pdf"}
   ]},
+    { "Ressources" = [
+      { "Accueil" = "ressources/index.md" },
+      { "Configurations brutes" = "ressources/configurations.md" },
+      { "Plan d'adressage" = "ressources/plan-adressage.md" },
+      { "Schémas CUB" = "ressources/schemas.md" },
+      { "Tables NAT" = "ressources/tables-nat.md" },
+      { "Tables Routage" = "ressources/tables-routage.md" },
+      { "Git & GitHub" = "ressources/git.md" }
+  ]},
   { "Réseau" = [
       { "Accueil" = "reseau/index.md" },
       { "Architecture & Routage" = [
@@ -91,16 +100,8 @@ nav = [
           { "Installation" = "services/bastion/guacamole-installation.md" },
           { "Configuration" = "services/bastion/guacamole-configuration.md" }
       ]}
-  ]},
-  { "Ressources" = [
-      { "Accueil" = "ressources/index.md" },
-      { "Configurations brutes" = "ressources/configurations.md" },
-      { "Plan d'adressage" = "ressources/plan-adressage.md" },
-      { "Schémas CUB" = "ressources/schemas.md" },
-      { "Tables NAT" = "ressources/tables-nat.md" },
-      { "Tables Routage" = "ressources/tables-routage.md" },
-      { "Git & GitHub" = "ressources/git.md" }
   ]}
+
 ]
 
 # extra_css = ["stylesheets/extra.css"]
