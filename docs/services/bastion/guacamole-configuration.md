@@ -119,3 +119,4 @@ sequenceDiagram
     Guacd-->>Guac: Conversion protocolaire (Guacamole Protocol)
     Guac-->>Nginx: Renvoi des trames Web
     Nginx-->>Client: Affichage dynamique (Canvas HTML5)
+```
