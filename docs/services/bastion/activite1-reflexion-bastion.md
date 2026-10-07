@@ -25,9 +25,7 @@ description: Activité de réflexion sur le rôle et la sécurité d'un Bastion 
 
 Le schéma ci-dessous illustre le fonctionnement d'Apache Guacamole en tant que Bastion d'administration. Il joue le rôle d'intermédiaire unique et sécurisé (passerelle) entre les administrateurs et les serveurs internes. 
 
-[Image - source It-Connect](https://www.it-connect.fr/wp-content-itc/uploads/2023/06/Bastion-Apache-Guacamole-Schema.png)
-
-![Schéma Architecture Bastion Guacamole](../../../assets/bastion/Bastion-Apache-Guacamole-Schema.png)
+![Schéma Architecture Bastion Guacamole](./assets/Bastion-Apache-Guacamole-Schema.png)
 
 ---
 

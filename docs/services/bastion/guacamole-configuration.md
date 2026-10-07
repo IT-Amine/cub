@@ -61,7 +61,7 @@ Création des comptes associés aux groupes précédents.
 2. **Nom :** Serveur Linux SSH
 3. **Protocole :** SSH
 4. **Réseau :** 
-   - Nom d'hôte : `192.168.8.X` (Remplacer le X par l'IP exacte du serveur Linux).
+   - Nom d'hôte : `192.168.4.X`
    - Port : `22`
 5. **Authentification :** Saisir les identifiants locaux de la machine Linux.
 6. **Affectation au groupe :** Dans les paramètres de la connexion (ou du groupe d'utilisateurs), affecter cette connexion au groupe `ServeursLinux`.
@@ -74,7 +74,7 @@ Création des comptes associés aux groupes précédents.
 2. **Nom :** ServeurWAC1 RDP
 3. **Protocole :** RDP
 4. **Réseau :**
-   - Nom d'hôte : `192.168.8.5`
+   - Nom d'hôte : `192.168.4.x`
    - Port : `3389`
 5. **Authentification :** Saisir les identifiants locaux du Serveur Windows.
 6. **Affectation au groupe :** Affecter cette connexion au groupe `ServeursWindows`.
@@ -100,7 +100,7 @@ sequenceDiagram
     participant Nginx as Proxy Nginx (Port 443)
     participant Guac as Tomcat Guacamole (Port 8080)
     participant Guacd as Démon guacd
-    participant Cible as Serveur Cible (192.168.8.X)
+    participant Cible as Serveur Cible (192.168.4.X)
 
     rect rgb(230, 240, 255)
         Note over Client, Guac: Flux externe chiffré (Web)

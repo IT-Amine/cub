@@ -62,7 +62,10 @@ cub-docs/
 │   │   ├── communs/
 │   │   │   ├── configuration-hostname-debian.md
 │   │   │   └── installation-paquets-commun-debian.md
-│   │   ├── dns/                  → DNS Récursif Unbound sur Debian
+│   │   ├── dns/                  → DNS Récursif & Autoritaire (Bind9 / Unbound)
+│   │   │   ├── config-dns-recursif.md
+│   │   │   ├── recette-dns-recursif.md
+│   │   │   └── config-dns-autoritaire.md  → DNS Autoritaire Esclave Bind9 (ns1)
 │   │   ├── etckeeper/            → Versioning /etc avec Git
 │   │   └── totp/                 → Authentification TOTP (2FA SSH)
 │   │

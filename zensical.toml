@@ -65,6 +65,26 @@ nav = [
           { "Ajout d'un serveur" = "windows/wac/ajout-serveur-wac.md" }
       ]}
   ]},
+    { "Services" = [
+      { "Accueil" = "services/index.md" },
+      { "Fiche de Révision" = "services/exploitation-services.md" },
+      { "Système Debian" = [
+          { "Installation Paquets Communs" = "services/communs/installation-paquets-commun-debian.md" },
+          { "Configuration Hostname" = "services/communs/configuration-hostname-debian.md" },
+          { "Etckeeper" = "services/etckeeper/installation-configuration-etckeeper.md" }
+      ]},
+      { "Applicatif" = [
+          { "DNS Récursif (Unbound)" = "services/dns/config-dns-recursif.md" },
+          { "Recette DNS Récursif" = "services/dns/recette-dns-recursif.md" },
+          { "DNS Autoritaire Esclave (ns1)" = "services/dns/config-dns-autoritaire.md" },
+          { "Configuration TOTP" = "services/totp/installation-configuration-totp.md" }
+      ]},
+      { "Bastion (Guacamole)" = [
+          { "Activité 1 : Réflexion" = "services/bastion/activite1-reflexion-bastion.md" },
+          { "Installation" = "services/bastion/guacamole-installation.md" },
+          { "Configuration" = "services/bastion/guacamole-configuration.md" }
+      ]}
+  ]},
   { "Sécurité" = [
       { "Accueil" = "securite/index.md" },
       { "Théorie" = [
@@ -81,27 +101,7 @@ nav = [
           { "Recette Firewall" = "securite/stormshield/recettes/recette-pare-feu-stormshield.md" },
           { "Erreur Dérives (Ethernet)" = "securite/stormshield/problemes/resolution-erreur-derives-ethernet.md" }
       ]}
-  ]},
-  { "Services" = [
-      { "Accueil" = "services/index.md" },
-      { "Fiche de Révision" = "services/exploitation-services.md" },
-      { "Système Debian" = [
-          { "Installation Paquets Communs" = "services/communs/installation-paquets-commun-debian.md" },
-          { "Configuration Hostname" = "services/communs/configuration-hostname-debian.md" },
-          { "Etckeeper" = "services/etckeeper/installation-configuration-etckeeper.md" }
-      ]},
-      { "Applicatif" = [
-          { "Serveur DNS Récursif" = "services/dns/config-dns-recursif.md" },
-          { "Recette DNS Récursif" = "services/dns/recette-dns-recursif.md" },
-          { "Configuration TOTP" = "services/totp/installation-configuration-totp.md" }
-      ]},
-      { "Bastion (Guacamole)" = [
-          { "Activité 1 : Réflexion" = "services/bastion/activite1-reflexion-bastion.md" },
-          { "Installation" = "services/bastion/guacamole-installation.md" },
-          { "Configuration" = "services/bastion/guacamole-configuration.md" }
-      ]}
   ]}
-
 ]
 
 # extra_css = ["stylesheets/extra.css"]
