@@ -87,6 +87,7 @@ Ajouter :
 zone "4.36.192.in-addr.arpa" { 
     type master; 
     file "/var/cache/bind/db.192.36.4"; 
+    allow-transfer { 192.36.4.11; }; // Autoriser le transfert vers l'esclave ns1
 };
 ```
 
