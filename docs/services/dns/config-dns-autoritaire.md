@@ -111,6 +111,13 @@ zone "dortmund.cub.sioplc.fr" {
     masters { 192.36.4.10; };
     file "/var/cache/bind/db.dortmund.cub.sioplc.fr";
 };
+
+// Déclaration de la zone inverse pour le réseau 192.36.4.0/24
+zone "4.36.192.in-addr.arpa" {
+    type slave;
+    masters { 192.36.4.10; };
+    file "/var/cache/bind/db.192.36.4";
+};
 ```
 
 ---

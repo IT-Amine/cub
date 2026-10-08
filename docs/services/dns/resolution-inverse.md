@@ -40,9 +40,13 @@ Dans IPv6, la dernière version du protocole Internet, les enregistrements PTR s
 
 ## 3. Mise en place d'une résolution inverse
 
-### 3.1. Création d’un fichier de zone pour le réseau 192.36.4.0/24
+La mise en place s'effectue en deux temps : la création de la zone maître sur `ns0`, puis sa réplication sur l'esclave `ns1`.
 
-Création du fichier de zone inverse pour le sous-réseau cible :
+### 3.1. Configuration sur le serveur Maître (ns0)
+
+Le serveur maître est responsable de la déclaration originelle de la zone et de la création du fichier de ressources.
+
+**1. Création du fichier de zone inverse (réseau 192.36.4.0/24) :**
 
 ```bash
 sudoedit /var/cache/bind/db.192.36.4
@@ -64,18 +68,31 @@ $TTL 43200
 
 ; Enregistrements PTR
 10.4.36.192.in-addr.arpa. IN PTR ns0.dortmund.cub.sioplc.fr. 
-11.4.36.192.in-addr.arpa.  IN PTR ns1.dortmund.cub.sioplc.fr.
+11.4.36.192.in-addr.arpa. IN PTR ns1.dortmund.cub.sioplc.fr.
 ```
 
-Ce fichier de zone inverse ressemble à un fichier de zone classique. Il sert à mettre en œuvre la résolution DNS inversée. Il est nécessaire que le service Bind dispose des droits appropriés afin d’accéder au fichier de zone inverse nouvellement créé :
-
+Correction des permissions pour le service Bind :
 ```bash
 sudo chown bind:bind /var/cache/bind/db.192.36.4
 ```
 
-### 3.2. Déclaration de la zone inverse dans le fichier local
+**2. Déclaration locale de la zone maître :**
 
-Déclaration de la nouvelle zone dans la configuration locale de Bind9 :
+```bash
+sudoedit /etc/bind/named.conf.local
+```
+
+Ajouter :
+```text
+zone "4.36.192.in-addr.arpa" { 
+    type master; 
+    file "/var/cache/bind/db.192.36.4"; 
+};
+```
+
+### 3.2. Configuration sur le serveur Esclave (ns1)
+
+L'esclave ne requiert aucune création de fichier manuel. Il suffit de lui indiquer où se trouve le maître pour qu'il rapatrie la zone par transfert (AXFR).
 
 ```bash
 sudoedit /etc/bind/named.conf.local
@@ -84,20 +101,20 @@ sudoedit /etc/bind/named.conf.local
 **Ajouter le bloc suivant :**
 
 ```text
-zone "4.36.192.in-addr.arpa" { 
-    type master; 
-    file "/var/cache/bind/db.192.36.4"; 
+zone "4.36.192.in-addr.arpa" {
+    type slave;
+    masters { 192.36.4.10; };
+    file "/var/cache/bind/db.192.36.4";
 };
 ```
 
 ### 3.3. Prise en compte des modifications
 
-Une fois le fichier de configuration sauvegardé, recharger le service pour appliquer la nouvelle zone inverse :
+Sur les deux serveurs (`ns0` puis `ns1`), recharger le service pour appliquer les modifications et déclencher la synchronisation :
 
 ```bash
 sudo systemctl reload bind9
 ```
-
 
 ---
 
@@ -134,7 +151,7 @@ nslookup 192.36.4.11 127.0.0.1
 ### 4.3. Test avec la commande `host`
 
 ```bash
-host 192.36.4.10
+host 192.36.4.10 127.0.0.1
 ```
 
 **Résultat attendu :**
