@@ -97,3 +97,4 @@ Une fois le fichier de configuration sauvegardé, recharger le service pour appl
 ```bash
 sudo systemctl reload bind9
 ```
+
