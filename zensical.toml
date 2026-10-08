@@ -11,99 +11,108 @@ repo_name = "IT-Amine/cub"
 edit_uri = "edit/main/docs/"
 
 nav = [
-  { "Accueil" = "index.md" },
-  { "Contexte" = [
-      { "Présentation" = "presentation.md" },
-      { "Contexte CUB" = "assets/resource/contexte-cub.pdf"},
-      { "Description de l'infrastructure" = "description.md" },
-      { "Plan de l'infrastructure" = "plan.md" },
-      { "Référentiel BTS SIO" = "assets/resource/referentiel-bts.pdf"}
-  ]},
-    { "Ressources" = [
-      { "Accueil" = "ressources/index.md" },
-      { "Configurations brutes" = "ressources/configurations.md" },
+  { "Description de l'infrastructure" = "description.md" },
+  { "Accueil CUB" = "index.md" },
+  { "Plan de l'infrastructure CUB" = "plan.md" },
+  { "Contexte CUB - BTS SIO" = "presentation.md" },
+  { "Reseau" = [
+      { "Administration et supervision des réseaux" = "reseau/index.md" },
+      { "Vlsm Routage" = "reseau/vlsm-routage.md" },
+      { "Cisco" = [
+          { "Configurations" = [
+              { "Configurations Cisco (CUB)" = "reseau/cisco/configurations/commande-cub.md" }
+          ] },
+          { "Dhcp" = [
+              { "Implémentation du Relais DHCP sur équipement Cisco" = "reseau/cisco/dhcp/implementation-relais-dhcp-cisco.md" }
+          ] },
+          { "Nat" = [
+              { "Implémentation du NAT (PAT) sur un routeur Cisco" = "reseau/cisco/nat/configuration-nat-routeur-cisco.md" }
+          ] },
+          { "Recettes" = [
+              { "Fiche recette - Commutateur L3" = "reseau/cisco/recettes/recette-commutateur-l3-cisco.md" }
+          ] },
+          { "Routage" = [
+              { "Implémentation du routage statique (Cisco)" = "reseau/cisco/routage/implementation-routage-statique-cisco.md" }
+          ] },
+          { "Securite" = [
+              { "Implémentation des mots de passe par niveau d'accès (Cisco)" = "reseau/cisco/securite/implementation-mots-de-passe-niveau-acces.md" }
+          ] },
+          { "Ssh" = [
+              { "Implémentation du SSH sur un commutateur Cisco" = "reseau/cisco/ssh/configuration-ssh-commutateur-cisco.md" },
+              { "Implémentation du SSH sur un routeur Cisco" = "reseau/cisco/ssh/configuration-ssh-routeur-cisco.md" }
+          ] },
+          { "Vtp" = [
+              { "Implémentation du VTP sur commutateur Cisco" = "reseau/cisco/vtp/implementation-vtp-cisco.md" }
+          ] }
+      ] }
+  ] },
+  { "Ressources" = [
+      { "Configurations" = "ressources/configurations.md" },
+      { "Gestion de versions avec Git & GitHub" = "ressources/git.md" },
+      { "Ressources" = "ressources/index.md" },
       { "Plan d'adressage" = "ressources/plan-adressage.md" },
-      { "Schémas CUB" = "ressources/schemas.md" },
+      { "Schémas" = "ressources/schemas.md" },
       { "Tables NAT" = "ressources/tables-nat.md" },
-      { "Tables Routage" = "ressources/tables-routage.md" },
-      { "Git & GitHub" = "ressources/git.md" }
-  ]},
-  { "Réseau" = [
-      { "Accueil" = "reseau/index.md" },
-      { "Architecture & Routage" = [
-          { "VLSM & Routage" = "reseau/vlsm-routage.md" },
-          { "Routage Statique" = "reseau/cisco/routage/implementation-routage-statique-cisco.md" }
-      ]},
-      { "Cisco - Configuration" = [
-          { "Commandes de base" = "reseau/cisco/configurations/commande-cub.md" },
-          { "Sécurité accès" = "reseau/cisco/securite/implementation-mots-de-passe-niveau-acces.md" },
-          { "SSH Commutateur" = "reseau/cisco/ssh/configuration-ssh-commutateur-cisco.md" },
-          { "SSH Routeur" = "reseau/cisco/ssh/configuration-ssh-routeur-cisco.md" }
-      ]},
-      { "Cisco - Services" = [
-          { "NAT" = "reseau/cisco/nat/configuration-nat-routeur-cisco.md" },
-          { "DHCP Relais" = "reseau/cisco/dhcp/implementation-relais-dhcp-cisco.md" },
-          { "VTP" = "reseau/cisco/vtp/implementation-vtp-cisco.md" }
-      ]},
-      { "Cisco - Recettes" = [
-          { "Recette Switch L3" = "reseau/cisco/recettes/recette-commutateur-l3-cisco.md" }
-      ]}
-  ]},
+      { "Tables de routage" = "ressources/tables-routage.md" }
+  ] },
+  { "Securite" = [
+      { "Cybersecurite Cub" = "securite/cybersecurite-cub.md" },
+      { "Cybersécurité" = "securite/index.md" },
+      { "Stormshield" = [
+          { "Problemes" = [
+              { "Résolution de l'erreur d'objets dérivés sur ethernet0" = "securite/stormshield/problemes/resolution-erreur-derives-ethernet.md" }
+          ] },
+          { "Procedures" = [
+              { "Configuration d'une interface sur Stormshield avec la configuration IP" = "securite/stormshield/procedures/configuration-interface-stormshield.md" },
+              { "Configuration du NAT sur Stormshield" = "securite/stormshield/procedures/configuration-nat-stormshield.md" },
+              { "Configuration du routage sur stormshield" = "securite/stormshield/procedures/configuration-routage-stormshield.md" },
+              { "Configuration d'une sous-interface (VLAN 802.1Q) sur Stormshield" = "securite/stormshield/procedures/configuration-sous-interface-stormshield.md" },
+              { "Sauvegarde de la configuration sur Stormshield" = "securite/stormshield/procedures/sauvegarde-configuration-stormshield.md" }
+          ] },
+          { "Recettes" = [
+              { "Fiche Recette : Pare-feu Stormshield" = "securite/stormshield/recettes/recette-pare-feu-stormshield.md" }
+          ] }
+      ] }
+  ] },
+  { "Services" = [
+      { "Fiche de révision : Exploitation des services Debian" = "services/exploitation-services.md" },
+      { "Exploitation des services" = "services/index.md" },
+      { "Bastion" = [
+          { "Activité 1 : Réflexion sur le Bastion" = "services/bastion/activite1-reflexion-bastion.md" },
+          { "Gestion des utilisateurs et des sessions (Guacamole)" = "services/bastion/guacamole-configuration.md" },
+          { "Bastion Guacamole (Docker)" = "services/bastion/guacamole-installation.md" }
+      ] },
+      { "Communs" = [
+          { "Configuration du hostname" = "services/communs/configuration-hostname-debian.md" },
+          { "Installation des paquets communs Debian" = "services/communs/installation-paquets-commun-debian.md" }
+      ] },
+      { "Dns" = [
+          { "Déploiement DNS Esclave (ns1)" = "services/dns/config-dns-autoritaire.md" },
+          { "Configuration DNS Récursif" = "services/dns/config-dns-recursif.md" },
+          { "Fiche Recette : DNS Autoritaire Esclave" = "services/dns/recette-dns-autoritaire.md" },
+          { "Fiche Recette : DNS Récursif (Unbound)" = "services/dns/recette-dns-recursif.md" }
+      ] },
+      { "Etckeeper" = [
+          { "Installation et configuration de Etckeeper" = "services/etckeeper/installation-configuration-etckeeper.md" }
+      ] },
+      { "Totp" = [
+          { "Mise en place de l'authentification TOTP sur Debian" = "services/totp/installation-configuration-totp.md" }
+      ] }
+  ] },
   { "Windows" = [
-      { "Accueil" = "windows/index.md" },
-      { "Système Windows Core" = [
-          { "Initialisation" = "windows/core/configuration-windows-core.md" },
-          { "Extension Volume (C:)" = "windows/core/extension-volume-windows.md" }
-      ]},
-      { "Serveurs & Rôles" = [
+      { "Administration Windows" = "windows/index.md" },
+      { "Core" = [
           { "AD1 Core" = "windows/core/config-ad.md" },
-          { "DHCP Core" = "windows/core/config-dhcp.md" }
-      ]},
-      { "Windows Admin Center" = [
-          { "Installation WAC" = "windows/wac/installation-wac.md" },
-          { "Création compte WAC" = "windows/wac/creation-compte-administrer-wac.md" },
-          { "Ajout d'un serveur" = "windows/wac/ajout-serveur-wac.md" }
-      ]}
-  ]},
-    { "Services" = [
-      { "Accueil" = "services/index.md" },
-      { "Fiche de Révision" = "services/exploitation-services.md" },
-      { "Système Debian" = [
-          { "Installation Paquets Communs" = "services/communs/installation-paquets-commun-debian.md" },
-          { "Configuration Hostname" = "services/communs/configuration-hostname-debian.md" },
-          { "Etckeeper" = "services/etckeeper/installation-configuration-etckeeper.md" }
-      ]},
-      { "Applicatif" = [
-          { "DNS Récursif (Unbound)" = "services/dns/config-dns-recursif.md" },
-          { "Recette DNS Récursif" = "services/dns/recette-dns-recursif.md" },
-          { "DNS Autoritaire Esclave (ns1)" = "services/dns/config-dns-autoritaire.md" },
-          { "Recette DNS Autoritaire" = "services/dns/recette-dns-autoritaire.md" },
-          { "DNS Résolution Inverse" = "services/dns/resolution-inverse.md" },
-          { "Configuration TOTP" = "services/totp/installation-configuration-totp.md" }
-      ]},
-      { "Bastion (Guacamole)" = [
-          { "Activité 1 : Réflexion" = "services/bastion/activite1-reflexion-bastion.md" },
-          { "Installation" = "services/bastion/guacamole-installation.md" },
-          { "Configuration" = "services/bastion/guacamole-configuration.md" }
-      ]}
-  ]},
-  { "Sécurité" = [
-      { "Accueil" = "securite/index.md" },
-      { "Théorie" = [
-          { "UTM & Sécurité globale" = "securite/cybersecurite-cub.md" }
-      ]},
-      { "Stormshield - Configuration" = [
-          { "Interface" = "securite/stormshield/procedures/configuration-interface-stormshield.md" },
-          { "Sous-interface" = "securite/stormshield/procedures/configuration-sous-interface-stormshield.md" },
-          { "Routage" = "securite/stormshield/procedures/configuration-routage-stormshield.md" },
-          { "NAT" = "securite/stormshield/procedures/configuration-nat-stormshield.md" },
-          { "Sauvegarde" = "securite/stormshield/procedures/sauvegarde-configuration-stormshield.md" }
-      ]},
-      { "Stormshield - Exploitation" = [
-          { "Recette Firewall" = "securite/stormshield/recettes/recette-pare-feu-stormshield.md" },
-          { "Erreur Dérives (Ethernet)" = "securite/stormshield/problemes/resolution-erreur-derives-ethernet.md" }
-      ]}
-  ]}
+          { "DHCP Core" = "windows/core/config-dhcp.md" },
+          { "Configuration Windows Core" = "windows/core/configuration-windows-core.md" },
+          { "Procédure : Extension du volume système (C:) sur machine virtuelle" = "windows/core/extension-volume-windows.md" }
+      ] },
+      { "Wac" = [
+          { "Ajout d'un serveur dans WAC" = "windows/wac/ajout-serveur-wac.md" },
+          { "Création d'un compte WAC" = "windows/wac/creation-compte-administrer-wac.md" },
+          { "Installation de WAC" = "windows/wac/installation-wac.md" }
+      ] }
+  ] }
 ]
 
 # extra_css = ["stylesheets/extra.css"]
