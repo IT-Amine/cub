@@ -55,7 +55,7 @@ Start-Process -FilePath "D:\virtio-win-guest-tools.exe"
 
 * `-FilePath` : Spécifie le chemin d'accès absolu vers l'exécutable à lancer.
 
-![Capture d'écran vitrio win](../../../assets/windows-core/configuration-windows-core/01-capture-ecran-vitrio-win.png)
+![Capture d'écran vitrio win](../../assets/windows-core/configuration-windows-core/01-capture-ecran-vitrio-win.png)
 
 3.5. **Configurer le démarrage automatique de QEMU Guest Agent.**
 

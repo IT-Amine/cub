@@ -39,7 +39,7 @@ Lors de la configuration d'une adresse IP fixe sur l'interface WAN (`ethernet0`)
 
 * **Configuration** > **Network** > **Routing** > **default gateway (router)** = `none`
 
-![Capture d'écran - Desactivation du default gateway (router)](../../../../assets/stormshield-problemes/01-capture-ecran-routage-firewall.png)
+![Capture d'écran - Desactivation du default gateway (router)](../../../assets/stormshield-problemes/01-capture-ecran-routage-firewall.png)
 
 - `Network > Routing` : Chemin de navigation pour accéder aux paramètres des routes réseau.
 - `none` : Valeur remplaçant l'objet `firewall_out_router` pour libérer l'interface WAN de ses dépendances.
@@ -50,7 +50,7 @@ Lors de la configuration d'une adresse IP fixe sur l'interface WAN (`ethernet0`)
 
 * **Configuration** > **Network** > **Interfaces** > **Out (WAN)** > **Apply**
 
-![Capture d'écran - Configuration de l'interface Out](../../../../assets/stormshield-problemes/02-capture-ecran-interface-firewall.png)
+![Capture d'écran - Configuration de l'interface Out](../../../assets/stormshield-problemes/02-capture-ecran-interface-firewall.png)
 
 - `Out (WAN)` : Ciblage de l'interface externe (`ethernet0`) pour la saisie de l'adresse IP statique.
 - `Apply` : Validation des paramètres pour forcer l'application de la nouvelle configuration réseau.

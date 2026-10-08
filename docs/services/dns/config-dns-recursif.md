@@ -72,7 +72,7 @@ server:
     # On autorise l'IPv4
     do-ip4: yes
 
-    # On journalise et garde une trace des événements (Très important)
+    # On journalise et garde une trace des événements
     logfile: /var/log/unbound.log
     verbosity: 1
     log-queries: yes
@@ -88,7 +88,7 @@ sudo unbound-checkconf
 
 ## 4. Configuration des domaines locaux (Stub Zones)
 
-Notre serveur récursif va nativement s'adresser aux serveurs faisant autorité sur Internet. Dans le cas où il doit traiter des domaines locaux (ex : `btssio.lan` ou `epoka.local`) en dehors de l'arborescence officielle, il faut lui indiquer les serveurs internes.
+Notre serveur récursif va nativement s'adresser aux serveurs faisant autorité sur Internet. Dans le cas où il doit traiter des domaines locaux en dehors de l'arborescence officielle, il faut lui indiquer les serveurs internes.
 
 Ajoutez ces lignes à la fin de la section `server:` (ou à la racine) dans votre `/etc/unbound/unbound.conf` :
 
