@@ -134,7 +134,7 @@ La séparation des privilèges impose la création d'un compte dédié à la con
 1. Se connecter au bastion avec le compte administrateur global (`adminbastion`).
 2. Naviguer vers **Paramètres** > onglet **Utilisateurs** > **Nouvel utilisateur**.
 3. **Nom d'utilisateur :** `Auditeur`.
-4. **Mot de passe :** *Définir un mot de passe sécurisé.*
+4. **Mot de passe :** *Saisir un mot de passe robuste via un gestionnaire dédié.*
 5. **Autorisations :** Cocher **exclusivement** les droits suivants :
    - **Auditer le système** (Audit system) : pour visualiser l'historique global des connexions et des enregistrements.
    - **Modifier son propre mot de passe**.
