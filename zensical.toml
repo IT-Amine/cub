@@ -11,39 +11,25 @@ repo_name = "IT-Amine/cub"
 edit_uri = "edit/main/docs/"
 
 nav = [
-  { "Description de l'infrastructure" = "description.md" },
   { "Accueil CUB" = "index.md" },
-  { "Plan de l'infrastructure CUB" = "plan.md" },
-  { "Contexte CUB - BTS SIO" = "presentation.md" },
+  { "Contexte" = [
+      { "Description de l'infrastructure" = "description.md" },
+      { "Plan de l'infrastructure CUB" = "plan.md" },
+      { "Contexte CUB - BTS SIO" = "presentation.md" }
+  ] },
   { "Reseau" = [
       { "Administration et supervision des Réseaux" = "reseau/index.md" },
       { "Vlsm Routage" = "reseau/vlsm-routage.md" },
       { "Cisco" = [
-          { "Configurations" = [
-              { "Configurations Cisco (CUB)" = "reseau/cisco/configurations/commande-cub.md" }
-          ] },
-          { "Dhcp" = [
-              { "Implémentation du Relais DHCP sur équipement Cisco" = "reseau/cisco/dhcp/implementation-relais-dhcp-cisco.md" }
-          ] },
-          { "Nat" = [
-              { "Implémentation du NAT (PAT) sur un routeur Cisco" = "reseau/cisco/nat/configuration-nat-routeur-cisco.md" }
-          ] },
-          { "Recettes" = [
-              { "Fiche recette - Commutateur L3" = "reseau/cisco/recettes/recette-commutateur-l3-cisco.md" }
-          ] },
-          { "Routage" = [
-              { "Implémentation du routage statique (Cisco)" = "reseau/cisco/routage/implementation-routage-statique-cisco.md" }
-          ] },
-          { "Securite" = [
-              { "Implémentation des mots de passe par niveau d'accès (Cisco)" = "reseau/cisco/securite/implementation-mots-de-passe-niveau-acces.md" }
-          ] },
-          { "Ssh" = [
-              { "Implémentation du SSH sur un commutateur Cisco" = "reseau/cisco/ssh/configuration-ssh-commutateur-cisco.md" },
-              { "Implémentation du SSH sur un routeur Cisco" = "reseau/cisco/ssh/configuration-ssh-routeur-cisco.md" }
-          ] },
-          { "Vtp" = [
-              { "Implémentation du VTP sur commutateur Cisco" = "reseau/cisco/vtp/implementation-vtp-cisco.md" }
-          ] }
+          { "Configurations Cisco (CUB)" = "reseau/cisco/configurations/commande-cub.md" },
+          { "Implémentation du Relais DHCP sur équipement Cisco" = "reseau/cisco/dhcp/implementation-relais-dhcp-cisco.md" },
+          { "Implémentation du NAT (PAT) sur un routeur Cisco" = "reseau/cisco/nat/configuration-nat-routeur-cisco.md" },
+          { "Fiche recette - Commutateur L3" = "reseau/cisco/recettes/recette-commutateur-l3-cisco.md" },
+          { "Implémentation du routage statique (Cisco)" = "reseau/cisco/routage/implementation-routage-statique-cisco.md" },
+          { "Implémentation des mots de passe par niveau d'accès (Cisco)" = "reseau/cisco/securite/implementation-mots-de-passe-niveau-acces.md" },
+          { "Implémentation du SSH sur un commutateur Cisco" = "reseau/cisco/ssh/configuration-ssh-commutateur-cisco.md" },
+          { "Implémentation du SSH sur un routeur Cisco" = "reseau/cisco/ssh/configuration-ssh-routeur-cisco.md" },
+          { "Implémentation du VTP sur commutateur Cisco" = "reseau/cisco/vtp/implementation-vtp-cisco.md" }
       ] }
   ] },
   { "Ressources" = [
@@ -59,19 +45,13 @@ nav = [
       { "Cybersecurite Cub" = "securite/cybersecurite-cub.md" },
       { "Cybersécurité" = "securite/index.md" },
       { "Stormshield" = [
-          { "Problemes" = [
-              { "Résolution de l'erreur d'objets dérivés sur ethernet0" = "securite/stormshield/problemes/resolution-erreur-derives-ethernet.md" }
-          ] },
-          { "Procedures" = [
-              { "Configuration d'une interface sur Stormshield avec la configuration IP" = "securite/stormshield/procedures/configuration-interface-stormshield.md" },
-              { "Configuration du NAT sur Stormshield" = "securite/stormshield/procedures/configuration-nat-stormshield.md" },
-              { "Configuration du routage sur stormshield" = "securite/stormshield/procedures/configuration-routage-stormshield.md" },
-              { "Configuration d'une sous-interface (VLAN 802.1Q) sur Stormshield" = "securite/stormshield/procedures/configuration-sous-interface-stormshield.md" },
-              { "Sauvegarde de la configuration sur Stormshield" = "securite/stormshield/procedures/sauvegarde-configuration-stormshield.md" }
-          ] },
-          { "Recettes" = [
-              { "Fiche Recette : Pare-feu Stormshield" = "securite/stormshield/recettes/recette-pare-feu-stormshield.md" }
-          ] }
+          { "Résolution de l'erreur d'objets dérivés sur ethernet0" = "securite/stormshield/problemes/resolution-erreur-derives-ethernet.md" },
+          { "Configuration d'une interface sur Stormshield avec la configuration IP" = "securite/stormshield/procedures/configuration-interface-stormshield.md" },
+          { "Configuration du NAT sur Stormshield" = "securite/stormshield/procedures/configuration-nat-stormshield.md" },
+          { "Configuration du routage sur stormshield" = "securite/stormshield/procedures/configuration-routage-stormshield.md" },
+          { "Configuration d'une sous-interface (VLAN 802.1Q) sur Stormshield" = "securite/stormshield/procedures/configuration-sous-interface-stormshield.md" },
+          { "Sauvegarde de la configuration sur Stormshield" = "securite/stormshield/procedures/sauvegarde-configuration-stormshield.md" },
+          { "Fiche Recette : Pare-feu Stormshield" = "securite/stormshield/recettes/recette-pare-feu-stormshield.md" }
       ] }
   ] },
   { "Services" = [
