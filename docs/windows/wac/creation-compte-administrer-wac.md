@@ -30,9 +30,9 @@ Le déploiement et la gestion de Windows Admin Center (WAC) requièrent des droi
 3.1. **Création du compte utilisateur local.** Conversion du mot de passe en chaîne sécurisée et instanciation du compte système.
 
 ```powershell
-$Password = ConvertTo-SecureString "etudiant_007" -AsPlainText -Force
+$Password = ConvertTo-SecureString "<MOT_DE_PASSE>" -AsPlainText -Force
 New-LocalUser -Name "administrateurWAC1" -Password $Password -FullName "Administrateur WAC"
-```
+```powershell
 
 - `ConvertTo-SecureString` : Cmdlet convertissant une chaîne de caractères standard en une chaîne sécurisée chiffrée (SecureString) manipulable en mémoire.
 - `-AsPlainText` : Paramètre indiquant que la chaîne fournie en entrée est en texte clair.

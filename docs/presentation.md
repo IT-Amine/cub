@@ -41,7 +41,7 @@ Le siège social est le cœur du système d'information interne de CUB, mais un 
 ### BLOC 3 — Cybersécurité & Réseaux
 
 * [**Cybersécurité CUB**](securite/cybersecurite-cub.md) : Concepts fondamentaux de la sécurité des systèmes d'information.
-* [**VLSM & Table de routage CUB**](reseau/vlsm-routage.md) : Sous-réseaux, adressage IP et principes de routage.
+* [**VLSM & Table de routage CUB**](reseau/vlsm-routage.md) : Sous-Réseaux, adressage IP et principes de routage.
 
 ---
 

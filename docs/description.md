@@ -17,7 +17,7 @@ description: Documentation et procédure technique.
 
 ## Plan d'adressage IPv4 de l'entreprise
 
-| Structure | Adresses de sous-réseaux | Adresses IP des pare-feux |
+| Structure | Adresses de sous-Réseaux | Adresses IP des pare-feux |
 |---|---|---|
 | **Agence Anvers** | LAN 1 – 192.168.1.0/24<br>R1-FW1 – 192.168.11.252/30<br>DMZ 1 – 192.36.1.0/24<br>WAN – 192.36.253.0/24 | In : 192.168.11.254<br>DMZ : 192.36.1.254<br>Out : 192.36.253.10 |
 | **Agence Barcelone** | LAN 2 – 192.168.2.0/24<br>R2-FW2 – 192.168.22.252/30<br>DMZ 2 – 192.36.2.0/24<br>WAN – 192.36.253.0/24 | In : 192.168.22.254<br>DMZ : 192.36.2.254<br>Out : 192.36.253.20 |
@@ -47,14 +47,14 @@ description: Documentation et procédure technique.
 |---|---|---|
 | Production | VLAN 5X | 60 hôtes |
 | Client | VLAN 10 | 16 hôtes |
-| Administration systèmes et réseaux | VLAN 20 | 3 hôtes |
+| Administration systèmes et Réseaux | VLAN 20 | 3 hôtes |
 
 !!! note "Note"
     L'évolution du réseau est un élément primordial à prendre en compte. Ainsi, en cas de découpage réseau, il est indispensable de prévoir un plan d'adressage capable d'accueillir **au minimum le double d'équipements** par rapport au recensement initial afin d'éviter toute possibilité de saturation.
 
 ---
 
-## Administration des équipements réseaux
+## Administration des équipements Réseaux
 
 | Matériel | Administration | Description |
 |---|---|---|
@@ -70,7 +70,7 @@ description: Documentation et procédure technique.
 |---|---|
 | Ports 1 à 10 | Réservés aux équipements dits « terminaux » (PC, téléphone, PC portable). |
 | Ports 11 à 18 | Réservés aux serveurs. |
-| Ports 19 à 24 | Réservés à l'interconnexion avec d'autres équipements réseaux (commutateurs, routeurs, pare-feu, borne Wi-Fi). |
+| Ports 19 à 24 | Réservés à l'interconnexion avec d'autres équipements Réseaux (commutateurs, routeurs, pare-feu, borne Wi-Fi). |
 
 !!! tip "Pourquoi cette approche ?"
     L'intérêt d'appliquer une telle méthodologie est d'avoir une rigueur dans l'organisation du réseau permettant de savoir très rapidement repérer la fonction d'un port sur un commutateur.

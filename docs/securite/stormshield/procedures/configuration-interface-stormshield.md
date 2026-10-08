@@ -40,7 +40,7 @@ Le provisionnement d'une interface réseau avec une adresse IP statique sur un p
 3.1. **Navigation vers le module d'interface**. Depuis la console d'administration Web de l'appliance, se rendre dans **CONFIGURATION** > **RÉSEAU** > **INTERFACES** pour visualiser la hiérarchie logique et physique (ponts, agrégats, VLANs).
 
 > [!tip] Audit préalable
-> Avant toute modification du plan d'adressage, vérifiez l'état de l'interface et son affectation au sein d'un éventuel pont (Bridge) pour garantir l'absence de chevauchement de sous-réseaux.
+> Avant toute modification du plan d'adressage, vérifiez l'état de l'interface et son affectation au sein d'un éventuel pont (Bridge) pour garantir l'absence de chevauchement de sous-Réseaux.
 
 ![Vue d'ensemble des interfaces](../../../assets/stormshield/configuration-interface-stormshield/vu-ensemble-interfaces.png)
 
@@ -69,6 +69,6 @@ Le provisionnement d'une interface réseau avec une adresse IP statique sur un p
 
 ```bash
 ifconfig dmz1
-```
+```text
 
 * `ifconfig [interface]` : Vérifie que l'adresse IP, le masque (netmask) et l'état UP/RUNNING sont correctement assignés au niveau du noyau de l'appliance.

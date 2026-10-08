@@ -23,7 +23,7 @@ description: Documentation et procédure technique.
 
 ## 2. Contexte
 
-Documentation référençant les règles de traduction d'adresses réseau (Source NAT / SNAT). Ce mécanisme masque les plans d'adressage internes (LAN et INTER-CO) en les traduisant vers une adresse IP publique unique (192.36.253.40), permettant ainsi l'accès à des réseaux externes tout en sécurisant la topologie de l'infrastructure de base.
+Documentation référençant les règles de traduction d'adresses réseau (Source NAT / SNAT). Ce mécanisme masque les plans d'adressage internes (LAN et INTER-CO) en les traduisant vers une adresse IP publique unique (192.36.253.40), permettant ainsi l'accès à des Réseaux externes tout en sécurisant la topologie de l'infrastructure de base.
 
 ## 3. Tables NAT
 

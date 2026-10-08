@@ -25,7 +25,7 @@ description: Documentation et procédure technique.
 
 ## 2. Contexte
 
-Le routage statique permet de définir manuellement les chemins d'acheminement des paquets IP vers des réseaux cibles. Au sein de l'infrastructure CUB, cette méthode est utilisée pour les topologies de bordure (Edge) afin de garantir la prédictibilité des flux réseau sans la surcharge logicielle d'un protocole de routage dynamique.
+Le routage statique permet de définir manuellement les chemins d'acheminement des paquets IP vers des Réseaux cibles. Au sein de l'infrastructure CUB, cette méthode est utilisée pour les topologies de bordure (Edge) afin de garantir la prédictibilité des flux réseau sans la surcharge logicielle d'un protocole de routage dynamique.
 
 ## 3. Activation du routage (Commutateurs de niveau 3)
 
@@ -61,7 +61,7 @@ Router(config)# ip route 192.168.20.0 255.255.255.0 10.0.0.2
 
 ## 5. Configuration d'une route par défaut (Gateway of last resort) {#5-configuration-dune-route-par-defaut-gateway-of-last-resort}
 
-5.1. **Mise en place de la passerelle de dernier recours.** Transfert systématique des paquets destinés à des réseaux inconnus de la table de routage (ex: Internet) vers une porte de sortie unique.
+5.1. **Mise en place de la passerelle de dernier recours.** Transfert systématique des paquets destinés à des Réseaux inconnus de la table de routage (ex: Internet) vers une porte de sortie unique.
 
 ```text
 Router(config)# ip route 0.0.0.0 0.0.0.0 10.0.0.254

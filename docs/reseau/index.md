@@ -2,7 +2,7 @@
 description: Documentation et procédure technique.
 ---
 
-# BLOC 2 - Administration et supervision des réseaux
+# BLOC 2 - Administration et supervision des Réseaux
 
 ![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
 
@@ -10,11 +10,11 @@ description: Documentation et procédure technique.
     <p><strong>Auteur :</strong> KADA Amine</p>
     <p><strong>Classe :</strong> BTS SIO 2 - Option SISR</p>
     <p><strong>Date :</strong> 16/09/2026</p>
-    <p><strong>Contexte :</strong> Configuration Administration et supervision des réseaux</p>
+    <p><strong>Contexte :</strong> Configuration Administration et supervision des Réseaux</p>
 </div>
 
 ---
 
 ## Contenu de la section
 
-Cette section regroupe l'ensemble des procédures liées à la conception, la configuration et la surveillance des infrastructures réseaux de l'environnement CUB. Vous y retrouverez les documentations techniques couvrant la mise en place de l'infrastructure globale, intégrant une révision des concepts réseaux fondamentaux ainsi que la gestion du stockage RAID. Le périmètre aborde également l'analyse de la couche transport (TCP / UDP), la configuration du routage NAT et du filtrage interne, le déploiement d'une solution de supervision des réseaux avec Zabbix pour garantir la disponibilité des services, ainsi que l'implémentation de tunnels VPN pour sécuriser les interconnexions.
+Cette section regroupe l'ensemble des procédures liées à la conception, la configuration et la surveillance des infrastructures Réseaux de l'environnement CUB. Vous y retrouverez les documentations techniques couvrant la mise en place de l'infrastructure globale, intégrant une révision des concepts Réseaux fondamentaux ainsi que la gestion du stockage RAID. Le périmètre aborde également l'analyse de la couche transport (TCP / UDP), la configuration du routage NAT et du filtrage interne, le déploiement d'une solution de supervision des Réseaux avec Zabbix pour garantir la disponibilité des services, ainsi que l'implémentation de tunnels VPN pour sécuriser les interconnexions.

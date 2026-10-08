@@ -33,14 +33,14 @@ description: Documentation et procédure technique.
 
 ## 2. Contexte
 
-Ce document décrit la procédure d'implémentation du routage sur le pare-feu Stormshield. L'objectif est d'assurer l'interconnexion des réseaux (LAN, DMZ, WAN) par la définition de la passerelle par défaut et l'ajout de routes statiques vers les routeurs de tronçon suivant.
+Ce document décrit la procédure d'implémentation du routage sur le pare-feu Stormshield. L'objectif est d'assurer l'interconnexion des Réseaux (LAN, DMZ, WAN) par la définition de la passerelle par défaut et l'ajout de routes statiques vers les routeurs de tronçon suivant.
 
 ## 3. Création de l'objet Routeur {#3-creation-de-lobjet-routeur}
 
 > [!warning] Nommage des objets
 > Il est indispensable de nommer ces objets avec le préfixe `MACHINE_<nom-routeur>` pour respecter les conventions de nommage sur le pare-feu.
 
-3.1. **Déclaration des routeurs.** Création des objets réseaux de type "Machine" permettant de référencer les routeurs de destination. Allez dans **Configuration** > **Objets**.
+3.1. **Déclaration des routeurs.** Création des objets Réseaux de type "Machine" permettant de référencer les routeurs de destination. Allez dans **Configuration** > **Objets**.
 
 **Capture d'écran pour l'accès à l'onglet de création de l'objet :**
 
@@ -62,7 +62,7 @@ Ce document décrit la procédure d'implémentation du routage sur le pare-feu S
 ## 5. Configuration des routes statiques {#5-configuration-des-routes-statiques}
 
 > [!warning] Types de routes
-> Les réseaux directement connectés (Type C comme la DMZ, le WAN ou le réseau d'Inter-co) sont automatiquement injectés. Seuls les réseaux distants (Type S) nécessitent une configuration explicite.
+> Les Réseaux directement connectés (Type C comme la DMZ, le WAN ou le réseau d'Inter-co) sont automatiquement injectés. Seuls les Réseaux distants (Type S) nécessitent une configuration explicite.
 
 5.1.  **Ajout des routes statiques.** Déclaration de la route de type S pour joindre le réseau LAN à travers l'interface d'interconnexion.
 

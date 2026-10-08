@@ -26,7 +26,7 @@ Ce document détaille la procédure de configuration post-déploiement d'un serv
 ```powershell
 Configuration IP de Windows
 
-```
+```powershell
 
 3.2. **Identifier le volume des pilotes.** Recherche du lecteur contenant les outils invités (Guest Tools).
 
@@ -42,7 +42,7 @@ Get-Volume
 ```powershell
 ls D:
 
-```
+```powershell
 
 * `D:` : Argument spécifiant la lettre du lecteur à cibler pour lister les fichiers.
 
@@ -55,14 +55,14 @@ Start-Process -FilePath "D:\virtio-win-guest-tools.exe"
 
 * `-FilePath` : Spécifie le chemin d'accès absolu vers l'exécutable à lancer.
 
-![Capture d'écran vitrio win](../../assets/windows-core/configuration-windows-core/01-capture-ecran-vitrio-win.png)
+![Capture d'écran virtio win](../../assets/windows-core/configuration-windows-core/01-capture-ecran-virtio-win.png)
 
 3.5. **Configurer le démarrage automatique de QEMU Guest Agent.**
 
 ```powershell
 Set-Service -Name "QEMU-GA" -StartupType Automatic
 
-```
+```powershell
 
 * `-Name` : Définit le nom système du service ciblé.
 * `-StartupType` : Définit le mode de démarrage du service (ici, `Automatic` pour un lancement au boot).
@@ -81,7 +81,7 @@ Start-Service QEMU-GA
 ```powershell
 Get-Service -Name "QEMU-GA"
 
-```
+```powershell
 
 * `-Name` : Spécifie le nom du service dont on souhaite récupérer l'état.
 
@@ -101,7 +101,7 @@ Get-NetAdapter
 ```powershell
 New-NetIpAddress -InterfaceAlias "Ethernet" -IPAddress "192.168.4.1" -PrefixLength 25 -DefaultGateway "192.168.4.126"
 
-```
+```powershell
 
 * `-InterfaceAlias` : Cible l'interface réseau par son nom (ex: "Ethernet").
 * `-IPAddress` : Définit l'adresse IPv4 statique assignée à l'interface.
@@ -111,7 +111,7 @@ New-NetIpAddress -InterfaceAlias "Ethernet" -IPAddress "192.168.4.1" -PrefixLeng
 4.3. **Configuration des serveurs DNS.** Définition des résolveurs DNS.
 
 ```powershell
-Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddresses ("9.9.9.9", "8.8.8.8", "1.1.1.1")
+Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddresses ("192.168.4.11", "192.168.4.10")
 
 ```
 
@@ -123,7 +123,7 @@ Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddresses ("9.9.9.9
 ```cmd
 ipconfig /all
 
-```
+```powershell
 
 * `/all` : Argument ordonnant l'affichage détaillé de l'ensemble des configurations TCP/IP pour chaque carte.
 
@@ -146,7 +146,7 @@ Rename-Computer -NewName "ServeurAD0" -Restart
 ```cmd
 w32tm /config /manualpeerlist:"0.fr.pool.ntp.org,0x1 1.fr.pool.ntp.org,0x1" /syncfromflags:manual /update; Restart-Service w32time
 
-```
+```powershell
 
 * `/config` : Indique la volonté de modifier la configuration du service de temps Windows.
 * `/manualpeerlist:` : Liste les serveurs NTP externes. Le paramètre `0x1` définit l'intervalle d'interrogation.
@@ -169,7 +169,7 @@ w32tm /config /manualpeerlist:"0.fr.pool.ntp.org,0x1 1.fr.pool.ntp.org,0x1" /syn
 ```powershell
 Get-NetFirewallProfile | Select-Object Name, Enabled
 
-```
+```powershell
 
 * `|` (Pipe) : Transmet la sortie de la première commande en entrée de la seconde.
 * `Select-Object` : Filtre les résultats.
@@ -189,7 +189,7 @@ Install-Module PSWindowsUpdate
 ```powershell
 Get-WindowsUpdate
 
-```
+```powershell
 
 * `Get-WindowsUpdate` : Commande interrogeant l'API de Windows Update pour lister les correctifs manquants.
 
@@ -208,7 +208,7 @@ Install-WindowsUpdate -AcceptAll -AutoReboot
 ```powershell
 Get-LocalUser | Select-Object Name, SID
 
-```
+```powershell
 
 * `Name, SID` : Affiche uniquement les colonnes du nom d'utilisateur et de son identifiant de sécurité unique (SID).
 
@@ -225,9 +225,9 @@ Rename-LocalUser -Name "Administrateur" -NewName "ADM-SRV-00"
 6.9. **Modification du mot de passe Administrateur.** Application d'un mot de passe robuste stocké dans un gestionnaire (Bitwarden).
 
 ```powershell
-Set-LocalUser -Name "ADM-SRV-00" -Password (ConvertTo-SecureString "MotDePasseBitwardenIci" -AsPlainText -Force)
+Set-LocalUser -Name "ADM-SRV-00" -Password (ConvertTo-SecureString "<MOT_DE_PASSE_BITWARDEN>" -AsPlainText -Force)
 
-```
+```powershell
 
 * `-Name` : Cible l'utilisateur local dont on souhaite changer le mot de passe.
 * `-Password` : Paramètre attendant un objet de type `SecureString` en entrée.

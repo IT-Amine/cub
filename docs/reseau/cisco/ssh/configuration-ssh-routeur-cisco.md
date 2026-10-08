@@ -26,7 +26,7 @@ description: Documentation et procédure technique.
 
 ## 2. Contexte
 
-Le déploiement de SSH (Secure Shell) sur les routeurs Cisco vise à remplacer le protocole Telnet, qui fait transiter les flux d'administration en clair. Cette configuration garantit un accès distant chiffré de bout en bout pour l'administration de l'équipement de routage (routeur de bordure, passerelle inter-VLAN). Elle s'intègre dans la politique de sécurité globale de l'infrastructure CUB, en prévenant les interceptions de trames de gestion sur les réseaux LAN/WAN et en centralisant l'authentification sécurisée.
+Le déploiement de SSH (Secure Shell) sur les routeurs Cisco vise à remplacer le protocole Telnet, qui fait transiter les flux d'administration en clair. Cette configuration garantit un accès distant chiffré de bout en bout pour l'administration de l'équipement de routage (routeur de bordure, passerelle inter-VLAN). Elle s'intègre dans la politique de sécurité globale de l'infrastructure CUB, en prévenant les interceptions de trames de gestion sur les Réseaux LAN/WAN et en centralisant l'authentification sécurisée.
 
 ## 3. Configuration des prérequis globaux {#3-configuration-des-prerequis-globaux}
 

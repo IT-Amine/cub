@@ -24,7 +24,7 @@ Dans l'infrastructure CUB, ce service est mis en place sur un serveur Debian via
 
 ## 2. Installation de Unbound et des outils
 
-On installe Unbound ainsi que quelques utilitaires d'administration réseaux indispensables :
+On installe Unbound ainsi que quelques utilitaires d'administration Réseaux indispensables :
 
 ```bash
 sudo apt install unbound dnsutils tcpdump tmux curl
@@ -55,7 +55,7 @@ server:
     interface: 192.168.4.11
     interface: 127.0.0.1
 
-    # Quels réseaux ont le droit de se servir du serveur DNS recursif
+    # Quels Réseaux ont le droit de se servir du serveur DNS recursif
     # Attention !! Ne pas laisser votre serveur récursif ouvert à tous !
     # Allow_snoop autorise le traçage des requêtes DNS avec la commande dig +trace
     access-control: 192.168.4.0/24 allow_snoop

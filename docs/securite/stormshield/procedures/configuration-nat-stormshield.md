@@ -27,14 +27,14 @@ description: Documentation et procédure technique.
 
 - [1. Sommaire](#1-sommaire)
 - [2. Contexte](#2-contexte)
-- [3. Création des objets réseaux](#3-creation-des-objets-reseaux)
+- [3. Création des objets Réseaux](#3-creation-des-objets-reseaux)
 - [4. Configuration de la politique NAT](#4-configuration-de-la-politique-nat)
 
 ## 2. Contexte
 
-Déploiement du service de translation d'adresses (NAT) via l'interface graphique du pare-feu Stormshield. Ce composant est indispensable pour assurer le routage et l'accès vers l'extérieur (Masquerading) des réseaux internes de l'infrastructure.
+Déploiement du service de translation d'adresses (NAT) via l'interface graphique du pare-feu Stormshield. Ce composant est indispensable pour assurer le routage et l'accès vers l'extérieur (Masquerading) des Réseaux internes de l'infrastructure.
 
-## 3. Création des objets réseaux {#3-creation-des-objets-reseaux}
+## 3. Création des objets Réseaux {#3-creation-des-objets-reseaux}
 
 3.1. **Création d'un objet réseau depuis l'IHM.** Accéder au menu **Objets** > **Tous les objets**, cliquer sur le bouton **Ajouter** et sélectionner **Réseau**. 
 

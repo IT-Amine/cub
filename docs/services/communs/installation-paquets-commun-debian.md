@@ -33,7 +33,7 @@ Déploiement des paquets standards sur les serveurs Debian de l'infrastructure C
 
 ```bash
 sudo apt update && sudo apt install -y btop tcpdump tmux rsyslog vim
-```
+```bash
 
 - `update` : Actualise la liste locale des paquets depuis les dépôts.
 - `install -y` : Installe les paquets spécifiés en répondant "oui" automatiquement aux invites.
@@ -58,7 +58,7 @@ sudo sh -c 'echo "" > /etc/motd'
 sudo chmod -x /etc/update-motd.d/*
 sudoedit /etc/update-motd.d/99-plc-motd # <--- Copier le contenu du motd Paul-Louis Courier ci-dessus
 sudo chmod +x /etc/update-motd.d/99-plc-motd
-```
+```bash
 
 - `chmod -x` : Retire le droit d'exécution, ce qui désactive les scripts MOTD existants.
 - `cat << 'EOF' >` : Écrit le bloc de texte (jusqu'au mot EOF) dans le fichier spécifié.
@@ -76,7 +76,7 @@ btop -v
 
 ```bash
 btop version: 1.3.2
-```
+```bash
 
 5.2.  **Test de tcpdump.** Validation de l'analyseur réseau.
 
@@ -91,7 +91,7 @@ tcpdump version 4.99.5
 libpcap version 1.10.5 (with TPACKET_V3)
 OpenSSL 3.5.7 9 Jun 2026
 64-bit build, 64-bit time_t
-```
+```bash
 
 5.3.  **Test de tmux.** Validation du multiplexeur.
 
@@ -103,7 +103,7 @@ tmux -V
 
 ```bash
 tmux 3.5a
-```
+```bash
 
 5.4.  **Test de rsyslog.** Validation du service de logs.
 
@@ -115,7 +115,7 @@ systemctl is-active rsyslog
 
 ```bash
 active
-```
+```bash
 
 5.5.  **Test de vim.** Validation de l'éditeur de texte.
 
@@ -127,4 +127,4 @@ vim --version | head -n 1
 
 ```bash
 VIM - Vi IMproved 9.1 (2024 Jan 02, compilé May 23 2025 00:48:59)
-```
+```bash

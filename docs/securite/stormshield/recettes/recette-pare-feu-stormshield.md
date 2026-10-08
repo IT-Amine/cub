@@ -50,7 +50,7 @@ L'objectif est de certifier :
 **Commande utilisée :**
 ```bash
 tcpdump -i mvneta0 -nn icmp
-```
+```text
 * **`tcpdump`** : Analyseur de paquets réseau en ligne de commande.
 * **`-i mvneta0`** : Spécifie l'interface réseau sur laquelle écouter (l'interface externe/WAN).
 * **`-nn`** : Désactive la résolution de noms d'hôtes et de ports (accélère l'affichage en gardant les IPs brutes).
@@ -75,7 +75,7 @@ listening on mvneta0, link-type EN10MB (Ethernet), capture size 262144 bytes
 **Commande utilisée :**
 ```bash
 tcpdump -i mvneta0 -nn icmp
-```
+```text
 * **`tcpdump`** : Outil d'écoute réseau.
 * **`-i mvneta0`** : Interface externe écoutée.
 * **`-nn`** : Format numérique pour les adresses et ports.
@@ -104,7 +104,7 @@ listening on mvneta0, link-type EN10MB (Ethernet), capture size 262144 bytes
 **Commande :**
 ```bash
 ssh admin@192.168.4.205
-```
+```text
 * **`ssh`** : Démarre le client SSH (Couche 7) pour ouvrir un terminal distant chiffré.
 * **`admin@192.168.4.205`** : Spécifie le nom d'utilisateur `admin` et l'adresse IP cible du pare-feu.
 
@@ -127,4 +127,4 @@ dmd-fw-c1-SN210A30HC710A7>
 # Succès HTTPS :
 HTTP/1.1 200 OK
 Server: nginx
-```
+```text

@@ -55,7 +55,7 @@ Vlan54                 192.168.4.126   YES manual up                    up
 
 ### 2.2. Vérification de la table de routage globale
 
-**Objectif :** Contrôler la présence de la route par défaut vers le pare-feu, indispensable pour atteindre les réseaux inconnus.
+**Objectif :** Contrôler la présence de la route par défaut vers le pare-feu, indispensable pour atteindre les Réseaux inconnus.
 
 **Commande utilisée :**
 

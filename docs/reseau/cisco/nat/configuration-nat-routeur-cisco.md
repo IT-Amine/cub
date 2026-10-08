@@ -25,11 +25,11 @@ description: Documentation et procédure technique.
 
 ## 2. Contexte
 
-Le déploiement du NAT (Network Address Translation), et spécifiquement du PAT (Port Address Translation / Overload), permet de traduire un ensemble d'adresses IP privées vers une adresse IP publique unique. Au sein de l'infrastructure CUB, cela garantit l'accès à Internet aux réseaux LAN tout en masquant la topologie interne et en préservant le pool d'adresses IPv4.
+Le déploiement du NAT (Network Address Translation), et spécifiquement du PAT (Port Address Translation / Overload), permet de traduire un ensemble d'adresses IP privées vers une adresse IP publique unique. Au sein de l'infrastructure CUB, cela garantit l'accès à Internet aux Réseaux LAN tout en masquant la topologie interne et en préservant le pool d'adresses IPv4.
 
 ## 3. Identification du trafic à traduire (ACL) {#3-identification-du-trafic-a-traduire-acl}
 
-3.1. **Création de la liste de contrôle d'accès (ACL).** Définition d'une liste standard pour identifier précisément les sous-réseaux internes autorisés à subir une traduction d'adresse.
+3.1. **Création de la liste de contrôle d'accès (ACL).** Définition d'une liste standard pour identifier précisément les sous-Réseaux internes autorisés à subir une traduction d'adresse.
 
 !!! INFO
     La bonne pratique impose de documenter l'ACL avec un `remark` pour garantir la lisibilité de la configuration lors d'audits ou d'intégrations IaC.

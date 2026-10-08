@@ -22,7 +22,7 @@ description: Documentation et procedure technique.
 
 Naviguez via le menu pour accéder aux fiches du contexte, aux blocs de révision, ainsi qu'aux nouveaux modules documentés :
 
-- **Administration et supervision des réseaux** : Routage, DHCP, NAT, VLAN, SSH, etc.
+- **Administration et supervision des Réseaux** : Routage, DHCP, NAT, VLAN, SSH, etc.
 - **Administration Windows** : Configurations liées à Windows Core.
 - **Cybersécurité** : Configurations avancées du pare-feu Stormshield (NAT, Routage, Interfaces).
 - **Exploitation des services** : Etckeeper, TOTP et services Debian.

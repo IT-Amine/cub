@@ -31,14 +31,14 @@ Déploiement de Windows Admin Center (WAC) pour l'administration centralisée de
 
 ```Powershell
 winget install Microsoft.WindowsAdminCenter --interactive
-```
+```powershell
 
 - `winget install Microsoft.WindowsAdminCenter` : Télécharge et exécute le programme d'installation du paquet officiel depuis les dépôts Microsoft.
 - `--interactive` : Force l'affichage de l'interface graphique (GUI) de l'installeur (MSI).
 
 3.2. **Sélection du mode d'installation.** Sélectionner l'option **Installation personnalisée**.
 
-![Installation personnalisée](../../assets/windows-wac/installation-wac/01-installation-personalisee.png)
+![Installation personnalisée](../../assets/windows-wac/installation-wac/01-installation-personnalisee.png)
 
 3.3. **Configuration de l'accès réseau.** Cocher **Accès à distance** pour permettre l'administration depuis d'autres appareils via un nom de machine ou un FQDN.
 
