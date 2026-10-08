@@ -40,19 +40,19 @@ Dans IPv6, la dernière version du protocole Internet, les enregistrements PTR s
 
 ## 3. Mise en place d'une résolution inverse
 
-### 3.1. Création d’un fichier de zone pour le réseau 172.16.3.0/24
+### 3.1. Création d’un fichier de zone pour le réseau 192.36.4.0/24
 
 Création du fichier de zone inverse pour le sous-réseau cible :
 
 ```bash
-sudoedit /var/cache/bind/db.172.16.3
+sudoedit /var/cache/bind/db.192.36.4
 ```
 
 **Ajouter le contenu suivant :**
 
 ```text
 $TTL 43200
-3.16.172.in-addr.arpa. IN SOA ns0.tours.tierslieux86.fr. postmaster.tours.tierslieux86.fr. ( 
+4.36.192.in-addr.arpa. IN SOA ns0.dortmund.cub.sioplc.fr. postmaster.dortmund.cub.sioplc.fr. ( 
     2021070601 ; Serial 
     604800     ; Refresh 
     86400      ; Retry 
@@ -60,17 +60,17 @@ $TTL 43200
     604800 )   ; Negative Cache TTL 
 
 ; Enregistrements Name Server (NS)
-3.16.172.in-addr.arpa.  IN NS   ns0.tours.tierslieux86.fr. 
+4.36.192.in-addr.arpa.  IN NS   ns0.dortmund.cub.sioplc.fr. 
 
 ; Enregistrements PTR
-10.3.16.172.in-addr.arpa. IN PTR ns0.tours.tierslieux86.fr. 
-2.3.16.172.in-addr.arpa.  IN PTR www.tours.tierslieux86.fr.
+10.4.36.192.in-addr.arpa. IN PTR ns0.dortmund.cub.sioplc.fr. 
+11.4.36.192.in-addr.arpa.  IN PTR ns1.dortmund.cub.sioplc.fr.
 ```
 
 Ce fichier de zone inverse ressemble à un fichier de zone classique. Il sert à mettre en œuvre la résolution DNS inversée. Il est nécessaire que le service Bind dispose des droits appropriés afin d’accéder au fichier de zone inverse nouvellement créé :
 
 ```bash
-sudo chown bind:bind /var/cache/bind/db.172.16.3
+sudo chown bind:bind /var/cache/bind/db.192.36.4
 ```
 
 ### 3.2. Déclaration de la zone inverse dans le fichier local
@@ -84,9 +84,9 @@ sudoedit /etc/bind/named.conf.local
 **Ajouter le bloc suivant :**
 
 ```text
-zone "3.16.172.in-addr.arpa" { 
+zone "4.36.192.in-addr.arpa" { 
     type master; 
-    file "/var/cache/bind/db.172.16.3"; 
+    file "/var/cache/bind/db.192.36.4"; 
 };
 ```
 
