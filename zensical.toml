@@ -77,6 +77,7 @@ nav = [
           { "DNS Récursif (Unbound)" = "services/dns/config-dns-recursif.md" },
           { "Recette DNS Récursif" = "services/dns/recette-dns-recursif.md" },
           { "DNS Autoritaire Esclave (ns1)" = "services/dns/config-dns-autoritaire.md" },
+          { "Recette DNS Autoritaire" = "services/dns/recette-dns-autoritaire.md" },
           { "DNS Résolution Inverse" = "services/dns/resolution-inverse.md" },
           { "Configuration TOTP" = "services/totp/installation-configuration-totp.md" }
       ]},
