@@ -94,14 +94,14 @@ Ajoutez ces lignes à la fin de la section `server:` (ou à la racine) dans votr
 
 ```text
     # Précision que le domaine local ne gère pas DNSSEC (désactivation de la vérification)
-    domain-insecure: "btssio.lan."
-    private-domain: btssio.lan.
+    domain-insecure: "sio.lan."
+    private-domain: sio.lan.
 
 # Déclaration de la zone locale et des serveurs internes faisant autorité
 stub-zone:
     name: "btssio.lan."
-    stub-addr: 172.16.20.10
-    stub-addr: 172.16.20.11
+    stub-addr: 172.16.20.21
+    stub-addr: 172.16.20.22
 ```
 
 ---

@@ -111,13 +111,6 @@ zone "dortmund.cub.sioplc.fr" {
     masters { 192.36.4.10; };
     file "/var/cache/bind/db.dortmund.cub.sioplc.fr";
 };
-
-// Déclaration de la zone inverse pour le réseau 192.36.4.0/24
-zone "4.36.192.in-addr.arpa" {
-    type slave;
-    masters { 192.36.4.10; };
-    file "/var/cache/bind/db.192.36.4";
-};
 ```
 
 ---
@@ -273,4 +266,28 @@ sudo mv /etc/bind.bak /etc/bind
 sudo mv /etc/apparmor.d/usr.sbin.named.bak /etc/apparmor.d/usr.sbin.named
 sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.named
 sudo systemctl restart bind9
+```
+
+---
+
+## 10. Test de DNS Autoritaire Esclave
+
+Pour s'assurer que le serveur esclave (ns1) résout correctement les noms de la zone, il faut l'interroger directement (depuis la machine elle-même).
+
+- **Tester la résolution d'un enregistrement (ex: www) :**
+
+```bash
+dig @127.0.0.1 www.dortmund.cub.sioplc.fr
+```
+
+- **Vérifier que le serveur répond de manière autoritaire (présence du flag `aa`) pour la zone :**
+
+```bash
+dig @127.0.0.1 dortmund.cub.sioplc.fr SOA
+```
+
+- **Test de l'arborescence totale :**
+
+```bash
+dig @192.36.4.11 ns0.dortmund.cub.sioplc.fr
 ```
