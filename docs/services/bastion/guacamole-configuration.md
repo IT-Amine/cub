@@ -120,3 +120,51 @@ sequenceDiagram
     Guac-->>Nginx: Renvoi des trames Web
     Nginx-->>Client: Affichage dynamique (Canvas HTML5)
 ```
+
+---
+
+## 4. Traçabilité et Audit
+
+Cette section fait suite à la configuration des accès et vise à garantir la traçabilité complète des actions sur le bastion : journalisation systématique, identification des utilisateurs, enregistrement vidéo des sessions, et intégration de l'authentification multi-facteurs (MFA).
+
+### 4.1. Configuration du compte d'Audit
+
+La séparation des privilèges impose la création d'un compte dédié à la consultation des journaux, sans droits d'administration sur les systèmes.
+
+1. Se connecter au bastion avec le compte administrateur global (`adminbastion`).
+2. Naviguer vers **Paramètres** > onglet **Utilisateurs** > **Nouvel utilisateur**.
+3. **Nom d'utilisateur :** `Auditeur`.
+4. **Mot de passe :** *Définir un mot de passe sécurisé.*
+5. **Autorisations :** Cocher **exclusivement** les droits suivants :
+   - **Auditer le système** (Audit system) : pour visualiser l'historique global des connexions et des enregistrements.
+   - **Modifier son propre mot de passe**.
+6. **Affectation aux connexions :** Dans la section inférieure, cocher les connexions créées précédemment (Serveur Linux SSH et ServeurWAC1 RDP) pour que l'auditeur y soit associé et puisse consulter leurs historiques respectifs.
+
+### 4.2. Historique des connexions
+
+Afin de valider la journalisation, une simulation de connexion est réalisée.
+
+1. **Génération de trafic :** Se connecter au bastion avec le compte `adminlinux` et lancer une session SSH vers le serveur Linux, puis la refermer pour générer une trace.
+2. **Audit :** Se connecter avec le nouveau compte `Auditeur`.
+3. Naviguer vers **Paramètres** > **Historique**.
+4. Filtrer ou rechercher la connexion : l'interface affiche l'utilisateur (`adminlinux`), le nom de la connexion, l'adresse IP source, ainsi que la date et l'heure exactes de début et de fin de la session.
+
+---
+
+## 5. Enregistrement vidéo des sessions (RDP)
+
+La configuration suivante permet d'enregistrer graphiquement les sessions administratives pour repérer d'éventuelles erreurs de manipulation. Lors du déploiement Docker, le volume `./drive` a été monté sur `/drive` dans le conteneur `guacd`.
+
+### 5.1. Configuration de l'enregistrement
+1. Se connecter avec `adminbastion`.
+2. Naviguer vers **Paramètres** > **Connexions** et sélectionner la connexion pointant vers **ServeurWAC1**.
+3. Descendre dans la section **Enregistrement de l'écran** (Screen Recording).
+4. **Chemin de l'enregistrement :** Saisir `/drive` (correspondant au volume persistant partagé sur l'hôte Debian).
+5. **Nom de l'enregistrement :** Saisir `${GUAC_USERNAME}-${GUAC_DATE}-${GUAC_TIME}` pour nommer dynamiquement le fichier avec les métadonnées de la session.
+6. Enregistrer les modifications.
+
+### 5.2. Génération de l'incident et Audit
+1. Se connecter en endossant le rôle `adminwindows` et ouvrir la session RDP vers **ServeurWAC1**.
+2. Réaliser la désactivation temporaire du pare-feu Windows (l'erreur de manipulation), puis fermer la session sans le réactiver.
+3. L'enregistrement vidéo brut est généré automatiquement par le démon `guacd` dans le dossier partagé `/opt/guacamole/drive` du serveur Debian.
+4. **Audit :** Le compte `Auditeur` peut retrouver la preuve "en vidéo" de cette erreur commise par `adminwindows`. *(Note technique : la lecture des fichiers graphiques bruts générés par Guacamole s'effectue généralement à l'aide de l'utilitaire `guacenc` permettant de les convertir au format vidéo standard `.m4v` / `.mp4`).*

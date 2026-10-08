@@ -65,7 +65,8 @@ cub-docs/
 │   │   ├── dns/                  → DNS Récursif & Autoritaire (Bind9 / Unbound)
 │   │   │   ├── config-dns-recursif.md
 │   │   │   ├── recette-dns-recursif.md
-│   │   │   └── config-dns-autoritaire.md  → DNS Autoritaire Esclave Bind9 (ns1)
+│   │   │   ├── config-dns-autoritaire.md  → DNS Autoritaire Esclave Bind9 (ns1)
+│   │   │   └── resolution-inverse.md      → Résolution inverse (Reverse DNS)
 │   │   ├── etckeeper/            → Versioning /etc avec Git
 │   │   └── totp/                 → Authentification TOTP (2FA SSH)
 │   │

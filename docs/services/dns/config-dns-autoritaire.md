@@ -237,7 +237,12 @@ sudo grep -i "transfer" /var/log/bind.log
 **Résultat attendu :**
 
 ```text
-Mentions "Transfer started." et "Transfer completed: ...", confirmant que la zone a bien été répliquée.
+etudiant@ns1:~$ sudo grep -i "transfer" /var/log/bind.log
+08-Oct-2026 08:15:00.129 xfer-in: info: zone dortmund.cub.sioplc.fr/IN: Transfer started.
+08-Oct-2026 08:15:00.129 xfer-in: info: 0x7fe813c2a000: transfer of 'dortmund.cub.sioplc.fr/IN' from 192.36.4.10#53: connected using 192.36.4.10#53
+08-Oct-2026 08:15:00.129 xfer-in: info: zone dortmund.cub.sioplc.fr/IN: transferred serial 2026100101
+08-Oct-2026 08:15:00.129 xfer-in: info: 0x7fe813c2a000: transfer of 'dortmund.cub.sioplc.fr/IN' from 192.36.4.10#53: Transfer status: success
+08-Oct-2026 08:15:00.129 xfer-in: info: 0x7fe813c2a000: transfer of 'dortmund.cub.sioplc.fr/IN' from 192.36.4.10#53: Transfer completed: 1 messages, 7 records, 222 bytes, 0.001 secs (222000 bytes/sec) (serial 2026100101)
 ```
 
 **Statut :**
