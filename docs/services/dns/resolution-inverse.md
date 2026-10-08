@@ -98,3 +98,46 @@ Une fois le fichier de configuration sauvegardé, recharger le service pour appl
 sudo systemctl reload bind9
 ```
 
+
+---
+
+## 4. Validation et Tests
+
+Pour vérifier que la résolution inverse fonctionne correctement, on peut utiliser des utilitaires de requêtes DNS classiques (`dig`, `nslookup` ou `host`) en interrogeant directement une adresse IP.
+
+### 4.1. Test avec la commande `dig`
+
+La commande `dig` couplée à l'option `-x` permet d'interroger explicitement la zone inverse (PTR).
+
+```bash
+dig @127.0.0.1 -x 192.36.4.10
+```
+
+**Résultat attendu :** 
+Dans la section `ANSWER SECTION`, vous devriez voir la correspondance avec le nom d'hôte.
+```text
+;; ANSWER SECTION:
+10.4.36.192.in-addr.arpa. 43200 IN	PTR	ns0.dortmund.cub.sioplc.fr.
+```
+
+### 4.2. Test avec la commande `nslookup`
+
+```bash
+nslookup 192.36.4.11 127.0.0.1
+```
+
+**Résultat attendu :**
+```text
+11.4.36.192.in-addr.arpa	name = ns1.dortmund.cub.sioplc.fr.
+```
+
+### 4.3. Test avec la commande `host`
+
+```bash
+host 192.36.4.10
+```
+
+**Résultat attendu :**
+```text
+10.4.36.192.in-addr.arpa domain name pointer ns0.dortmund.cub.sioplc.fr.
+```
