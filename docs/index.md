@@ -1,5 +1,5 @@
 ---
-description: Documentation et procedure technique.
+description: Documentation et procédure technique de l'infrastructure CUB.
 ---
 # Accueil CUB
 
@@ -7,23 +7,21 @@ description: Documentation et procedure technique.
 
 ---
 
-![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
+![Bannière CUB](assets/banniere-cub.png)
 
-<div style="margin-top: 70px; border: 1px solid #ccc; padding: 20px; border-radius: 10px;">
-    <p><strong>Auteur :</strong> KADA Amine</p>
-    <p><strong>Classe :</strong> BTS SIO 2 - Option SISR</p>
-    <p><strong>Date :</strong> 16/09/2026</p>
-    <p><strong>Contexte :</strong> Section Accueil CUB</p>
-</div>
+!!! abstract "Informations sur la documentation"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Contexte :** Projet CUB — Accueil et indexation
 
 ---
 
-## 🧭 Navigation
+## 🧭 Navigation Rapide
 
-Naviguez via le menu pour accéder aux fiches du contexte, aux blocs de révision, ainsi qu'aux nouveaux modules documentés :
+Naviguez via le menu latéral pour accéder aux fiches du contexte, aux blocs de révision, ainsi qu'aux modules techniques documentés :
 
-- **Administration et supervision des Réseaux** : Routage, DHCP, NAT, VLAN, SSH, etc.
-- **Administration Windows** : Configurations liées à Windows Core.
-- **Cybersécurité** : Configurations avancées du pare-feu Stormshield (NAT, Routage, Interfaces).
-- **Exploitation des services** : Etckeeper, TOTP et services Debian.
-- **Ressources** : Schémas, plans d'adressage et tables de routage/NAT.
+- 🌐 **Administration et supervision des Réseaux** : Routage, DHCP, NAT, VLAN, SSH, VTP, etc.
+- 🪟 **Administration Windows** : Configurations liées à Windows Core, AD, DHCP, PowerShell.
+- 🛡️ **Cybersécurité** : Configurations avancées du pare-feu Stormshield (NAT, Routage, Interfaces) et du Bastion.
+- 🐧 **Exploitation des services** : GLPI, DNS (Bind9/Unbound), Etckeeper, TOTP et services Debian.
+- 📂 **Ressources** : Schémas logiques/physiques, plans d'adressage complets, et tables de routage/NAT.

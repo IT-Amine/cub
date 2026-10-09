@@ -19,7 +19,7 @@ description: Documentation et procédure technique.
 
 Le schéma logique représente l'organisation logique du réseau : les adresses IP, les VLANs, les zones (LAN, DMZ, WAN) et les flux entre les équipements.
 
-![Schéma logique CUB](assets/schema/schema-logique-cub.png)
+![Schéma logique CUB](./docs/assets/schema/schema-logique-cub.png)
 
 ---
 
@@ -27,4 +27,4 @@ Le schéma logique représente l'organisation logique du réseau : les adresses 
 
 Le schéma physique représente l'implantation matérielle de l'infrastructure : les équipements réels (switchs, routeurs, pare-feux, serveurs) et leurs interconnexions câblées.
 
-![Schéma physique CUB](assets/schema/schema-physique-cub.png)
+![Schéma physique CUB](./docs/assets/schema/schema-physique-cub.png)
