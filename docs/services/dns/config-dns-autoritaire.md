@@ -10,7 +10,7 @@ description: Déploiement et configuration d'un serveur DNS autoritaire Esclave 
     <p><strong>Auteur :</strong> KADA Amine</p>
     <p><strong>Classe :</strong> BTS SIO 2 - Option SISR</p>
     <p><strong>Date :</strong> 01/10/2026</p>
-    <p><strong>Contexte :</strong> Mise en place du serveur DNS autoritaire esclave (ns1 - 192.36.4.11) dans la DMZ de l'agence de Dortmund pour la zone dortmund.cub.sioplc.fr, en redondance du serveur maître (ns0) déployé par Louis MEDO.</p>
+    <p><strong>Contexte :</strong> Mise en place du serveur DNS autoritaire esclave (ns1 - 192.36.4.11) dans la DMZ de l'agence de Dortmund pour la zone dortmund.cub.sioplc.fr, en redondance du serveur maître (ns0) déployé par KADA Amine.</p>
 </div>
 
 ---
@@ -31,7 +31,7 @@ description: Déploiement et configuration d'un serveur DNS autoritaire Esclave 
 
 ## 2. Contexte
 
-Ce document détaille la procédure de déploiement en production du serveur DNS secondaire (esclave) `ns1` de l'agence de Dortmund. Positionné dans la DMZ avec l'adresse IP `192.36.4.11`, ce serveur assure la haute disponibilité de la résolution de noms pour le domaine `dortmund.cub.sioplc.fr`. Contrairement au serveur maître (`ns0` sur `192.36.4.10`) géré par Louis MEDO, ce serveur ne nécessite pas la création manuelle du fichier de zone. Il est configuré pour rapatrier dynamiquement et automatiquement les enregistrements via un transfert de zone sécurisé (AXFR) depuis le maître.
+Ce document détaille la procédure de déploiement en production du serveur DNS secondaire (esclave) `ns1` de l'agence de Dortmund. Positionné dans la DMZ avec l'adresse IP `192.36.4.11`, ce serveur assure la haute disponibilité de la résolution de noms pour le domaine `dortmund.cub.sioplc.fr`. Contrairement au serveur maître (`ns0` sur `192.36.4.10`) géré par KADA Amine, ce serveur ne nécessite pas la création manuelle du fichier de zone. Il est configuré pour rapatrier dynamiquement et automatiquement les enregistrements via un transfert de zone sécurisé (AXFR) depuis le maître.
 
 ---
 

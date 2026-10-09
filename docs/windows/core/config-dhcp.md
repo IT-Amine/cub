@@ -37,7 +37,7 @@ Lancement de l'installateur des pilotes paravirtualisés depuis le support mont�
 
 ```powershell
 Start-Process -FilePath "D:\virtio-win-guest-tools.exe"
-```powershell
+```
 
 - `Start-Process` : Exécute le binaire d'installation de l'agent invité QEMU.
 
@@ -58,7 +58,7 @@ Start-Service QEMU-GA
 Il faut d'abord repérer le numéro d'index (`ifIndex`) de la carte réseau virtuelle pour lui appliquer les paramètres.
 ```powershell
 Get-NetAdapter
-```powershell
+```
 - Repérez la valeur dans la colonne `ifIndex` correspondant à votre carte réseau (généralement nommée Ethernet).
 
 ### 4.2. Attribution de l'adresse IP, du Masque et de la Passerelle
@@ -77,7 +77,7 @@ Configuration du serveur DNS pointant vers le contrôleur de domaine (AD) ou le 
 
 ```powershell
 Set-DnsClientServerAddress -InterfaceIndex 3 -ServerAddresses ("192.168.4.10", "1.1.1.1")
-```powershell
+```
 - `-ServerAddresses` : Liste des adresses IP des serveurs DNS séparées par une virgule.
 
 ## 5. Configuration NTP
@@ -102,7 +102,7 @@ Contrôle de l'état du service de temps local.
 ```powershell
 w32tm /query /peers
 w32tm /query /status
-```powershell
+```
 
 - `/peers` : Affiche l'état des connexions avec les serveurs de temps configurés.
 - `/status` : Renvoie les détails sur la latence, la précision et la dernière synchronisation effectuée.
@@ -133,7 +133,7 @@ UsoClient StartScan
 Install-Module PSWindowsUpdate
 Install-WindowsUpdate -AcceptAll -Install
 Restart-Computer 
-```powershell
+```
 
 - `UsoClient StartScan` : Force le lancement asynchrone de la recherche de mises à jour.
 - `-AcceptAll -Install` : Approuve et installe automatiquement tous les correctifs approuvés sans interaction manuelle.
@@ -166,7 +166,7 @@ Installation du rôle DHCP et de ses outils d'administration locaux.
 
 ```powershell
 Install-WindowsFeature -Name DHCP -IncludeManagementTools
-```powershell
+```
 
 ### 9.2. Création de l'étendue et configuration des options
 
@@ -181,4 +181,4 @@ Set-DhcpServerv4OptionValue -ScopeId 192.168.4.128 -Router 192.168.4.190 -DnsSer
 
 ```powershell
 Restart-Service DHCPServer
-```powershell
+```

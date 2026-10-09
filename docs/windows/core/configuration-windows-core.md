@@ -26,7 +26,7 @@ Ce document détaille la procédure de configuration post-déploiement d'un serv
 ```powershell
 Configuration IP de Windows
 
-```powershell
+```
 
 3.2. **Identifier le volume des pilotes.** Recherche du lecteur contenant les outils invités (Guest Tools).
 
@@ -42,7 +42,7 @@ Get-Volume
 ```powershell
 ls D:
 
-```powershell
+```
 
 * `D:` : Argument spécifiant la lettre du lecteur à cibler pour lister les fichiers.
 
@@ -62,7 +62,7 @@ Start-Process -FilePath "D:\virtio-win-guest-tools.exe"
 ```powershell
 Set-Service -Name "QEMU-GA" -StartupType Automatic
 
-```powershell
+```
 
 * `-Name` : Définit le nom système du service ciblé.
 * `-StartupType` : Définit le mode de démarrage du service (ici, `Automatic` pour un lancement au boot).
@@ -81,7 +81,7 @@ Start-Service QEMU-GA
 ```powershell
 Get-Service -Name "QEMU-GA"
 
-```powershell
+```
 
 * `-Name` : Spécifie le nom du service dont on souhaite récupérer l'état.
 
@@ -101,7 +101,7 @@ Get-NetAdapter
 ```powershell
 New-NetIpAddress -InterfaceAlias "Ethernet" -IPAddress "192.168.4.1" -PrefixLength 25 -DefaultGateway "192.168.4.126"
 
-```powershell
+```
 
 * `-InterfaceAlias` : Cible l'interface réseau par son nom (ex: "Ethernet").
 * `-IPAddress` : Définit l'adresse IPv4 statique assignée à l'interface.
@@ -131,7 +131,7 @@ ipconfig /all
 
 5.1. **Renommer le serveur.** Changement du nom d'hôte pour correspondre à la nomenclature.
 
-```powershell
+```
 Rename-Computer -NewName "ServeurAD0" -Restart
 
 ```
@@ -156,7 +156,7 @@ w32tm /config /manualpeerlist:"0.fr.pool.ntp.org,0x1 1.fr.pool.ntp.org,0x1" /syn
 
 6.2. **Vérification de l'activation de l'UAC.** L'UAC (User Account Control) doit être activé (valeur à 1).
 
-```powershell
+```
 (Get-ItemProperty HKLM:\Software\Microsoft\Windows\CurrentVersion\Policies\System).EnableLUA
 
 ```
@@ -169,7 +169,7 @@ w32tm /config /manualpeerlist:"0.fr.pool.ntp.org,0x1 1.fr.pool.ntp.org,0x1" /syn
 ```powershell
 Get-NetFirewallProfile | Select-Object Name, Enabled
 
-```powershell
+```
 
 * `|` (Pipe) : Transmet la sortie de la première commande en entrée de la seconde.
 * `Select-Object` : Filtre les résultats.
@@ -189,7 +189,7 @@ Install-Module PSWindowsUpdate
 ```powershell
 Get-WindowsUpdate
 
-```powershell
+```
 
 * `Get-WindowsUpdate` : Commande interrogeant l'API de Windows Update pour lister les correctifs manquants.
 
@@ -208,7 +208,7 @@ Install-WindowsUpdate -AcceptAll -AutoReboot
 ```powershell
 Get-LocalUser | Select-Object Name, SID
 
-```powershell
+```
 
 * `Name, SID` : Affiche uniquement les colonnes du nom d'utilisateur et de son identifiant de sécurité unique (SID).
 
@@ -227,7 +227,7 @@ Rename-LocalUser -Name "Administrateur" -NewName "ADM-SRV-00"
 ```powershell
 Set-LocalUser -Name "ADM-SRV-00" -Password (ConvertTo-SecureString "<MOT_DE_PASSE_BITWARDEN>" -AsPlainText -Force)
 
-```powershell
+```
 
 * `-Name` : Cible l'utilisateur local dont on souhaite changer le mot de passe.
 * `-Password` : Paramètre attendant un objet de type `SecureString` en entrée.

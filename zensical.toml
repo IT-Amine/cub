@@ -44,6 +44,15 @@ nav = [
   { "Securite" = [
       { "Cybersecurite Cub" = "securite/cybersecurite-cub.md" },
       { "Cybersécurité" = "securite/index.md" },
+      { "Bastion" = [
+          { "Configuration de l'enregistrement des connexions" = "securite/bastion/configuration-enregistrement-connexions.md" },
+          { "Activation de l'authentification multifacteur (TOTP) sur Guacamole" = "securite/bastion/configuration-totp.md" },
+          { "Configuration d'une Connexion RDP sur Guacamole" = "securite/bastion/creer-connexion-rdp-windows.md" },
+          { "Configuration d'une Connexion SSH sur Guacamole" = "securite/bastion/creer-connexion-ssh-linux.md" },
+          { "Création de Groupes de Sécurité sur Guacamole" = "securite/bastion/creer-groupe-guacamole.md" },
+          { "Création des Utilisateurs sur le Bastion" = "securite/bastion/creer-utilisateur-guacamole.md" },
+          { "Installation du Bastion Guacamole" = "securite/bastion/installation-guacamole.md" }
+      ] },
       { "Stormshield" = [
           { "Résolution de l'erreur d'objets dérivés sur ethernet0" = "securite/stormshield/problemes/resolution-erreur-derives-ethernet.md" },
           { "Configuration d'une interface sur Stormshield avec la configuration IP" = "securite/stormshield/procedures/configuration-interface-stormshield.md" },
@@ -52,28 +61,36 @@ nav = [
           { "Configuration d'une sous-interface (VLAN 802.1Q) sur Stormshield" = "securite/stormshield/procedures/configuration-sous-interface-stormshield.md" },
           { "Sauvegarde de la configuration sur Stormshield" = "securite/stormshield/procedures/sauvegarde-configuration-stormshield.md" },
           { "Fiche Recette : Pare-feu Stormshield" = "securite/stormshield/recettes/recette-pare-feu-stormshield.md" }
+      ] },
+      { "Ufw" = [
+          { "Installation et configuration de UFW" = "securite/ufw/installation-configuration-ufw.md" }
       ] }
   ] },
   { "Services" = [
       { "Fiche de révision : Exploitation des services Debian" = "services/exploitation-services.md" },
       { "Exploitation des services" = "services/index.md" },
-      { "Bastion" = [
-          { "Activité 1 : Réflexion sur le Bastion" = "services/bastion/activite1-reflexion-bastion.md" },
-          { "Gestion des utilisateurs et des sessions (Guacamole)" = "services/bastion/guacamole-configuration.md" },
-          { "Bastion Guacamole (Docker)" = "services/bastion/guacamole-installation.md" }
-      ] },
       { "Communs" = [
           { "Configuration du hostname" = "services/communs/configuration-hostname-debian.md" },
           { "Installation des paquets communs Debian" = "services/communs/installation-paquets-commun-debian.md" }
       ] },
       { "Dns" = [
           { "Déploiement DNS Esclave (ns1)" = "services/dns/config-dns-autoritaire.md" },
+          { "Configuration de bind9 (Maître)" = "services/dns/config-dns-maitre.md" },
           { "Configuration DNS Récursif" = "services/dns/config-dns-recursif.md" },
+          { "Création d'une délégation DNS" = "services/dns/creation-delegation-dns.md" },
           { "Fiche Recette : DNS Autoritaire Esclave" = "services/dns/recette-dns-autoritaire.md" },
           { "Fiche Recette : DNS Récursif (Unbound)" = "services/dns/recette-dns-recursif.md" }
       ] },
       { "Etckeeper" = [
           { "Installation et configuration de Etckeeper" = "services/etckeeper/installation-configuration-etckeeper.md" }
+      ] },
+      { "Glpi" = [
+          { "Création et gestion des entités GLPI" = "services/glpi/creation-gestion-entites-glpi.md" },
+          { "Création des catégories ITIL sur GLPI" = "services/glpi/creer-categories-itil.md" },
+          { "Création manuelle d'un poste sur GLPI" = "services/glpi/creer-ordinateur-manuellement-glpi.md" },
+          { "Créer un utilisateur sur GLPI" = "services/glpi/creer-utilisateur-glpi.md" },
+          { "Installation de GLPI" = "services/glpi/installation-glpi.md" },
+          { "Mise en place de l'inventaire automatisé sur GLPI" = "services/glpi/inventaire-automatise-glpi.md" }
       ] },
       { "Totp" = [
           { "Mise en place de l'authentification TOTP sur Debian" = "services/totp/installation-configuration-totp.md" }
@@ -86,6 +103,13 @@ nav = [
           { "DHCP Core" = "windows/core/config-dhcp.md" },
           { "Configuration Windows Core" = "windows/core/configuration-windows-core.md" },
           { "Procédure : Extension du volume système (C:) sur machine virtuelle" = "windows/core/extension-volume-windows.md" }
+      ] },
+      { "Powershell" = [
+          { "Documents" = "windows/powershell/documents.md" },
+          { "Fondamentaux de Powershell" = "windows/powershell/fondamentaux-powershell.md" },
+          { "Gestion des dossiers et fichiers en PowerShell" = "windows/powershell/gestion-dossiers-fichiers-powershell.md" },
+          { "Gestion des utilisateurs locaux et active directory" = "windows/powershell/gestion-utilisateurs-locaux-active-directory.md" },
+          { "Manipulation des variables, propriétés et méthodes des objets" = "windows/powershell/variables-proprietes-methodes-powershell.md" }
       ] },
       { "Wac" = [
           { "Ajout d'un serveur dans WAC" = "windows/wac/ajout-serveur-wac.md" },

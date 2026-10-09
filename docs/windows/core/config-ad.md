@@ -33,7 +33,7 @@ Ce document détaille la procédure d'initialisation et de sécurisation (Harden
 ### 3.1. Exécution des agents VirtIO. Lancement de l'installateur des pilotes paravirtualisés depuis le support monté.
 ```powershell
 Start-Process -FilePath "D:\virtio-win-guest-tools.exe"
-```powershell
+```
 Puis mettre dans le FilePath : "D:\virtio-win-guest-tools.exe"
 
 - Start-Process : Exécute le binaire d'installation de l'agent invité QEMU.
@@ -58,7 +58,7 @@ Start-Service QEMU-GA
 Il faut d'abord repérer le numéro d'index (`ifIndex`) de la carte réseau virtuelle pour lui appliquer les paramètres.
 ```powershell
 Get-NetAdapter
-```powershell
+```
 - Repérez la valeur dans la colonne `ifIndex` correspondant à votre carte réseau (généralement nommée Ethernet).
 
 ### 4.2. Attribution de l'adresse IP, du Masque et de la Passerelle
@@ -76,8 +76,8 @@ New-NetIPAddress -InterfaceIndex 3 -IPAddress "192.168.4.10" -PrefixLength 25 -D
 Définition des serveurs DNS. Pour un serveur AD, on renseigne généralement lui-même en boucle locale (`127.0.0.1`) et/ou le DNS récursif de l'agence en secondaire.
 
 ```powershell
-Set-DnsClientServerAddress -InterfaceIndex 3 -ServerAddresses ("127.0.0.1", "1.1.1.1")
-```powershell
+Set-DnsClientServerAddress -InterfaceIndex 3 -ServerAddresses ("127.0.0.1")
+```
 - `-ServerAddresses` : Liste des adresses IP des serveurs DNS séparées par une virgule.
 
 ## 5. Configuration NTP
@@ -98,7 +98,7 @@ w32tm /resync
 ```powershell
 w32tm /query /peers
 w32tm /query /status
-```powershell
+```
 - /peers : Affiche l'état des connexions avec les serveurs de temps configurés.
 - /status : Renvoie les détails sur la latence, la précision et la dernière synchronisation effectuée.
 
@@ -122,10 +122,11 @@ Get-Service -Name wuauserv
 Start-Service -Name wuauserv
 UsoClient StartScan
 
-Install-Module PSWindowsUpdate
+Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
+Install-Module PSWindowsUpdate -Force
 Install-WindowsUpdate -AcceptAll -Install
 Restart-Computer 
-```powershell
+```
 
 - UsoClient StartScan : Force le lancement asynchrone de la recherche de mises à jour.
 - -AcceptAll -Install : Approuve et installe automatiquement tous les correctifs approuvés sans interaction manuelle.
