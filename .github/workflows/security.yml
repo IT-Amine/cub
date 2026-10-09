@@ -22,7 +22,7 @@ jobs:
           fetch-depth: 0
 
       - name: TruffleHog OSS
-        uses: trufflesecurity/trufflehog@main
+        uses: trufflesecurity/trufflehog@v3
         with:
           # Analyse uniquement les secrets confirmés (moins de faux positifs)
           extra_args: --only-verified
@@ -38,7 +38,8 @@ jobs:
 
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.x"
+          python-version: "3.11"
+          cache: "pip"
 
       - name: Installer pip-audit
         run: pip install pip-audit

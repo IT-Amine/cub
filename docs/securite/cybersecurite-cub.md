@@ -17,10 +17,10 @@ description: Documentation et procédure technique.
 
 > [!TIP]
 > Ce fichier contient les **justifications théoriques** (SOC, UTM vs Stateful, VLAN). Pour les **procédures techniques pas-à-pas** sur le Stormshield, consultez la section dédiée :
-> - 📄 [Configuration des interfaces Stormshield](../securite/stormshield/procedures/configuration-interface-stormshield.md)
-> - 📄 [Configuration NAT Stormshield](../securite/stormshield/procedures/configuration-nat-stormshield.md)
-> - 📄 [Configuration routage Stormshield](../securite/stormshield/procedures/configuration-routage-stormshield.md)
-> - 📄 [Recette pare-feu Stormshield](../securite/stormshield/recettes/recette-pare-feu-stormshield.md)
+> - 📄 [Configuration des interfaces Stormshield](stormshield/configuration-interface-stormshield.md)
+> - 📄 [Configuration NAT Stormshield](stormshield/configuration-nat-stormshield.md)
+> - 📄 [Configuration routage Stormshield](stormshield/configuration-routage-stormshield.md)
+> - 📄 [Recette pare-feu Stormshield](stormshield/recette-pare-feu-stormshield.md)
 
 ---
 

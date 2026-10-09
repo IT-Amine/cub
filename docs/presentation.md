@@ -35,7 +35,7 @@ Le siège social est le cœur du système d'information interne de CUB, mais un 
 
 ### BLOC 2 — Exploitation des systèmes
 
-* [**Commande CUB**](reseau/cisco/configurations/commande-cub.md) : Les commandes essentielles et l'administration système.
+* [**Commande CUB**](reseau/cisco/commande-cub.md) : Les commandes essentielles et l'administration système.
 * [**Exploitation des services**](services/exploitation-services.md) : Mise en œuvre et gestion des services réseau.
 
 ### BLOC 3 — Cybersécurité & Réseaux
