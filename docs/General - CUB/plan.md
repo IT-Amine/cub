@@ -2,7 +2,7 @@
 description: Documentation et procédure technique.
 ---
 
-# GÉNÉRAL - Plan de l'infrastructure CUB
+# Plan de l'infrastructure CUB
 
 ![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
 

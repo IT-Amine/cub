@@ -56,10 +56,8 @@ cub-docs/
 │   │   └── totp/                 → Authentification 2FA
 │   │
 │   ├── ressources/               → Base documentaire commune
-│   ├── description.md            → Description de l'infrastructure CUB
-│   ├── index.md                  → Page d'accueil du site
-│   ├── plan.md                   → Schémas logique & physique
-│   └── presentation.md           → Présentation du contexte CUB
+│   ├── General - CUB/            → Description, plan et présentation
+│   └── index.md                  → Page d'accueil du site
 │
 ├── .gitignore
 ├── README.md
