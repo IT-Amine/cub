@@ -24,7 +24,15 @@ cub-docs/
 │   │
 │   ├── reseau/                   → Administration & supervision des réseaux
 │   │   ├── vlsm-routage.md       → Calculs VLSM, tables de routage & NAT
-│   │   └── cisco/                → Dossier aplati (NAT, routage, SSH, etc.)
+│   │   └── cisco/
+│   │       ├── configurations/   → Commandes de base CUB
+│   │       ├── dhcp/             → Relais DHCP
+│   │       ├── nat/              → NAT Cisco
+│   │       ├── routage/          → Routage statique
+│   │       ├── securite/         → Mots de passe & sécurité d'accès
+│   │       ├── ssh/              → SSH commutateur & routeur
+│   │       ├── vtp/              → VTP
+│   │       └── recettes/         → Recette commutateur L3
 │   │
 │   ├── windows/                  → Administration Windows
 │   │   ├── core/                 → Déploiement Windows Server Core, AD, DHCP
@@ -33,7 +41,10 @@ cub-docs/
 │   │
 │   ├── securite/                 → Cybersécurité
 │   │   ├── cybersecurite-cub.md  → Théorie UTM, Stormshield vs Stateful, VLAN
-│   │   ├── stormshield/          → Dossier aplati (Procédures, recettes, erreurs)
+│   │   ├── stormshield/
+│   │   │   ├── procedures/       → Config interface, NAT, routage, sous-interface, sauvegarde
+│   │   │   ├── problemes/        → Résolution d'erreurs
+│   │   │   └── recettes/         → Recette pare-feu
 │   │   ├── bastion/              → Apache Guacamole
 │   │   └── ufw/                  → Configuration UFW
 │   │
