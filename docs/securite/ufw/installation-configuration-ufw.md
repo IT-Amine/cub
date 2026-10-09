@@ -87,7 +87,7 @@ Default: deny (incoming), allow (outgoing), deny (routed)
 New profiles: skip
 
 To                         Action      From
---                         ------      ----
+-- ------ ----
 22/tcp                     ALLOW IN    Anywhere
 8080/tcp                   ALLOW IN    Anywhere
 8443/tcp                   ALLOW IN    Anywhere

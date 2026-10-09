@@ -4,14 +4,13 @@ description: Déploiement et configuration d'un serveur DNS autoritaire Esclave 
 
 # BLOC 2 - Déploiement DNS Esclave (ns1)
 
-![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
+![Bannière CUB](../../assets/banniere-cub.png)
 
-<div style="margin-top: 70px; border: 1px solid #ccc; padding: 20px; border-radius: 10px;">
-    <p><strong>Auteur :</strong> KADA Amine</p>
-    <p><strong>Classe :</strong> BTS SIO 2 - Option SISR</p>
-    <p><strong>Date :</strong> 01/10/2026</p>
-    <p><strong>Contexte :</strong> Mise en place du serveur DNS autoritaire esclave (ns1 - 192.36.4.11) dans la DMZ de l'agence de Dortmund pour la zone dortmund.cub.sioplc.fr, en redondance du serveur maître (ns0) déployé par KADA Amine.</p>
-</div>
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 01/10/2026
+    - **Contexte :** Mise en place du serveur DNS autoritaire esclave (ns1 - 192.36.4.11) dans la DMZ de l'agence de Dortmund pour la zone dortmund.cub.sioplc.fr, en redondance du serveur maître (ns0) déployé par KADA Amine.
 
 ---
 

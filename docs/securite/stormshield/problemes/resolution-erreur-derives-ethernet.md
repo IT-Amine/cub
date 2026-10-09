@@ -4,14 +4,13 @@ description: Documentation et procédure technique.
 
 # BLOC 3 - Résolution de l'erreur d'objets dérivés sur ethernet0
 
-![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
+![Bannière CUB](../../../assets/banniere-cub.png)
 
-<div style="margin-top: 70px; border: 1px solid #ccc; padding: 20px; border-radius: 10px;">
-    <p><strong>Auteur :</strong> KADA Amine</p>
-    <p><strong>Classe :</strong> BTS SIO 2 - Option SISR</p>
-    <p><strong>Date :</strong> 09/09/2026</p>
-    <p><strong>Contexte :</strong> Configuration Résolution de l'erreur d'objets dérivés sur ethernet0</p>
-</div>
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 09/09/2026
+    - **Contexte :** Configuration Résolution de l'erreur d'objets dérivés sur ethernet0
 
 ---
 

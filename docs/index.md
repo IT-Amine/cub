@@ -16,12 +16,12 @@ description: Documentation et procédure technique de l'infrastructure CUB.
 
 ---
 
-## 🧭 Navigation Rapide
+## Navigation Rapide
 
 Naviguez via le menu latéral pour accéder aux fiches du contexte, aux blocs de révision, ainsi qu'aux modules techniques documentés :
 
-- 🌐 **Administration et supervision des Réseaux** : Routage, DHCP, NAT, VLAN, SSH, VTP, etc.
-- 🪟 **Administration Windows** : Configurations liées à Windows Core, AD, DHCP, PowerShell.
-- 🛡️ **Cybersécurité** : Configurations avancées du pare-feu Stormshield (NAT, Routage, Interfaces) et du Bastion.
-- 🐧 **Exploitation des services** : GLPI, DNS (Bind9/Unbound), Etckeeper, TOTP et services Debian.
-- 📂 **Ressources** : Schémas logiques/physiques, plans d'adressage complets, et tables de routage/NAT.
+- **Administration et supervision des Réseaux** : Routage, DHCP, NAT, VLAN, SSH, VTP, etc.
+- **Administration Windows** : Configurations liées à Windows Core, AD, DHCP, PowerShell.
+- **Cybersécurité** : Configurations avancées du pare-feu Stormshield (NAT, Routage, Interfaces) et du Bastion.
+- **Exploitation des services** : GLPI, DNS (Bind9/Unbound), Etckeeper, TOTP et services Debian.
+- **Ressources** : Schémas logiques/physiques, plans d'adressage complets, et tables de routage/NAT.

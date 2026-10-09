@@ -4,23 +4,22 @@ description: Documentation et procédure technique.
 
 # BLOC 3 - Cybersecurite Cub
 
-![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
+![Bannière CUB](../assets/banniere-cub.png)
 
-<div style="margin-top: 70px; border: 1px solid #ccc; padding: 20px; border-radius: 10px;">
-    <p><strong>Auteur :</strong> KADA Amine</p>
-    <p><strong>Classe :</strong> BTS SIO 2 - Option SISR</p>
-    <p><strong>Date :</strong> 09/09/2026</p>
-    <p><strong>Contexte :</strong> Configuration Cybersecurite Cub</p>
-</div>
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 09/09/2026
+    - **Contexte :** Configuration Cybersecurite Cub
 
 ---
 
 > [!TIP]
 > Ce fichier contient les **justifications théoriques** (SOC, UTM vs Stateful, VLAN). Pour les **procédures techniques pas-à-pas** sur le Stormshield, consultez la section dédiée :
-> - 📄 [Configuration des interfaces Stormshield](stormshield/procedures/configuration-interface-stormshield.md)
-> - 📄 [Configuration NAT Stormshield](stormshield/procedures/configuration-nat-stormshield.md)
-> - 📄 [Configuration routage Stormshield](stormshield/procedures/configuration-routage-stormshield.md)
-> - 📄 [Recette pare-feu Stormshield](stormshield/recettes/recette-pare-feu-stormshield.md)
+> - [Configuration des interfaces Stormshield](stormshield/procedures/configuration-interface-stormshield.md)
+> - [Configuration NAT Stormshield](stormshield/procedures/configuration-nat-stormshield.md)
+> - [Configuration routage Stormshield](stormshield/procedures/configuration-routage-stormshield.md)
+> - [Recette pare-feu Stormshield](stormshield/recettes/recette-pare-feu-stormshield.md)
 
 ---
 

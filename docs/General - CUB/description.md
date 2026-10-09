@@ -13,7 +13,7 @@ description: Documentation détaillée de l'infrastructure réseau et système d
 
 ---
 
-## 🌍 Plan d'adressage IPv4 de l'entreprise
+## Plan d'adressage IPv4 de l'entreprise
 
 | Structure | Adresses de sous-réseaux | Adresses IP des pare-feux |
 |:---|:---|:---|
@@ -29,7 +29,7 @@ description: Documentation détaillée de l'infrastructure réseau et système d
 
 ---
 
-## 🖥️ Liste des serveurs présents sur le site du siège
+## Liste des serveurs présents sur le site du siège
 
 | Serveur | Configuration réseau | Description |
 |:---|:---|:---|
@@ -39,7 +39,7 @@ description: Documentation détaillée de l'infrastructure réseau et système d
 
 ---
 
-## 📊 Description des services du réseau local de chaque agence
+## Description des services du réseau local de chaque agence
 
 | Intitulé des services | Description VLAN | Nombre d'hôtes par service |
 |:---|:---|:---|
@@ -52,7 +52,7 @@ description: Documentation détaillée de l'infrastructure réseau et système d
 
 ---
 
-## 🔐 Administration des équipements Réseaux
+## Administration des équipements Réseaux
 
 | Matériel | Administration | Description |
 |:---|:---|:---|
@@ -62,7 +62,7 @@ description: Documentation détaillée de l'infrastructure réseau et système d
 
 ---
 
-## 🔌 Gestion des ports sur les commutateurs
+## Gestion des ports sur les commutateurs
 
 | Ports | Attribution |
 |:---|:---|

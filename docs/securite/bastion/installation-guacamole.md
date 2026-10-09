@@ -80,7 +80,7 @@ openssl req -nodes -newkey rsa:2048 -new -x509 \
 vim /opt/guacamole/nginx/templates/guacamole.conf.template
 ```
 
-[📄 Consulter guacamole.conf.template](./assets/installation-guacamole/guacamole.conf.template)
+[ Consulter guacamole.conf.template](./assets/installation-guacamole/guacamole.conf.template)
 
 ## 5. Déploiement de l'Infrastructure Docker {#5-deploiement-de-linfrastructure-docker}
 
@@ -90,7 +90,7 @@ vim /opt/guacamole/nginx/templates/guacamole.conf.template
 vim /opt/guacamole/.env
 ```
 
-[📄 Consulter .env](./assets/installation-guacamole/.env.example)
+[ Consulter .env](./assets/installation-guacamole/.env.example)
 
 5.2. **Déclaration des services.** Configuration du fichier définissant les services Guacamole, PostgreSQL et Nginx.
 
@@ -101,7 +101,7 @@ mkdir /opt/guacamole/session-recording
 vim /opt/guacamole/docker-compose.yml
 ```
 
-[📄 Consulter docker-compose.yml](./assets/installation-guacamole/docker-compose.yaml)
+[ Consulter docker-compose.yml](./assets/installation-guacamole/docker-compose.yaml)
 
 ## 6. Post-Installation et Sécurisation {#6-post-installation-et-securisation}
 

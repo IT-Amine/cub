@@ -33,17 +33,17 @@ Le siège social est le cœur du système d'information interne de CUB, mais un 
 
 ---
 
-## 📚 Fiches disponibles
+## Fiches disponibles
 
 ### BLOC 2 — Exploitation des systèmes
 
-* ⚙️ [**Commande CUB**](../reseau/cisco/configurations/commande-cub.md) : Les commandes essentielles et l'administration système.
-* 🖥️ [**Exploitation des services**](../services/exploitation-services.md) : Mise en œuvre et gestion des services réseau (DNS, Bastion, etc.).
+* [**Commande CUB**](../reseau/cisco/configurations/commande-cub.md) : Les commandes essentielles et l'administration système.
+* [**Exploitation des services**](../services/exploitation-services.md) : Mise en œuvre et gestion des services réseau (DNS, Bastion, etc.).
 
 ### BLOC 3 — Cybersécurité & Réseaux
 
-* 🔒 [**Cybersécurité CUB**](../securite/cybersecurite-cub.md) : Concepts fondamentaux de la sécurité des systèmes d'information.
-* 🗺️ [**VLSM & Table de routage CUB**](../reseau/vlsm-routage.md) : Sous-réseaux, adressage IP et principes de routage.
+* [**Cybersécurité CUB**](../securite/cybersecurite-cub.md) : Concepts fondamentaux de la sécurité des systèmes d'information.
+* [**VLSM & Table de routage CUB**](../reseau/vlsm-routage.md) : Sous-réseaux, adressage IP et principes de routage.
 
 ---
 
