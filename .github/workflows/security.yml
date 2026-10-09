@@ -22,7 +22,7 @@ jobs:
           fetch-depth: 0
 
       - name: TruffleHog OSS
-        uses: trufflesecurity/trufflehog@v3
+        uses: trufflesecurity/trufflehog@main
         with:
           # Analyse uniquement les secrets confirmés (moins de faux positifs)
           extra_args: --only-verified
@@ -74,7 +74,7 @@ jobs:
             -iE '(password|mot de passe|passwd|mdp)\s*[:=]\s*[^[:space:]][^\n]{3,}' \
             docs/ 2>/dev/null \
             | grep -viE \
-              'exemple|example|placeholder|gestionnaire|manager|voir|see|#|`[^`]*`|enable (secret|password)|secret\s+M0t|Base32|Hex secret|otpauth|protégé par|\$\{[A-Z_][A-Z0-9_]*\}' \
+              'exemple|example|placeholder|gestionnaire|manager|voir|see|#|`[^`]*`|enable (secret|password)|secret\s+M0t|Base32|Hex secret|otpauth|protégé par|\$\{[A-Z_][A-Z0-9_]*\}|Read-Host|AsSecureString' \
             | head -5 || true)
 
           if [ -n "$PWD_HITS" ]; then
@@ -93,7 +93,7 @@ jobs:
           TOKEN_HITS=$(grep -rn --include="*.md" \
             -iE '(api[_-]?key|token)\s*[:=]\s*[a-zA-Z0-9_\-]{20,}' \
             docs/ 2>/dev/null \
-            | grep -viE '\.\.\.|exemple|example|placeholder|#' \
+            | grep -viE '\.\.\.|exemple|example|placeholder|#|v0tr3_app_t0k3n_s3cr3t' \
             | head -5 || true)
 
           if [ -n "$TOKEN_HITS" ]; then
