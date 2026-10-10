@@ -43,7 +43,7 @@ Cette procédure décrit les étapes permettant de sauvegarder la configuration 
 git add docs/ressources/configurations/dmd-fw-c1.na
 git commit -m "backup: update stormshield configuration for dmd-fw-c1"
 git push origin main
-```text
+```
 
 - `add` : Ajoute l'archive de configuration modifiée à l'index Git.
 - `commit -m` : Crée une révision locale avec un message descriptif de l'action.

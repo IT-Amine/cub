@@ -29,7 +29,7 @@ Identifier l'identité courante du serveur avant d'appliquer la nouvelle norme d
 ```bash
 hostnamectl status
 hostname
-```bash
+```
 
 ## Changement du nom d'hôte
 
@@ -53,7 +53,7 @@ Le changement via `hostnamectl` ne met pas à jour le fichier de résolution loc
 
 ```bash
 sudo nano /etc/hosts
-```bash
+```
 
 **5.2. Ajout du FQDN CUB :**
 Modifiez la ligne `127.0.1.1` (ou ajoutez l'IP de votre serveur si elle est fixe) pour y intégrer le FQDN complet suivi du nom court :
@@ -74,7 +74,7 @@ S'assurer que le fichier de configuration statique contient le bon nom court.
 
 ```bash
 cat /etc/hostname
-```bash
+```
 
 **6.2. Test de la résolution système.**
 Vérifier que le système d'exploitation parvient à résoudre le nouveau nom d'hôte et afficher son FQDN complet de Dortmund.
@@ -86,7 +86,7 @@ hostname -f
 
 ```bash
 getent hosts NOM_VM
-```bash
+```
 
 !!! success "Critère de réussite"
     L'opération est validée si la commande `hostname -f` renvoie bien le FQDN complet de Dortmund (`NOM_VM.dortmund.cub.sioplc.fr`) et qu'aucune erreur réseau locale n'est remontée par le système.

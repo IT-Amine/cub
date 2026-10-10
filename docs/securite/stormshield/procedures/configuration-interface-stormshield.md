@@ -52,6 +52,6 @@ Le provisionnement d'une interface réseau avec une adresse IP statique sur un p
 
 ```bash
 ifconfig dmz1
-```text
+```
 
 * `ifconfig [interface]` : Vérifie que l'adresse IP, le masque (netmask) et l'état UP/RUNNING sont correctement assignés au niveau du noyau de l'appliance.

@@ -24,7 +24,7 @@ Déploiement de Windows Admin Center (WAC) pour l'administration centralisée de
 
 ```Powershell
 winget install Microsoft.WindowsAdminCenter --interactive
-```powershell
+```
 
 - `winget install Microsoft.WindowsAdminCenter` : Télécharge et exécute le programme d'installation du paquet officiel depuis les dépôts Microsoft.
 - `--interactive` : Force l'affichage de l'interface graphique (GUI) de l'installeur (MSI).

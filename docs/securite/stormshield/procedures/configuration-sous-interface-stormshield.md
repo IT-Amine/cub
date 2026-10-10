@@ -45,7 +45,7 @@ Le déploiement d'une sous-interface tagguée (VLAN 802.1Q) sur un pare-feu Stor
 ```bash
 ifconfig in.10
 
-```text
+```
 
 * `ifconfig` : Commande UNIX permettant d'afficher la configuration et l'état des interfaces réseau du système.
 * `in.10` : Nomenclature standard du système pour désigner la sous-interface (composée du nom de l'interface physique `in` suivi d'un point et de l'ID du VLAN `10`).

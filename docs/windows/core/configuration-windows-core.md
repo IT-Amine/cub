@@ -122,7 +122,7 @@ Set-DnsClientServerAddress -InterfaceAlias "Ethernet" -ServerAddresses ("192.168
 ```cmd
 ipconfig /all
 
-```powershell
+```
 
 * `/all` : Argument ordonnant l'affichage détaillé de l'ensemble des configurations TCP/IP pour chaque carte.
 
@@ -145,7 +145,7 @@ Rename-Computer -NewName "ServeurAD0" -Restart
 ```cmd
 w32tm /config /manualpeerlist:"0.fr.pool.ntp.org,0x1 1.fr.pool.ntp.org,0x1" /syncfromflags:manual /update; Restart-Service w32time
 
-```powershell
+```
 
 * `/config` : Indique la volonté de modifier la configuration du service de temps Windows.
 * `/manualpeerlist:` : Liste les serveurs NTP externes. Le paramètre `0x1` définit l'intervalle d'interrogation.
