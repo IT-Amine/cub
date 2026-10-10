@@ -4,6 +4,115 @@ site_name = "Cub Documentation"
 site_description = "Documentation du contexte CUB du BTS SIO Paul-Louis Courier."
 site_author = "Amine Kada"
 
+
+nav = [
+  { "GÉNÉRAL - CUB" = [
+    "index.md",
+    "General - CUB/presentation.md",
+    "General - CUB/description.md",
+    "General - CUB/plan.md"
+  ]},
+  { "Réseau" = [
+    "reseau/index.md",
+    "reseau/vlsm-routage.md",
+    { "Cisco" = [
+      { "Configurations" = ["reseau/cisco/configurations/commande-cub.md"] },
+      { "Recettes" = ["reseau/cisco/recettes/recette-commutateur-l3-cisco.md"] },
+      { "Sécurité" = ["reseau/cisco/securite/implementation-mots-de-passe-niveau-acces.md"] },
+      { "NAT" = ["reseau/cisco/nat/configuration-nat-routeur-cisco.md"] },
+      { "SSH" = [
+        "reseau/cisco/ssh/configuration-ssh-routeur-cisco.md",
+        "reseau/cisco/ssh/configuration-ssh-commutateur-cisco.md"
+      ]},
+      { "VTP" = ["reseau/cisco/vtp/implementation-vtp-cisco.md"] },
+      { "DHCP" = ["reseau/cisco/dhcp/implementation-relais-dhcp-cisco.md"] },
+      { "Routage" = ["reseau/cisco/routage/implementation-routage-statique-cisco.md"] }
+    ]}
+  ]},
+  { "Sécurité" = [
+    "securite/index.md",
+    "securite/cybersecurite-cub.md",
+    { "Stormshield" = [
+      { "Procédures" = [
+        "securite/stormshield/procedures/configuration-sous-interface-stormshield.md",
+        "securite/stormshield/procedures/configuration-interface-stormshield.md",
+        "securite/stormshield/procedures/configuration-nat-stormshield.md",
+        "securite/stormshield/procedures/sauvegarde-configuration-stormshield.md",
+        "securite/stormshield/procedures/configuration-routage-stormshield.md"
+      ]},
+      { "Recettes" = ["securite/stormshield/recettes/recette-pare-feu-stormshield.md"] },
+      { "Problèmes" = ["securite/stormshield/problemes/resolution-erreur-derives-ethernet.md"] }
+    ]},
+    { "Bastion" = [
+      "securite/bastion/installation-guacamole.md",
+      "securite/bastion/configuration-totp.md",
+      "securite/bastion/configuration-enregistrement-connexions.md",
+      "securite/bastion/creer-connexion-rdp-windows.md",
+      "securite/bastion/creer-connexion-ssh-linux.md",
+      "securite/bastion/creer-groupe-guacamole.md",
+      "securite/bastion/creer-utilisateur-guacamole.md"
+    ]},
+    { "UFW" = ["securite/ufw/installation-configuration-ufw.md"] }
+  ]},
+  { "Services" = [
+    "services/index.md",
+    "services/exploitation-services.md",
+    { "Communs" = [
+      "services/communs/installation-paquets-commun-debian.md",
+      "services/communs/configuration-hostname-debian.md"
+    ]},
+    { "DNS" = [
+      "services/dns/recette-dns-recursif.md",
+      "services/dns/creation-delegation-dns.md",
+      "services/dns/recette-dns-autoritaire.md",
+      "services/dns/config-dns-recursif.md",
+      "services/dns/config-dns-autoritaire.md",
+      "services/dns/config-dns-maitre.md"
+    ]},
+    { "Etckeeper" = ["services/etckeeper/installation-configuration-etckeeper.md"] },
+    { "GLPI" = [
+      "services/glpi/installation-glpi.md",
+      "services/glpi/creation-gestion-entites-glpi.md",
+      "services/glpi/creer-ordinateur-manuellement-glpi.md",
+      "services/glpi/creer-categories-itil.md",
+      "services/glpi/creer-utilisateur-glpi.md",
+      "services/glpi/inventaire-automatise-glpi.md"
+    ]},
+    { "TOTP" = ["services/totp/installation-configuration-totp.md"] }
+  ]},
+  { "Windows" = [
+    "windows/index.md",
+    { "Core" = [
+      "windows/core/configuration-windows-core.md",
+      "windows/core/config-ad.md",
+      "windows/core/config-dhcp.md",
+      "windows/core/extension-volume-windows.md"
+    ]},
+    { "PowerShell" = [
+      "windows/powershell/fondamentaux-powershell.md",
+      "windows/powershell/gestion-utilisateurs-locaux-active-directory.md",
+      "windows/powershell/gestion-dossiers-fichiers-powershell.md",
+      "windows/powershell/variables-proprietes-methodes-powershell.md",
+      "windows/powershell/documents.md"
+    ]},
+    { "Windows Admin Center" = [
+      "windows/wac/installation-wac.md",
+      "windows/wac/creation-compte-administrer-wac.md",
+      "windows/wac/ajout-serveur-wac.md"
+    ]}
+  ]},
+  { "Ressources" = [
+    "ressources/index.md",
+    "ressources/schemas.md",
+    "ressources/plan-adressage.md",
+    "ressources/tables-routage.md",
+    "ressources/tables-nat.md",
+    "ressources/configurations.md",
+    "ressources/git.md"
+  ]}
+]
+
+
 copyright = "Copyright &copy; 2026 Amine Kada"
 
 repo_url = "https://github.com/IT-Amine/cub"
