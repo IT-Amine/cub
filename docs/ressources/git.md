@@ -1,8 +1,8 @@
 ---
-description: Gestion des versions avec GIT & Github.
+description: "Gestion de versions avec Git & GitHub"
 ---
 
-# BLOC 2 - Gestion de versions avec Git & GitHub
+# Gestion de versions avec Git & GitHub
 
 ![Bannière CUB](../assets/banniere-cub.png)
 
@@ -10,7 +10,7 @@ description: Gestion des versions avec GIT & Github.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 30/09/2026
-    - **Contexte :** Git & Github
+    - **Sujet :** Gestion de versions avec Git & GitHub
 
 ---
 
@@ -45,7 +45,7 @@ Le fichier passe de l'état "non suivi" (en rouge) à l'état "indexé" (en vert
 Avant le git add :
 
 ```powershell
-PS C:\Users\aminekada\Documents\cub-script\scripts> git status 
+PS C:\Users\aminekada\Documents\cub-script\scripts> git status
 Sur la branche master
 
 Fichiers non suivis:
@@ -57,7 +57,7 @@ aucune modification ajoutée à la validation mais des fichiers non suivis sont 
 
 Après le git add :
 ```powershell
-PS C:\Users\aminekada\Documents\cub-script\scripts> git status 
+PS C:\Users\aminekada\Documents\cub-script\scripts> git status
 Sur la branche master
 
 Aucun commit

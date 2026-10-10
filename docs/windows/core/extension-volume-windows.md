@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Procédure : Extension du volume système (C:) sur machine virtuelle"
 ---
 
-# BLOC 2 - Procédure : Extension du volume système (C:) sur machine virtuelle
+# Procédure : Extension du volume système (C:) sur machine virtuelle
 
 ![Bannière CUB](../../assets/banniere-cub.png)
 
@@ -10,21 +10,21 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 09/09/2026
-    - **Contexte :** configuration serveur Core
+    - **Sujet :** Procédure : Extension du volume système (C:) sur machine virtuelle
 
 ---
 
-## 1. Objectif
+## Objectif
 Augmenter la capacité de la partition système `C:` (ajout de 50 Go) sur un serveur Windows virtualisé. Cette opération nécessite d'agrandir le disque virtuel depuis l'hyperviseur, puis de supprimer une partition de récupération bloquante avant d'étendre le volume dans l'OS.
 
-## 2. Prérequis
+## Prérequis
 * Accès à l'interface d'administration de l'hyperviseur (ex: Proxmox).
 * Privilèges administrateur sur le serveur Windows cible.
 * Une sauvegarde à jour ou un snapshot de la machine virtuelle avant toute manipulation des partitions.
 
 ---
 
-## 3. Agrandissement du disque virtuel (Hyperviseur)
+## Agrandissement du disque virtuel (Hyperviseur)
 Avant de modifier la table des partitions dans Windows, il est impératif d'augmenter la taille physique du disque virtuel alloué à la machine.
 
 **Sous Proxmox VE :**
@@ -38,7 +38,7 @@ Avant de modifier la table des partitions dans Windows, il est impératif d'augm
 
 ---
 
-## 4. Actualisation et suppression de la partition bloquante (Diskpart)
+## Actualisation et suppression de la partition bloquante (Diskpart)
 Windows place généralement une partition de récupération immédiatement après le lecteur `C:`. Le nouvel espace non alloué s'ajoutant à la fin du disque physique, cette partition de récupération empêche l'extension du lecteur `C:` (l'espace libre doit être strictement contigu). Il faut la supprimer via l'utilitaire en ligne de commande `diskpart`.
 
 > **Attention :** La suppression de la partition de récupération supprime l'accès aux outils de dépannage avancés locaux (WinRE). Dans un environnement virtualisé professionnel bénéficiant de snapshots et de sauvegardes complètes, la présence de cette partition locale n'est pas critique.
@@ -67,7 +67,7 @@ Supprimer la partition ciblée (remplacer `X` par le numéro identifié à l'ét
 
 ---
 
-## 5. Extension du volume système (C:)
+## Extension du volume système (C:)
 Une fois la partition bloquante supprimée, l'espace non alloué se retrouve directement collé à droite de la partition `C:`, autorisant son extension.
 
 **Méthode graphique (Gestion des disques) :**

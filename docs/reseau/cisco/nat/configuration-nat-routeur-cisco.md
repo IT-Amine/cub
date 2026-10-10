@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Implémentation du NAT (PAT) sur un routeur Cisco"
 ---
 
-# BLOC 2 - Implémentation du NAT (PAT) sur un routeur Cisco
+# Implémentation du NAT (PAT) sur un routeur Cisco
 
 ![Bannière CUB](../../../assets/banniere-cub.png)
 
@@ -10,23 +10,15 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 05/09/2026
-    - **Contexte :** Configuration Implémentation du NAT (PAT) sur un routeur Cisco
+    - **Sujet :** Implémentation du NAT (PAT) sur un routeur Cisco
 
 ---
 
-## 1. Sommaire
-
-* [1. Sommaire](#1-sommaire)
-* [2. Contexte](#2-contexte)
-* [3. Identification du trafic à traduire (ACL)](#3-identification-du-trafic-a-traduire-acl)
-* [4. Configuration des zones NAT sur les interfaces](#4-configuration-des-zones-nat-sur-les-interfaces)
-* [5. Déclaration de la règle de translation dynamique (PAT)](#5-declaration-de-la-regle-de-translation-dynamique-pat)
-
-## 2. Contexte
+## Contexte
 
 Le déploiement du NAT (Network Address Translation), et spécifiquement du PAT (Port Address Translation / Overload), permet de traduire un ensemble d'adresses IP privées vers une adresse IP publique unique. Au sein de l'infrastructure CUB, cela garantit l'accès à Internet aux Réseaux LAN tout en masquant la topologie interne et en préservant le pool d'adresses IPv4.
 
-## 3. Identification du trafic à traduire (ACL) {#3-identification-du-trafic-a-traduire-acl}
+## Identification du trafic à traduire (ACL) {#3-identification-du-trafic-a-traduire-acl}
 
 3.1. **Création de la liste de contrôle d'accès (ACL).** Définition d'une liste standard pour identifier précisément les sous-Réseaux internes autorisés à subir une traduction d'adresse.
 
@@ -49,7 +41,7 @@ Router(config)# access-list 1 permit 192.168.10.0 0.0.0.255
 * `192.168.10.0` : Adresse du réseau source interne autorisé.
 * `0.0.0.255` : Masque générique (Wildcard mask) correspondant à un masque /24. Il indique au routeur de vérifier strictement les 3 premiers octets.
 
-## 4. Configuration des zones NAT sur les interfaces
+## Configuration des zones NAT sur les interfaces
 
 4.1. **Assignation des rôles interne et externe.** Le routeur doit catégoriser ses interfaces pour déterminer le sens de la traduction (du réseau privé vers le réseau public).
 
@@ -68,7 +60,7 @@ Router(config-if)# exit
 * `ip nat outside` : Qualifie l'interface comme appartenant au domaine public (WAN / Internet).
 * `exit` : Remonte au niveau hiérarchique parent (configuration globale).
 
-## 5. Déclaration de la règle de translation dynamique (PAT) {#5-declaration-de-la-regle-de-translation-dynamique-pat}
+## Déclaration de la règle de translation dynamique (PAT) {#5-declaration-de-la-regle-de-translation-dynamique-pat}
 
 5.1. **Application de la traduction avec surcharge (Overload).** Lier le trafic autorisé (ACL) à l'interface de sortie externe en activant le multiplexage des ports.
 

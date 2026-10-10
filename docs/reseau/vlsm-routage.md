@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Vlsm Routage"
 ---
 
-# BLOC 2 - Vlsm Routage
+# Vlsm Routage
 
 ![Bannière CUB](../assets/banniere-cub.png)
 
@@ -10,11 +10,11 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 22/01/2026
-    - **Contexte :** VLSM & Table de routage CUB - Situation 1
+    - **Sujet :** Vlsm Routage
 
 ---
 
-## Maquette de notre Agence à Dortmund - CUB 
+## Maquette de notre Agence à Dortmund - CUB
 
 1. Maquette logique
 ![Maquette logique](../assets/cisco/maquette-logique.jpg)
@@ -43,7 +43,6 @@ description: Documentation et procédure technique.
 | **Réseau WAN** | 192.36.253.0              | 255.255.255.0 (/24)   | - | 192.36.253.40           | **C** |
 | **LANs Internes** | 192.168.4.0               | 255.255.255.0 (/24)   | 192.168.44.253    | 192.168.44.254          | **S** |
 | **Route par défaut (Internet)** | 0.0.0.0                   | 0.0.0.0 (/0)          | 192.36.253.254    | 192.36.253.40           | **S** |
-
 
 ---
 

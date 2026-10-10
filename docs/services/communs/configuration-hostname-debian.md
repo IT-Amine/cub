@@ -1,8 +1,8 @@
 ---
-description: Procédure de configuration, modification et vérification du nom d'hôte (FQDN) sur un système Debian.
+description: "Configuration du hostname"
 ---
 
-# BLOC 2 - Configuration du hostname
+# Configuration du hostname
 
 ![Bannière CUB](../../assets/banniere-cub.png)
 
@@ -10,29 +10,20 @@ description: Procédure de configuration, modification et vérification du nom d
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 30/09/2026
-    - **Contexte :** Standardisation des noms d'hôtes (FQDN) des serveurs Debian
+    - **Sujet :** Configuration du hostname
 
 ---
 
-## 1. Sommaire
+## Contexte
 
-- [1. Sommaire](#1-sommaire)
-- [2. Contexte](#2-contexte)
-- [3. Vérification de l'état actuel](#3-verification-de-letat-actuel)
-- [4. Changement du nom d'hôte](#4-changement-du-nom-dhote)
-- [5. Configuration de la résolution locale (/etc/hosts)](#5-configuration-de-la-resolution-locale-etchosts)
-- [6. Vérification de la persistance et résolution](#6-verification-de-la-persistance-et-resolution)
-
-## 2. Contexte
-
-La configuration rigoureuse du nom d'hôte (hostname) est primordiale pour l'identification unique et standardisée des serveurs au sein de l'infrastructure CUB. Ce paramètre impacte directement la journalisation centralisée, la résolution DNS interne et le bon fonctionnement de certains services. 
+La configuration rigoureuse du nom d'hôte (hostname) est primordiale pour l'identification unique et standardisée des serveurs au sein de l'infrastructure CUB. Ce paramètre impacte directement la journalisation centralisée, la résolution DNS interne et le bon fonctionnement de certains services.
 
 Dans le contexte de l'agence de Dortmund, le nom de domaine complet (FQDN) doit impérativement respecter la structure suivante :
 `NOM_VM.dortmund.cub.sioplc.fr` *(ex : `bastion1.dortmund.cub.sioplc.fr`)*.
 
-## 3. Vérification de l'état actuel
+## Vérification de l'état actuel
 
-**3.1. Consultation des paramètres d'hôte.** 
+**3.1. Consultation des paramètres d'hôte.**
 Identifier l'identité courante du serveur avant d'appliquer la nouvelle norme de nommage.
 
 ```bash
@@ -40,12 +31,12 @@ hostnamectl status
 hostname
 ```bash
 
-## 4. Changement du nom d'hôte
+## Changement du nom d'hôte
 
 !!! warning "Avertissement de redémarrage de services"
     Bien que la modification du hostname soit appliquée à chaud, certains processus (ex: `syslog`) peuvent nécessiter un redémarrage pour acquérir la nouvelle valeur.
 
-**4.1. Définition de la nouvelle identité cible.** 
+**4.1. Définition de la nouvelle identité cible.**
 Utilisation de l'outil d'administration `hostnamectl` pour modifier le hostname localement de manière persistante (remplacez `NOM_VM` par le nom court de votre serveur).
 
 ```bash
@@ -54,7 +45,7 @@ sudo hostnamectl set-hostname NOM_VM
 
 - `set-hostname` : Met à jour le nom d'hôte statique dans le fichier `/etc/hostname`.
 
-## 5. Configuration de la résolution locale (/etc/hosts)
+## Configuration de la résolution locale (/etc/hosts)
 
 Le changement via `hostnamectl` ne met pas à jour le fichier de résolution local `/etc/hosts`. Il est impératif de le modifier manuellement pour que la machine puisse résoudre son propre FQDN sur son adresse locale. Sans cela, des commandes comme `sudo` risquent d'afficher des avertissements du type *"unable to resolve host"*.
 
@@ -76,16 +67,16 @@ Modifiez la ligne `127.0.1.1` (ou ajoutez l'IP de votre serveur si elle est fixe
 
 *Remarque : Respectez bien la syntaxe `IP FQDN Alias`.*
 
-## 6. Vérification de la persistance et résolution
+## Vérification de la persistance et résolution
 
-**6.1. Vérification de l'écriture disque.** 
+**6.1. Vérification de l'écriture disque.**
 S'assurer que le fichier de configuration statique contient le bon nom court.
 
 ```bash
 cat /etc/hostname
 ```bash
 
-**6.2. Test de la résolution système.** 
+**6.2. Test de la résolution système.**
 Vérifier que le système d'exploitation parvient à résoudre le nouveau nom d'hôte et afficher son FQDN complet de Dortmund.
 
 ```bash

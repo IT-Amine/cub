@@ -2,28 +2,19 @@
 
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
----
-
-## Informations
-
-- **Auteur :** KADA Amine
-- **Date :** 06/10/2026
-- **Domaine :** Administration Windows
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 06/10/2026
+    - **Sujet :** Gestion des dossiers et fichiers en PowerShell
 
 ---
 
-## 1. Sommaire
-
-- [1. Sommaire](#1-sommaire)
-- [2. Contexte](#2-contexte)
-- [3. Création, déplacement et suppression](#3-creation-deplacement-et-suppression)
-- [4. Gestion des fichiers (Lecture et Écriture)](#4-gestion-des-fichiers-lecture-et-ecriture)
-
-## 2. Contexte
+## Contexte
 
 Cette procédure définit les standards de manipulation du système de fichiers (fichiers, répertoires, flux de données) via PowerShell. Ces opérations sont cruciales pour l'automatisation de l'infrastructure (IaC), le traitement des fichiers de journalisation et la gestion des exports structurels pour les scripts d'administration.
 
-## 3. Création, déplacement et suppression {#3-creation-deplacement-et-suppression}
+## Création, déplacement et suppression {#3-creation-deplacement-et-suppression}
 
 3.1. **Explorer l'arborescence.** Utilisation des cmdlets pour localiser le contexte d'exécution et lister les éléments.
 
@@ -75,7 +66,7 @@ Remove-Item "c:\temp\*.txt"
 
 - `Remove-Item` : Détruit définitivement les éléments spécifiés par le chemin. L'utilisation du wildcard `*.txt` supprime tous les fichiers texte du répertoire.
 
-## 4. Gestion des Fichiers (Lecture et Écriture) {#4-gestion-des-fichiers-lecture-et-ecriture}
+## Gestion des Fichiers (Lecture et Écriture) {#4-gestion-des-fichiers-lecture-et-ecriture}
 
 4.1.  **Lire et analyser un fichier.** Extraction et traitement algorithmique des données textuelles sous forme de collection d'objets.
 

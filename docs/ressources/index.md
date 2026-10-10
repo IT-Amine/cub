@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Ressources"
 ---
 
-# BLOC 2 - Ressources
+# Ressources
 
 ![Bannière CUB](../assets/banniere-cub.png)
 
@@ -10,7 +10,7 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 16/09/2026
-    - **Contexte :** Configuration Ressources
+    - **Sujet :** Ressources
 
 ---
 

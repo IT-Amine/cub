@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Configuration Windows Core"
 ---
 
-# BLOC 2 - Configuration Windows Core
+# Configuration Windows Core
 
 ![Bannière CUB](../../assets/banniere-cub.png)
 
@@ -10,15 +10,15 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 09/09/2026
-    - **Contexte :** Configuration Configuration Windows Core
+    - **Sujet :** Configuration Windows Core
 
 ---
 
-## 2. Contexte
+## Contexte
 
 Ce document détaille la procédure de configuration post-déploiement d'un serveur Windows Core 2025 dans un environnement virtualisé. La configuration inclut l'installation des pilotes VirtIO (QEMU), le paramétrage réseau statique, la jonction DNS, ainsi que le durcissement du système (Hardening) selon les recommandations de l'ANSSI. Ces étapes garantissent que le serveur s'intègre correctement à l'infrastructure, communique sur le réseau de manière sécurisée, et prévient les vulnérabilités de configuration par défaut.
 
-## 3. Préparation et Installation des Pilotes
+## Préparation et Installation des Pilotes
 
 3.1. **Vérification de la configuration IP initiale.** Constat de l'absence de configuration réseau due au manque de pilotes.
 
@@ -84,7 +84,7 @@ Get-Service -Name "QEMU-GA"
 
 * `-Name` : Spécifie le nom du service dont on souhaite récupérer l'état.
 
-## 4. Configuration Réseau IP et DNS
+## Configuration Réseau IP et DNS
 
 4.1. **Vérification de la détection de la carte réseau.** Validation de l'installation des pilotes VirtIO.
 
@@ -126,7 +126,7 @@ ipconfig /all
 
 * `/all` : Argument ordonnant l'affichage détaillé de l'ensemble des configurations TCP/IP pour chaque carte.
 
-## 5. Configuration Système
+## Configuration Système
 
 5.1. **Renommer le serveur.** Changement du nom d'hôte pour correspondre à la nomenclature.
 
@@ -138,7 +138,7 @@ Rename-Computer -NewName "ServeurAD0" -Restart
 * `-NewName` : Indique le nouveau nom d'hôte de la machine.
 * `-Restart` : Force le redémarrage immédiat de l'OS pour appliquer le nouveau nom.
 
-## 6. Sécurisation (Recommandations ANSSI)
+## Sécurisation (Recommandations ANSSI)
 
 6.1. **Configuration de la synchronisation temporelle (NTP).** Utilisation du pool NTP français.
 

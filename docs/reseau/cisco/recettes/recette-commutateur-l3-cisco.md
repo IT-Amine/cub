@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Fiche recette - Commutateur L3"
 ---
 
-# BLOC 2 - Fiche recette - Commutateur L3
+# Fiche recette - Commutateur L3
 
 ![Bannière CUB](../../../assets/banniere-cub.png)
 
@@ -10,17 +10,17 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 11/09/2026
-    - **Contexte :** Configuration Fiche recette - Commutateur L3
+    - **Sujet :** Fiche recette - Commutateur L3
 
 ---
 
-## 1. Contexte du test
+## Contexte du test
 
 Validation de l'infrastructure réseau (couches 2 et 3 du modèle OSI) du commutateur L3 `dmd-sw-c1` de l'agence de Dortmund. Ce document vérifie la bonne configuration des interfaces de routage (SVI), la connectivité interne vers la passerelle par défaut (`192.168.44.254`), ainsi que le routage externe (accès Internet) nécessitant l'intervention du pare-feu et de ses règles NAT.
 
-## 2. Procédures de validation
+## Procédures de validation
 
-### 2.1. Vérification des interfaces virtuelles (SVI)
+### Vérification des interfaces virtuelles (SVI)
 
 **Objectif :** S'assurer que les interfaces VLAN sont actives et correctement adressées pour assurer le routage inter-VLAN.
 
@@ -37,10 +37,10 @@ show ip interface brief | exclude unassigned
 
 ```bash
 Interface              IP-Address      OK? Method Status                Protocol
-Vlan2                  192.168.44.253  YES manual up                    up      
-Vlan10                 192.168.4.190   YES manual up                    up      
-Vlan20                 192.168.4.206   YES manual up                    up      
-Vlan54                 192.168.4.126   YES manual up                    up      
+Vlan2                  192.168.44.253  YES manual up                    up
+Vlan10                 192.168.4.190   YES manual up                    up
+Vlan20                 192.168.4.206   YES manual up                    up
+Vlan54                 192.168.4.126   YES manual up                    up
 ```
 
 **Statut :**
@@ -52,7 +52,7 @@ Vlan54                 192.168.4.126   YES manual up                    up
 
 > Test validé avec succès. Les résultats obtenus sont conformes aux attentes.
 
-### 2.2. Vérification de la table de routage globale
+### Vérification de la table de routage globale
 
 **Objectif :** Contrôler la présence de la route par défaut vers le pare-feu, indispensable pour atteindre les Réseaux inconnus.
 
@@ -80,7 +80,7 @@ S* 0.0.0.0/0 [1/0] via 192.168.44.254
 
 > Test validé avec succès. Les résultats obtenus sont conformes aux attentes.
 
-### 2.3. Communication avec la passerelle par défaut
+### Communication avec la passerelle par défaut
 
 **Objectif :** Valider la connectivité réseau interne entre le commutateur et le pare-feu `dmd-fw-c01` sur le sous-réseau d'interconnexion.
 
@@ -111,7 +111,7 @@ Success rate is 100 percent (5/5), round-trip min/avg/max = 1/2/4 ms
 
 > Test validé avec succès. Les résultats obtenus sont conformes aux attentes.
 
-### 2.4. Validation de l'accès à Internet
+### Validation de l'accès à Internet
 
 > [!warning] Dépendance matérielle et sécurité
 > Le pare-feu `dmd-fw-c01` doit obligatoirement être opérationnel. Sa règle NAT doit être active pour translater les adresses internes (ex: `192.168.4.0/24`) vers l'adresse externe `192.36.253.40`, sinon les paquets ICMP seront rejetés.

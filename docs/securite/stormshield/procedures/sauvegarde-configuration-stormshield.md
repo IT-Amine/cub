@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Sauvegarde de la configuration sur Stormshield"
 ---
 
-# BLOC 3 - Sauvegarde de la configuration sur Stormshield
+# Sauvegarde de la configuration sur Stormshield
 
 ![Bannière CUB](../../../assets/banniere-cub.png)
 
@@ -10,30 +10,15 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 12/09/2026
-    - **Contexte :** Configuration Sauvegarde de la configuration sur Stormshield
+    - **Sujet :** Sauvegarde de la configuration sur Stormshield
 
 ---
 
-## Informations
-
-- **Auteur :** Amine Kada
-- **Date :** 12/09/2026
-- **Domaine :** Réseau
-
----
-
-## 1. Sommaire
-
-- [1. Sommaire](#1-sommaire)
-- [2. Contexte](#2-contexte)
-- [3. Génération de la sauvegarde chiffrée](#3-generation-de-la-sauvegarde-chiffree)
-- [4. Archivage dans le dépôt GitHub](#4-archivage-dans-le-depot-github)
-
-## 2. Contexte
+## Contexte
 
 Cette procédure décrit les étapes permettant de sauvegarder la configuration d'un pare-feu Stormshield, de la chiffrer avec un mot de passe sécurisé et de l'archiver dans le dépôt documentaire CUB. Cela garantit la reprise d'activité rapide en cas de défaillance de l'équipement matériel, tout en respectant les standards de stockage (Git).
 
-## 3. Génération de la sauvegarde chiffrée {#3-generation-de-la-sauvegarde-chiffree}
+## Génération de la sauvegarde chiffrée {#3-generation-de-la-sauvegarde-chiffree}
 
 3.1. **Accéder au module de sauvegarde.** Dans l'interface d'administration Stormshield, naviguez dans le menu `Système` > `Maintenance`, puis sélectionnez l'onglet `SAUVEGARDER`.
 
@@ -46,7 +31,7 @@ Cette procédure décrit les étapes permettant de sauvegarder la configuration 
 
 3.3. **Télécharger l'archive.** Nommez la sauvegarde (ex: par défaut avec la date) et cliquez sur le bouton `Télécharger la sauvegarde de configuration`.
 
-## 4. Archivage dans le dépôt GitHub {#4-archivage-dans-le-depot-github}
+## Archivage dans le dépôt GitHub {#4-archivage-dans-le-depot-github}
 
 4.1. **Renommer et déplacer le fichier.** Renommez l'archive téléchargée en `dmd-fw-c1.na` (ou selon le nom exact de votre équipement) et déplacez-la dans le répertoire local `docs/ressources/configurations/`.
 

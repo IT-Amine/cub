@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Configurations"
 ---
 
-# BLOC 2 - Configurations
+# Configurations
 
 ![Bannière CUB](../assets/banniere-cub.png)
 
@@ -10,7 +10,7 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 11/09/2026
-    - **Contexte :** Configuration Configurations
+    - **Sujet :** Configurations
 
 ---
 

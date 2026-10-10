@@ -1,8 +1,8 @@
 ---
-description: Création d'un compte administrateur local pour WAC.
+description: "Création d'un compte WAC"
 ---
 
-# BLOC 2 - Création d'un compte WAC
+# Création d'un compte WAC
 
 ![Bannière CUB](../../assets/banniere-cub.png)
 
@@ -10,21 +10,15 @@ description: Création d'un compte administrateur local pour WAC.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 28/09/2026
-    - **Contexte :** Administration WAC
+    - **Sujet :** Création d'un compte WAC
 
 ---
 
-## 1. Sommaire
-
-- [1. Sommaire](#1-sommaire)
-- [2. Contexte](#2-contexte)
-- [3. Création du compte pour Administrer WAC](#3-creation-du-compte-pour-administrer-wac)
-
-## 2. Contexte
+## Contexte
 
 Le déploiement et la gestion de Windows Admin Center (WAC) requièrent des droits d'administration sur l'hôte. Cette procédure documente l'automatisation par script PowerShell de la création d'un utilisateur local dédié. L'intégration de ce compte au groupe de sécurité local "Administrateurs" lui octroie les privilèges système nécessaires pour administrer la plateforme WAC.
 
-## 3. Création du compte pour Administrer WAC {#3-creation-du-compte-pour-administrer-wac}
+## Création du compte pour Administrer WAC {#3-creation-du-compte-pour-administrer-wac}
 
 3.1. **Création du compte utilisateur local.** Conversion du mot de passe en chaîne sécurisée et instanciation du compte système.
 

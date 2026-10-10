@@ -1,5 +1,5 @@
 ---
-description: Fiche recette du serveur DNS Récursif (dns1)
+description: "Fiche Recette : DNS Récursif (Unbound)"
 ---
 
 # Fiche Recette : DNS Récursif (Unbound)
@@ -10,34 +10,23 @@ description: Fiche recette du serveur DNS Récursif (dns1)
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 08/10/2026
-    - **Contexte :** Validation fonctionnelle du serveur DNS récursif (dns1) avec tests de résolution d'arborescence complète (traçage de la délégation) vers l'agence de Dortmund.
+    - **Sujet :** Fiche Recette : DNS Récursif (Unbound)
 
 ---
 
-## 1. Sommaire
+## Objectif des tests
 
-- [1. Sommaire](#1-sommaire)
-- [2. Objectif des tests](#2-objectif-des-tests)
-- [3. Tests de l'arborescence (Traçage DNS)](#3-tests-de-larborescence-tracage-dns)
-  - [3.1. Traçage vers le serveur Esclave (ns1)](#31-tracage-vers-le-serveur-esclave-ns1)
-  - [3.2. Traçage vers le serveur Maître (ns0)](#32-tracage-vers-le-serveur-maitre-ns0)
-- [4. Conclusion](#4-conclusion)
-
----
-
-## 2. Objectif des tests
-
-Cette fiche recette a pour but de vérifier que le serveur DNS récursif local (`dns1` sous Unbound) est parfaitement capable de résoudre des noms de domaines de manière récursive en partant des serveurs racines d'Internet (Root Servers), jusqu'aux serveurs faisant autorité pour les sous-domaines du projet CUB (`dortmund.cub.sioplc.fr`). 
+Cette fiche recette a pour but de vérifier que le serveur DNS récursif local (`dns1` sous Unbound) est parfaitement capable de résoudre des noms de domaines de manière récursive en partant des serveurs racines d'Internet (Root Servers), jusqu'aux serveurs faisant autorité pour les sous-domaines du projet CUB (`dortmund.cub.sioplc.fr`).
 
 Ces tests valident le bon fonctionnement de la délégation de zone depuis le domaine principal `sioplc.fr` jusqu'à la DMZ.
 
 ---
 
-## 3. Tests de l'arborescence (Traçage DNS)
+## Tests de l'arborescence (Traçage DNS)
 
 Pour tester la résolution complète depuis la racine, la commande `dig +trace` est exécutée sur le client `dns1`. Elle force le résolveur à interroger successivement chaque niveau de la hiérarchie DNS.
 
-### 3.1. Traçage vers le serveur Esclave (ns1)
+### Traçage vers le serveur Esclave (ns1)
 
 **Commande exécutée :**
 ```bash
@@ -89,7 +78,7 @@ dortmund.cub.sioplc.fr. 43200   IN      NS      ns1.dortmund.cub.sioplc.fr.
 
 ---
 
-### 3.2. Traçage vers le serveur Maître (ns0)
+### Traçage vers le serveur Maître (ns0)
 
 **Commande exécutée :**
 ```bash
@@ -135,10 +124,10 @@ Tout comme pour l'esclave, la chaîne de délégation est suivie de bout en bout
 
 ---
 
-## 4. Conclusion
+## Conclusion
 
 > [!success] Bon fonctionnement du résolveur et des délégations
-> Les tests avec la commande `dig +trace` démontrent de manière irréfutable que le serveur DNS récursif (`dns1`) navigue correctement dans l'arbre DNS mondial pour trouver les adresses de l'infrastructure CUB. 
-> 
+> Les tests avec la commande `dig +trace` démontrent de manière irréfutable que le serveur DNS récursif (`dns1`) navigue correctement dans l'arbre DNS mondial pour trouver les adresses de l'infrastructure CUB.
+>
 > La chaîne de délégation (`.fr` -> `sioplc.fr` -> `cub.sioplc.fr` -> `dortmund.cub.sioplc.fr`) est parfaitement fluide et fonctionnelle, garantissant l'accessibilité des ressources de l'agence de Dortmund.
 

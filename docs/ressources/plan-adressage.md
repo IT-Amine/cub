@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Plan d'adressage"
 ---
 
-# BLOC 2 - Plan d'adressage
+# Plan d'adressage
 
 ![Bannière CUB](../assets/banniere-cub.png)
 
@@ -10,7 +10,7 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 04/09/2026
-    - **Contexte :** Configuration Plan d'adressage
+    - **Sujet :** Plan d'adressage
 
 ---
 
@@ -19,19 +19,11 @@ description: Documentation et procédure technique.
 
 ---
 
-
-## 1. Sommaire
-
-- [1. Sommaire](#1-sommaire)
-- [2. Contexte](#2-contexte)
-- [3. Plan d'adressage](#3-plan-dadressage)
-- [4. Calcul du plan d'adressage](#4-calcul-du-plan-dadressage)
-
-## 2. Contexte
+## Contexte
 
 Ce document définit le plan d'adressage IP (IPv4) de l'infrastructure réseau. La méthode VLSM (Variable Length Subnet Masking) est utilisée pour optimiser l'allocation des adresses IP en adaptant la taille de chaque sous-réseau aux stricts besoins d'hôtes requis par composant. L'objectif est de segmenter logiquement le réseau via des VLANs (DMZ, Production, Clients, Administration, Inter-connexion) afin d'assurer l'isolation des flux, la sécurité et un routage optimisé.
 
-## 3. Plan d'adressage
+## Plan d'adressage
 
 | ID VLAN | Nom | Réseau | CIDR | Masque | Première @ | Dernière @ | Broadcast |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -42,9 +34,9 @@ Ce document définit le plan d'adressage IP (IPv4) de l'infrastructure réseau. 
 | 53 | Bastion | 192.168.4.208 | /29 | 255.255.255.248 | 192.168.4.209 | 192.168.4.214 | 192.168.4.215 |
 | 2 | Inter-co SW L3 et FW | 192.168.44.248 | /29 | 255.255.255.248 | 192.168.44.249 | 192.168.44.254 | 192.168.44.255 |
 
-## 4. Calcul du plan d'adressage
+## Calcul du plan d'adressage
 
-### 4.1. Figure 1 - Tableau des valeurs des puissances de 2
+### Figure 1 - Tableau des valeurs des puissances de 2
 
 | Valeurs ² | Puissances ² |
 | --- | --- |
@@ -56,7 +48,7 @@ Ce document définit le plan d'adressage IP (IPv4) de l'infrastructure réseau. 
 | 4 | 2 |
 | 2 | 1 |
 
-### 4.2. Calcul du réseau `Production`
+### Calcul du réseau `Production`
 
 **1. Trouver la puissance de 2 (bits d'hôtes)**
 Pour héberger un besoin d'au moins 121 hôtes, il faut trouver la puissance de 2 permettant d'obtenir ce nombre de machines (en retirant l'adresse réseau et l'adresse de broadcast) :

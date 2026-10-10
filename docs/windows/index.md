@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Administration Windows"
 ---
 
-# BLOC 2 - Administration Windows
+# Administration Windows
 
 ![Bannière CUB](../assets/banniere-cub.png)
 
@@ -10,7 +10,7 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 16/09/2026
-    - **Contexte :** Configuration Administration Windows
+    - **Sujet :** Administration Windows
 
 ---
 

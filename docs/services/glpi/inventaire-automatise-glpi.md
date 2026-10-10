@@ -2,28 +2,19 @@
 
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
----
-
-## Informations
-
-- **Auteur :** KADA Amine
-- **Date :** 26/09/2026
-- **Domaine :** Exploitation services
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 26/09/2026
+    - **Sujet :** Mise en place de l'inventaire automatisé sur GLPI
 
 ---
 
-## 1. Sommaire
-
-- [2. Contexte : L'agent GLPI](#2-contexte-lagent-glpi)
-- [3. Activation de l'inventaire dans GLPI](#3-activation-de-linventaire-dans-glpi)
-- [4. Création de la GPO pour déployer l'agent GLPI](#4-creation-de-la-gpo-pour-deployer-lagent-glpi)
-- [5. Test et validation](#5-test-et-validation)
-
-## 2. Contexte : L'agent GLPI {#2-contexte-lagent-glpi}
+## Contexte : L'agent GLPI {#2-contexte-lagent-glpi}
 
 L'agent GLPI est basé sur l'agent open source FusionInventory. Il permet d'inventorier automatiquement les équipements (ordinateurs, smartphones, tablettes) pour remonter les informations matérielles et logicielles dans GLPI. L'agent est compatible avec plusieurs OS, incluant Windows (32 et 64 bits), macOS, Linux et Android. Cette procédure détaille le déploiement sur Windows via GPO (Group Policy Object).
 
-## 3. Activation de l'inventaire dans GLPI {#3-activation-de-linventaire-dans-glpi}
+## Activation de l'inventaire dans GLPI {#3-activation-de-linventaire-dans-glpi}
 
 3.1. **Activer la fonctionnalité.** Contrairement aux versions précédentes nécessitant un plugin, la fonction d'inventaire est native dans GLPI 10 mais désactivée par défaut.
 
@@ -37,7 +28,7 @@ Menu de navigation : Administration > Inventaire > Cocher "Activer l'inventaire"
 
 ![GLPI inventaire](./assets/inventaire-automatise-glpi/01-activer-inventaire-glpi.png)
 
-## 4. Création de la GPO pour déployer l'agent GLPI {#4-creation-de-la-gpo-pour-deployer-lagent-glpi}
+## Création de la GPO pour déployer l'agent GLPI {#4-creation-de-la-gpo-pour-deployer-lagent-glpi}
 
 4.1. **Préparation du package d'installation.** Téléchargez le package MSI de l'agent GLPI depuis le GitHub officiel et placez-le sur un partage réseau accessible en lecture par les "Ordinateurs du domaine".
 
@@ -94,7 +85,7 @@ Action : Clic droit > Nouveau > Élément Registre
 
 ![Configuration registre tag GLPI](./assets/inventaire-automatise-glpi/05-registre-tag-glpi.png)
 
-## 5. Test et validation {#5-test-et-validation}
+## Test et validation {#5-test-et-validation}
 
 5.1. **Application de la GPO sur un poste.** Sur un poste de travail membre de l'OU ciblée, forcez la mise à jour des stratégies.
 

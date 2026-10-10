@@ -1,5 +1,5 @@
 ---
-description: Documentation et procédure technique.
+description: "Plan de l'infrastructure CUB"
 ---
 
 # Plan de l'infrastructure CUB
@@ -10,7 +10,7 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 16/09/2026
-    - **Contexte :** Configuration Plan de l'infrastructure CUB
+    - **Sujet :** Plan de l'infrastructure CUB
 
 ---
 

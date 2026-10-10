@@ -1,18 +1,19 @@
 ---
-description: Documentation et procédure technique de l'infrastructure CUB.
+description: "Accueil CUB"
 ---
 # Accueil CUB
 
 [![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=300&size=15&duration=9000&pause=1000&width=435&lines=Bienvenu+%C3%A0+l'agence+Dortmund%2C+CUB+!)](https://git.io/typing-svg)
 
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 16/09/2026
+    - **Sujet :** Accueil CUB
+
 ---
 
 ![Bannière CUB](assets/banniere-cub.png)
-
-!!! abstract "Informations sur la documentation"
-    - **Auteur :** KADA Amine
-    - **Classe :** BTS SIO 2 - Option SISR
-    - **Contexte :** Projet CUB — Accueil et indexation
 
 ---
 

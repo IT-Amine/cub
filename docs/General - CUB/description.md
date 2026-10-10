@@ -1,5 +1,5 @@
 ---
-description: Documentation détaillée de l'infrastructure réseau et système de l'entreprise CUB.
+description: "Description de l'infrastructure"
 ---
 
 # Description de l'infrastructure
@@ -9,7 +9,8 @@ description: Documentation détaillée de l'infrastructure réseau et système d
 !!! abstract "Informations sur le document"
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
-    - **Contexte :** Description des agences, plans d'adressage et services
+    - **Date :** 16/09/2026
+    - **Sujet :** Description de l'infrastructure
 
 ---
 

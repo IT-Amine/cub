@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Exploitation des services"
 ---
 
-# BLOC 2 - Exploitation des services
+# Exploitation des services
 
 ![Bannière CUB](../assets/banniere-cub.png)
 
@@ -10,7 +10,7 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 16/09/2026
-    - **Contexte :** Configuration Exploitation des services
+    - **Sujet :** Exploitation des services
 
 ---
 

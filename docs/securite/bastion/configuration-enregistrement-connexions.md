@@ -2,28 +2,19 @@
 
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
----
-
-## Informations
-
-- **Auteur :** KADA Amine
-- **Date :** 07/10/2026
-- **Domaine :** Administration Windows
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 07/10/2026
+    - **Sujet :** Configuration de l'enregistrement des connexions
 
 ---
 
-## 1. Sommaire
-
-- [1. Sommaire](#1-sommaire)
-- [2. Contexte](#2-contexte)
-- [3. Configuration de l'enregistrement](#3-configuration-de-lenregistrement)
-- [4. Vérification](#4-verification)
-
-## 2. Contexte
+## Contexte
 
 Cette procédure détaille la configuration de l'enregistrement systématique des sessions de connexion (incluant la capture vidéo et les événements clavier). Dans une démarche orientée SRE et sécurité, la traçabilité complète des interventions sur les serveurs garantit l'observabilité des actions administrateurs, facilite les audits de conformité et permet le rejeu des incidents.
 
-## 3. Configuration de l'enregistrement
+## Configuration de l'enregistrement
 
 3.1.  **Sélection de la connexion.** Se rendre dans les Paramètres > Connexions, puis sélectionner la connexion cible à configurer.
 
@@ -43,7 +34,7 @@ Définir les paramètres suivants :
 
 ![Paramétrage de la capture](./assets/configuration-enregistrement-connexions/02-configuration-connexion.png)
 
-## 4. Vérification {#4-verification}
+## Vérification {#4-verification}
 
 4.1.  **Génération d'événements de test.** Démarrer une session sur un serveur depuis les connexions configurées et exécuter quelques commandes d'administration courantes pour générer de la donnée d'historique.
 

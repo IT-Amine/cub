@@ -1,8 +1,8 @@
 ---
-description: Déploiement et configuration d'un serveur DNS autoritaire Esclave (ns1)
+description: "Déploiement DNS Esclave (ns1)"
 ---
 
-# BLOC 2 - Déploiement DNS Esclave (ns1)
+# Déploiement DNS Esclave (ns1)
 
 ![Bannière CUB](../../assets/banniere-cub.png)
 
@@ -10,35 +10,21 @@ description: Déploiement et configuration d'un serveur DNS autoritaire Esclave 
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 01/10/2026
-    - **Contexte :** Mise en place du serveur DNS autoritaire esclave (ns1 - 192.36.4.11) dans la DMZ de l'agence de Dortmund pour la zone dortmund.cub.sioplc.fr, en redondance du serveur maître (ns0) déployé par KADA Amine.
+    - **Sujet :** Déploiement DNS Esclave (ns1)
 
 ---
 
-## 1. Sommaire
-
-- [1. Sommaire](#1-sommaire)
-- [2. Contexte](#2-contexte)
-- [3. Préparation et sauvegarde](#3-preparation-et-sauvegarde)
-- [4. Configuration globale du service](#4-configuration-globale-du-service)
-- [5. Déclaration de la zone DNS esclave](#5-declaration-de-la-zone-dns-esclave)
-- [6. Configuration de la journalisation](#6-configuration-de-la-journalisation)
-- [7. Configuration de la sécurité AppArmor](#7-configuration-de-la-securite-apparmor)
-- [8. Vérification et validation](#8-verification-et-validation)
-- [9. Retour arrière](#9-retour-arriere)
-
----
-
-## 2. Contexte
+## Contexte
 
 Ce document détaille la procédure de déploiement en production du serveur DNS secondaire (esclave) `ns1` de l'agence de Dortmund. Positionné dans la DMZ avec l'adresse IP `192.36.4.11`, ce serveur assure la haute disponibilité de la résolution de noms pour le domaine `dortmund.cub.sioplc.fr`. Contrairement au serveur maître (`ns0` sur `192.36.4.10`) géré par KADA Amine, ce serveur ne nécessite pas la création manuelle du fichier de zone. Il est configuré pour rapatrier dynamiquement et automatiquement les enregistrements via un transfert de zone sécurisé (AXFR) depuis le maître.
 
 ---
 
-## 3. Préparation et sauvegarde
+## Préparation et sauvegarde
 
 Avant toute modification de la configuration système, il est impératif d'installer les paquets requis et de générer une sauvegarde de l'état initial pour permettre un retour arrière propre.
 
-### 3.1. Mise à jour et installation de Bind9
+### Mise à jour et installation de Bind9
 
 Actualisation des dépôts et installation du service DNS.
 
@@ -47,7 +33,7 @@ sudo apt update && sudo apt upgrade -y
 sudo apt install bind9 -y
 ```
 
-### 3.2. Sauvegarde de la configuration
+### Sauvegarde de la configuration
 
 Sécurisation des répertoires avant modification.
 
@@ -58,9 +44,9 @@ sudo cp /etc/apparmor.d/usr.sbin.named /etc/apparmor.d/usr.sbin.named.bak
 
 ---
 
-## 4. Configuration globale du service
+## Configuration globale du service
 
-### 4.1. Définition des options globales
+### Définition des options globales
 
 Modification du fichier d'options pour définir l'interface d'écoute locale, désactiver la récursivité (prévention des attaques d'amplification) et masquer la version du daemon.
 
@@ -78,7 +64,7 @@ options {
     // Définit le port et la ou les adresses IPv4 d’écoute du service Bind
     listen-on port 53 { 127.0.0.1; 192.36.4.11; };
 
-    // Recursion permet d'autoriser ou d'interdire la récursivité sur un serveur DNS. 
+    // Recursion permet d'autoriser ou d'interdire la récursivité sur un serveur DNS.
     // Par défaut un serveur DNS faisant autorité ne doit pas être récursif.
     recursion no;
 
@@ -89,12 +75,12 @@ options {
 
 ---
 
-## 5. Déclaration de la zone DNS esclave
+## Déclaration de la zone DNS esclave
 
 > [!info] Synchronisation de la zone
 > Le répertoire `/var/cache/bind/` est utilisé en raison des droits d'écriture natifs accordés à l'utilisateur système `bind`. Aucun fichier de zone n'est à créer manuellement : la directive `file` instruit Bind9 de l'emplacement de sauvegarde du fichier compilé à la suite du transfert AXFR.
 
-### 5.1. Ajout de la zone esclave
+### Ajout de la zone esclave
 
 Configuration de la zone pour désigner ce serveur comme secondaire et pointer vers le serveur maître.
 
@@ -114,11 +100,11 @@ zone "dortmund.cub.sioplc.fr" {
 
 ---
 
-## 6. Configuration de la journalisation
+## Configuration de la journalisation
 
 Afin de monitorer efficacement le service et diagnostiquer la bonne exécution du transfert de zone, une journalisation dédiée est mise en place.
 
-### 6.1. Création du fichier de log
+### Création du fichier de log
 
 Initialisation du journal et attribution des permissions au compte de service `bind`.
 
@@ -127,7 +113,7 @@ sudo touch /var/log/bind.log
 sudo chown bind:bind /var/log/bind.log
 ```
 
-### 6.2. Paramétrage du module de log
+### Paramétrage du module de log
 
 Configuration de la rétention, du format et du niveau de verbosité.
 
@@ -150,7 +136,7 @@ logging {
 };
 ```
 
-### 6.3. Inclusion de la configuration
+### Inclusion de la configuration
 
 Intégration du module de log à la configuration primaire du service.
 
@@ -173,12 +159,12 @@ include "/etc/bind/named.conf.log";
 
 ---
 
-## 7. Configuration de la sécurité AppArmor
+## Configuration de la sécurité AppArmor
 
 > [!warning] Contrôle d'accès MAC
 > Sous Debian, AppArmor interdit par défaut au daemon `named` d'écrire en dehors de ses répertoires stricts. Une exception doit être ajoutée pour permettre l'écriture dans `/var/log/bind.log`.
 
-### 7.1. Ajustement des droits
+### Ajustement des droits
 
 Déclaration de l'autorisation explicite de lecture/écriture pour le fichier de log.
 
@@ -193,7 +179,7 @@ sudoedit /etc/apparmor.d/usr.sbin.named
 /var/log/bind.log rw,
 ```
 
-### 7.2. Rechargement d'AppArmor
+### Rechargement d'AppArmor
 
 Prise en compte à chaud des nouvelles règles de confinement.
 
@@ -204,9 +190,9 @@ sudo systemctl restart apparmor
 
 ---
 
-## 8. Vérification et validation
+## Vérification et validation
 
-### 8.1. Contrôle de la syntaxe globale
+### Contrôle de la syntaxe globale
 
 Validation des fichiers de configuration. *(Note : l'utilitaire `named-checkconf` est exécuté sans l'option `-z` ici car le fichier de zone n'existe pas encore avant le premier démarrage).*
 
@@ -214,7 +200,7 @@ Validation des fichiers de configuration. *(Note : l'utilitaire `named-checkconf
 sudo named-checkconf
 ```
 
-### 8.2. Redémarrage et vérification du statut
+### Redémarrage et vérification du statut
 
 Application des modifications et contrôle de l'état d'exécution du daemon pour déclencher le premier transfert.
 
@@ -223,7 +209,7 @@ sudo systemctl restart bind9
 sudo systemctl status bind9
 ```
 
-### 8.3. Validation du transfert de zone (AXFR)
+### Validation du transfert de zone (AXFR)
 
 **Objectif :** Confirmer la synchronisation effective depuis le maître `192.36.4.10`.
 
@@ -255,7 +241,7 @@ etudiant@ns1:~$ sudo grep -i "transfer" /var/log/bind.log
 
 ---
 
-## 9. Retour arrière
+## Retour arrière
 
 En cas de dysfonctionnement critique ou d'erreur de syntaxe empêchant le démarrage du service, exécuter les commandes suivantes pour restaurer la configuration d'origine.
 

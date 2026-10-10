@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Configuration d'une interface sur Stormshield avec la configuration IP"
 ---
 
-# BLOC 3 - Configuration d'une interface sur Stormshield avec la configuration IP
+# Configuration d'une interface sur Stormshield avec la configuration IP
 
 ![Bannière CUB](../../../assets/banniere-cub.png)
 
@@ -10,31 +10,15 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 12/09/2026
-    - **Contexte :** Configuration Configuration d'une interface sur Stormshield avec la configuration IP
+    - **Sujet :** Configuration d'une interface sur Stormshield avec la configuration IP
 
 ---
 
-## Informations
-
-- **Auteur :** Amine Kada
-- **Date :** 12/09/2026
-- **Domaine :** Réseau
-
----
-
-## 1. Sommaire
-
-- [1. Sommaire](#1-sommaire)
-- [2. Contexte](#2-contexte)
-- [3. Accès à la topologie des interfaces](#3-acces-a-la-topologie-des-interfaces)
-- [4. Provisionnement de l'adresse IP statique](#4-provisionnement-de-ladresse-ip-statique)
-- [5. Application et contrôle d'état](#5-application-et-controle-detat)
-
-## 2. Contexte
+## Contexte
 
 Le provisionnement d'une interface réseau avec une adresse IP statique sur un pare-feu Stormshield Network Security (SNS) est un prérequis structurel de l'infrastructure. Cette procédure garantit un point de routage déterministe pour les segments internes (LAN, DMZ) et permet l'application stricte des politiques de sécurité (filtrage, NAT, IPsec). L'opération nécessite une définition exacte du bloc CIDR et une validation rigoureuse de la table de routage pour prévenir tout conflit d'adressage (IP overlap) au sein de l'architecture.
 
-## 3. Accès à la topologie des interfaces {#3-acces-a-la-topologie-des-interfaces}
+## Accès à la topologie des interfaces {#3-acces-a-la-topologie-des-interfaces}
 
 3.1. **Navigation vers le module d'interface**. Depuis la console d'administration Web de l'appliance, se rendre dans **CONFIGURATION** > **RÉSEAU** > **INTERFACES** pour visualiser la hiérarchie logique et physique (ponts, agrégats, VLANs).
 
@@ -43,7 +27,7 @@ Le provisionnement d'une interface réseau avec une adresse IP statique sur un p
 
 ![Vue d'ensemble des interfaces](../../../assets/stormshield/configuration-interface-stormshield/vu-ensemble-interfaces.png)
 
-## 4. Provisionnement de l'adresse IP statique
+## Provisionnement de l'adresse IP statique
 
 4.1. **Édition des paramètres d'interface**. Sélectionner l'interface cible (par exemple `dmz1`) dans l'arborescence, activer son état administratif (`ON`) et la catégoriser selon son niveau de confiance.
 
@@ -57,7 +41,7 @@ Le provisionnement d'une interface réseau avec une adresse IP statique sur un p
 - `Adresse IPv4` : Sélectionner `IP fixe (statique)`.
 - `Adresse / Masque` : Saisir la valeur de l'adresse IP suivie de la notation CIDR du sous-réseau (ex: `192.168.1.1/24`).
 
-## 5. Application et contrôle d'état {#5-application-et-controle-detat}
+## Application et contrôle d'état {#5-application-et-controle-detat}
 
 5.1. **Validation de la configuration**. Cliquer sur "Appliquer" au niveau du panneau de l'interface, puis valider globalement la configuration du pare-feu avec le bouton "APPLIQUER" situé en bas de la page.
 

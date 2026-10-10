@@ -2,13 +2,11 @@
 
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
----
-
-## Informations
-
-- **Auteur :** KADA Amine
-- **Date :** 06/10/2026
-- **Domaine :** Administration Windows
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 06/10/2026
+    - **Sujet :** Documents
 
 ---
 

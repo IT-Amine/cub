@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Administration et supervision des Réseaux"
 ---
 
-# BLOC 2 - Administration et supervision des Réseaux
+# Administration et supervision des Réseaux
 
 ![Bannière CUB](../assets/banniere-cub.png)
 
@@ -10,7 +10,7 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 16/09/2026
-    - **Contexte :** Configuration Administration et supervision des Réseaux
+    - **Sujet :** Administration et supervision des Réseaux
 
 ---
 

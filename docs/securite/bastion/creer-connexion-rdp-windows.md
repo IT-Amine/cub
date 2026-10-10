@@ -2,27 +2,19 @@
 
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
----
-
-## Informations
-
-- **Auteur :** KADA Amine
-- **Date :** 01/10/2026
-- **Domaine :** Cybersécurité
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 01/10/2026
+    - **Sujet :** Configuration d'une Connexion RDP sur Guacamole
 
 ---
 
-## 1. Sommaire
-
-- [1. Sommaire](#1-sommaire)
-- [2. Contexte](#2-contexte)
-- [3. Déploiement d'une connexion RDP standardisée](#3-deploiement-dune-connexion-rdp)
-
-## 2. Contexte
+## Contexte
 
 L'objectif de cette procédure est de standardiser l'instanciation des accès distants via le protocole RDP pour l'ensemble du parc de serveurs et postes de travail Windows de l'infrastructure CUB. Elle documente les paramètres de configuration obligatoires, en particulier l'authentification au niveau du réseau (NLA) et la gestion des certificats hôtes, afin de garantir l'établissement sécurisé et systématique des sessions au travers du bastion.
 
-## 3. Déploiement d'une connexion RDP {#3-deploiement-dune-connexion-rdp}
+## Déploiement d'une connexion RDP {#3-deploiement-dune-connexion-rdp}
 
 3.1. **Initialisation de la ressource.** Depuis l'interface web d'administration de Guacamole, naviguer dans le menu `Paramètres` > `Connexions`, puis cliquer sur le bouton `Nouvelle connexion`.
 

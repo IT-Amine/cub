@@ -2,27 +2,19 @@
 
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
----
-
-## Informations
-
-- **Auteur :** KADA Amine
-- **Date :** 06/10/2026
-- **Domaine :** Administration Windows
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 06/10/2026
+    - **Sujet :** Manipulation des variables, propriétés et méthodes des objets
 
 ---
 
-## 1. Sommaire
-
-- [1. Sommaire](#1-sommaire)
-- [2. Contexte](#2-contexte)
-- [3. Variables, Propriétés et Méthodes des Objets](#3-variables-proprietes-et-methodes-des-objets)
-
-## 2. Contexte
+## Contexte
 
 Cette procédure documente les standards de manipulation des variables et de l'approche orientée objet au sein de PowerShell. Contrairement aux scripts de type Batch (texte pur), PowerShell manipule des objets en mémoire. La maîtrise des variables, de leurs propriétés (états) et de leurs méthodes (actions) est un prérequis indispensable pour l'écriture de scripts d'automatisation d'infrastructure (IaC) fiables et maintenables.
 
-## 3. Variables, Propriétés et Méthodes des Objets {#3-variables-proprietes-et-methodes-des-objets}
+## Variables, Propriétés et Méthodes des Objets {#3-variables-proprietes-et-methodes-des-objets}
 
 3.1.  **Déclarer et assigner une variable.** PowerShell permet de stocker la sortie d'une commande valide dans une variable, agissant ainsi comme un pointeur vers l'objet créé.
 

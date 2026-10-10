@@ -2,27 +2,19 @@
 
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
----
-
-## Informations
-
-- **Auteur :** KADA Amine
-- **Date :** 01/10/2026
-- **Domaine :** Cybersécurité
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 01/10/2026
+    - **Sujet :** Configuration d'une Connexion SSH sur Guacamole
 
 ---
 
-## 1. Sommaire
-
-- [1. Sommaire](#1-sommaire)
-- [2. Contexte](#2-contexte)
-- [3. Déploiement d'une connexion SSH](#3-deploiement-dune-connexion-ssh)
-
-## 2. Contexte
+## Contexte
 
 L'objectif de cette procédure est de documenter l'intégration sécurisée d'un équipement Linux via le protocole SSH au sein du bastion. L'opération inclut le renseignement des paramètres réseaux, l'affectation logique à un groupe de connexions pour le maintien de l'architecture RBAC, et la validation de l'étanchéité des droits d'accès entre les différents profils d'administration déléguée.
 
-## 3. Déploiement d'une connexion SSH {#3-deploiement-dune-connexion-ssh}
+## Déploiement d'une connexion SSH {#3-deploiement-dune-connexion-ssh}
 
 3.1. **Initialisation des paramètres protocolaires.** Depuis l'interface web d'administration de Guacamole, naviguer dans le menu `Paramètres` > `Connexions`, puis cliquer sur le bouton `Nouvelle connexion`. Renseigner les caractéristiques de la machine cible :
 

@@ -2,27 +2,19 @@
 
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
----
-
-## Informations
-
-- **Auteur :** KADA Amine
-- **Date :** 06/10/2026
-- **Domaine :** Administration Windows
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 06/10/2026
+    - **Sujet :** Fondamentaux de Powershell
 
 ---
 
-## 1. Sommaire
-
-- [1. Sommaire](#1-sommaire)
-- [2. Contexte](#2-contexte)
-- [3. Les commandes PowerShell](#3-les-commandes-powershell)
-
-## 2. Contexte
+## Contexte
 
 Cette documentation documente les fondamentaux de l'administration via PowerShell. Ce composant est essentiel pour l'automatisation des infrastructures (IaC) en environnement Windows. Il permet une manipulation des données orientée objet et garantit la standardisation des procédures de requêtes et de configuration système.
 
-## 3. Les Commandes PowerShell
+## Les Commandes PowerShell
 
 3.1.  **Utiliser la touche Tabulation.** La touche `<tab>` complète automatiquement les noms (commande, paramètre, chemin ou fichier).
 

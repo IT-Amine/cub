@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Implémentation des mots de passe par niveau d'accès (Cisco)"
 ---
 
-# BLOC 2 - Implémentation des mots de passe par niveau d'accès (Cisco)
+# Implémentation des mots de passe par niveau d'accès (Cisco)
 
 ![Bannière CUB](../../../assets/banniere-cub.png)
 
@@ -10,24 +10,15 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 05/09/2026
-    - **Contexte :** Configuration Implémentation des mots de passe par niveau d'accès (Cisco)
+    - **Sujet :** Implémentation des mots de passe par niveau d'accès (Cisco)
 
 ---
 
-## 1. Sommaire
-
-* [1. Sommaire](#1-sommaire)
-* [2. Contexte](#2-contexte)
-* [3. Chiffrement global de la configuration](#3-chiffrement-global-de-la-configuration)
-* [4. Sécurisation du mode d'exécution privilégié (Enable)](#4-securisation-du-mode-dexecution-privilegie-enable)
-* [5. Sécurisation de l'accès physique (Console)](#5-securisation-de-lacces-physique-console)
-* [6. Sécurisation du port de secours (AUX)](#6-securisation-du-port-de-secours-aux)
-
-## 2. Contexte
+## Contexte
 
 Le durcissement des accès locaux sur un équipement Cisco (commutateur ou routeur) nécessite de verrouiller chaque point d'entrée matériel et logique. Une configuration propre proscrit l'utilisation de mots de passe en clair (`enable password`). Cette procédure standardise la sécurisation de l'élévation de privilèges et des ports d'administration physiques pour l'infrastructure CUB, en garantissant le chiffrement systématique des secrets dans le fichier de configuration (`running-config`).
 
-## 3. Chiffrement global de la configuration
+## Chiffrement global de la configuration
 
 3.1. **Activation du chiffrement des mots de passe.** Cette commande applique un algorithme de chiffrement (Type 7) à tous les mots de passe actuels et futurs configurés en clair sur l'équipement.
 
@@ -45,7 +36,7 @@ Router(config)# service password-encryption
 * `configure terminal` : Passage en mode de configuration globale.
 * `service password-encryption` : Chiffre instantanément tous les mots de passe en clair (console, aux, vty) dans le fichier de configuration.
 
-## 4. Sécurisation du mode d'exécution privilégié (Enable) {#4-securisation-du-mode-dexecution-privilegie-enable}
+## Sécurisation du mode d'exécution privilégié (Enable) {#4-securisation-du-mode-dexecution-privilegie-enable}
 
 4.1. **Verrouillage de l'élévation de privilèges.** Définition d'un mot de passe robuste pour protéger l'accès au mode administrateur.
 
@@ -57,7 +48,7 @@ Router(config)# enable secret M0tDeP@sseF0rt!
 * `enable secret` : Crée un mot de passe haché avec MD5 (Type 5) ou Scrypt/SHA (Type 9 selon l'IOS). Remplace et annule la commande non sécurisée `enable password`.
 * `[M0tDeP@sseF0rt!]` : Chaîne de caractères constituant le secret d'administration.
 
-## 5. Sécurisation de l'accès physique (Console) {#5-securisation-de-lacces-physique-console}
+## Sécurisation de l'accès physique (Console) {#5-securisation-de-lacces-physique-console}
 
 5.1. **Configuration du port console (CON 0).** Obligation de s'authentifier lors du branchement physique d'un câble console (RJ45/Série) sur l'équipement.
 
@@ -79,7 +70,7 @@ Router(config-line)# exec-timeout 10 0
 * `logging synchronous` : Empêche les messages logs du système (syslog) d'interrompre la ligne de commande en cours de frappe.
 * `exec-timeout 10 0` : Déconnecte la session console après 10 minutes et 0 seconde d'inactivité.
 
-## 6. Sécurisation du port de secours (AUX) {#6-securisation-du-port-de-secours-aux}
+## Sécurisation du port de secours (AUX) {#6-securisation-du-port-de-secours-aux}
 
 6.1. **Configuration du port auxiliaire (AUX 0).** Sécurisation du port modem souvent présent sur les routeurs Cisco, qui représente une faille critique s'il est laissé sans mot de passe.
 

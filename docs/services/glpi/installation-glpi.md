@@ -2,33 +2,22 @@
 
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
----
-
-## Informations
-
-- **Auteur :** KADA Amine
-- **Date :** 26/09/2026
-- **Domaine :** Exploitation services
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 26/09/2026
+    - **Sujet :** Installation de GLPI
 
 ---
 
-## 1. Sommaire
-
-- [2. Contexte](#2-contexte)
-- [3. Préparation du serveur et installation du socle LAMP](#3-preparation-du-serveur-et-installation-du-socle-lamp)
-- [4. Préparation de la base de données](#4-preparation-de-la-base-de-donnees)
-- [5. Téléchargement et préparation de GLPI](#5-telechargement-et-preparation-de-glpi)
-- [6. Configuration Apache2 et PHP-FPM](#6-configuration-apache2-et-php-fpm)
-- [7. Installation Web de GLPI](#7-installation-web-de-glpi)
-
-## 2. Contexte
+## Contexte
 
 Cette procédure décrit l'installation pas-à-pas de GLPI 11 sur une machine Debian 13. L'installation s'appuie sur une pile LAMP : Linux, Apache2, PHP 8.4 (PHP-FPM) et MariaDB Server. GLPI est un logiciel libre de gestion de parc informatique offrant une solution de ticketing, la gestion de l'inventaire, des contrats, des licences et du matériel.
 
 > [!info] Prérequis de GLPI
 > La version minimale de PHP requise est PHP 8.2 (la version 8.4 est installée par défaut sous Debian 13). La base de données nécessite au minimum MySQL 8.0 ou MariaDB 10.6.
 
-## 3. Préparation du serveur et installation du socle LAMP {#3-preparation-du-serveur-et-installation-du-socle-lamp}
+## Préparation du serveur et installation du socle LAMP {#3-preparation-du-serveur-et-installation-du-socle-lamp}
 
 3.1. **Mise à jour du système.** Mise à jour de la liste des paquets et application des mises à jour sur Debian 13.
 
@@ -63,7 +52,7 @@ sudo apt install php8.4-{curl,gd,intl,mysql,zip,bcmath,mbstring,xml,bz2,ldap}
 - `bcmath`, `mbstring`, `xml` : Indispensables pour les QR codes, l'UTF-8 et le traitement XML.
 - `ldap` : Extension recommandée pour s'interfacer avec un annuaire Active Directory.
 
-## 4. Préparation de la base de données {#4-preparation-de-la-base-de-donnees}
+## Préparation de la base de données {#4-preparation-de-la-base-de-donnees}
 
 4.1. **Sécurisation de l'instance MariaDB.** Lancement de l'assistant pour appliquer les configurations de sécurité de base.
 
@@ -95,7 +84,7 @@ EXIT
 - `GRANT ALL PRIVILEGES` : Attribue tous les droits sur cette base à l'utilisateur `glpi_adm` avec authentification locale.
 - `FLUSH PRIVILEGES` : Force la prise en compte immédiate des nouveaux privilèges en mémoire.
 
-## 5. Téléchargement et préparation de GLPI {#5-telechargement-et-preparation-de-glpi}
+## Téléchargement et préparation de GLPI {#5-telechargement-et-preparation-de-glpi}
 
 5.1. **Téléchargement de l'archive GLPI.** Récupération des sources d'installation depuis le GitHub officiel (version 11.0.4).
 
@@ -158,7 +147,7 @@ define('GLPI_LOG_DIR', '/var/log/glpi');
 
 - `define` : Configure les variables pour définir les emplacements personnalisés pour les fichiers et les journaux (logs).
 
-## 6. Configuration Apache2 et PHP-FPM
+## Configuration Apache2 et PHP-FPM
 
 6.1. **Création du VirtualHost.** Configuration du site Apache2 dédié pour GLPI.
 
@@ -230,7 +219,7 @@ sudo systemctl restart apache2
 
 - `systemctl restart` : Relance les processus système pour qu'ils prennent en compte les modifications.
 
-## 7. Installation Web de GLPI
+## Installation Web de GLPI
 
 7.1.  **Lancement de l'assistant de configuration.** Accès au portail d'installation via l'URL définie (`glpi.yourdomain.lan`).
 
@@ -256,7 +245,7 @@ sudo systemctl restart apache2
 
 > [!danger] Comptes par défaut à modifier
 > Une fois connecté sur le tableau de bord, vous devez impérativement changer les mots de passe pour les comptes d'origine :
-> 
+>
 > - `glpi` / `glpi` (Super-Admin)
 > - `tech` / `tech` (Technicien)
 > - `normal` / `normal` (Utilisateur standard)

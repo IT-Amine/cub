@@ -1,8 +1,8 @@
 ---
-description: Procédure pour ajouter un serveur à Windows Admin Center.
+description: "Ajout d'un serveur dans WAC"
 ---
 
-# BLOC 2 - Ajout d'un serveur dans WAC
+# Ajout d'un serveur dans WAC
 
 ![Bannière CUB](../../assets/banniere-cub.png)
 
@@ -10,21 +10,15 @@ description: Procédure pour ajouter un serveur à Windows Admin Center.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 28/09/2026
-    - **Contexte :** Administration WAC
+    - **Sujet :** Ajout d'un serveur dans WAC
 
 ---
 
-## 1. Sommaire
-
-- [1. Sommaire](#1-sommaire)
-- [2. Contexte](#2-contexte)
-- [3. Ajout d'une machine sur WAC](#3-ajout-dune-machine-sur-wac)
-
-## 2. Contexte
+## Contexte
 
 Cette procédure détaille l'intégration d'un nouveau serveur au sein de l'interface centralisée Windows Admin Center (WAC). Ce composant permet une gestion et une supervision à distance de l'infrastructure serveurs Windows, s'intégrant au réseau de gestion CUB tout en nécessitant des autorisations d'administration réseau spécifiques pour communiquer avec le parc de machines.
 
-## 3. Ajout d'une machine sur WAC
+## Ajout d'une machine sur WAC
 
 3.1. **Accès au portail WAC et aux paramètres.** Accéder au site [wac0.local.dortmund.cub.sioplc.fr](https://wac0.local.dortmund.cub.sioplc.fr), puis aller dans les paramètres de WAC.
 
@@ -45,7 +39,7 @@ Cette procédure détaille l'intégration d'un nouveau serveur au sein de l'inte
 3.5. **Configuration des identités de connexion.** Ajouter le nom du serveur et sélectionner `Utiliser un autre compte pour cette connexion` puis mettre les identifiants.
 
 > [!warning] Sécurité et persistance des identifiants
-> Conformément au message de l'interface, ces informations d'identification sont stockées pour cette session uniquement. 
+> Conformément au message de l'interface, ces informations d'identification sont stockées pour cette session uniquement.
 
 ![Configuration des identités de connexion](../../assets/windows-wac/ajout-serveur-wac/05-configuration-identites-connexion.png)
 

@@ -2,23 +2,15 @@
 
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
----
-
-## Informations
-
-- **Auteur :** KADA Amine
-- **Date :** 26/09/2026
-- **Domaine :** Exploitation services
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 26/09/2026
+    - **Sujet :** Création des catégories ITIL sur GLPI
 
 ---
 
-## 1. Sommaire
-
-- [2. Contexte](#2-contexte)
-- [3. Création d'une catégorie via API REST (CLI)](#3-creation-dune-categorie-via-api-rest-cli)
-- [4. Création d'une catégorie via l'Interface Web (IHM)](#4-creation-dune-categorie-via-linterface-web-ihm)
-
-## 2. Contexte
+## Contexte
 
 ITIL (Information Technology Infrastructure Library) est un référentiel mondial regroupant les bonnes pratiques du management du système d'information (ITSM). Il standardise les processus d'assistance pour aligner les services IT sur les besoins de l'entreprise.
 
@@ -29,13 +21,13 @@ Dans GLPI, les **catégories ITIL** permettent de classifier structurellement le
 > - **Incident :** Une interruption non planifiée ou une dégradation de la qualité d'un service IT (ex: "Le serveur Web ne répond plus").
 > - **Demande de service :** Une demande formelle de la part d'un utilisateur pour fournir quelque chose (ex: "Demande d'accès au dossier partagé", "Création d'une VM").
 
-## 3. Création d'une catégorie via API REST (CLI) {#3-creation-dune-categorie-via-api-rest-cli}
+## Création d'une catégorie via API REST (CLI) {#3-creation-dune-categorie-via-api-rest-cli}
 
 3.1. **Création programmatique.** Injection d'une nouvelle catégorie racine "Infrastructure" via l'API, facilitant l'automatisation (IaC).
 
 ```bash title="create_itil_category.sh" hl_lines="6"
 curl -X POST "https://glpi.yourdomain.lan/apirest.php/ITILCategory" \
-        -H "Content-Type: application/json" \ 
+        -H "Content-Type: application/json" \
         -H "App-Token: v0tr3_app_t0k3n_s3cr3t" \
         -H "Session-Token: v0tr3_s3ssi0n_t0k3n" \
         -d '{"input": {"name": "Infrastructure", "itilcategories_id": 0, "is_incident": 1, "is_request": 0}}'
@@ -47,7 +39,7 @@ curl -X POST "https://glpi.yourdomain.lan/apirest.php/ITILCategory" \
 * `itilcategories_id` : ID de la catégorie parente (`0` indique qu'il s'agit d'une catégorie racine).
 * `is_incident` / `is_request` : Drapeaux booléens. Ici `1` pour incident et `0` pour demande, restreignant l'usage de cette catégorie aux incidents uniquement.
 
-## 4. Création d'une catégorie via l'Interface Web (IHM) {#4-creation-dune-categorie-via-linterface-web-ihm}
+## Création d'une catégorie via l'Interface Web (IHM) {#4-creation-dune-categorie-via-linterface-web-ihm}
 
 4.1. **Accès au dictionnaire ITIL.** Navigation vers les intitulés pour structurer l'arbre de classification.
 

@@ -2,23 +2,15 @@
 
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
----
-
-## Informations
-
-- **Auteur :** KADA Amine
-- **Date :** 26/09/2026
-- **Domaine :** Exploitation services
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 26/09/2026
+    - **Sujet :** Création et gestion des entités GLPI
 
 ---
 
-## 1. Sommaire
-
-- [2. Contexte : Architecture multi-tenant et isolation](#2-contexte)
-- [3. Création de l'entité via API REST](#3-creation-de-lentite-via-api-rest)
-- [4. Création de l'entité via l'Interface Web (IHM)](#4-creation-de-lentite-via-linterface-web-ihm)
-
-## 2. Contexte {#2-contexte}
+## Contexte {#2-contexte}
 
 Dans GLPI, une **entité** est une unité organisationnelle permettant de segmenter et de compartimenter les données (concept de Multi-tenancy). Ce mécanisme est crucial pour isoler les parcs informatiques, les utilisateurs et les tickets d'assistance entre différents clients, filiales ou départements.
 
@@ -31,7 +23,7 @@ Dans GLPI, une **entité** est une unité organisationnelle permettant de segmen
 > [!warning] Conception de l'arborescence
 > Une arborescence mal pensée dès l'initialisation du projet (ex: absence d'entité racine fédératrice ou arborescence trop profonde) entraînera des migrations de données complexes et des failles de cloisonnement. Il est recommandé de mapper la structure selon les besoins de refacturation ou d'isolation réseau.
 
-## 3. Création de l'entité via API REST {#3-creation-de-lentite-via-api-rest}
+## Création de l'entité via API REST {#3-creation-de-lentite-via-api-rest}
 
 3.1.  **Génération de l'entité.** Création d'une sous-entité en utilisant le client d'API. Cette méthode garantit l'idempotence et permet l'intégration du provisionnement GLPI dans des pipelines d'automatisation.
 
@@ -48,7 +40,7 @@ curl -X POST "https://glpi.yourdomain.lan/apirest.php/Entity" \
 - `name` : Déclare la chaîne de caractères du nom de la nouvelle entité.
 - `entities_id` : Définit l'ID de l'entité parente (`0` correspond obligatoirement à l'entité racine `Root entity`).
 
-## 4. Création de l'entité via l'Interface Web (IHM) {#4-creation-de-lentite-via-linterface-web-ihm}
+## Création de l'entité via l'Interface Web (IHM) {#4-creation-de-lentite-via-linterface-web-ihm}
 
 4.1.  **Accès au module d'administration.** Navigation dans l'interface de gestion structurelle pour configurer la compartimentation manuellement.
 

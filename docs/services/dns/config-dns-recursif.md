@@ -1,8 +1,8 @@
 ---
-description: Procédure de déploiement et de configuration d'un serveur DNS Récursif avec Unbound.
+description: "Configuration DNS Récursif"
 ---
 
-# BLOC 2 - Configuration DNS Récursif
+# Configuration DNS Récursif
 
 ![Bannière CUB](../../assets/banniere-cub.png)
 
@@ -10,18 +10,18 @@ description: Procédure de déploiement et de configuration d'un serveur DNS Ré
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 23/09/2026
-    - **Contexte :** Configuration d'un DNS récursif (Unbound sur Debian)
+    - **Sujet :** Configuration DNS Récursif
 
 ---
 
-## 1. Contexte
+## Contexte
 Un serveur DNS **récursif** (ou résolveur) a pour rôle de répondre aux requêtes DNS des postes clients de l'entreprise. Contrairement à un DNS faisant autorité, le récursif va interroger les serveurs racine sur Internet pour trouver les adresses IP demandées par les utilisateurs, puis va **mettre en cache** les réponses.
 
 Dans l'infrastructure CUB, ce service est mis en place sur un serveur Debian via la solution **Unbound**.
 
 ---
 
-## 2. Installation de Unbound et des outils
+## Installation de Unbound et des outils
 
 On installe Unbound ainsi que quelques utilitaires d'administration Réseaux indispensables :
 
@@ -31,7 +31,7 @@ sudo apt install unbound dnsutils tcpdump tmux curl
 
 ---
 
-## 3. Configuration de base de Unbound
+## Configuration de base de Unbound
 
 On édite le fichier de configuration principal d'Unbound :
 
@@ -85,7 +85,7 @@ sudo unbound-checkconf
 
 ---
 
-## 4. Configuration des domaines locaux (Stub Zones)
+## Configuration des domaines locaux (Stub Zones)
 
 Notre serveur récursif va nativement s'adresser aux serveurs faisant autorité sur Internet. Dans le cas où il doit traiter des domaines locaux en dehors de l'arborescence officielle, il faut lui indiquer les serveurs internes.
 
@@ -105,7 +105,7 @@ stub-zone:
 
 ---
 
-## 5. Téléchargement des serveurs racines (Root Hints)
+## Téléchargement des serveurs racines (Root Hints)
 
 On récupère les adresses des serveurs racines et nous les stockons dans `/var/lib/unbound/root.hints`. Ce fichier est indispensable au service Unbound pour contacter le serveur racine le plus proche.
 
@@ -116,7 +116,7 @@ sudo chown -R unbound:unbound /var/lib/unbound/
 
 ---
 
-## 6. Journalisation (Logs) et configuration AppArmor
+## Journalisation (Logs) et configuration AppArmor
 
 On crée le fichier de log spécifique à Unbound :
 
@@ -153,7 +153,7 @@ sudo systemctl status unbound
 
 ---
 
-## 7. Configuration du client DNS local (resolv.conf)
+## Configuration du client DNS local (resolv.conf)
 
 Afin que les utilitaires locaux de la machine (comme `dig`) puissent s'appuyer sur le service Unbound nouvellement installé sans générer d'erreur de parsing, il est nécessaire de définir l'interface de bouclage local comme serveur de nom principal.
 
@@ -163,7 +163,7 @@ echo "nameserver 127.0.0.1" | sudo tee /etc/resolv.conf
 
 ---
 
-## 8. Suivi et maintenance
+## Suivi et maintenance
 
 Pour observer les événements journalisés (requêtes DNS entrantes, erreurs, etc.) :
 

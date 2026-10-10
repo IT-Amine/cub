@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Mise en place de l'authentification TOTP sur Debian"
 ---
 
-# BLOC 2 - Mise en place de l'authentification TOTP sur Debian
+# Mise en place de l'authentification TOTP sur Debian
 
 ![Bannière CUB](../../assets/banniere-cub.png)
 
@@ -10,33 +10,15 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 05/09/2026
-    - **Contexte :** Configuration Mise en place de l'authentification TOTP sur Debian
+    - **Sujet :** Mise en place de l'authentification TOTP sur Debian
 
 ---
 
-## Informations
-
-* **Auteur :** Amine Kada
-* **Date :** 05/09/2026
-* **Domaine :** Exploitation des services
-
----
-
-## 1. Sommaire
-
-* [2. Contexte](#2-contexte)
-* [3. Synchronisation du temps (NTP)](#3-synchronisation-du-temps-ntp)
-* [4. Installation des paquets TOTP](#4-installation-des-paquets-totp)
-* [5. Génération et sécurisation du secret TOTP](#5-generation-et-securisation-du-secret-totp)
-* [6. Configuration du module PAM pour SSH](#6-configuration-du-module-pam-pour-ssh)
-* [7. Configuration du service SSH](#7-configuration-du-service-ssh)
-* [8. Génération du QR Code client](#8-generation-du-qr-code-client)
-
-## 2. Contexte
+## Contexte
 
 La mise en place de l'authentification à double facteur (2FA) via le protocole TOTP (Time-Based One-Time Password) permet de renforcer la sécurité des accès SSH au système. L'algorithme TOTP reposant strictement sur une fenêtre temporelle, il est critique d'assurer une synchronisation parfaite de l'horloge locale avec des serveurs NTP pour éviter les désynchronisations et le rejet des codes valides. Un bypass sera également implémenté via PAM pour le compte de service `adminbastion`, garantissant le fonctionnement des flux d'automatisation.
 
-## 3. Synchronisation du temps (NTP)
+## Synchronisation du temps (NTP)
 
 3.1.  **Installation et activation du service NTP.** Installation de `chrony` pour assurer une synchronisation temporelle précise à la seconde près, prérequis absolu pour l'algorithme TOTP.
 
@@ -68,7 +50,7 @@ Update interval : 1.4 seconds
 Leap status     : Normal
 ```
 
-## 4. Installation des paquets TOTP
+## Installation des paquets TOTP
 
 4.1.  **Déploiement des dépendances requises.** Installation des bibliothèques d'authentification PAM et des outils de génération de mots de passe à usage unique et de QR Codes.
 
@@ -79,7 +61,7 @@ sudo apt install libpam-oath oathtool -y
 * `libpam-oath` : Module PAM permettant l'authentification via les composants de sécurité OATH.
 * `oathtool` : Utilitaire en ligne de commande permettant de manipuler et de générer des clés OATH/TOTP.
 
-## 5. Génération et sécurisation du secret TOTP {#5-generation-et-securisation-du-secret-totp}
+## Génération et sécurisation du secret TOTP {#5-generation-et-securisation-du-secret-totp}
 
 5.1.  **Génération de la clé cryptographique.** Création d'un secret aléatoire hexadécimal et assignation au compte de l'utilisateur visé dans le fichier de configuration OATH.
 
@@ -103,7 +85,7 @@ chmod 600 /etc/security/users.oath
 * `chown root:root` : Assigne la propriété exclusive du fichier à l'utilisateur et au groupe root.
 * `chmod 600` : Restreint les permissions en lecture/écriture uniquement au propriétaire (root), bloquant tout autre utilisateur.
 
-## 6. Configuration du module PAM pour SSH
+## Configuration du module PAM pour SSH
 
 6.1.  **Modification du tunnel d'authentification SSH.** Édition du fichier PAM pour imposer l'authentification locale puis OTP, tout en excluant le compte de rebond `adminbastion`.
 
@@ -127,7 +109,7 @@ auth required pam_oath.so usersfile=/etc/security/users.oath window=30 digits=6
 * `pam_unix.so nullok_secure` : Impose la validation du mot de passe système en premier facteur (interdit les mots de passe vides).
 * `pam_oath.so` : Déclenche le second facteur (OTP) en spécifiant le fichier des clés, une fenêtre temporelle (window=30) et la longueur du code (digits=6).
 
-## 7. Configuration du service SSH
+## Configuration du service SSH
 
 7.1. **Activation de l'interaction clavier et redémarrage.** Modification du démon SSH pour autoriser le dialogue (Challenge/Response) requis pour demander le code OTP.
 
@@ -154,7 +136,7 @@ systemctl restart ssh
 
 * `restart` : Coupe et relance le démon `sshd`, rendant la connexion 2FA immédiatement active.
 
-## 8. Génération du QR Code client {#8-generation-du-qr-code-client}
+## Génération du QR Code client {#8-generation-du-qr-code-client}
 
 8.1.  **Extraction et conversion du secret en Base32.** Récupération de la clé hexadécimale générée précédemment et conversion pour compatibilité avec l'application client.
 
@@ -167,7 +149,7 @@ cat /etc/security/users.oath
 **Copier la clé :**
 
 ```bash
-HOTP/T30/6 etudiant - 562... # <-- Cette suite de chiffre 
+HOTP/T30/6 etudiant - 562... # <-- Cette suite de chiffre
 ```
 
 **Conversion en Base32 :**

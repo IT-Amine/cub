@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Implémentation du routage statique (Cisco)"
 ---
 
-# BLOC 2 - Implémentation du routage statique (Cisco)
+# Implémentation du routage statique (Cisco)
 
 ![Bannière CUB](../../../assets/banniere-cub.png)
 
@@ -10,23 +10,15 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 05/09/2026
-    - **Contexte :** Configuration Implémentation du routage statique (Cisco)
+    - **Sujet :** Implémentation du routage statique (Cisco)
 
 ---
 
-## 1. Sommaire
-
-* [1. Sommaire](#1-sommaire)
-* [2. Contexte](#2-contexte)
-* [3. Activation du routage (Commutateurs de niveau 3)](#3-activation-du-routage-commutateurs-de-niveau-3)
-* [4. Configuration d'une route statique standard](#4-configuration-dune-route-statique-standard)
-* [5. Configuration d'une route par défaut (Gateway of last resort)](#5-configuration-dune-route-par-defaut-gateway-of-last-resort)
-
-## 2. Contexte
+## Contexte
 
 Le routage statique permet de définir manuellement les chemins d'acheminement des paquets IP vers des Réseaux cibles. Au sein de l'infrastructure CUB, cette méthode est utilisée pour les topologies de bordure (Edge) afin de garantir la prédictibilité des flux réseau sans la surcharge logicielle d'un protocole de routage dynamique.
 
-## 3. Activation du routage (Commutateurs de niveau 3)
+## Activation du routage (Commutateurs de niveau 3)
 
 3.1. **Activation du moteur de routage.** Les routeurs acheminent le trafic IP nativement, mais les commutateurs multicouches nécessitent une activation explicite de leur table de routage globale.
 
@@ -44,7 +36,7 @@ Switch(config)# ip routing
 * `configure terminal` : Passage en mode de configuration globale.
 * `ip routing` : Active les capacités de routage de niveau 3 sur l'équipement.
 
-## 4. Configuration d'une route statique standard
+## Configuration d'une route statique standard
 
 4.1. **Création d'une entrée statique ciblée.** Déclaration explicite d'un chemin fixe pour joindre un sous-réseau distant précis.
 
@@ -58,7 +50,7 @@ Router(config)# ip route 192.168.20.0 255.255.255.0 10.0.0.2
 * `255.255.255.0` : Masque définissant la taille du réseau cible.
 * `10.0.0.2` : Adresse IP du prochain saut (Next-Hop), qui doit être l'équipement voisin directement connecté capable d'acheminer le paquet.
 
-## 5. Configuration d'une route par défaut (Gateway of last resort) {#5-configuration-dune-route-par-defaut-gateway-of-last-resort}
+## Configuration d'une route par défaut (Gateway of last resort) {#5-configuration-dune-route-par-defaut-gateway-of-last-resort}
 
 5.1. **Mise en place de la passerelle de dernier recours.** Transfert systématique des paquets destinés à des Réseaux inconnus de la table de routage (ex: Internet) vers une porte de sortie unique.
 

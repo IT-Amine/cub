@@ -2,27 +2,19 @@
 
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
----
-
-## Informations
-
-- **Auteur :** KADA Amine
-- **Date :** 24/09/2026
-- **Domaine :** Exploitation services
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 24/09/2026
+    - **Sujet :** Création d'une délégation DNS
 
 ---
 
-## 1. Sommaire
-
-- [2. Contexte](#2-contexte)
-- [3. Modification de la zone parente](#3-modification-de-la-zone-parente)
-- [4. Vérification et validation](#4-verification-et-validation)
-
-## 2. Contexte
+## Contexte
 
 La délégation DNS permet de confier la gestion d'un sous-domaine (par exemple, `local.dortmund.cub.sioplc.fr`) à d'autres serveurs DNS, tels que des contrôleurs de domaine Active Directory. Cette procédure s'applique au serveur Bind9 maître hébergeant la zone parente (`dortmund.cub.sioplc.fr`). Elle consiste à déclarer des enregistrements de type NS pointant vers les serveurs délégués, accompagnés de leurs enregistrements de type A (Glue Records) dans la zone parente pour permettre l'acheminement de la résolution.
 
-## 3. Modification de la zone parente
+## Modification de la zone parente
 
 > [!warning] Incrémentation du numéro de série (Serial)
 > Toute modification d'un fichier de zone nécessite **obligatoirement** l'incrémentation du numéro de série (Serial) situé dans l'enregistrement SOA. Sans cette action, les serveurs esclaves ne prendront pas en compte la mise à jour de la zone lors du prochain transfert.
@@ -52,7 +44,7 @@ ad1.local   IN  A   192.168.4.2
 - `ad0.local` et `ad1.local` : Noms d'hôtes relatifs des serveurs délégués.
 - `A` : (Glue Record) Fournit l'adresse IPv4 des serveurs de noms délégués. Sans ces enregistrements "colle", les résolveurs ne pourraient jamais trouver l'IP des serveurs NS pointés.
 
-## 4. Vérification et validation {#4-verification-et-validation}
+## Vérification et validation {#4-verification-et-validation}
 
 > [!info] Tolérance de panne
 > Dans le cadre d'un annuaire Active Directory avec plusieurs contrôleurs de domaine (AD0 et AD1), il est indispensable de déclarer l'ensemble des serveurs pour assurer la haute disponibilité de la résolution DNS du sous-domaine.

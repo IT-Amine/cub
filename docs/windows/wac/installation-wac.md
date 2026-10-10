@@ -1,8 +1,8 @@
 ---
-description: Procédure d'installation de Windows Admin Center (WAC).
+description: "Installation de WAC"
 ---
 
-# BLOC 2 - Installation de WAC
+# Installation de WAC
 
 ![Bannière CUB](../../assets/banniere-cub.png)
 
@@ -10,21 +10,15 @@ description: Procédure d'installation de Windows Admin Center (WAC).
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 28/09/2026
-    - **Contexte :** Déploiement de WAC
+    - **Sujet :** Installation de WAC
 
 ---
 
-## 1. Sommaire
-
-- [1. Sommaire](#1-sommaire)
-- [2. Contexte](#2-contexte)
-- [3. Installation](#3-installation)
-
-## 2. Contexte
+## Contexte
 
 Déploiement de Windows Admin Center (WAC) pour l'administration centralisée de l'infrastructure CUB. L'installation est paramétrée en accès distant, avec un port personnalisé (10443) et une authentification hors domaine, en attente d'intégration complète à l'Active Directory et à la PKI.
 
-## 3. Installation
+## Installation
 
 3.1. **Lancement de l'installation.** Ouvrez un terminal en administrateur et entrez la commande ci-dessous.
 

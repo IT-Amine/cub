@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Cybersécurité"
 ---
 
-# BLOC 3 - Cybersécurité
+# Cybersécurité
 
 ![Bannière CUB](../assets/banniere-cub.png)
 
@@ -10,7 +10,7 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 16/09/2026
-    - **Contexte :** Configuration Cybersécurité
+    - **Sujet :** Cybersécurité
 
 ---
 

@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Fiche Recette : Pare-feu Stormshield"
 ---
 
-# BLOC 3 - Fiche Recette : Pare-feu Stormshield
+# Fiche Recette : Pare-feu Stormshield
 
 ![Bannière CUB](../../../assets/banniere-cub.png)
 
@@ -10,21 +10,13 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 09/09/2026
-    - **Contexte :** Configuration Fiche Recette : Pare-feu Stormshield
+    - **Sujet :** Fiche Recette : Pare-feu Stormshield
 
 ---
 
-## Informations
+## Contexte du Test
 
-- **Auteur :** Amine Kada
-- **Date :** 09/09/2026
-- **Domaine :** Réseau
-
----
-
-## 1. Contexte du Test
-
-Validation de l'infrastructure réseau autour du pare-feu Stormshield (Couches 3 et 4 du modèle OSI). 
+Validation de l'infrastructure réseau autour du pare-feu Stormshield (Couches 3 et 4 du modèle OSI).
 L'objectif est de certifier :
 - Les règles de translation d'adresses (NAT) autorisant internet pour le LAN.
 - L'absence de NAT pour la zone DMZ.
@@ -40,9 +32,9 @@ L'objectif est de certifier :
 
 ---
 
-## 2. Procédures de Validation
+## Procédures de Validation
 
-### 2.1. Validation du NAT (Réseau LAN -> WAN)
+### Validation du NAT (Réseau LAN -> WAN)
 
 **Objectif :** Vérifier que les requêtes ICMP issues du LAN ont bien accès à Internet et sont translatées par le pare-feu avec l'IP publique (`192.36.253.40`).
 
@@ -67,7 +59,7 @@ listening on mvneta0, link-type EN10MB (Ethernet), capture size 262144 bytes
 
 ---
 
-### 2.2. Validation du non-NAT (Réseau DMZ -> WAN)
+### Validation du non-NAT (Réseau DMZ -> WAN)
 
 **Objectif :** Vérifier que le trafic sortant de la DMZ (VLAN 84) conserve son adresse IP source d'origine sans subir de translation (mascarade).
 
@@ -93,7 +85,7 @@ listening on mvneta0, link-type EN10MB (Ethernet), capture size 262144 bytes
 
 ---
 
-### 2.3. Validation de l'accès au Management depuis le VLAN Admin
+### Validation de l'accès au Management depuis le VLAN Admin
 
 **Objectif :** S'assurer que les administrateurs situés dans le sous-réseau `192.168.4.192/28` accèdent bien au pare-feu sur l'IP `192.168.4.205`.
 
@@ -120,8 +112,8 @@ curl -kI [https://192.168.4.205](https://192.168.4.205)
 **Résultat attendu :**
 ```text
 # Succès SSH (Demande de mot de passe puis accès prompt) :
-Password: 
-dmd-fw-c1-SN210A30HC710A7> 
+Password:
+dmd-fw-c1-SN210A30HC710A7>
 
 # Succès HTTPS :
 HTTP/1.1 200 OK

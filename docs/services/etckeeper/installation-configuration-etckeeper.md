@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Installation et configuration de Etckeeper"
 ---
 
-# BLOC 2 - Installation et configuration de Etckeeper
+# Installation et configuration de Etckeeper
 
 ![Bannière CUB](../../assets/banniere-cub.png)
 
@@ -10,7 +10,7 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 05/09/2026
-    - **Contexte :** Configuration Installation et configuration de Etckeeper
+    - **Sujet :** Installation et configuration de Etckeeper
 
 ---
 
@@ -19,19 +19,11 @@ description: Documentation et procédure technique.
 
 ---
 
-
-## 1. Sommaire
-
-* [2. Contexte](#2-contexte)
-* [3. Installation d'Etckeeper](#3-installation-detckeeper)
-* [4. Configuration d'Etckeeper](#4-configuration-detckeeper)
-* [5. Vérification du fonctionnement](#5-verification-du-fonctionnement)
-
-## 2. Contexte
+## Contexte
 
 Etckeeper est un outil de gestion de configuration permettant de versionner l'intégralité du répertoire `/etc` via un système de contrôle de version (Git). Son rôle est d'assurer une traçabilité complète des modifications système. Il s'intègre nativement aux gestionnaires de paquets (comme APT) afin de générer automatiquement des "commits" avant et après chaque installation, mise à jour ou suppression, garantissant un audit fiable de l'infrastructure et facilitant les retours en arrière en cas d'incident.
 
-## 3. Installation d'Etckeeper
+## Installation d'Etckeeper
 
 3.1. **Installation du paquet système.** L'installation s'effectue via le gestionnaire de paquets de la distribution Linux.
 
@@ -60,7 +52,7 @@ etckeeper --version
 Version: 1.18.22
 ```
 
-## 4. Configuration d'Etckeeper
+## Configuration d'Etckeeper
 
 4.1. **Paramétrage du système de contrôle de version (VCS).** Édition du fichier de configuration pour forcer l'utilisation de Git comme moteur de versioning.
 
@@ -92,7 +84,7 @@ sudo etckeeper commit "Commit initial pour /etc"
 * `sudo etckeeper commit` : Force la création manuelle d'un commit dans le dépôt géré par Etckeeper.
 * `"Commit initial pour /etc"` : Message explicatif rattaché à ce premier commit pour historiser l'état de base du système.
 
-## 5. Verification du fonctionnement
+## Verification du fonctionnement
 
 5.1. **Installation d'un paquet de test.** Déclenchement d'une modification système pour valider l'exécution des hooks (scripts automatiques) d'Etckeeper liés à APT.
 
@@ -122,7 +114,7 @@ Author: etudiant <etudiant@template.sio.lan>
 Date:   Thu Sep 3 16:36:33 2026 +0200
 
     committing changes in /etc made by "apt install qemu-guest-agent -y"
-    
+
     Package changes:
 
 commit 0463378f3e1cc4e347a851e149b34eebbe263425
@@ -130,7 +122,7 @@ Author: etudiant <etudiant@template.sio.lan>
 Date:   Thu Sep 3 16:35:49 2026 +0200
 
     committing changes in /etc made by "apt remove qemu-guest-agent"
-    
+
     Package changes:
 
 commit 425ddb1960300ceb68479aede8fed52444d0a6fc

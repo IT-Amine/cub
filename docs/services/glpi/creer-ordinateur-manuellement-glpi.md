@@ -2,31 +2,22 @@
 
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
----
-
-## Informations
-
-- **Auteur :** KADA Amine
-- **Date :** 26/09/2026
-- **Domaine :** Exploitation services
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 26/09/2026
+    - **Sujet :** Création manuelle d'un poste sur GLPI
 
 ---
 
-## 1. Sommaire
-
-- [2. Contexte](#2-contexte)
-- [3. Création d'un poste via API REST (CLI)](#3-creation-dun-poste-via-api-rest-cli)
-- [4. Création d'un poste via l'Interface Web (IHM)](#4-creation-dun-poste-via-linterface-web-ihm)
-- [5. Liaisons et composants de l'actif](#5-liaisons-et-composants-de-lactif)
-
-## 2. Contexte
+## Contexte
 
 Le module de gestion de Parc de GLPI agit comme une CMDB (Configuration Management Database). Il centralise l'inventaire des actifs matériels et logiciels de l'infrastructure. Un "poste" (ordinateur, serveur physique ou machine virtuelle) est un CI (Configuration Item) sur lequel s'adossent les processus de gestion des incidents et des changements.
 
 > [!tip] Bonne pratique
 > La saisie manuelle d'un équipement présente un risque élevé d'obsolescence des données. En production, le peuplement de la base doit être automatisé via le déploiement de **GLPI Agent** (anciennement FusionInventory) par GPO, Ansible ou script de provisioning (ex: Cloudbase-Init pour des VM). La création manuelle est à réserver aux équipements isolés (air-gapped), à la gestion des stocks de réserve, ou au bootstrap initial avant le premier scan réseau.
 
-## 3. Création d'un poste via API REST (CLI) {#3-creation-dun-poste-via-api-rest-cli}
+## Création d'un poste via API REST (CLI) {#3-creation-dun-poste-via-api-rest-cli}
 
 3.1. **Déclaration de l'actif.** Provisionnement d'un ordinateur via l'API. Cette méthode est recommandée pour déclarer l'actif automatiquement lors d'un workflow de déploiement (IaC), par exemple après la création d'une VM sous Proxmox.
 
@@ -44,7 +35,7 @@ curl -X POST "https://glpi.yourdomain.lan/apirest.php/Computer)" \
 * `is_template` : Détermine s'il s'agit d'un gabarit (`1`) ou d'un équipement réel (`0`).
 * `states_id` : Statut du cycle de vie de l'actif (ex: ID `1` pour "En production", ID `2` pour "En stock").
 
-## 4. Création d'un poste via l'Interface Web (IHM) {#4-creation-dun-poste-via-linterface-web-ihm}
+## Création d'un poste via l'Interface Web (IHM) {#4-creation-dun-poste-via-linterface-web-ihm}
 
 4.1. **Accès au module d'inventaire.** Navigation vers le registre des ordinateurs pour créer l'enregistrement en base.
 
@@ -70,7 +61,7 @@ Type : Bureau
 * `Usager` / `Groupe` : Permet d'associer la machine à son propriétaire ou service fonctionnel (essentiel pour le portail Self-Service de création de tickets).
 * `Statut` : Indique la phase du cycle de vie, permettant de filtrer les vues de la CMDB.
 
-## 5. Liaisons et composants de l'actif {#5-liaisons-et-composants-de-lactif}
+## Liaisons et composants de l'actif {#5-liaisons-et-composants-de-lactif}
 
 5.1. **Ajout des composants matériels et réseau.** Une fois la "coquille" de l'ordinateur créée, il faut l'enrichir techniquement pour refléter sa configuration réelle.
 

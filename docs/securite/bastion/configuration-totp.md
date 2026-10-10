@@ -2,28 +2,19 @@
 
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
----
-
-## Informations
-
-- **Auteur :** KADA Amine
-- **Date :** 07/10/2026
-- **Domaine :** Cybersécurité
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 07/10/2026
+    - **Sujet :** Activation de l'authentification multifacteur (TOTP) sur Guacamole
 
 ---
 
-## 1. Sommaire
-
-- [1. Sommaire](#1-sommaire)
-- [2. Contexte](#2-contexte)
-- [3. Configuration de l'infrastructure (IaC)](#3-configuration-de-linfrastructure-iac)
-- [4. Enrôlement et validation utilisateur](#4-enrolement-et-validation-utilisateur)
-
-## 2. Contexte
+## Contexte
 
 Dans le cadre du durcissement de notre bastion d'administration, cette procédure détaille l'activation de l'authentification multifacteur (MFA) basée sur le protocole TOTP pour Apache Guacamole. L'activation au niveau du serveur est gérée via Infrastructure as Code (IaC) en injectant les variables d'environnement au niveau de la stack de conteneurisation, garantissant une configuration déclarative et reproductible de l'environnement CUB.
 
-## 3. Configuration de l'infrastructure (IaC)
+## Configuration de l'infrastructure (IaC)
 
 3.1.  **Déclaration de la variable d'environnement.** Éditer le fichier de déploiement [docker-compose.yaml](https://cub.bts.loutik.fr/05-cybersecurite/bastion/assets/installation-guacamole/docker-compose.yaml) de la stack Guacamole afin d'activer l'extension TOTP au niveau du service de l'application.
 
@@ -44,7 +35,7 @@ docker compose up -d guacamole
 
 * `-d` : Détache l'exécution du processus en arrière-plan.
 
-## 4. Enrôlement et validation utilisateur {#4-enrolement-et-validation-utilisateur}
+## Enrôlement et validation utilisateur {#4-enrolement-et-validation-utilisateur}
 
 4.1.  **Initiation de la session.** Se connecter à l'interface web de Guacamole avec un compte utilisateur valide. Lors de cette première connexion post-activation, le système intercepte la session pour forcer l'enrôlement MFA avant de délivrer les accès aux ressources.
 

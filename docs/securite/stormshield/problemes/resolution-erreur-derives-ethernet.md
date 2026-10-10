@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Résolution de l'erreur d'objets dérivés sur ethernet0"
 ---
 
-# BLOC 3 - Résolution de l'erreur d'objets dérivés sur ethernet0
+# Résolution de l'erreur d'objets dérivés sur ethernet0
 
 ![Bannière CUB](../../../assets/banniere-cub.png)
 
@@ -10,31 +10,17 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 09/09/2026
-    - **Contexte :** Configuration Résolution de l'erreur d'objets dérivés sur ethernet0
+    - **Sujet :** Résolution de l'erreur d'objets dérivés sur ethernet0
 
 ---
 
-## Informations
-
-- **Auteur :** Amine Kada
-- **Date :** 09/09/2026
-- **Domaine :** Réseau
-
----
-
-## 1. Sommaire
-
-- [Contexte](#2-contexte)
-- [Dissociation de l'object de routage](#3-dissociation-de-lobjet-de-routage)
-- [Configuration de l'interface WAN](#4-configuration-de-linterface-wan)
-
-## 2. Contexte
+## Contexte
 
 Lors de la configuration d'une adresse IP fixe sur l'interface WAN (`ethernet0`), une erreur de conflit survient en raison d'objets de routage dérivés. L'interface est verrouillée par la passerelle par défaut `firewall_out_router`. Ce composant bloque les modifications réseau. Cette procédure vise à désactiver ce lien de routage afin d'autoriser l'assignation de l'IP statique, permettant ainsi l'interconnexion au réseau externe de l'infrastructure CUB.
 
-## 3. Dissociation de l'objet de routage
+## Dissociation de l'objet de routage
 
-3.1.  **Désactivation de la passerelle par défaut.** Retirer l'association bloquante sur l'interface en modifiant le statut du routeur par défaut. 
+3.1.  **Désactivation de la passerelle par défaut.** Retirer l'association bloquante sur l'interface en modifiant le statut du routeur par défaut.
 
 * **Configuration** > **Network** > **Routing** > **default gateway (router)** = `none`
 
@@ -43,7 +29,7 @@ Lors de la configuration d'une adresse IP fixe sur l'interface WAN (`ethernet0`)
 - `Network > Routing` : Chemin de navigation pour accéder aux paramètres des routes réseau.
 - `none` : Valeur remplaçant l'objet `firewall_out_router` pour libérer l'interface WAN de ses dépendances.
 
-## 4. Configuration de l'interface WAN
+## Configuration de l'interface WAN
 
 4.1.  **Assignation de l'adresse IP.** Configurer l'adresse IP fixe requise sur l'interface WAN désormais débloquée.
 

@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Implémentation du SSH sur un routeur Cisco"
 ---
 
-# BLOC 2 - Implémentation du SSH sur un routeur Cisco
+# Implémentation du SSH sur un routeur Cisco
 
 ![Bannière CUB](../../../assets/banniere-cub.png)
 
@@ -10,24 +10,15 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 05/09/2026
-    - **Contexte :** Configuration Implémentation du SSH sur un routeur Cisco
+    - **Sujet :** Implémentation du SSH sur un routeur Cisco
 
 ---
 
-## 1. Sommaire
-
-* [1. Sommaire](#1-sommaire)
-* [2. Contexte](#2-contexte)
-* [3. Configuration des prérequis globaux](#3-configuration-des-prerequis-globaux)
-* [4. Sécurisation cryptographique](#4-securisation-cryptographique)
-* [5. Authentification et paramètres SSH](#5-authentification-et-parametres-ssh)
-* [6. Sécurisation des accès virtuels (VTY)](#6-securisation-des-acces-virtuels-vty)
-
-## 2. Contexte
+## Contexte
 
 Le déploiement de SSH (Secure Shell) sur les routeurs Cisco vise à remplacer le protocole Telnet, qui fait transiter les flux d'administration en clair. Cette configuration garantit un accès distant chiffré de bout en bout pour l'administration de l'équipement de routage (routeur de bordure, passerelle inter-VLAN). Elle s'intègre dans la politique de sécurité globale de l'infrastructure CUB, en prévenant les interceptions de trames de gestion sur les Réseaux LAN/WAN et en centralisant l'authentification sécurisée.
 
-## 3. Configuration des prérequis globaux {#3-configuration-des-prerequis-globaux}
+## Configuration des prérequis globaux {#3-configuration-des-prerequis-globaux}
 
 3.1. **Configuration du nommage et désactivation DNS**. L'équipement a besoin d'un nom d'hôte et d'un nom de domaine uniques pour générer la clé cryptographique asymétrique. La résolution DNS est désactivée pour éviter des requêtes inutiles et des temps de blocage lors d'erreurs de frappe dans l'invite de commande.
 
@@ -46,7 +37,7 @@ RT-EDGE-01(config)# no ip domain-lookup
 * `ip domain-name` : Spécifie le suffixe DNS du domaine réseau.
 * `no ip domain-lookup` : Empêche le routeur d'interroger un serveur DNS pour tenter de traduire les commandes erronées en adresses IP.
 
-## 4. Sécurisation cryptographique {#4-securisation-cryptographique}
+## Sécurisation cryptographique {#4-securisation-cryptographique}
 
 4.1. **Génération de la paire de clés RSA**. Création du trousseau de clés asymétriques indispensable à la mise en place du chiffrement du tunnel SSH.
 
@@ -58,7 +49,7 @@ RT-EDGE-01(config)# crypto key generate rsa modulus 2048
 * `crypto key generate rsa` : Lance le moteur de création de clés pour l'algorithme de chiffrement RSA.
 * `modulus 2048` : Définit la taille de la clé à 2048 bits, la norme minimale actuelle recommandée pour une sécurité robuste contre les attaques de force brute.
 
-## 5. Authentification et paramètres SSH {#5-authentification-et-parametres-ssh}
+## Authentification et paramètres SSH {#5-authentification-et-parametres-ssh}
 
 5.1. **Création du compte local et renforcement du protocole**. Création d'un compte administrateur local hautement privilégié et application des paramètres de durcissement pour le service SSH.
 
@@ -80,7 +71,7 @@ RT-EDGE-01(config)# ip ssh authentication-retries 3
 * `ip ssh time-out 60` : Interrompt automatiquement la session d'administration après 60 secondes d'inactivité.
 * `ip ssh authentication-retries 3` : Limite les tentatives de connexion à 3 échecs avant la rupture de la session TCP, mitigant les attaques par dictionnaire.
 
-## 6. Sécurisation des accès virtuels (VTY) {#6-securisation-des-acces-virtuels-vty}
+## Sécurisation des accès virtuels (VTY) {#6-securisation-des-acces-virtuels-vty}
 
 6.1. **Restriction des lignes d'administration VTY**. Activation de l'authentification locale pour l'accès distant et verrouillage des protocoles de management en n'autorisant exclusivement que SSH.
 

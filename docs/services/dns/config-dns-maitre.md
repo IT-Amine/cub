@@ -2,31 +2,19 @@
 
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
----
-
-## Informations
-
-- **Auteur :** KADA Amine
-- **Date :** 23/09/2026
-- **Domaine :** Exploitation services
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 23/09/2026
+    - **Sujet :** Configuration de bind9 (Maître)
 
 ---
 
-## 1. Sommaire
-
-- [2. Contexte](#2-contexte)
-- [3. Configuration globale du service](#3-configuration-globale-du-service)
-- [4. Déclaration de la zone DNS](#4-declaration-de-la-zone-dns)
-- [5. Création et paramétrage du fichier de zone](#5-creation-et-parametrage-du-fichier-de-zone)
-- [6. Configuration de la journalisation](#6-configuration-de-la-journalisation)
-- [7. Configuration de la sécurité AppArmor](#7-configuration-de-la-securite-apparmor)
-- [8. Vérification et validation](#8-verification-et-validation)
-
-## 2. Contexte
+## Contexte
 
 Le serveur Bind9 agit comme serveur DNS faisant autorité pour l'infrastructure CUB. Cette procédure décrit la configuration en mode production de la zone `dortmund.cub.sioplc.fr`. Elle inclut la scission des fichiers de configuration pour une meilleure maintenabilité, la sécurisation du service (désactivation de la récursivité, masquage de version), la mise en place d'une journalisation dédiée et l'ajustement des règles AppArmor pour autoriser l'écriture des logs.
 
-## 3. Configuration globale du service
+## Configuration globale du service
 
 3.1. **Définition des options globales.** Modification du fichier d'options pour sécuriser Bind9 et définir ses interfaces d'écoute.
 
@@ -42,7 +30,7 @@ options {
     // Définit le port et la ou les adresses IPv4 d’écoute du service Bind
     listen-on port 53 { 127.0.0.1; 192.36.4.10; };
 
-    // Recursion permet d'autoriser ou d'interdire la récursivité sur un serveur DNS. 
+    // Recursion permet d'autoriser ou d'interdire la récursivité sur un serveur DNS.
     // Par défaut un serveur DNS faisant autorité ne doit pas être récursif.
     recursion no;
 
@@ -55,7 +43,7 @@ options {
 - `recursion no` : Désactive la récursivité pour éviter les attaques d'amplification DNS.
 - `version none` : Masque la version du daemon pour limiter la reconnaissance par d'éventuels attaquants.
 
-## 4. Déclaration de la zone DNS {#4-declaration-de-la-zone-dns}
+## Déclaration de la zone DNS {#4-declaration-de-la-zone-dns}
 
 4.1. **Ajout de la zone locale.** Déclaration de la zone `dortmund.cub.sioplc.fr` dans le fichier dédié aux zones locales.
 
@@ -75,7 +63,7 @@ zone "dortmund.cub.sioplc.fr" {
 - `allow-transfer` : Autorise le transfert de zone uniquement vers l'adresse IP du serveur DNS esclave spécifié.
 - `file` : Indique le chemin absolu vers le fichier contenant les enregistrements de la zone.
 
-## 5. Création et paramétrage du fichier de zone {#5-creation-et-parametrage-du-fichier-de-zone}
+## Création et paramétrage du fichier de zone {#5-creation-et-parametrage-du-fichier-de-zone}
 
 > [!warning] Gestion du numéro de série (Serial)
 > Le numéro de série ne doit jamais être choisi au hasard. Il doit systématiquement être incrémenté à chaque modification du fichier de zone (format recommandé : AAAAMMJJXX). Si le numéro de série du maître devient inférieur à celui de l'esclave, le transfert de zone sera rompu.
@@ -119,7 +107,7 @@ sudo chown bind:bind /var/cache/bind/db.dortmund.cub.sioplc.fr
 - `chown` : Modifie le propriétaire et le groupe d'un fichier.
 - `bind:bind` : Spécifie l'utilisateur `bind` et le groupe `bind`.
 
-## 6. Configuration de la journalisation
+## Configuration de la journalisation
 
 6.1. **Création du fichier de log.** Initialisation du fichier texte destiné à recevoir les journaux DNS.
 
@@ -171,7 +159,7 @@ include "/etc/bind/named.conf.log";
 
 - `include` : Charge dynamiquement un fichier de configuration externe dans le fichier principal.
 
-## 7. Configuration de la sécurité AppArmor {#7-configuration-de-la-securite-apparmor}
+## Configuration de la sécurité AppArmor {#7-configuration-de-la-securite-apparmor}
 
 > [!info] Protection MAC
 > Sur Debian, AppArmor (Mandatory Access Control) surveille les accès des processus. Par défaut, il interdit à Bind9 d'écrire dans `/var/log/`. Une modification des permissions d'AppArmor est requise pour le bon fonctionnement des logs.
@@ -200,7 +188,7 @@ sudo systemctl restart apparmor
 - `apparmor_parser -r` : Recharge et remplace le profil spécifié sans avoir à redémarrer tout le service immédiatement.
 - `systemctl restart apparmor` : Relance le service AppArmor pour garantir l'application globale.
 
-## 8. Vérification et validation {#8-verification-et-validation}
+## Vérification et validation {#8-verification-et-validation}
 
 8.1. **Contrôle de la syntaxe.** Vérification des fichiers de configuration pour éviter toute corruption au démarrage.
 

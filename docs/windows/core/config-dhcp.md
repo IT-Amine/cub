@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "DHCP Core"
 ---
 
-# BLOC 2 - DHCP Core
+# DHCP Core
 
 ![Bannière CUB](../../assets/banniere-cub.png)
 
@@ -10,27 +10,16 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 16/09/2026
-    - **Contexte :** configuration du serveur DHCP Core
+    - **Sujet :** DHCP Core
 
 ---
 
-## 1. Sommaire
-- [1. Sommaire](#1-sommaire)
-- [2. Contexte](#2-contexte)
-- [3. Déploiement des utilitaires de virtualisation](#3-deploiement-des-utilitaires-de-virtualisation)
-- [4. Configuration réseau statique](#4-configuration-reseau-statique)
-- [5. Configuration NTP](#5-configuration-ntp)
-- [6. Paramétrage Sécurité et Pare-feu](#6-parametrage-securite-et-pare-feu)
-- [7. Mise à jour du système](#7-mise-a-jour-du-systeme)
-- [8. Sécurisation du compte local Administrateur](#8-securisation-du-compte-local-administrateur)
-- [9. Installation et configuration du rôle DHCP](#9-installation-et-configuration-du-role-dhcp)
-
-## 2. Contexte
+## Contexte
 Ce document détaille la procédure d'initialisation et de sécurisation (Hardening) du serveur Windows Server 2025 (édition Core) dédié au rôle DHCP. Il couvre la synchronisation temporelle indispensable à la cohérence des baux réseau, la configuration du pare-feu, la gestion des mises à jour centralisées via PowerShell, la sécurisation du compte administrateur local, l'intégration des pilotes VirtIO/QEMU nécessaires au fonctionnement optimal sur l'hyperviseur, ainsi que le déploiement du service DHCP.
 
-## 3. Déploiement des utilitaires de virtualisation
+## Déploiement des utilitaires de virtualisation
 
-### 3.1. Exécution des agents VirtIO.
+### Exécution des agents VirtIO.
 
 Lancement de l'installateur des pilotes paravirtualisés depuis le support monté.
 
@@ -40,7 +29,7 @@ Start-Process -FilePath "D:\virtio-win-guest-tools.exe"
 
 - `Start-Process` : Exécute le binaire d'installation de l'agent invité QEMU.
 
-### 3.2. Configuration du service QEMU-GA.
+### Configuration du service QEMU-GA.
 
 Définition du lancement automatique pour assurer la communication hyperviseur/machine virtuelle.
 
@@ -51,16 +40,16 @@ Start-Service QEMU-GA
 
 - `-StartupType Automatic` : Garantit la disponibilité du service QEMU Guest Agent dès le démarrage de Windows Server.
 
-## 4. Configuration réseau statique
+## Configuration réseau statique
 
-### 4.1. Identification de l'interface réseau
+### Identification de l'interface réseau
 Il faut d'abord repérer le numéro d'index (`ifIndex`) de la carte réseau virtuelle pour lui appliquer les paramètres.
 ```powershell
 Get-NetAdapter
 ```
 - Repérez la valeur dans la colonne `ifIndex` correspondant à votre carte réseau (généralement nommée Ethernet).
 
-### 4.2. Attribution de l'adresse IP, du Masque et de la Passerelle
+### Attribution de l'adresse IP, du Masque et de la Passerelle
 Utilisez l'index récupéré pour définir les paramètres IP statiques. *(Exemple avec l'index `3`, l'IP `192.168.4.11`, masque `/25` et la passerelle `192.168.4.126`)*.
 
 ```powershell
@@ -71,7 +60,7 @@ New-NetIPAddress -InterfaceIndex 3 -IPAddress "192.168.4.11" -PrefixLength 25 -D
 - `-PrefixLength` : La longueur du masque de sous-réseau en notation CIDR (ex: `25` pour `255.255.255.128`).
 - `-DefaultGateway` : L'adresse IP de la passerelle par défaut.
 
-### 4.3. Configuration des serveurs DNS
+### Configuration des serveurs DNS
 Configuration du serveur DNS pointant vers le contrôleur de domaine (AD) ou le DNS récursif.
 
 ```powershell
@@ -79,9 +68,9 @@ Set-DnsClientServerAddress -InterfaceIndex 3 -ServerAddresses ("192.168.4.10", "
 ```
 - `-ServerAddresses` : Liste des adresses IP des serveurs DNS séparées par une virgule.
 
-## 5. Configuration NTP
+## Configuration NTP
 
-### 5.1. Configuration des pools de serveurs.
+### Configuration des pools de serveurs.
 
 Établissement de la synchronisation manuelle sur les serveurs de temps publics pour garantir l'intégrité de l'horloge système.
 
@@ -94,7 +83,7 @@ w32tm /resync
 - `/manualpeerlist` : Spécifie les adresses des pairs NTP externes.
 - `/reliable:yes` : Indique que cet ordinateur est une source de temps fiable sur le réseau.
 
-### 5.2. Validation des homologues NTP.
+### Validation des homologues NTP.
 
 Contrôle de l'état du service de temps local.
 
@@ -106,9 +95,9 @@ w32tm /query /status
 - `/peers` : Affiche l'état des connexions avec les serveurs de temps configurés.
 - `/status` : Renvoie les détails sur la latence, la précision et la dernière synchronisation effectuée.
 
-## 6. Paramétrage Sécurité et Pare-feu
+## Paramétrage Sécurité et Pare-feu
 
-### 6.1. Vérification UAC et Profils Pare-feu.
+### Vérification UAC et Profils Pare-feu.
 
 Audit des politiques de pare-feu globales (Domaine, Privé, Public).
 
@@ -118,9 +107,9 @@ Get-NetFirewallProfile | Select-Object Name, Enabled
 
 - `Select-Object Name, Enabled` : Filtre l'affichage pour confirmer que chaque profil réseau dispose du pare-feu actif.
 
-## 7. Mise à jour du système
+## Mise à jour du système
 
-### 7.1. Téléchargement et installation des KBs.
+### Téléchargement et installation des KBs.
 
 Utilisation de l'API Windows Update pour mettre le système en conformité via le module PSWindowsUpdate.
 
@@ -131,7 +120,7 @@ UsoClient StartScan
 
 Install-Module PSWindowsUpdate
 Install-WindowsUpdate -AcceptAll -Install
-Restart-Computer 
+Restart-Computer
 ```
 
 - `UsoClient StartScan` : Force le lancement asynchrone de la recherche de mises à jour.
@@ -140,9 +129,9 @@ Restart-Computer
 !!! warning "Action requise"
     Un redémarrage du système (`Restart-Computer`) est strictement requis après la passe d'installation des correctifs cumulatifs.
 
-## 8. Sécurisation du compte local Administrateur
+## Sécurisation du compte local Administrateur
 
-### 8.1. Renommage et changement de mot de passe.
+### Renommage et changement de mot de passe.
 
 Modification du nom d'utilisateur associé au SID 500 pour compliquer les attaques par énumération, et renouvellement du mot de passe avec une entrée sécurisée.
 
@@ -156,10 +145,9 @@ Set-LocalUser -Name "ADM-SRV-01" -Password (Read-Host "Nouveau mot de passe" -As
 - `Rename-LocalUser` : Modifie le SAMAccountName local.
 - `-AsSecureString` : Chiffre la saisie du mot de passe stocké en mémoire vive pendant la transaction.
 
+## Installation et configuration du rôle DHCP
 
-## 9. Installation et configuration du rôle DHCP
-
-### 9.1. Lancement de l'installation du composant
+### Lancement de l'installation du composant
 
 Installation du rôle DHCP et de ses outils d'administration locaux.
 
@@ -167,7 +155,7 @@ Installation du rôle DHCP et de ses outils d'administration locaux.
 Install-WindowsFeature -Name DHCP -IncludeManagementTools
 ```
 
-### 9.2. Création de l'étendue et configuration des options
+### Création de l'étendue et configuration des options
 
 Création d'une étendue d'adresses IP pour le réseau ciblé (ex: VLAN Admin) avec les options de passerelle et de DNS.
 
@@ -176,7 +164,7 @@ Add-DhcpServerv4Scope -Name "VLAN_Clients" -StartRange 192.168.4.130 -EndRange 1
 Set-DhcpServerv4OptionValue -ScopeId 192.168.4.128 -Router 192.168.4.190 -DnsServer 192.168.4.10
 ```
 
-### 9.3. Redémarrage du service DHCP
+### Redémarrage du service DHCP
 
 ```powershell
 Restart-Service DHCPServer

@@ -2,31 +2,22 @@
 
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
----
-
-## Informations
-
-- **Auteur :** KADA Amine
-- **Date :** 26/09/2026
-- **Domaine :** Exploitation services
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 26/09/2026
+    - **Sujet :** Créer un utilisateur sur GLPI
 
 ---
 
-## 1. Sommaire
-
-- [2. Contexte](#2-contexte)
-- [3. Création de l'utilisateur via API REST (CLI)](#3-creation-de-lutilisateur-via-api-rest-cli)
-- [4. Création de l'utilisateur via l'Interface Web (IHM)](#4-creation-de-lutilisateur-via-linterface-web-ihm)
-- [5. Affectation des profils et entités (RBAC)](#5-affectation-des-profils-et-entites-rbac)
-
-## 2. Contexte
+## Contexte
 
 Dans GLPI, un compte utilisateur représente une identité physique ou un compte de service. L'architecture de sécurité de GLPI repose sur le modèle RBAC (Role-Based Access Control). La création du compte dans la base de données ne donne par défaut aucun droit. Le véritable contrôle d'accès s'effectue lors de l'association stricte d'un **Profil** (qui définit les permissions : les actions autorisées) sur une **Entité** (qui définit le périmètre : l'espace cloisonné où les actions sont autorisées).
 
 > [!tip] Bonne pratique
 > Dans une infrastructure de production, la création locale et manuelle de comptes doit être évitée. L'approche standard consiste à déléguer l'authentification et le provisionnement (JIT) à un annuaire d'entreprise (Active Directory, OpenLDAP, ou Authentik). La création locale illustrée ci-dessous est réservée aux comptes de service (API) ou aux administrateurs de secours.
 
-## 3. 3. Création de l'utilisateur via API REST (CLI) {#3-creation-de-lutilisateur-via-api-rest-cli}
+## 3. Création de l'utilisateur via API REST (CLI) {#3-creation-de-lutilisateur-via-api-rest-cli}
 
 3.1. **Génération de l'identité.** Provisionnement d'un compte de service via le client d'API, méthode privilégiée pour l'intégration dans des pipelines d'infrastructure as code.
 
@@ -42,7 +33,7 @@ curl -X POST "https://glpi.yourdomain.lan/apirest.php/Entity" \
 - `password` : Mot de passe local. Il sera haché automatiquement par GLPI en base de données.
 - `is_active` : Drapeau booléen d'activation du compte (`1` = Actif, `0` = Désactivé).
 
-## 4. Création de l'utilisateur via l'Interface Web (IHM) {#4-creation-de-lutilisateur-via-linterface-web-ihm}
+## Création de l'utilisateur via l'Interface Web (IHM) {#4-creation-de-lutilisateur-via-linterface-web-ihm}
 
 4.1. **Accès au gestionnaire des identités.** Navigation vers le répertoire consolidant les utilisateurs locaux et synchronisés.
 
@@ -68,7 +59,7 @@ Actif : Oui
 
 ![Formulaire d'ajout d'utilisateur avec les champs Identifiant, Mot de passe et Actif complétés](./assets/creer-utilisateur-glpi/02-creation-compte.png)
 
-## 5. Affectation des profils et entités (RBAC) {#5-affectation-des-profils-et-entites-rbac}
+## Affectation des profils et entités (RBAC) {#5-affectation-des-profils-et-entites-rbac}
 
 5.1. **Délégation des privilèges.** Sans cette étape, l'utilisateur recevra une erreur fatale d'autorisation lors de sa tentative de connexion.
 

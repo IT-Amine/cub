@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Configuration du NAT sur Stormshield"
 ---
 
-# BLOC 3 - Configuration du NAT sur Stormshield
+# Configuration du NAT sur Stormshield
 
 ![Bannière CUB](../../../assets/banniere-cub.png)
 
@@ -10,32 +10,17 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 12/09/2026
-    - **Contexte :** Configuration Configuration du NAT sur Stormshield
+    - **Sujet :** Configuration du NAT sur Stormshield
 
 ---
 
-## Informations
-
-- **Auteur :** Amine Kada
-- **Date :** 12/09/2026
-- **Domaine :** Réseau
-
----
-
-## 1. Sommaire
-
-- [1. Sommaire](#1-sommaire)
-- [2. Contexte](#2-contexte)
-- [3. Création des objets Réseaux](#3-creation-des-objets-reseaux)
-- [4. Configuration de la politique NAT](#4-configuration-de-la-politique-nat)
-
-## 2. Contexte
+## Contexte
 
 Déploiement du service de translation d'adresses (NAT) via l'interface graphique du pare-feu Stormshield. Ce composant est indispensable pour assurer le routage et l'accès vers l'extérieur (Masquerading) des Réseaux internes de l'infrastructure.
 
-## 3. Création des objets Réseaux {#3-creation-des-objets-reseaux}
+## Création des objets Réseaux {#3-creation-des-objets-reseaux}
 
-3.1. **Création d'un objet réseau depuis l'IHM.** Accéder au menu **Objets** > **Tous les objets**, cliquer sur le bouton **Ajouter** et sélectionner **Réseau**. 
+3.1. **Création d'un objet réseau depuis l'IHM.** Accéder au menu **Objets** > **Tous les objets**, cliquer sur le bouton **Ajouter** et sélectionner **Réseau**.
 
 ![Création Objet IHM](../../../assets/stormshield/configuration-nat-stormshield/creation-objet-reseau.png)
 
@@ -45,7 +30,7 @@ Déploiement du service de translation d'adresses (NAT) via l'interface graphiqu
 > [!warning] Standard de nommage
 > L'utilisation des préfixes `RESEAU_<NOM-RESEAU>` et `MACHINE_<NOM-MACHINE>` est obligatoire dans l'interface. Cela garantit la cohérence visuelle et réduit les erreurs lors du ciblage dans les politiques de filtrage.
 
-## 4. Configuration de la politique NAT
+## Configuration de la politique NAT
 
 4.1. **Accès au module NAT.** Dans le bandeau latéral de configuration, naviguer vers **Politique de sécurité** > **Filtrage et NAT**, puis cliquer sur l'onglet **NAT**.
 

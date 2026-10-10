@@ -1,5 +1,5 @@
 ---
-description: Fiche recette du serveur DNS autoritaire Esclave (ns1)
+description: "Fiche Recette : DNS Autoritaire Esclave"
 ---
 
 # Fiche Recette : DNS Autoritaire Esclave
@@ -10,32 +10,19 @@ description: Fiche recette du serveur DNS autoritaire Esclave (ns1)
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 08/10/2026
-    - **Contexte :** Validation fonctionnelle (tests de résolution et autorité) du serveur DNS autoritaire esclave (ns1 - 192.36.4.11) de l'agence de Dortmund.
+    - **Sujet :** Fiche Recette : DNS Autoritaire Esclave
 
 ---
 
-## 1. Sommaire
-
-- [1. Sommaire](#1-sommaire)
-- [2. Objectif des tests](#2-objectif-des-tests)
-- [3. Tests de validation de la zone](#3-tests-de-validation-de-la-zone)
-  - [3.1. Résolution d'un enregistrement (www)](#31-resolution-dun-enregistrement-www)
-  - [3.2. Vérification de l'autorité (SOA)](#32-verification-de-lautorite-soa)
-  - [3.3. Test de réponse sur l'interface réseau publique](#33-test-de-reponse-sur-linterface-reseau-publique)
-  - [3.4. Vérification de la synchronisation (Serial SOA)](#34-verification-de-la-synchronisation-serial-soa)
-- [4. Conclusion](#4-conclusion)
-
----
-
-## 2. Objectif des tests
+## Objectif des tests
 
 Cette fiche recette a pour but de vérifier que le serveur DNS secondaire (ns1) est bien configuré en tant que DNS autoritaire pour la zone `dortmund.cub.sioplc.fr`. Les tests s'assurent qu'il possède bien une copie fonctionnelle de la zone, qu'il répond avec autorité (sans interroger d'autres serveurs), et que sa sécurité (refus des requêtes récursives) est opérationnelle.
 
 ---
 
-## 3. Tests de validation de la zone
+## Tests de validation de la zone
 
-### 3.1. Résolution d'un enregistrement (www)
+### Résolution d'un enregistrement (www)
 
 **Objectif :** S'assurer que le serveur local (interrogé sur `127.0.0.1`) résout correctement un enregistrement spécifique de la zone.
 
@@ -71,12 +58,12 @@ www.dortmund.cub.sioplc.fr. 43200 IN    A       192.36.4.20
 ;; MSG SIZE  rcvd: 99
 ```
 
-**Explication :** 
+**Explication :**
 Le service BIND9 tourne correctement. La réponse affiche `status: NOERROR` et le flag `aa` (*Authoritative Answer*), ce qui signifie que le serveur répond de manière ferme, sans chercher sur Internet, car il a bien la zone en mémoire. Il renvoie la bonne IP : `192.36.4.20`.
 
 ---
 
-### 3.2. Vérification de l'autorité (SOA)
+### Vérification de l'autorité (SOA)
 
 **Objectif :** Demander l'enregistrement SOA (*Start of Authority*), qui fait office de "carte d'identité" de la zone DNS.
 
@@ -112,12 +99,12 @@ dortmund.cub.sioplc.fr. 43200   IN      SOA     ns0.dortmund.cub.sioplc.fr. post
 ;; MSG SIZE  rcvd: 130
 ```
 
-**Explication :** 
+**Explication :**
 Le serveur renvoie correctement les informations vitales de la zone. Le point le plus important de cette réponse est le numéro de série : `2026100101`. En production, interroger le SOA permet de comparer ce numéro de série avec celui du serveur maître pour s'assurer que l'esclave est bien à jour et synchronisé.
 
 ---
 
-### 3.3. Test de réponse sur l'interface réseau publique
+### Test de réponse sur l'interface réseau publique
 
 **Objectif :** Utiliser l'adresse IP réseau de l'esclave (`192.36.4.11`) au lieu de la boucle locale, pour lui demander où se trouve le serveur maître (`ns0`).
 
@@ -153,12 +140,12 @@ ns0.dortmund.cub.sioplc.fr. 43200 IN    A       192.36.4.10
 ;; MSG SIZE  rcvd: 99
 ```
 
-**Explication :** 
+**Explication :**
 Cela valide que le service BIND9 n'écoute pas seulement en local, mais qu'il est bien ouvert et fonctionnel sur sa carte réseau (grâce à la directive `listen-on` dans le fichier d'options). Il trouve instantanément l'adresse du maître (`192.36.4.10`).
 
 ---
 
-### 3.4. Vérification de la synchronisation (Serial SOA)
+### Vérification de la synchronisation (Serial SOA)
 
 **Objectif :** Vérifier si le serveur esclave est parfaitement à jour en comparant l'enregistrement SOA du serveur maître et celui du serveur esclave.
 
@@ -188,7 +175,7 @@ ns0.dortmund.cub.sioplc.fr. postmaster.dortmund.cub.sioplc.fr. 2026100101 86400 
 
 ---
 
-## 4. Conclusion
+## Conclusion
 
 > [!success] Validation fonctionnelle et sécurité
 > Sur les trois requêtes, on aperçoit le message d'avertissement `WARNING: recursion requested but not available`. C'est une excellente chose. La commande `dig` demande par défaut une recherche récursive, mais le serveur la refuse car elle a été explicitement bloquée dans sa configuration (`recursion no;`). Cela prouve que le serveur joue strictement son rôle de DNS Autoritaire et que les paramètres de sécurité anti-amplification DNS sont actifs.

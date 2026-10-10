@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Installation des paquets communs Debian"
 ---
 
-# BLOC 2 - Installation des paquets communs Debian
+# Installation des paquets communs Debian
 
 ![Bannière CUB](../../assets/banniere-cub.png)
 
@@ -10,23 +10,15 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 07/09/2026
-    - **Contexte :** Configuration Installation des paquets communs Debian
+    - **Sujet :** Installation des paquets communs Debian
 
 ---
 
-## 1. Sommaire
-
-* [1. Sommaire](#1-sommaire)
-* [2. Contexte](#2-contexte)
-* [3. Installation des paquets](#3-installation-des-paquets)
-* [4. Configurations communes](#4-configurations-communes)
-* [5. Tests de validation](#5-tests-de-validation)
-
-## 2. Contexte
+## Contexte
 
 Déploiement des paquets standards sur les serveurs Debian de l'infrastructure CUB. Cette procédure unifie l'outillage de base pour la supervision (`btop`), l'analyse réseau (`tcpdump`), le multiplexage de terminaux (`tmux`), la gestion des journaux (`rsyslog`) et l'édition de fichiers (`vim`). L'objectif est de garantir un environnement de diagnostic et d'exploitation homogène sur l'ensemble du parc.
 
-## 3. Installation des paquets
+## Installation des paquets
 
 3.1.  **Installation via APT.** Mise à jour des index et installation non interactive des utilitaires.
 
@@ -37,7 +29,7 @@ sudo apt update && sudo apt install -y btop tcpdump tmux rsyslog vim
 - `update` : Actualise la liste locale des paquets depuis les dépôts.
 - `install -y` : Installe les paquets spécifiés en répondant "oui" automatiquement aux invites.
 
-## 4. Configurations communes
+## Configurations communes
 
 4.1.  **Vim par défaut.** Configuration de Vim comme éditeur système (notamment pour `sudoedit`).
 
@@ -63,7 +55,7 @@ sudo chmod +x /etc/update-motd.d/99-plc-motd
 - `cat << 'EOF' >` : Écrit le bloc de texte (jusqu'au mot EOF) dans le fichier spécifié.
 - `chmod +x` : Rend le nouveau script exécutable pour qu'il s'affiche à la connexion.
 
-## 5. Tests de validation
+## Tests de validation
 
 5.1.  **Test de btop.** Validation du moniteur système.
 
@@ -71,7 +63,7 @@ sudo chmod +x /etc/update-motd.d/99-plc-motd
 btop -v
 ```
 
-**Résultat attendu :** 
+**Résultat attendu :**
 
 ```bash
 btop version: 1.3.2

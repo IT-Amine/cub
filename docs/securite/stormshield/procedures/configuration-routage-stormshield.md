@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Configuration du routage sur stormshield"
 ---
 
-# BLOC 3 - Configuration du routage sur stormshield
+# Configuration du routage sur stormshield
 
 ![Bannière CUB](../../../assets/banniere-cub.png)
 
@@ -10,31 +10,15 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 12/09/2026
-    - **Contexte :** Configuration Configuration du routage sur stormshield
+    - **Sujet :** Configuration du routage sur stormshield
 
 ---
 
-## Informations
-
-- **Auteur :** Amine Kada
-- **Date :** 12/09/2026
-- **Domaine :** Réseau
-
----
-
-## 1. Sommaire
-
-- [1. Sommaire](#1-sommaire)
-- [2. Contexte](#2-contexte)
-- [3. Création de l'objet Routeur](#3-creation-de-lobjet-routeur)
-- [4. Configuration de la route par défaut](#4-configuration-de-la-route-par-defaut)
-- [5. Configuration des routes statiques](#5-configuration-des-routes-statiques)
-
-## 2. Contexte
+## Contexte
 
 Ce document décrit la procédure d'implémentation du routage sur le pare-feu Stormshield. L'objectif est d'assurer l'interconnexion des Réseaux (LAN, DMZ, WAN) par la définition de la passerelle par défaut et l'ajout de routes statiques vers les routeurs de tronçon suivant.
 
-## 3. Création de l'objet Routeur {#3-creation-de-lobjet-routeur}
+## Création de l'objet Routeur {#3-creation-de-lobjet-routeur}
 
 > [!warning] Nommage des objets
 > Il est indispensable de nommer ces objets avec le préfixe `MACHINE_<nom-routeur>` pour respecter les conventions de nommage sur le pare-feu.
@@ -52,13 +36,13 @@ Ce document décrit la procédure d'implémentation du routage sur le pare-feu S
 - `Nom de l'objet` : Utilisation de la convention de nommage pour donner un nom à l'objet (Ex. MACHINE_SW-L3).
 - `Adresse IPv4` : Adresse IP de la machine sur le réseau.
 
-## 4. Configuration de la route par défaut {#4-configuration-de-la-route-par-defaut}
+## Configuration de la route par défaut {#4-configuration-de-la-route-par-defaut}
 
 4.1. **Assignation de la passerelle.** Définition du routeur par défaut vers lequel le trafic non spécifié sera orienté (Route S* `0.0.0.0/0`). Rendez-vous dans **Configuration** > **Réseau** > **Routage** > **Routes statiques IPv4**. Puis sélectionner l'objet de votre prochain routeur via le menu déroulant (Objet créé précédemment).
 
 ![Route par défaut](../../../assets/stormshield/configuration-routage-stormshield/chemin-configuration-routage.png)
 
-## 5. Configuration des routes statiques {#5-configuration-des-routes-statiques}
+## Configuration des routes statiques {#5-configuration-des-routes-statiques}
 
 > [!warning] Types de routes
 > Les Réseaux directement connectés (Type C comme la DMZ, le WAN ou le réseau d'Inter-co) sont automatiquement injectés. Seuls les Réseaux distants (Type S) nécessitent une configuration explicite.

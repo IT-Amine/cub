@@ -2,30 +2,19 @@
 
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
----
-
-## Informations
-
-- **Auteur :** KADA Amine
-- **Date :** 01/10/2026
-- **Domaine :** Cybersécurité
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 01/10/2026
+    - **Sujet :** Installation du Bastion Guacamole
 
 ---
 
-## 1. Sommaire
-
-- [1. Sommaire](#1-sommaire)
-- [2. Contexte](#2-contexte)
-- [3. Préparation de l'environnement de travail](#3-preparation-de-lenvironnement-de-travail)
-- [4. Configuration du Reverse Proxy et Certificats SSL](#4-configuration-du-reverse-proxy-et-certificats-ssl)
-- [5. Déploiement de l'Infrastructure Docker](#5-deploiement-de-linfrastructure-docker)
-- [6. Post-Installation et Sécurisation](#6-post-installation-et-securisation)
-
-## 2. Contexte
+## Contexte
 
 Le bastion Guacamole agit en tant que point d'accès centralisé et sécurisé pour l'administration des équipements et serveurs de l'infrastructure CUB. En s'appuyant sur la suite Apache Guacamole, il fournit des connexions RDP, SSH et VNC "clientless" directement via un navigateur web. Le déploiement s'effectue de manière conteneurisée à l'aide de Docker Compose, intégrant un service PostgreSQL pour la gestion des accès et un reverse proxy Nginx pour le chiffrement des flux en HTTPS.
 
-## 3. Préparation de l'environnement de travail {#3-preparation-de-lenvironnement-de-travail}
+## Préparation de l'environnement de travail {#3-preparation-de-lenvironnement-de-travail}
 
 3.1. **Création du répertoire de travail.** Initialisation de l'arborescence principale pour l'hébergement des volumes et configurations Docker.
 
@@ -52,7 +41,7 @@ docker run --rm 'guacamole/guacamole:1.6.0' /opt/guacamole/bin/initdb.sh --postg
 * `--rm` : Le conteneur éphémère sera automatiquement supprimé à la fin de l'opération.
 * `--postgresql` : Spécifie le type de base de données à initialiser.
 
-## 4. Configuration du Reverse Proxy et Certificats SSL
+## Configuration du Reverse Proxy et Certificats SSL
 
 4.1. **Création de l'arborescence Nginx.** Préparation des dossiers pour le stockage des certificats et du template de configuration Nginx.
 
@@ -82,15 +71,13 @@ vim /opt/guacamole/nginx/templates/guacamole.conf.template
 
 [ Consulter guacamole.conf.template](./assets/installation-guacamole/guacamole.conf.template)
 
-## 5. Déploiement de l'Infrastructure Docker {#5-deploiement-de-linfrastructure-docker}
+## Déploiement de l'Infrastructure Docker {#5-deploiement-de-linfrastructure-docker}
 
 5.1. **Configuration des variables d'environnement.** Renseignement des secrets et paramètres globaux de la stack.
 
 ```bash title="Création du fichier d'environnement"
 vim /opt/guacamole/.env
 ```
-
-[ Consulter .env](./assets/installation-guacamole/.env.example)
 
 5.2. **Déclaration des services.** Configuration du fichier définissant les services Guacamole, PostgreSQL et Nginx.
 
@@ -103,7 +90,7 @@ vim /opt/guacamole/docker-compose.yml
 
 [ Consulter docker-compose.yml](./assets/installation-guacamole/docker-compose.yaml)
 
-## 6. Post-Installation et Sécurisation {#6-post-installation-et-securisation}
+## Post-Installation et Sécurisation {#6-post-installation-et-securisation}
 
 6.1. **Première authentification.** Accéder à l'interface web via l'adresse IP du bastion et s'authentifier avec les identifiants initiaux.
 

@@ -1,8 +1,8 @@
 ---
-description: Procédure de déploiement et de configuration initiale pour le serveur BLOC 2 - AD1 Core.
+description: "AD1 Core"
 ---
 
-# BLOC 2 - AD1 Core
+# AD1 Core
 
 ![Bannière CUB](../../assets/banniere-cub.png)
 
@@ -10,26 +10,16 @@ description: Procédure de déploiement et de configuration initiale pour le ser
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 09/09/2026
-    - **Contexte :** configuration du serveur AD1 Core
+    - **Sujet :** AD1 Core
 
 ---
 
-## 1. Sommaire
-- [1. Sommaire](#1-sommaire)
-- [2. Contexte](#2-contexte)
-- [3. Déploiement des utilitaires de virtualisation](#3-deploiement-des-utilitaires-de-virtualisation)
-- [4. Configuration réseau statique](#4-configuration-reseau-statique)
-- [5. Configuration NTP](#5-configuration-ntp)
-- [6. Paramétrage Sécurité et Pare-feu](#6-parametrage-securite-et-pare-feu)
-- [7. Mise à jour du système](#7-mise-a-jour-du-systeme)
-- [8. Sécurisation du compte local Administrateur](#8-securisation-du-compte-local-administrateur)
-
-## 2. Contexte
+## Contexte
 Ce document détaille la procédure d'initialisation et de sécurisation (Hardening) du serveur Windows Server 2025 (édition Core) nommé AD1 Core. Il couvre la synchronisation temporelle indispensable à Active Directory, la configuration du pare-feu, la gestion des mises à jour centralisées via PowerShell, la sécurisation du compte administrateur local, ainsi que l'intégration des pilotes VirtIO/QEMU nécessaires au fonctionnement optimal sur l'hyperviseur.
 
-## 3. Déploiement des utilitaires de virtualisation
+## Déploiement des utilitaires de virtualisation
 
-### 3.1. Exécution des agents VirtIO. Lancement de l'installateur des pilotes paravirtualisés depuis le support monté.
+### Exécution des agents VirtIO. Lancement de l'installateur des pilotes paravirtualisés depuis le support monté.
 ```powershell
 Start-Process -FilePath "D:\virtio-win-guest-tools.exe"
 ```
@@ -41,7 +31,7 @@ Puis mettre dans le FilePath : "D:\virtio-win-guest-tools.exe"
 ![Start Process](../../assets/ad/startprocess.png)
 ![QEMU1](../../assets/ad/qemu1.png)
 
-### 3.2. Configuration du service QEMU-GA. Définition du lancement automatique pour assurer la communication hyperviseur/machine virtuelle.
+### Configuration du service QEMU-GA. Définition du lancement automatique pour assurer la communication hyperviseur/machine virtuelle.
 ```powershell
 Set-Service -Name "QEMU-GA" -StartupType Automatic
 Start-Service QEMU-GA
@@ -51,16 +41,16 @@ Start-Service QEMU-GA
 
 ![QEMU-GA](../../assets/ad/qemu2.png)
 
-## 4. Configuration réseau statique
+## Configuration réseau statique
 
-### 4.1. Identification de l'interface réseau
+### Identification de l'interface réseau
 Il faut d'abord repérer le numéro d'index (`ifIndex`) de la carte réseau virtuelle pour lui appliquer les paramètres.
 ```powershell
 Get-NetAdapter
 ```
 - Repérez la valeur dans la colonne `ifIndex` correspondant à votre carte réseau (généralement nommée Ethernet).
 
-### 4.2. Attribution de l'adresse IP, du Masque et de la Passerelle
+### Attribution de l'adresse IP, du Masque et de la Passerelle
 Utilisez l'index récupéré pour définir les paramètres IP statiques. *(Exemple avec l'index `3`, l'IP `192.168.4.10`, masque `/25` et la passerelle `192.168.4.126`)*.
 
 ```powershell
@@ -71,7 +61,7 @@ New-NetIPAddress -InterfaceIndex 3 -IPAddress "192.168.4.10" -PrefixLength 25 -D
 - `-PrefixLength` : La longueur du masque de sous-réseau en notation CIDR (ex: `25` pour `255.255.255.128`).
 - `-DefaultGateway` : L'adresse IP de la passerelle par défaut.
 
-### 4.3. Configuration des serveurs DNS
+### Configuration des serveurs DNS
 Définition des serveurs DNS. Pour un serveur AD, on renseigne généralement lui-même en boucle locale (`127.0.0.1`) et/ou le DNS récursif de l'agence en secondaire.
 
 ```powershell
@@ -79,9 +69,9 @@ Set-DnsClientServerAddress -InterfaceIndex 3 -ServerAddresses ("127.0.0.1")
 ```
 - `-ServerAddresses` : Liste des adresses IP des serveurs DNS séparées par une virgule.
 
-## 5. Configuration NTP
+## Configuration NTP
 
-### 5.1. Configuration des pools de serveurs. Établissement de la synchronisation manuelle sur les serveurs de temps publics pour garantir l'intégrité de l'horloge système.
+### Configuration des pools de serveurs. Établissement de la synchronisation manuelle sur les serveurs de temps publics pour garantir l'intégrité de l'horloge système.
 
 ```powershell title="Configuration W32Time"
 w32tm /config /manualpeerlist:"0.fr.pool.ntp.org 1.fr.pool.ntp.org" /syncfromflags:manual /reliable:yes /update
@@ -93,7 +83,7 @@ w32tm /resync
 
 ![Configuration NTP](../../assets/ad/ntp.png)
 
-### 5.2. Validation des homologues NTP. Contrôle de l'état du service de temps local.
+### Validation des homologues NTP. Contrôle de l'état du service de temps local.
 ```powershell
 w32tm /query /peers
 w32tm /query /status
@@ -103,9 +93,9 @@ w32tm /query /status
 
 ![Validation NTP](../../assets/ad/ntp23.png)
 
-## 6. Paramétrage Sécurité et Pare-feu
+## Paramétrage Sécurité et Pare-feu
 
-### 6.1. Vérification UAC et Profils Pare-feu. Audit des politiques de pare-feu globales (Domaine, Privé, Public).
+### Vérification UAC et Profils Pare-feu. Audit des politiques de pare-feu globales (Domaine, Privé, Public).
 ```powershell
 Get-NetFirewallProfile | Select-Object Name, Enabled
 
@@ -113,9 +103,9 @@ Get-NetFirewallProfile | Select-Object Name, Enabled
 
 ![Profils Pare-feu](../../assets/ad/firewall.png)
 
-## 7. Mise à jour du système
+## Mise à jour du système
 
-### 7.1. Téléchargement et installation des KBs. Utilisation de l'API Windows Update pour mettre le système en conformité via le module PSWindowsUpdate.
+### Téléchargement et installation des KBs. Utilisation de l'API Windows Update pour mettre le système en conformité via le module PSWindowsUpdate.
 ```powershell
 Get-Service -Name wuauserv
 Start-Service -Name wuauserv
@@ -124,7 +114,7 @@ UsoClient StartScan
 Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force
 Install-Module PSWindowsUpdate -Force
 Install-WindowsUpdate -AcceptAll -Install
-Restart-Computer 
+Restart-Computer
 ```
 
 - UsoClient StartScan : Force le lancement asynchrone de la recherche de mises à jour.
@@ -135,9 +125,9 @@ Restart-Computer
 !!! warning "Action requise"
     Un redémarrage du système (Restart-Computer) est strictement requis après la passe d'installation des correctifs cumulatifs.
 
-## 8. Sécurisation du compte local Administrateur
+## Sécurisation du compte local Administrateur
 
-### 8.1. Renommage et changement de mot de passe. Modification du nom d'utilisateur associé au SID 500 pour compliquer les attaques par énumération, et renouvellement du mot de passe avec une entrée sécurisée.
+### Renommage et changement de mot de passe. Modification du nom d'utilisateur associé au SID 500 pour compliquer les attaques par énumération, et renouvellement du mot de passe avec une entrée sécurisée.
 ```powershell
 Get-LocalUser -Name "Administrateur" | Select-Object Name, SID, Enabled
 Rename-LocalUser -Name "Administrateur" -NewName "ADM-SRV-01"

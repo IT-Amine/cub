@@ -2,28 +2,19 @@
 
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
----
-
-## Informations
-
-- **Auteur :** KADA Amine
-- **Date :** 06/10/2026
-- **Domaine :** Administration Windows / Active Directory
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 06/10/2026
+    - **Sujet :** Gestion des utilisateurs locaux et active directory
 
 ---
 
-## 1. Sommaire
-
-- [1. Sommaire](#1-sommaire)
-- [2. Contexte](#2-contexte)
-- [3. Gestion des Utilisateurs Locaux](#3-gestion-des-utilisateurs-locaux)
-- [4. Gestion des Utilisateurs Active Directory (AD DS)](#4-gestion-des-utilisateurs-active-directory-ad-ds)
-
-## 2. Contexte
+## Contexte
 
 Cette procédure documente les standards d'ingénierie pour le provisionnement et la gestion du cycle de vie des identités. Elle définit les méthodes d'automatisation (IaC) en PowerShell pour opérer sur la base SAM des serveurs isolés (utilisateurs locaux) ainsi que sur la base de données NTDS d'un environnement Active Directory centralisé. Ce composant est indispensable pour garantir la conformité des accès et le durcissement des déploiements en production.
 
-## 3. Gestion des Utilisateurs Locaux
+## Gestion des Utilisateurs Locaux
 
 3.1.  **Créer un compte utilisateur local.** Instanciation d'un nouveau compte de service ou d'administration dans la base SAM de la machine hôte.
 
@@ -55,7 +46,7 @@ Remove-LocalUser -Name "SRE_Admin"
 
 - `Remove-LocalUser` : Cmdlet ordonnant la suppression définitive du compte local spécifié.
 
-## 4. Gestion des Utilisateurs Active Directory (AD DS)
+## Gestion des Utilisateurs Active Directory (AD DS)
 
 > [!warning] Dépendance du module
 > L'exécution des cmdlets Active Directory requiert l'installation préalable de la fonctionnalité RSAT (Outils d'administration de serveur distant) et le chargement du module associé en mémoire via la commande `Import-Module ActiveDirectory`.

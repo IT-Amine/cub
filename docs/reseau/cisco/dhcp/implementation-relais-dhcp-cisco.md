@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Implémentation du Relais DHCP sur équipement Cisco"
 ---
 
-# BLOC 2 - Implémentation du Relais DHCP sur équipement Cisco
+# Implémentation du Relais DHCP sur équipement Cisco
 
 ![Bannière CUB](../../../assets/banniere-cub.png)
 
@@ -10,21 +10,15 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 05/09/2026
-    - **Contexte :** Configuration Implémentation du Relais DHCP sur équipement Cisco
+    - **Sujet :** Implémentation du Relais DHCP sur équipement Cisco
 
 ---
 
-## 1. Sommaire
-
-* [1. Sommaire](#1-sommaire)
-* [2. Contexte](#2-contexte)
-* [3. Implémentation de l'agent relais (IP Helper)](#3-implementation-de-lagent-relais-ip-helper)
-
-## 2. Contexte
+## Contexte
 
 Le protocole DHCP repose nativement sur des requêtes de diffusion (Broadcast) systématiquement bloquées par les limites de domaines de diffusion (routeurs ou commutateurs de niveau 3). L'implémentation d'un agent relais DHCP via la fonction IP Helper permet d'écouter ces diffusions locales et de les encapsuler dans des trames monodiffusées (Unicast) à destination d'un serveur DHCP centralisé. Au sein de l'infrastructure CUB, cette approche d'ingénierie centralisée évite le déploiement de serveurs DHCP dédiés dans chaque VLAN d'accès.
 
-## 3. Implémentation de l'agent relais (IP Helper) {#3-implementation-de-lagent-relais-ip-helper}
+## Implémentation de l'agent relais (IP Helper) {#3-implementation-de-lagent-relais-ip-helper}
 
 4.1. **Configuration du relais DHCP sur l'interface passerelle.** Définition de l'adresse du serveur DHCP cible sur l'interface servant de passerelle par défaut pour le sous-réseau client (Interface physique sur un routeur, ou Interface VLAN / SVI sur un commutateur).
 

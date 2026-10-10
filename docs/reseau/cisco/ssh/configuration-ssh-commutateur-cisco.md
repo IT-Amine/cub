@@ -1,8 +1,8 @@
 ---
-description: Documentation et procédure technique.
+description: "Implémentation du SSH sur un commutateur Cisco"
 ---
 
-# BLOC 2 - Implémentation du SSH sur un commutateur Cisco
+# Implémentation du SSH sur un commutateur Cisco
 
 ![Bannière CUB](../../../assets/banniere-cub.png)
 
@@ -10,24 +10,15 @@ description: Documentation et procédure technique.
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 05/09/2026
-    - **Contexte :** Configuration Implémentation du SSH sur un commutateur Cisco
+    - **Sujet :** Implémentation du SSH sur un commutateur Cisco
 
 ---
 
-## 1. Sommaire
-
-* [1. Sommaire](#1-sommaire)
-* [2. Contexte](#2-contexte)
-* [3. Configuration des prérequis globaux](#3-configuration-des-prerequis-globaux)
-* [4. Sécurisation cryptographique](#4-securisation-cryptographique)
-* [5. Authentification et paramètres SSH](#5-authentification-et-parametres-ssh)
-* [6. Sécurisation des accès virtuels (VTY)](#6-securisation-des-acces-virtuels-vty)
-
-## 2. Contexte
+## Contexte
 
 Le déploiement de SSH (Secure Shell) sur les commutateurs Cisco vise à remplacer le protocole Telnet, qui transmet les données en clair. Cette configuration garantit un accès distant chiffré et sécurisé pour l'administration de l'équipement. Elle s'intègre dans la politique de sécurité globale de l'infrastructure CUB, en prévenant les interceptions de trames de gestion sur le réseau local et en centralisant l'authentification sécurisée.
 
-## 3. Configuration des prérequis globaux {#3-configuration-des-prerequis-globaux}
+## Configuration des prérequis globaux {#3-configuration-des-prerequis-globaux}
 
 3.1. **Configuration du nommage et désactivation DNS**. L'équipement a besoin d'un nom d'hôte et d'un nom de domaine uniques pour générer la clé cryptographique. La résolution DNS est désactivée pour éviter les temps d'attente lors d'erreurs de saisie.
 
@@ -46,7 +37,7 @@ SW-CORE-01(config)# no ip domain-lookup
 * `ip domain-name` : Spécifie le suffixe DNS du domaine réseau.
 * `no ip domain-lookup` : Empêche le commutateur de chercher un serveur DNS pour traduire les commandes mal tapées en adresses IP.
 
-## 4. Sécurisation cryptographique {#4-securisation-cryptographique}
+## Sécurisation cryptographique {#4-securisation-cryptographique}
 
 4.1. **Génération de la paire de clés RSA**. Création du trousseau de clés asymétriques nécessaire au chiffrement du tunnel SSH.
 
@@ -58,7 +49,7 @@ SW-CORE-01(config)# crypto key generate rsa modulus 2048
 * `crypto key generate rsa` : Lance le moteur de création de clés pour l'algorithme RSA.
 * `modulus 2048` : Définit la taille de la clé à 2048 bits, norme standard actuelle pour une sécurité robuste (minimum 1024 requis pour SSHv2).
 
-## 5. Authentification et paramètres SSH {#5-authentification-et-parametres-ssh}
+## Authentification et paramètres SSH {#5-authentification-et-parametres-ssh}
 
 5.1. **Création du compte local et renforcement du protocole**. Création d'un administrateur local sécurisé et application des bonnes pratiques (Version 2).
 
@@ -80,7 +71,7 @@ SW-CORE-01(config)# ip ssh authentication-retries 3
 * `ip ssh time-out 60` : Ferme la session après 60 secondes d'inactivité.
 * `ip ssh authentication-retries 3` : Limite à 3 le nombre d'échecs de connexion avant de rejeter la requête (protection brute-force).
 
-## 6. Sécurisation des accès virtuels (VTY) {#6-securisation-des-acces-virtuels-vty}
+## Sécurisation des accès virtuels (VTY) {#6-securisation-des-acces-virtuels-vty}
 
 6.1. **Restriction des lignes d'administration**. Activation de l'authentification pour l'accès distant et blocage définitif de Telnet.
 

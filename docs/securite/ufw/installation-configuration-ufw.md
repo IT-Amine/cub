@@ -2,27 +2,19 @@
 
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
----
-
-## Informations
-
-- **Auteur :** KADA Amine
-- **Date :** 01/10/2026
-- **Domaine :** Cybersécurité
+!!! abstract "Informations sur le document"
+    - **Auteur :** KADA Amine
+    - **Classe :** BTS SIO 2 - Option SISR
+    - **Date :** 01/10/2026
+    - **Sujet :** Installation et configuration de UFW
 
 ---
 
-## 1. Sommaire
-
-- [1. Sommaire](#1-sommaire)
-- [2. Contexte](#2-contexte)
-- [3. Procédure de déploiement et configuration](#3-procedure-de-deploiement-et-configuration)
-
-## 2. Contexte
+## Contexte
 
 UFW (Uncomplicated Firewall) est une surcouche simplifiée pour la gestion du pare-feu Linux (iptables/nftables). Il est déployé pour sécuriser les flux réseau de l'infrastructure en filtrant le trafic entrant et sortant. Ce service est un point de contrôle critique qui isole les applications et respecte le principe de moindre privilège au sein de l'environnement CUB.
 
-## 3. Procédure de déploiement et configuration
+## Procédure de déploiement et configuration
 
 3.1.  **Installation de UFW.** Installation des paquets nécessaires depuis les dépôts officiels.
 

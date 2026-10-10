@@ -1,5 +1,5 @@
 ---
-description: Documentation et procédure technique du contexte CUB.
+description: "Contexte CUB - BTS SIO"
 ---
 
 # Contexte CUB - BTS SIO
@@ -9,7 +9,8 @@ description: Documentation et procédure technique du contexte CUB.
 !!! abstract "Informations sur le document"
     - **Auteur :** KADA Amine
     - **Classe :** BTS SIO 2 - Option SISR
-    - **Contexte :** Présentation générale de l'entreprise CUB
+    - **Date :** 16/09/2026
+    - **Sujet :** Contexte CUB - BTS SIO
 
 ---
 
