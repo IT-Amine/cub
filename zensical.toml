@@ -103,6 +103,7 @@ nav = [
   ]},
   { "Ressources" = [
     "ressources/index.md",
+    "ressources/annuaire-machines.md",
     "ressources/schemas.md",
     "ressources/plan-adressage.md",
     "ressources/tables-routage.md",
