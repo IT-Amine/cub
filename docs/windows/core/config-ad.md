@@ -51,15 +51,15 @@ Get-NetAdapter
 - Repérez la valeur dans la colonne `ifIndex` correspondant à votre carte réseau (généralement nommée Ethernet).
 
 ### Attribution de l'adresse IP, du Masque et de la Passerelle
-Utilisez l'index récupéré pour définir les paramètres IP statiques. *(Exemple avec l'index `3`, l'IP `192.168.4.10`, masque `/25` et la passerelle `192.168.4.126`)*.
+Utilisez l'index récupéré pour définir les paramètres IP statiques. *(Exemple avec l'index `3`, l'IP `192.168.4.1`, masque `/25` et la passerelle `192.168.4.126` pour ServeurAD0 ; pour ServeurAD1, l'IP est `192.168.4.2`)*.
 
 ```powershell
-New-NetIPAddress -InterfaceIndex 3 -IPAddress "192.168.4.10" -PrefixLength 25 -DefaultGateway "192.168.4.126"
+New-NetIPAddress -InterfaceIndex 3 -IPAddress "192.168.4.1" -PrefixLength 25 -DefaultGateway "192.168.4.126"
 ```
 - `-InterfaceIndex` : L'index de la carte réseau (ici `3`).
-- `-IPAddress` : L'adresse IP statique du serveur AD.
-- `-PrefixLength` : La longueur du masque de sous-réseau en notation CIDR (ex: `25` pour `255.255.255.128`).
-- `-DefaultGateway` : L'adresse IP de la passerelle par défaut.
+- `-IPAddress` : L'adresse IP statique du contrôleur AD0 (`192.168.4.1/25`).
+- `-PrefixLength` : La longueur du masque de sous-réseau en notation CIDR (`25` pour `255.255.255.128`).
+- `-DefaultGateway` : L'adresse IP de la passerelle par défaut (`192.168.4.126`).
 
 ### Configuration des serveurs DNS
 Définition des serveurs DNS. Pour un serveur AD, on renseigne généralement lui-même en boucle locale (`127.0.0.1`) et/ou le DNS récursif de l'agence en secondaire.

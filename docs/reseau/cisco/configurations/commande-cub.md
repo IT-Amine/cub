@@ -30,3 +30,6 @@ Veuillez vous référer directement aux fichiers de sauvegarde (sauvegardés dan
 
 - **Fichier de configuration chiffré :** [dmd-fw-c1.na](../../../ressources/configurations/dmd-fw-c1.na) *(Nécessite le mot de passe d'archive)*
 
+## Maquette Cisco Packet Tracer (Dortmund)
+
+- **Cisco Packet Tracer :** [BLOC3 - Cybersécurité CUB.pkt](../../../assets/cisco/BLOC3%20-%20Cybersécurité%20CUB.pkt)
