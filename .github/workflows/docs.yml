@@ -1,6 +1,10 @@
 name: Documentation
+
 on:
   push:
+    branches:
+      - main
+  pull_request:
     branches:
       - main
   workflow_dispatch:
@@ -11,22 +15,33 @@ permissions:
   id-token: write
 
 jobs:
+  build:
+    name: Validation du build Zensical
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      - name: Installation des dépendances
+        run: pip install -r requirements.txt
+      - name: Compilation Zensical
+        run: zensical build --clean
+      - name: Sauvegarde de l'artefact de déploiement
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
   deploy:
+    name: Déploiement GitHub Pages
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-          cache: 'pip'
-      - run: pip install -r requirements.txt
-      - run: zensical build --clean
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: site
       - uses: actions/deploy-pages@v4
         id: deployment
