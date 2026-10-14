@@ -1,5 +1,5 @@
 ---
-description: "Configuration du service DHCP sur Windows Server 2025 Core"
+description: "Config DHCP1 - Core"
 ---
 
 # Configuration du service DHCP sur Windows Server 2025 Core

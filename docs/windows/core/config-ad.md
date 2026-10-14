@@ -1,5 +1,5 @@
 ---
-description: "AD1 Core"
+description: "Config AD1 - Core"
 ---
 
 # AD1 Core
