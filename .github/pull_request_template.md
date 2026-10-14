@@ -38,3 +38,4 @@ Merci de vérifier et cocher l'ensemble des points suivants avant de soumettre l
 - [ ] Le cartouche d'en-tête standard (`!!! abstract "Informations sur le document"`) est présent avec l'auteur, la classe et la date.
 - [ ] Zéro émoji dans le corps des fiches techniques afin de garantir un rendu rigoureux et professionnel.
 - [ ] La barre de navigation (`zensical.toml`) a été actualisée si de nouveaux fichiers ont été créés.
+
