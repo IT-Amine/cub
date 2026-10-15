@@ -3,7 +3,7 @@
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** KADA Amine
+    - **Auteur :** INFRAMINE
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 07/10/2026
     - **Sujet :** Configuration de l'enregistrement des connexions

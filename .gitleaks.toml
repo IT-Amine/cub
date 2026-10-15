@@ -1,0 +1,34 @@
+# Documentation : https://blog.stephane-robert.info/docs/securiser/analyser-code/gitleaks/
+# Référence officielle : https://github.com/gitleaks/gitleaks
+
+title = "Configuration personnalisée - CUB"
+
+[extend]
+# Activation des règles de détection par défaut de Gitleaks
+useDefault = true
+
+[allowlist]
+description = "Liste blanche des secrets pédagogiques et mots de passe d'exemple de l'infrastructure CUB"
+
+# Mots de passe d'exemple et chaînes de test autorisés
+regexes = [
+    # Mots de passe système et applicatifs standardisés (3 principaux)
+    "AdminCUB2026!",
+    "StrongPassword123!",
+    "ChangezMoiSVP@37ù",
+
+    # Mots de passe d'administration des équipements réseau Cisco
+    "M0tDeP@sseF0rt!",
+    "ConsoleSecurisee!",
+    "AuxSecurise!",
+    "S3cur3VTP!",
+
+    # Hachages cryptographiques Cisco d'exemple
+    '''\$1\$Mo7O\$L6ma5ITsA2BL0zPBKkhp/\.''',
+    '''\$9\$VmD40l7\.pGSaZk\$x\.XYjePcJYbaM/qnjcLfmiEqoJKVaud7gGn/947KfYc''',
+]
+
+paths = [
+    '''docs/ressources/maquettes/.*\.pkt''',
+    '''templates/memo\.md''',
+]

@@ -7,7 +7,7 @@ description: "Procédure : Extension du volume système (C:) sur machine virtuel
 ![Bannière CUB](../../assets/banniere-cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** KADA Amine
+    - **Auteur :** INFRAMINE
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 09/09/2026
     - **Sujet :** Procédure : Extension du volume système (C:) sur machine virtuelle

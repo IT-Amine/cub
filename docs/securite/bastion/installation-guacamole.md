@@ -3,7 +3,7 @@
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** KADA Amine
+    - **Auteur :** INFRAMINE
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 01/10/2026
     - **Sujet :** Installation du Bastion Guacamole
@@ -69,8 +69,6 @@ openssl req -nodes -newkey rsa:2048 -new -x509 \
 vim /opt/guacamole/nginx/templates/guacamole.conf.template
 ```
 
-[ Consulter guacamole.conf.template](./assets/installation-guacamole/guacamole.conf.template)
-
 ## Déploiement de l'Infrastructure Docker {#5-deploiement-de-linfrastructure-docker}
 
 5.1. **Configuration des variables d'environnement.** Renseignement des secrets et paramètres globaux de la stack.
@@ -78,6 +76,7 @@ vim /opt/guacamole/nginx/templates/guacamole.conf.template
 ```bash title="Création du fichier d'environnement"
 vim /opt/guacamole/.env
 ```
+[ Consulter guacamole.conf.template](./assets/installation-guacamole/guacamole.conf.template)
 
 5.2. **Déclaration des services.** Configuration du fichier définissant les services Guacamole, PostgreSQL et Nginx.
 
@@ -89,6 +88,7 @@ vim /opt/guacamole/docker-compose.yml
 ```
 
 [ Consulter docker-compose.yml](./assets/installation-guacamole/docker-compose.yaml)
+[ Consulter .env.example](./assets/installation-guacamole/.env.example)
 
 ## Post-Installation et Sécurisation {#6-post-installation-et-securisation}
 

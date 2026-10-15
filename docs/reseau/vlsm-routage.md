@@ -7,7 +7,7 @@ description: "Vlsm Routage"
 ![Bannière CUB](../assets/banniere-cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** KADA Amine
+    - **Auteur :** INFRAMINE
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 22/01/2026
     - **Sujet :** Vlsm Routage
@@ -31,6 +31,7 @@ description: "Vlsm Routage"
 | **VLAN 54 - Production** | 192.168.4.0               | 255.255.255.128 (/25) | - | 192.168.4.126           | **C** |
 | **VLAN 10 - Clients** | 192.168.4.128             | 255.255.255.192 (/26) | - | 192.168.4.190           | **C** |
 | **VLAN 20 - Admin Sys.** | 192.168.4.192             | 255.255.255.240 (/28) | - | 192.168.4.206           | **C** |
+| **VLAN 53 - Bastion** | 192.168.4.208             | 255.255.255.240 (/28) | - | 192.168.4.214           | **C** |
 | **VLAN 2 - Transit LAN** | 192.168.44.248            | 255.255.255.248 (/29) | - | 192.168.44.253          | **C** |
 | **Route par défaut (Internet)** | 0.0.0.0                   | 0.0.0.0 (/0)          | 192.168.44.254               | 192.168.44.253          | **S** |
 

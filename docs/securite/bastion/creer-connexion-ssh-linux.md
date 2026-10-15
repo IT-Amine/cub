@@ -3,7 +3,7 @@
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** KADA Amine
+    - **Auteur :** INFRAMINE
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 01/10/2026
     - **Sujet :** Configuration d'une Connexion SSH sur Guacamole
@@ -20,7 +20,7 @@ L'objectif de cette procédure est de documenter l'intégration sécurisée d'un
 
 - `Nom` : Définir un identifiant explicite respectant la convention de nommage (exemple : `ServeurDNS0`).
 - `Protocole` : Sélectionner le protocole `SSH`.
-- `Réseau` : Saisir l'adresse IP du serveur cible ainsi que le port de communication (par défaut `22`).
+- `Réseau` : Saisir l'adresse IP du serveur cible (ex: `192.168.4.10` pour `ServeurDNS0` ou `192.168.4.11` pour `ServeurDNS1`) ainsi que le port de communication (par défaut `22`).
 
 ![Configuration connexion ssh](./assets/creer-connexion-ssh-linux/01-configuration-connexion-ssh.png)
 

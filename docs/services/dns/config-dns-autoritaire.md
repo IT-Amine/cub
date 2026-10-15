@@ -7,7 +7,7 @@ description: "Déploiement DNS Esclave (ns1)"
 ![Bannière CUB](../../assets/banniere-cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** KADA Amine
+    - **Auteur :** INFRAMINE
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 01/10/2026
     - **Sujet :** Déploiement DNS Esclave (ns1)
@@ -16,7 +16,7 @@ description: "Déploiement DNS Esclave (ns1)"
 
 ## Contexte
 
-Ce document détaille la procédure de déploiement en production du serveur DNS secondaire (esclave) `ns1` de l'agence de Dortmund. Positionné dans la DMZ avec l'adresse IP `192.36.4.11`, ce serveur assure la haute disponibilité de la résolution de noms pour le domaine `dortmund.cub.sioplc.fr`. Contrairement au serveur maître (`ns0` sur `192.36.4.10`) géré par KADA Amine, ce serveur ne nécessite pas la création manuelle du fichier de zone. Il est configuré pour rapatrier dynamiquement et automatiquement les enregistrements via un transfert de zone sécurisé (AXFR) depuis le maître.
+Ce document détaille la procédure de déploiement en production du serveur DNS secondaire (esclave) `ns1` de l'agence de Dortmund. Positionné dans la DMZ avec l'adresse IP `192.36.4.11`, ce serveur assure la haute disponibilité de la résolution de noms pour le domaine `dortmund.cub.sioplc.fr`. Contrairement au serveur maître (`ns0` sur `192.36.4.10`) géré par INFRAMINE, ce serveur ne nécessite pas la création manuelle du fichier de zone. Il est configuré pour rapatrier dynamiquement et automatiquement les enregistrements via un transfert de zone sécurisé (AXFR) depuis le maître.
 
 ---
 
