@@ -1,0 +1,49 @@
+# Documentation : https://blog.stephane-robert.info/docs/securiser/analyser-code/gitleaks/
+# Référence officielle : https://github.com/gitleaks/gitleaks
+
+title = "Configuration personnalisée - CUB"
+
+[extend]
+# Activation des règles de détection par défaut de Gitleaks
+useDefault = true
+
+[allowlist]
+description = "Liste blanche des secrets pédagogiques, mots de passe d'exemple et faux positifs de l'infrastructure CUB"
+
+# Ignorer les chaînes de caractères et mots de passe d'exemple documentés
+regexes = [
+    # Mots de passe d'exemple Cisco
+    "M0tDeP@sseF0rt!",
+    "ConsoleSecurisee!",
+    "AuxSecurise!",
+    "S3cur3VTP!",
+
+    # Mots de passe et secrets d'exemple applicatifs / systèmes
+    "P@ssw0rd2026!",
+    "MotDePasseRobuste",
+    "MDP_BITWARDEN",
+    "ChangezMoiSVP@37ù",
+    "VotreMotDePasseIci",
+
+    # Identifiants de services et comptes documentés
+    "guacamole",
+    "guacadmin",
+    "admin_tech",
+    "adminbastion",
+
+    # Hachages cryptographiques Cisco d'exemple
+    '''\$1\$Mo7O\$L6ma5ITsA2BL0zPBKkhp/\.''',
+    '''\$9\$VmD40l7\.pGSaZk\$x\.XYjePcJYbaM/qnjcLfmiEqoJKVaud7gGn/947KfYc''',
+
+    # Troncatures et secrets pédagogiques TOTP / OATH
+    "HOTP/T30/6",
+    "KYVW...",
+    "MX2...",
+]
+
+# Chemins exclus de l'analyse (fichiers binaires Packet Tracer, templates internes)
+paths = [
+    '''docs/ressources/maquettes/.*\.pkt''',
+    '''templates/memo\.md''',
+]
+

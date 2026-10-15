@@ -7,7 +7,7 @@ description: "Annuaire des machines et services"
 ![Bannière CUB](../assets/banniere-cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** KADA Amine
+    - **Auteur :** INFRAMINE
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 14/10/2026
     - **Sujet :** Annuaire des machines et des services de l'infrastructure CUB
@@ -47,19 +47,20 @@ Ce document recense l'inventaire complet des machines virtuelles, des équipemen
 | :--- | :--- | :--- | :--- |
 | **ServeurDNS0 (ns0)** | `ns0.dortmund.cub.sioplc.fr` | `192.36.4.10/24` | Serveur DNS faisant autorité Maître (Bind9 Maître) |
 | **ServeurDNS1 (ns1)** | `ns1.dortmund.cub.sioplc.fr` | `192.36.4.11/24` | Serveur DNS faisant autorité Esclave (Bind9 Esclave) |
-| **ServeurWeb0 (www)** | `www.dortmund.cub.sioplc.fr` | `192.36.4.20/24` | Serveur Web vitrine DMZ (Apache/Nginx) |
+| **ServeurWeb0** | `www0.dortmund.cub.sioplc.fr` | `192.36.4.20/24` | Serveur Web 0 hébergeant www0 & scanner0 par VHOST en DMZ |
+| **ServeurWeb1** | `www1.dortmund.cub.sioplc.fr` | `192.36.4.21/24` | Serveur Web 1 hébergeant www1 & scanner1 par VHOST en DMZ |
 
 ---
 
 ## Réseau BASTION (VLAN 53)
 
 > **Passerelle par défaut (SVI Switch L3) :** `192.168.4.214`  
-> **Masque de sous-réseau :** `255.255.255.248 (/29)`
+> **Masque de sous-réseau :** `255.255.255.240 (/28)`
 
 | Nom machine | FQDN | Adresse IP | Rôle / Fonction |
 | :--- | :--- | :--- | :--- |
-| **ServeurBastion0** | `bastion0.local.dortmund.cub.sioplc.fr` | `192.168.4.210/29` | Passerelle Bastion Apache Guacamole 0 (Principal) |
-| **ServeurBastion1** | `bastion1.local.dortmund.cub.sioplc.fr` | `192.168.4.211/29` | Passerelle Bastion Apache Guacamole 1 (Secondaire) |
+| **ServeurBastion0** | `bastion0.local.dortmund.cub.sioplc.fr` | `192.168.4.210/28` | Passerelle Bastion Apache Guacamole 0 (Principal) |
+| **ServeurBastion1** | `bastion1.local.dortmund.cub.sioplc.fr` | `192.168.4.211/28` | Passerelle Bastion Apache Guacamole 1 (Secondaire) |
 
 ---
 
@@ -68,8 +69,8 @@ Ce document recense l'inventaire complet des machines virtuelles, des équipemen
 | Nom équipement | Modèle | FQDN d'administration | Adresses IP d'interfaces |
 | :--- | :--- | :--- | :--- |
 | **STORMSHIELD01** | Stormshield SN210 | `stormshield01.dortmund.cub.sioplc.fr` | `192.168.4.205/28` (Admin VLAN 20)<br>`192.36.4.254/24` (DMZ VLAN 84)<br>`192.168.44.254/29` (Inter-co VLAN 2)<br>`192.36.253.40/24` (WAN) |
-| **dmd-sw-coeur01** | Cisco Catalyst 3560 (L3) | `dmd-sw-c1.local.dortmund.cub.sioplc.fr` | `192.168.4.126/25` (SVI Prod 54)<br>`192.168.4.190/26` (SVI Clients 10)<br>`192.168.4.206/28` (SVI Admin 20)<br>`192.168.4.214/29` (SVI Bastion 53)<br>`192.168.44.253/29` (SVI Inter-co 2) |
-| **dmd-sw-acces01** | Cisco Catalyst 2960 (L2) | `dmd-sw-a1.local.dortmund.cub.sioplc.fr` | `192.168.4.194/28` (SVI Management VLAN 20) |
+| **dmd-sw-coeur01** | Cisco Catalyst 3560 (L3) | `dmd-sw-c1.local.dortmund.cub.sioplc.fr` | `192.168.4.126/25` (SVI Prod 54)<br>`192.168.4.190/26` (SVI Clients 10)<br>`192.168.4.206/28` (SVI Admin 20)<br>`192.168.4.214/28` (SVI Bastion 53)<br>`192.168.44.253/29` (SVI Inter-co 2) |
+| **dmd-sw-acces01** | Cisco Catalyst 2960 (L2) | `dmd-sw-a1.local.dortmund.cub.sioplc.fr` | `192.168.4.204/28` (SVI Management VLAN 20) |
 
 ---
 
@@ -90,4 +91,5 @@ Ce document recense l'inventaire complet des machines virtuelles, des équipemen
 | **Bastion Guacamole 0** | ServeurBastion0 | [https://bastion0.local.dortmund.cub.sioplc.fr:8443](https://192.168.4.210:8443) | `192.168.4.210:8443` | HTTPS / Reverse Proxy |
 | **Bastion Guacamole 1** | ServeurBastion1 | [https://bastion1.local.dortmund.cub.sioplc.fr:8443](https://192.168.4.211:8443) | `192.168.4.211:8443` | HTTPS / Reverse Proxy |
 | **Pare-feu Stormshield** | STORMSHIELD01 | [https://192.168.4.205](https://192.168.4.205) | `192.168.4.205:443` | HTTPS / SSH (Port 22) |
-| **Serveur Web DMZ** | ServeurWeb0 (www) | [https://www.dortmund.cub.sioplc.fr](https://192.36.4.20) | `192.36.4.20:80 / 443` | HTTP / HTTPS |
+| **Serveur Web 0 (Vitrine & Scanner)** | ServeurWeb0 | [http://www0.dortmund.cub.sioplc.fr](http://192.36.4.20) | `192.36.4.20:80` | HTTP (Apache LAMP) |
+| **Serveur Web 1 (Vitrine & Scanner)** | ServeurWeb1 | [http://www1.dortmund.cub.sioplc.fr](http://192.36.4.21) | `192.36.4.21:80` | HTTP (Apache LAMP) |

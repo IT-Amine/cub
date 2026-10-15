@@ -3,7 +3,7 @@
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** KADA Amine
+    - **Auteur :** INFRAMINE
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 26/09/2026
     - **Sujet :** Installation de GLPI
@@ -12,7 +12,7 @@
 
 ## Contexte
 
-Cette procédure décrit l'installation pas-à-pas de GLPI 11 sur une machine Debian 13. L'installation s'appuie sur une pile LAMP : Linux, Apache2, PHP 8.4 (PHP-FPM) et MariaDB Server. GLPI est un logiciel libre de gestion de parc informatique offrant une solution de ticketing, la gestion de l'inventaire, des contrats, des licences et du matériel.
+Cette procédure décrit l'installation pas-à-pas de GLPI 12.0.0 sur une machine Debian 13 (Trixie). L'installation s'appuie sur une pile LAMP : Linux, Apache2, PHP 8.4 (PHP-FPM) et MariaDB Server. GLPI est un logiciel libre de gestion de parc informatique offrant une solution de ticketing, la gestion de l'inventaire, des contrats, des licences et du matériel.
 
 > [!info] Prérequis de GLPI
 > La version minimale de PHP requise est PHP 8.2 (la version 8.4 est installée par défaut sous Debian 13). La base de données nécessite au minimum MySQL 8.0 ou MariaDB 10.6.
@@ -38,7 +38,7 @@ sudo apt install apache2 php8.4-fpm mariadb-server
 - `php8.4-fpm` : Installe le service PHP autonome (FastCGI).
 - `mariadb-server` : Installe le serveur de base de données.
 
-3.3. **Installation des extensions PHP.** Installation des extensions PHP requises pour le bon fonctionnement de GLPI 11.
+3.3. **Installation des extensions PHP.** Installation des extensions PHP requises pour le bon fonctionnement de GLPI 12.0.0.
 
 ```bash
 sudo apt install php8.4-{curl,gd,intl,mysql,zip,bcmath,mbstring,xml,bz2,ldap}
@@ -86,11 +86,11 @@ EXIT
 
 ## Téléchargement et préparation de GLPI {#5-telechargement-et-preparation-de-glpi}
 
-5.1. **Téléchargement de l'archive GLPI.** Récupération des sources d'installation depuis le GitHub officiel (version 11.0.4).
+5.1. **Téléchargement de l'archive GLPI.** Récupération des sources d'installation depuis le GitHub officiel (version 12.0.0).
 
 ```bash
 cd /tmp
-wget https://github.com/glpi-project/glpi/releases/download/11.0.4/glpi-11.0.4.tgz
+wget https://github.com/glpi-project/glpi/releases/download/12.0.0/glpi-12.0.0.tgz
 ```
 
 - `cd /tmp` : Se positionne dans le répertoire des fichiers temporaires.
@@ -99,7 +99,7 @@ wget https://github.com/glpi-project/glpi/releases/download/11.0.4/glpi-11.0.4.t
 5.2.  **Extraction et application des droits Web.** Décompression de l'archive dans le répertoire racine du serveur Web et modification des permissions.
 
 ```bash
-sudo tar -xzvf glpi-11.0.4.tgz -C /var/www/
+sudo tar -xzvf glpi-12.0.0.tgz -C /var/www/
 sudo chown www-data /var/www/glpi/ -R
 ```
 

@@ -7,7 +7,7 @@ description: "Installation et configuration de Etckeeper"
 ![Bannière CUB](../../assets/banniere-cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** KADA Amine
+    - **Auteur :** INFRAMINE
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 05/09/2026
     - **Sujet :** Installation et configuration de Etckeeper
@@ -107,7 +107,6 @@ sudo git log
 * `sudo git log` : Affiche l'historique des commits du dépôt courant avec les privilèges root.
 
 **Résultat attendu :**
-
 ```text
 commit 3f1d62a7b3282fc2665f375510bb59f55c1f0598 (HEAD -> master)
 Author: etudiant <etudiant@template.sio.lan>

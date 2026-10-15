@@ -1,176 +1,192 @@
 ---
-description: "Configuration DNS Récursif"
+description: "Procédure de configuration d'un serveur DNS récursif avec Unbound et sécurisation AppArmor"
 ---
 
-# Configuration DNS Récursif
+# BLOC 2 - Configuration du Serveur DNS Récursif (Unbound)
 
-![Bannière CUB](../../assets/banniere-cub.png)
-
-!!! abstract "Informations sur le document"
-    - **Auteur :** KADA Amine
-    - **Classe :** BTS SIO 2 - Option SISR
-    - **Date :** 23/09/2026
-    - **Sujet :** Configuration DNS Récursif
+![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
 
 ---
 
-## Contexte
-Un serveur DNS **récursif** (ou résolveur) a pour rôle de répondre aux requêtes DNS des postes clients de l'entreprise. Contrairement à un DNS faisant autorité, le récursif va interroger les serveurs racine sur Internet pour trouver les adresses IP demandées par les utilisateurs, puis va **mettre en cache** les réponses.
-
-Dans l'infrastructure CUB, ce service est mis en place sur un serveur Debian via la solution **Unbound**.
+> [!note] "Informations"
+>
+> - **Auteur :** INFRAMINE
+> - **Date :** 23/09/2026
+> - **Domaine :** Services Réseau (DNS)
 
 ---
 
-## Installation de Unbound et des outils
+## 1. Sommaire
 
-On installe Unbound ainsi que quelques utilitaires d'administration Réseaux indispensables :
+- [2. Contexte](#2-contexte)
+- [3. Installation de Unbound et des outils d'administration](#3-installation-de-unbound-et-des-outils-dadministration)
+- [4. Configuration principale du service Unbound](#4-configuration-principale-du-service-unbound)
+- [5. Configuration des zones locales et stubs](#5-configuration-des-zones-locales-et-stubs)
+- [6. Téléchargement des serveurs racines (Root Hints)](#6-telechargement-des-serveurs-racines-root-hints)
+- [7. Journalisation et ajustement de la politique de sécurité AppArmor](#7-journalisation-et-ajustement-de-la-politique-de-securite-apparmor)
+- [8. Configuration du résolveur local et validation](#8-configuration-du-resolveur-local-et-validation)
+
+---
+
+## 2. Contexte
+
+Un serveur DNS **récursif** (ou résolveur) a pour rôle de traiter les requêtes de résolution émises par les postes clients et serveurs de l'entreprise. Contrairement à un serveur faisant autorité, le résolveur interroge itérativement les serveurs racine de l'Internet, puis les TLDs et enfin les serveurs faisant autorité pour trouver les adresses IP demandées, avant de **mettre en cache** les réponses pour optimiser les temps d'accès et économiser la bande passante WAN.
+
+Au sein de l'infrastructure CUB, ce service est assuré sur les serveurs Debian `ServeurDNS0` (`192.168.4.10`) et `ServeurDNS1` (`192.168.4.11`) à l'aide de la solution **Unbound**.
+
+---
+
+## 3. Installation de Unbound et des outils d'administration
+
+3.1. **Déploiement des paquets système.** Installation du démon Unbound et des utilitaires d'analyse et de diagnostic réseau.
 
 ```bash
-sudo apt install unbound dnsutils tcpdump tmux curl
+sudo apt update
+sudo apt install -y unbound dnsutils tcpdump tmux curl
 ```
+
+- `unbound` : Démon du serveur DNS récursif validant et sécurisé.
+- `dnsutils` : Fournit les outils de diagnostic réseau `dig` et `nslookup`.
+- `tcpdump` : Analyseur de paquets pour l'écoute du trafic DNS sur le port UDP 53.
 
 ---
 
-## Configuration de base de Unbound
+## 4. Configuration principale du service Unbound
 
-On édite le fichier de configuration principal d'Unbound :
+4.1. **Édition du fichier de configuration du démon.** Définition des interfaces d'écoute, des règles de contrôle d'accès réseau et des paramètres de sécurité dans `/etc/unbound/unbound.conf`.
 
 ```bash
 sudoedit /etc/unbound/unbound.conf
 ```
 
-Ajoutez/Modifiez le contenu suivant (en l'adaptant à vos adresses réseau, ici l'interface `192.168.4.11`) :
-
-```text
-# Unbound configuration file for Debian.
-#
-# See the unbound.conf(5) man page.
-# See /usr/share/doc/unbound/examples/unbound.conf for a commented reference config file.
-
+```text title="/etc/unbound/unbound.conf"
 include: "/etc/unbound/unbound.conf.d/*.conf"
 
 server:
-    # Interface d'écoute IPv4 sur le réseau
+    # Interface d'ecoute IPv4 locale et sur le reseau
     interface: 192.168.4.11
     interface: 127.0.0.1
 
-    # Quels Réseaux ont le droit de se servir du serveur DNS recursif
-    # Attention !! Ne pas laisser votre serveur récursif ouvert à tous !
-    # Allow_snoop autorise le traçage des requêtes DNS avec la commande dig +trace
+    # Controle d'acces : restriction stricte aux reseaux de l'agence
     access-control: 192.168.4.0/24 allow_snoop
     access-control: 127.0.0.0/8 allow_snoop
 
     # Fichier indiquant les serveurs DNS racines
     root-hints: "/var/lib/unbound/root.hints"
 
-    # On cache la version de Unbound et on augmente la sécurité
+    # Durcissement et confidentialite
     hide-version: yes
     hide-identity: yes
     qname-minimisation: yes
 
-    # On autorise l'IPv4
+    # Protocole autorise
     do-ip4: yes
 
-    # On journalise et garde une trace des événements
+    # Journalisation des requetes
     logfile: /var/log/unbound.log
     verbosity: 1
     log-queries: yes
 ```
 
-Il est important de vérifier ensuite que la syntaxe des lignes contenues dans le fichier de configuration est correcte :
+- `interface` : Restreint l'écoute aux adresses IP explicitement spécifiées (`192.168.4.11` et boucle locale).
+- `access-control 192.168.4.0/24 allow_snoop` : Autorise les machines de l'agence à interroger le résolveur tout en permettant le traçage des requêtes.
+- `hide-version: yes` : Masque la version d'Unbound pour limiter la reconnaissance passive par des attaquants.
+- `qname-minimisation: yes` : Renforce la confidentialité en n'envoyant aux serveurs racine que le strict nécessaire de la requête DNS.
+
+4.2. **Validation syntaxique de la configuration.** Contrôle de l'absence d'erreurs de syntaxe avant chargement du service.
 
 ```bash
 sudo unbound-checkconf
 ```
 
+- `unbound-checkconf` : Utilitaire vérifiant l'intégrité syntaxique du fichier `/etc/unbound/unbound.conf`.
+
 ---
 
-## Configuration des domaines locaux (Stub Zones)
+## 5. Configuration des zones locales et stubs
 
-Notre serveur récursif va nativement s'adresser aux serveurs faisant autorité sur Internet. Dans le cas où il doit traiter des domaines locaux en dehors de l'arborescence officielle, il faut lui indiquer les serveurs internes.
+5.1. **Déclaration des redirecteurs de zones internes.** Indication des serveurs DNS internes faisant autorité pour les domaines locaux privés ne figurant pas dans la racine publique.
 
-Ajoutez ces lignes à la fin de la section `server:` (ou à la racine) dans votre `/etc/unbound/unbound.conf` :
-
-```text
-    # Précision que le domaine local ne gère pas DNSSEC (désactivation de la vérification)
+```text title="/etc/unbound/unbound.conf"
+    # Desactivation de la verification DNSSEC pour la zone interne
     domain-insecure: "sio.lan."
     private-domain: sio.lan.
 
-# Déclaration de la zone locale et des serveurs internes faisant autorité
+# Redirection vers les serveurs internes faisant autorite
 stub-zone:
-    name: "btssio.lan."
+    name: "sio.lan."
     stub-addr: 172.16.20.21
     stub-addr: 172.16.20.22
 ```
 
+- `stub-zone` : Délègue la résolution d'un sous-domaine spécifique à des serveurs de noms faisant autorité désignés par `stub-addr`.
+- `domain-insecure` : Désactive la validation DNSSEC sur la zone interne non signée.
+
 ---
 
-## Téléchargement des serveurs racines (Root Hints)
+## 6. Téléchargement des serveurs racines (Root Hints)
 
-On récupère les adresses des serveurs racines et nous les stockons dans `/var/lib/unbound/root.hints`. Ce fichier est indispensable au service Unbound pour contacter le serveur racine le plus proche.
+6.1. **Récupération de la liste officielle des serveurs racine Internet.** Téléchargement de la base `named.cache` officielle et enregistrement dans le répertoire de travail d'Unbound.
 
 ```bash
 sudo curl --output /var/lib/unbound/root.hints https://www.internic.net/domain/named.cache
 sudo chown -R unbound:unbound /var/lib/unbound/
 ```
 
+- `curl --output` : Télécharge et enregistre la liste des 13 serveurs racine (de A à M).
+- `chown -R unbound:unbound` : Assigne la propriété du fichier au compte de service `unbound`.
+
 ---
 
-## Journalisation (Logs) et configuration AppArmor
+## 7. Journalisation et ajustement de la politique de sécurité AppArmor
 
-On crée le fichier de log spécifique à Unbound :
+7.1. **Création du fichier de journalisation.** Initialisation du fichier de log et affectation des droits au service Unbound.
 
 ```bash
 sudo touch /var/log/unbound.log
 sudo chown unbound:unbound /var/log/unbound.log
 ```
 
-!!! warning "Attention - AppArmor"
-    Sur les systèmes Debian récents, le module de sécurité **AppArmor** est activé par défaut. Il empêche nativement le service `unbound` de lire et d'écrire dans le répertoire `/var/log/`. Il est donc indispensable d'adapter ses permissions.
-
-Éditez le profil AppArmor de Unbound :
+7.2. **Modification du profil AppArmor d'Unbound.** Autorisation en lecture/écriture sur le fichier de journalisation dans `/etc/apparmor.d/usr.sbin.unbound`.
 
 ```bash
 sudoedit /etc/apparmor.d/usr.sbin.unbound
 ```
 
-Ajoutez la ligne suivante (à l'intérieur du bloc d'autorisation principal, avant l'accolade finale `}`) pour permettre l'écriture des logs :
+Ajouter la ligne suivante à l'intérieur du bloc principal du profil, avant l'accolade fermante `}` :
 
-```text
-  # On autorise le daemon unbound à lire et ecrire dans son fichier de log
+```text title="/etc/apparmor.d/usr.sbin.unbound"
+  # Autorisation d'ecriture des logs Unbound
   /var/log/unbound.log rw,
 ```
 
-Vérifiez que le fichier AppArmor ne contient pas d'erreurs et redémarrez les services :
+- `/var/log/unbound.log rw,` : Autorise le binaire confiné `/usr/sbin/unbound` à ouvrir en lecture (`r`) et écriture (`w`) son fichier de logs.
+
+7.3. **Rechargement de la politique AppArmor et redémarrage du service.** Application de la nouvelle règle et relance d'Unbound.
 
 ```bash
 sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.unbound
 sudo systemctl restart apparmor
-
 sudo systemctl restart unbound
 sudo systemctl status unbound
 ```
 
+- `apparmor_parser -r` : Recharge à chaud le profil de sécurité mis à jour dans le noyau Linux.
+
 ---
 
-## Configuration du client DNS local (resolv.conf)
+## 8. Configuration du résolveur local et validation
 
-Afin que les utilitaires locaux de la machine (comme `dig`) puissent s'appuyer sur le service Unbound nouvellement installé sans générer d'erreur de parsing, il est nécessaire de définir l'interface de bouclage local comme serveur de nom principal.
+8.1. **Définition de l'adresse de bouclage comme résolveur local.** Configuration du fichier `/etc/resolv.conf` pour forcer la machine locale à interroger son propre service Unbound.
 
 ```bash
 echo "nameserver 127.0.0.1" | sudo tee /etc/resolv.conf
 ```
 
----
-
-## Suivi et maintenance
-
-Pour observer les événements journalisés (requêtes DNS entrantes, erreurs, etc.) :
+8.2. **Suivi des événements journalisés en direct.** Surveillance des requêtes DNS interceptées et résolues par le service.
 
 ```bash
-# Afficher l'intégralité du journal
-sudo cat /var/log/unbound.log
-
-# Observer les événements en temps réel
 sudo tail -f /var/log/unbound.log
 ```
+
+- `tail -f` : Affiche en continu les nouvelles lignes écrites dans le journal des requêtes d'Unbound.

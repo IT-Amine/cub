@@ -7,7 +7,7 @@ description: "Schémas"
 ![Bannière CUB](../assets/banniere-cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** KADA Amine
+    - **Auteur :** INFRAMINE
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 04/09/2026
     - **Sujet :** Schémas

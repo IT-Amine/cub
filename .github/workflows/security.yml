@@ -22,10 +22,16 @@ jobs:
           fetch-depth: 0
 
       - name: TruffleHog OSS
-        uses: trufflesecurity/trufflehog@main
+        uses: trufflesecurity/trufflehog@v3.88.5
         with:
           # Analyse uniquement les secrets confirmés (moins de faux positifs)
           extra_args: --only-verified
+
+      - name: Gitleaks OSS
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_CONFIG: .gitleaks.toml
 
   # ─────────────────────────────────────────────
   # 2. Vulnérabilités des dépendances Python

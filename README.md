@@ -98,7 +98,7 @@ Créez simplement un fichier `.md` dans le dossier thématique correspondant (`r
 
 Le site est automatiquement déployé sur **GitHub Pages** à chaque push sur la branche `main` via le workflow `.github/workflows/docs.yml`.
 
-- 🌐 [Docs CUB — Amine Kada](https://IT-Amine.github.io/cub)
+- 🌐 [Docs CUB — INFRAMINE](https://IT-Amine.github.io/cub)
 - 🌐 [Docs CUB — Partenaire (Louis)](https://cub.bts.loutik.fr/)
 - 🌐 [Docs CUB — Professeur](https://cubdocumentation.sioplc.fr/)
 
@@ -106,4 +106,4 @@ Le site est automatiquement déployé sur **GitHub Pages** à chaque push sur la
 
 ## Mainteneurs
 
-- **Amine KADA** | [GitHub](https://github.com/IT-Amine)
+- **INFRAMINE** | [GitHub](https://github.com/IT-Amine)
