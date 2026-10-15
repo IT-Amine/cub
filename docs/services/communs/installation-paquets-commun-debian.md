@@ -7,7 +7,7 @@ description: "Installation des paquets communs Debian"
 ![Bannière CUB](../../assets/banniere-cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** KADA Amine
+    - **Auteur :** INFRAMINE
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 07/09/2026
     - **Sujet :** Installation des paquets communs Debian

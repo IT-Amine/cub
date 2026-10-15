@@ -7,7 +7,7 @@ description: "Mise en place de l'authentification TOTP sur Debian"
 ![Bannière CUB](../../assets/banniere-cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** KADA Amine
+    - **Auteur :** INFRAMINE
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 05/09/2026
     - **Sujet :** Mise en place de l'authentification TOTP sur Debian
@@ -120,13 +120,13 @@ nano /etc/ssh/sshd_config
 Modifier ou ajouter les directives suivantes :
 
 ```text
-ChallengeResponseAuthentication yes
-#KbdInteractiveAuthentication no
+#ChallengeResponseAuthentication no
+KbdInteractiveAuthentication yes
 UsePAM yes
 ```
 
-* `ChallengeResponseAuthentication yes` : Autorise le serveur à interagir avec le client pour demander des informations supplémentaires (le code TOTP).
-* `UsePAM yes` : Indique à SSHD de déléguer la politique d'authentification à la couche PAM que nous venons de configurer.
+- `KbdInteractiveAuthentication yes` : Active l'authentification interactive au clavier requise pour soumettre le challenge TOTP (second facteur) au client SSH. Cette directive remplace définitivement `ChallengeResponseAuthentication` (qui a été retirée dans OpenSSH 8.7+ et n'est plus reconnue sous Debian 12 et Debian 13 Trixie).
+- `UsePAM yes` : Indique à SSHD de déléguer la validation de l'authentification à la couche PAM préalablement configurée.
 
 7.2.  **Application de la configuration.** Relance du service pour charger les nouveaux paramètres.
 
@@ -177,7 +177,6 @@ Counter: 0x38DBC82 (59620482)
 * `oathtool --totp -v` : Mode verbeux qui affiche les détails de la clé, permettant d'extraire la version `Base32 secret` (ex: `MX2...`).
 
 8.2.  **Création de l'image QR Code.** Génération d'un fichier image contenant l'URI de provisioning compatible avec Google Authenticator ou FreeOTP.
-
 **Installation de l'outil qrencode sur votre machine.**
 
 ```bash

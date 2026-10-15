@@ -1,171 +1,269 @@
 ---
-description: "DHCP Core"
+description: "Procédure de configuration et de haute disponibilité du service DHCP sur Windows Server 2025 Core"
 ---
 
-# DHCP Core
+# BLOC 2 - Configuration et Haute Disponibilité du Service DHCP sur Windows Server 2025 Core
 
-![Bannière CUB](../../assets/banniere-cub.png)
-
-!!! abstract "Informations sur le document"
-    - **Auteur :** KADA Amine
-    - **Classe :** BTS SIO 2 - Option SISR
-    - **Date :** 16/09/2026
-    - **Sujet :** DHCP Core
+![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
 
 ---
 
-## Contexte
-Ce document détaille la procédure d'initialisation et de sécurisation (Hardening) du serveur Windows Server 2025 (édition Core) dédié au rôle DHCP. Il couvre la synchronisation temporelle indispensable à la cohérence des baux réseau, la configuration du pare-feu, la gestion des mises à jour centralisées via PowerShell, la sécurisation du compte administrateur local, l'intégration des pilotes VirtIO/QEMU nécessaires au fonctionnement optimal sur l'hyperviseur, ainsi que le déploiement du service DHCP.
+> [!note] "Informations"
+>
+> - **Auteur :** INFRAMINE
+> - **Date :** 15/10/2026
+> - **Domaine :** Système & Réseau (DHCP)
 
-## Déploiement des utilitaires de virtualisation
+---
 
-### Exécution des agents VirtIO.
+## 1. Sommaire
 
-Lancement de l'installateur des pilotes paravirtualisés depuis le support monté.
+- [2. Contexte](#2-contexte)
+- [3. Installation et autorisation du rôle DHCP](#3-installation-et-autorisation-du-role-dhcp)
+- [4. Configuration de l'étendue Clients (VLAN 10)](#4-configuration-de-letendue-clients-vlan-10)
+- [5. Configuration de la redondance Actif / Actif (Load Balance 50/50)](#5-configuration-de-la-redondance-actif-actif-load-balance-5050)
+- [6. Configuration de la redondance Actif / Passif (Hot Standby)](#6-configuration-de-la-redondance-actif-passif-hot-standby)
+- [7. Configuration du relais DHCP Cisco (Switch L3)](#7-configuration-du-relais-dhcp-cisco-switch-l3)
+- [8. Commandes d'exploitation et de diagnostic PowerShell](#8-commandes-dexploitation-et-de-diagnostic-powershell)
+- [9. Sécurité et durcissement du service DHCP](#9-securite-et-durcissement-du-service-dhcp)
 
-```powershell
-Start-Process -FilePath "D:\virtio-win-guest-tools.exe"
-```
+---
 
-- `Start-Process` : Exécute le binaire d'installation de l'agent invité QEMU.
+## 2. Contexte
 
-### Configuration du service QEMU-GA.
+Au sein de l'infrastructure CUB de l'agence de Dortmund, le service d'adressage dynamique DHCP est hébergé sur deux serveurs sous **Windows Server 2025 Core** situés dans le sous-réseau de production :
+- **`ServeurDHCP1` (Serveur Local)** : Nœud administré (`192.168.4.4/25` - FQDN : `dhcp1.local.dortmund.cub.sioplc.fr`).
+- **`ServeurDHCP0` (Serveur Partenaire)** : Second nœud (`192.168.4.3/25` - FQDN : `dhcp0.local.dortmund.cub.sioplc.fr`).
 
-Définition du lancement automatique pour assurer la communication hyperviseur/machine virtuelle.
+Cette procédure traite exclusivement du paramétrage logiciel du rôle DHCP et de sa haute disponibilité pour distribuer les configurations réseau aux équipements situés dans le **VLAN 10 (Clients : `192.168.4.128/26`)** via un agent relais configuré sur le commutateur de niveau 3.
 
-```powershell
-Set-Service -Name "QEMU-GA" -StartupType Automatic
-Start-Service QEMU-GA
-```
+---
 
-- `-StartupType Automatic` : Garantit la disponibilité du service QEMU Guest Agent dès le démarrage de Windows Server.
+## 3. Installation et autorisation du rôle DHCP
 
-## Configuration réseau statique
+Toutes les commandes PowerShell sont exécutées en tant qu'administrateur sur le serveur local **`ServeurDHCP1`**.
 
-### Identification de l'interface réseau
-Il faut d'abord repérer le numéro d'index (`ifIndex`) de la carte réseau virtuelle pour lui appliquer les paramètres.
-```powershell
-Get-NetAdapter
-```
-- Repérez la valeur dans la colonne `ifIndex` correspondant à votre carte réseau (généralement nommée Ethernet).
-
-### Attribution de l'adresse IP, du Masque et de la Passerelle
-Utilisez l'index récupéré pour définir les paramètres IP statiques. *(Exemple avec l'index `3`, l'IP `192.168.4.11`, masque `/25` et la passerelle `192.168.4.126`)*.
-
-```powershell
-New-NetIPAddress -InterfaceIndex 3 -IPAddress "192.168.4.11" -PrefixLength 25 -DefaultGateway "192.168.4.126"
-```
-- `-InterfaceIndex` : L'index de la carte réseau (ici `3`).
-- `-IPAddress` : L'adresse IP statique du serveur DHCP.
-- `-PrefixLength` : La longueur du masque de sous-réseau en notation CIDR (ex: `25` pour `255.255.255.128`).
-- `-DefaultGateway` : L'adresse IP de la passerelle par défaut.
-
-### Configuration des serveurs DNS
-Configuration du serveur DNS pointant vers le contrôleur de domaine (AD) ou le DNS récursif.
-
-```powershell
-Set-DnsClientServerAddress -InterfaceIndex 3 -ServerAddresses ("192.168.4.10", "1.1.1.1")
-```
-- `-ServerAddresses` : Liste des adresses IP des serveurs DNS séparées par une virgule.
-
-## Configuration NTP
-
-### Configuration des pools de serveurs.
-
-Établissement de la synchronisation manuelle sur les serveurs de temps publics pour garantir l'intégrité de l'horloge système.
-
-```powershell
-w32tm /config /manualpeerlist:"0.fr.pool.ntp.org 1.fr.pool.ntp.org" /syncfromflags:manual /reliable:yes /update
-Restart-Service W32Time
-w32tm /resync
-```
-
-- `/manualpeerlist` : Spécifie les adresses des pairs NTP externes.
-- `/reliable:yes` : Indique que cet ordinateur est une source de temps fiable sur le réseau.
-
-### Validation des homologues NTP.
-
-Contrôle de l'état du service de temps local.
-
-```powershell
-w32tm /query /peers
-w32tm /query /status
-```
-
-- `/peers` : Affiche l'état des connexions avec les serveurs de temps configurés.
-- `/status` : Renvoie les détails sur la latence, la précision et la dernière synchronisation effectuée.
-
-## Paramétrage Sécurité et Pare-feu
-
-### Vérification UAC et Profils Pare-feu.
-
-Audit des politiques de pare-feu globales (Domaine, Privé, Public).
-
-```powershell
-Get-NetFirewallProfile | Select-Object Name, Enabled
-```
-
-- `Select-Object Name, Enabled` : Filtre l'affichage pour confirmer que chaque profil réseau dispose du pare-feu actif.
-
-## Mise à jour du système
-
-### Téléchargement et installation des KBs.
-
-Utilisation de l'API Windows Update pour mettre le système en conformité via le module PSWindowsUpdate.
-
-```powershell
-Get-Service -Name wuauserv
-Start-Service -Name wuauserv
-UsoClient StartScan
-
-Install-Module PSWindowsUpdate
-Install-WindowsUpdate -AcceptAll -Install
-Restart-Computer
-```
-
-- `UsoClient StartScan` : Force le lancement asynchrone de la recherche de mises à jour.
-- `-AcceptAll -Install` : Approuve et installe automatiquement tous les correctifs approuvés sans interaction manuelle.
-
-!!! warning "Action requise"
-    Un redémarrage du système (`Restart-Computer`) est strictement requis après la passe d'installation des correctifs cumulatifs.
-
-## Sécurisation du compte local Administrateur
-
-### Renommage et changement de mot de passe.
-
-Modification du nom d'utilisateur associé au SID 500 pour compliquer les attaques par énumération, et renouvellement du mot de passe avec une entrée sécurisée.
-
-```powershell
-Get-LocalUser -Name "Administrateur" | Select-Object Name, SID, Enabled
-Rename-LocalUser -Name "Administrateur" -NewName "ADM-SRV-01"
-Get-LocalUser -Name "ADM-SRV-01" | Select-Object Name, SID, Enabled
-Set-LocalUser -Name "ADM-SRV-01" -Password (Read-Host "Nouveau mot de passe" -AsSecureString)
-```
-
-- `Rename-LocalUser` : Modifie le SAMAccountName local.
-- `-AsSecureString` : Chiffre la saisie du mot de passe stocké en mémoire vive pendant la transaction.
-
-## Installation et configuration du rôle DHCP
-
-### Lancement de l'installation du composant
-
-Installation du rôle DHCP et de ses outils d'administration locaux.
+3.1. **Installation du rôle DHCP et des outils RSAT.** Déploiement des binaires du service et des commandes d'administration PowerShell.
 
 ```powershell
 Install-WindowsFeature -Name DHCP -IncludeManagementTools
 ```
 
-### Création de l'étendue et configuration des options
+- `-Name DHCP` : Spécifie le rôle serveur DHCP à installer.
+- `-IncludeManagementTools` : Inclut le module PowerShell `DhcpServer` et les outils RSAT associés.
 
-Création d'une étendue d'adresses IP pour le réseau ciblé (ex: VLAN Admin) avec les options de passerelle et de DNS.
-
-```powershell
-Add-DhcpServerv4Scope -Name "VLAN_Clients" -StartRange 192.168.4.130 -EndRange 192.168.4.180 -SubnetMask 255.255.255.192
-Set-DhcpServerv4OptionValue -ScopeId 192.168.4.128 -Router 192.168.4.190 -DnsServer 192.168.4.10
-```
-
-### Redémarrage du service DHCP
+3.2. **Création des groupes de sécurité locaux et démarrage du service.** Initialisation des groupes Active Directory locaux pour l'administration déléguée et activation du service.
 
 ```powershell
-Restart-Service DHCPServer
+Add-DhcpServerSecurityGroup
+Set-Service -Name DHCPServer -StartupType Automatic
+Restart-Service -Name DHCPServer
 ```
+
+- `Add-DhcpServerSecurityGroup` : Crée les groupes de sécurité locaux `Utilisateurs DHCP` et `Administrateurs DHCP`.
+- `-StartupType Automatic` : Configure le démarrage automatique du service au lancement du système.
+- `Restart-Service -Name DHCPServer` : Redémarre le service pour appliquer les nouveaux groupes de sécurité.
+
+3.3. **Autorisation du serveur DHCP dans Active Directory.** Déclaration de `ServeurDHCP1` dans la partition de configuration du domaine pour l'autoriser à émettre sur le réseau.
+
+```powershell
+Add-DhcpServerInDC -DnsName "dhcp1.local.dortmund.cub.sioplc.fr" -IPAddress "192.168.4.4"
+Get-DhcpServerInDC
+```
+
+- `-DnsName` : Nom d'hôte FQDN du serveur DHCP à autoriser dans l'annuaire Active Directory.
+- `-IPAddress` : Adresse IPv4 du serveur déclaré.
+- `Get-DhcpServerInDC` : Liste l'ensemble des serveurs DHCP autorisés dans l'annuaire de l'entreprise.
+
+---
+
+## 4. Configuration de l'étendue Clients (VLAN 10)
+
+4.1. **Création de l'étendue à l'état inactif.** Définition de la plage dynamique globale sur le sous-réseau `192.168.4.128/26`.
+
+```powershell
+Add-DhcpServerv4Scope `
+    -Name "Clients" `
+    -Description "Etendue DHCP VLAN 10 Clients - Situation 4 CUB" `
+    -StartRange "192.168.4.130" `
+    -EndRange "192.168.4.189" `
+    -SubnetMask "255.255.255.192" `
+    -LeaseDuration 4.00:00:00 `
+    -State InActive
+```
+
+- `-Name "Clients"` : Désignation de l'étendue DHCP.
+- `-StartRange "192.168.4.130"` et `-EndRange "192.168.4.189"` : Plage des adresses IP distribuées aux clients du VLAN 10.
+- `-SubnetMask "255.255.255.192"` : Masque de sous-réseau `/26`.
+- `-LeaseDuration 4.00:00:00` : Durée de validité du bail (4 jours selon le cahier des charges ; alternativement `0.04:00:00` pour 4 heures).
+- `-State InActive` : Crée l'étendue à l'état inactif pour permettre la déclaration préalable des options et exclusions.
+
+4.2. **Définition de la plage d'exclusion.** Réservation des adresses spécifiques (imprimantes, bornes Wi-Fi) pour empêcher leur distribution dynamique.
+
+```powershell
+Add-DhcpServerv4ExclusionRange `
+    -ScopeId "192.168.4.128" `
+    -StartRange "192.168.4.180" `
+    -EndRange "192.168.4.189"
+```
+
+- `-ScopeId "192.168.4.128"` : Identifiant réseau du sous-réseau de l'étendue.
+- `-StartRange` et `-EndRange` : Bornes de début et de fin de la plage d'adresses exclues du pool d'attribution.
+
+4.3. **Configuration de la réservation statique.** Affectation permanente et exclusive d'une adresse IP basée sur l'adresse physique (MAC) de l'équipement.
+
+```powershell
+Add-DhcpServerv4Reservation `
+    -ScopeId "192.168.4.128" `
+    -IPAddress "192.168.4.179" `
+    -ClientId "00-15-5D-01-A2-34" `
+    -Name "Poste-VIP-Clients" `
+    -Description "Reservation statique - Document 1"
+```
+
+- `-IPAddress "192.168.4.179"` : Adresse IP réservée.
+- `-ClientId "00-15-5D-01-A2-34"` : Adresse MAC de l'équipement client cible.
+
+4.4. **Configuration des options d'étendue (Passerelle, DNS et Suffixe).** Injection des options DHCP indispensables au routage et à la résolution de noms.
+
+```powershell
+Set-DhcpServerv4OptionValue -ScopeId "192.168.4.128" -Router "192.168.4.190"
+Set-DhcpServerv4OptionValue -ScopeId "192.168.4.128" -DnsServer ("192.168.4.10", "192.168.4.11", "8.8.8.8")
+Set-DhcpServerv4OptionValue -ScopeId "192.168.4.128" -DnsDomain "dortmund.cub.sioplc.fr"
+```
+
+- `-Router "192.168.4.190"` : Option 003 indiquant l'adresse de la passerelle par défaut (SVI L3 du VLAN 10).
+- `-DnsServer` : Option 006 spécifiant les résolveurs DNS internes de l'agence (`192.168.4.10` et `192.168.4.11`) et le secours (`8.8.8.8`).
+- `-DnsDomain "dortmund.cub.sioplc.fr"` : Option 015 définissant le suffixe DNS du domaine de l'agence.
+
+4.5. **Activation et contrôle de l'étendue.** Basculement de l'étendue à l'état actif et contrôle de conformité des options.
+
+```powershell
+Set-DhcpServerv4Scope -ScopeId "192.168.4.128" -State Active
+Get-DhcpServerv4Scope -ScopeId "192.168.4.128"
+Get-DhcpServerv4OptionValue -ScopeId "192.168.4.128"
+```
+
+- `-State Active` : Rend l'étendue opérationnelle et prête à répondre aux requêtes DORA des clients.
+
+---
+
+## 5. Configuration de la redondance Actif / Actif (Load Balance 50/50)
+
+5.1. **Création du partenariat Load Balance.** Répartition de la charge des attributions d'adresses entre `ServeurDHCP1` et `ServeurDHCP0` avec synchronisation automatique.
+
+```powershell
+Add-DhcpServerv4Failover `
+    -Name "Failover-CUB-ActifActif" `
+    -ScopeId "192.168.4.128" `
+    -PartnerServer "dhcp0.local.dortmund.cub.sioplc.fr" `
+    -Mode LoadBalance `
+    -Percentage 50 `
+    -MaxClientLeadTime 01:00:00 `
+    -SharedSecret "cub" `
+    -AutoStateTransition $true `
+    -StateSwitchInterval 00:30:00
+```
+
+- `-PartnerServer` : FQDN du serveur DHCP partenaire (`ServeurDHCP0` sur `192.168.4.3`).
+- `-Mode LoadBalance` : Mode de basculement avec répartition dynamique de charge.
+- `-Percentage 50` : Répartition égale à 50% entre le serveur local et le partenaire.
+- `-MaxClientLeadTime 01:00:00` : Délai MCLT fixé à 1 heure.
+- `-SharedSecret "cub"` : Clé secrète partagée pour authentifier les échanges de synchronisation.
+- `-AutoStateTransition $true` : Active la transition automatique en état d'interruption de communication.
+- `-StateSwitchInterval 00:30:00` : Intervalle de basculement après 30 minutes de perte de contact.
+
+5.2. **Réplication et validation du partenariat Actif/Actif.** Déclenchement de la synchronisation de l'étendue et vérification de l'état.
+
+```powershell
+Invoke-DhcpServerv4FailoverReplication -Name "Failover-CUB-ActifActif"
+Get-DhcpServerv4Failover -Name "Failover-CUB-ActifActif"
+```
+
+- `Invoke-DhcpServerv4FailoverReplication` : Propage immédiatement la configuration de l'étendue vers `ServeurDHCP0`.
+- `Get-DhcpServerv4Failover` : Affiche l'état de la relation (`Normal`).
+
+---
+
+## 6. Configuration de la redondance Actif / Passif (Hot Standby)
+
+6.1. **Suppression de la relation précédente.** Nettoyage du partenariat Actif/Actif avant reconfiguration.
+
+```powershell
+Remove-DhcpServerv4Failover -Name "Failover-CUB-ActifActif" -Force
+```
+
+- `-Force` : Supprime la relation sans demander de confirmation interactive.
+
+6.2. **Création du partenariat Hot Standby.** Mise en place du mode secours à chaud où `ServeurDHCP1` reste en réserve avec 10% des adresses du pool.
+
+```powershell
+Add-DhcpServerv4Failover `
+    -Name "Failover-CUB-HotStandby" `
+    -ScopeId "192.168.4.128" `
+    -PartnerServer "dhcp0.local.dortmund.cub.sioplc.fr" `
+    -Mode HotStandby `
+    -ServerRole Standby `
+    -ReservePercent 10 `
+    -MaxClientLeadTime 01:00:00 `
+    -SharedSecret "cub" `
+    -AutoStateTransition $true `
+    -StateSwitchInterval 00:30:00
+```
+
+- `-Mode HotStandby` : Basculement en mode secours à chaud (Actif/Passif).
+- `-ServerRole Standby` : Désigne `ServeurDHCP1` comme serveur de réserve *(ou `Active` si ServeurDHCP1 assure le rôle principal nominal)*.
+- `-ReservePercent 10` : Alloue un contingent de 10% des adresses pour les attributions d'urgence en cas de défaillance du partenaire.
+
+6.3. **Synchronisation et validation du partenariat Actif/Passif.** Application des paramètres vers le serveur partenaire et contrôle de l'état.
+
+```powershell
+Invoke-DhcpServerv4FailoverReplication -Name "Failover-CUB-HotStandby"
+Get-DhcpServerv4Failover -Name "Failover-CUB-HotStandby"
+```
+
+---
+
+## 7. Configuration du relais DHCP Cisco (Switch L3)
+
+7.1. **Configuration de l'agent relais IP Helper sur le commutateur cœur.** Encapsulation des requêtes de diffusion UDP 67/68 du VLAN 10 vers les adresses Unicast des serveurs DHCP en production (`192.168.4.4` et `192.168.4.3`).
+
+```text
+dmd-sw-coeur01# configure terminal
+dmd-sw-coeur01(config)# interface Vlan 10
+dmd-sw-coeur01(config-if)# ip address 192.168.4.190 255.255.255.192
+dmd-sw-coeur01(config-if)# ip helper-address 192.168.4.4
+dmd-sw-coeur01(config-if)# ip helper-address 192.168.4.3
+dmd-sw-coeur01(config-if)# end
+dmd-sw-coeur01# write memory
+```
+
+- `interface Vlan 10` : Sélectionne l'interface de routage SVI du réseau des postes clients.
+- `ip helper-address 192.168.4.4` : Relaie les requêtes DHCP vers le serveur local `ServeurDHCP1`.
+- `ip helper-address 192.168.4.3` : Relaie les requêtes DHCP vers le serveur secondaire `ServeurDHCP0`.
+- `write memory` : Sauvegarde la configuration active dans la mémoire NVRAM du commutateur.
+
+---
+
+## 8. Commandes d'exploitation et de diagnostic PowerShell
+
+8.1. **Matrice des commandes d'administration courante.** Commandes PowerShell pour le suivi opérationnel des baux et de la réplication sous Windows Server Core :
+
+| Opération d'administration | Commande PowerShell (Windows Core) |
+| :--- | :--- |
+| **Consulter l'état de l'étendue** | `Get-DhcpServerv4Scope -ScopeId 192.168.4.128` |
+| **Auditer l'occupation du pool** | `Get-DhcpServerv4ScopeStatistics -ScopeId 192.168.4.128` |
+| **Lister les baux actifs délivrés** | `Get-DhcpServerv4Lease -ScopeId 192.168.4.128` |
+| **Vérifier l'état de la redondance** | `Get-DhcpServerv4Failover` |
+| **Déclencher la synchronisation Failover**| `Invoke-DhcpServerv4FailoverReplication -Name "Failover-CUB-ActifActif"` |
+| **Consulter les exclusions déclarées**| `Get-DhcpServerv4ExclusionRange -ScopeId 192.168.4.128` |
+| **Consulter les réservations statiques**| `Get-DhcpServerv4Reservation -ScopeId 192.168.4.128` |
+| **Afficher les options distribuées** | `Get-DhcpServerv4OptionValue -ScopeId 192.168.4.128` |
+
+---
+
+## 9. Sécurité et durcissement du service DHCP
+
+9.1. **Consulter la note technique dédiée.** L'analyse approfondie des menaces protocolaires (**DHCP Starvation** et **Rogue DHCP / Man-in-the-Middle**), ainsi que les contre-mesures techniques (**Port Security**, **Filtrage MAC** et **DHCP Snooping**) sont détaillées dans le document spécialisé :
+
+$\rightarrow$ Consulter la [Note Technique de Sécurité : Vulnérabilités DHCP et Contre-Mesures](securite-dhcp.md).

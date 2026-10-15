@@ -3,7 +3,7 @@
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** KADA Amine
+    - **Auteur :** INFRAMINE
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 01/10/2026
     - **Sujet :** Configuration d'une Connexion RDP sur Guacamole
@@ -24,7 +24,7 @@ L'objectif de cette procédure est de standardiser l'instanciation des accès di
 
 - `Nom` : Définir un nom explicite respectant la convention de nommage de l'infrastructure (exemple : `ServeurWAC1`).
 - `Protocole` : Sélectionner le protocole `RDP`.
-- `Réseau` : Saisir l'adresse IP de l'équipement Windows cible ainsi que le port d'écoute (par défaut `3389`).
+- `Réseau` : Saisir l'adresse IP de l'équipement Windows cible (ex: `192.168.4.6` pour `ServeurWAC1` ou `192.168.4.5` pour `ServeurWAC0`) ainsi que le port d'écoute (par défaut `3389`).
 - `Authentification` : Saisir l'**identifiant**, le **mot de passe**. Puis mettre le mode de sécurité à **NLA** et **Faire confiance au certificat de l'hôte lors de la première utilisation**.
 
 ![Configuration de la connexion RDP](./assets/creer-connexion-rdp-windows/02-configuration-connexion.png)

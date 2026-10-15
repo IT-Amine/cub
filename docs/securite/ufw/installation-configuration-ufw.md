@@ -1,91 +1,128 @@
-# Installation et configuration de UFW
+---
+description: "Procédure d'installation et de configuration durcie du pare-feu hôte UFW sur Debian"
+---
 
-![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
+# Procédure et configuration durcie du pare-feu hôte UFW sur Debian"
 
-!!! abstract "Informations sur le document"
-    - **Auteur :** KADA Amine
-    - **Classe :** BTS SIO 2 - Option SISR
-    - **Date :** 01/10/2026
-    - **Sujet :** Installation et configuration de UFW
+![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
 
 ---
 
-## Contexte
+> [!note] "Informations"
+>
+> - **Auteur :** INFRAMINE
+> - **Date :** 01/10/2026
+> - **Domaine :** Cybersécurité & Pare-feu hôte (UFW)
 
-UFW (Uncomplicated Firewall) est une surcouche simplifiée pour la gestion du pare-feu Linux (iptables/nftables). Il est déployé pour sécuriser les flux réseau de l'infrastructure en filtrant le trafic entrant et sortant. Ce service est un point de contrôle critique qui isole les applications et respecte le principe de moindre privilège au sein de l'environnement CUB.
+---
 
-## Procédure de déploiement et configuration
+## 1. Sommaire
 
-3.1.  **Installation de UFW.** Installation des paquets nécessaires depuis les dépôts officiels.
+- [2. Contexte](#2-contexte)
+- [3. Installation du paquet UFW](#3-installation-du-paquet-ufw)
+- [4. Définition des politiques de filtrage par défaut](#4-definition-des-politiques-de-filtrage-par-defaut)
+- [5. Ouverture des flux applicatifs et durcissement des accès d'administration](#5-ouverture-des-flux-applicatifs-et-durcissement-des-acces-dadministration)
+- [6. Activation du service de filtrage](#6-activation-du-service-de-filtrage)
+- [7. Vérification de l'état opérationnel et recette](#7-verification-de-letat-operationnel-et-recette)
+
+---
+
+## 2. Contexte
+
+UFW (Uncomplicated Firewall) constitue une interface d'administration simplifiée pour le sous-système de filtrage de paquets du noyau Linux (`iptables` / `nftables`). 
+
+Au sein de l'infrastructure CUB, UFW est déployé en tant que pare-feu d'hôte local (défense en profondeur) sur les serveurs applicatifs sous Debian. Il permet d'isoler strictement chaque composant logiciel et d'appliquer le principe de moindre privilège :
+- Les accès d'administration distante (SSH - Port 22) sont strictement réservés aux adresses du **VLAN 20 (Administration : `192.168.4.192/28`)** et du **VLAN 53 (Bastion Guacamole : `192.168.4.208/28`)**.
+- Le port alternatif **8080/tcp** est ouvert spécifiquement pour exposer l'interface de gestion de parc informatique **GLPI**.
+- Les ports sécurisés **443/tcp** (HTTPS) et **8443/tcp** (Portail Bastion Guacamole) sont autorisés pour les consultations sécurisées.
+
+---
+
+## 3. Installation du paquet UFW
+
+3.1. **Mise à jour des dépôts et installation.** Déploiement des binaires officiels du pare-feu sur le système Debian.
 
 ```bash
-# Mise à jour
-sudo apt update && sudo apt upgrade -y
-# Installation du paquet UFW
-sudo apt install ufw -y
+sudo apt update && sudo apt install -y ufw
 ```
 
-- `sudo` : Exécute la commande avec les privilèges d'administrateur (root).
-- `apt update` : Met à jour la liste des paquets disponibles sur les dépôts.
-- `apt install` : Installe le paquet spécifié (ici, ufw).
+- `apt update` : Actualise le catalogue local des paquets disponibles depuis les dépôts officiels.
+- `apt install -y ufw` : Installe le paquet `ufw` sans solliciter de confirmation interactive.
 
-3.2.  **Définition des politiques par défaut.** Mise en place du principe de moindre privilège.
+---
+
+## 4. Définition des politiques de filtrage par défaut
+
+4.1. **Application du principe de moindre privilège.** Verrouillage systématique de tout flux entrant non explicitement autorisé, tout en autorisant les requêtes initiées par le système vers l'extérieur.
 
 ```bash
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 ```
 
-- `default deny incoming` : Configure la politique par défaut pour bloquer tout trafic entrant non explicitement autorisé.
-- `default allow outgoing` : Configure la politique par défaut pour autoriser tout trafic sortant initié par le serveur.
+- `default deny incoming` : Rejette ou ignore tout paquet entrant n'ayant pas de règle d'autorisation explicite.
+- `default allow outgoing` : Permet au serveur d'initier des connexions sortantes (mises à jour système, requêtes DNS, résolutions NTP).
 
-3.3.  **Ouverture des ports nécessaires.** Autorisation des flux légitimes vers les services hébergés.
+---
+
+## 5. Ouverture des flux applicatifs et durcissement des accès d'administration
+
+5.1. **Déclaration des règles de filtrage ciblées.** Restriction drastique du port SSH aux postes d'administration et au bastion, suivie de l'exposition des services applicatifs.
 
 ```bash
-sudo ufw allow 22/tcp
-sudo ufw allow 8080/tcp
-sudo ufw allow 8443/tcp
-sudo ufw allow 443/tcp
+# 1. Restriction stricte de l'accès SSH (Port 22 TCP)
+sudo ufw allow from 192.168.4.192/28 to any port 22 proto tcp comment 'SSH depuis VLAN 20 Admin'
+sudo ufw allow from 192.168.4.208/28 to any port 22 proto tcp comment 'SSH depuis VLAN 53 Bastion'
+
+# 2. Ouverture des flux applicatifs Web
+sudo ufw allow 8080/tcp comment 'Serveur Web GLPI (ITSM)'
+sudo ufw allow 443/tcp comment 'Serveur Web HTTPS'
+sudo ufw allow 8443/tcp comment 'Portail Bastion Guacamole'
 ```
 
-- `allow` : Règle ajoutant une autorisation de trafic.
-- `22/tcp` : Port par défaut pour le protocole SSH (accès à distance).
-- `8080/tcp`, `8443/tcp`, `443/tcp` : Ports d'exemples pour autoriser le trafic web HTTP/HTTPS.
+- `allow from 192.168.4.192/28 ...` : Restreint l'administration SSH au sous-réseau VLAN 20 d'administration.
+- `allow from 192.168.4.208/28 ...` : Autorise le serveur de rebond Apache Guacamole (VLAN 53) à relayer les sessions d'administration.
+- `8080/tcp` : Port d'écoute du serveur Web GLPI.
+- `443/tcp` / `8443/tcp` : Ports d'accès Web chiffrés en HTTPS.
 
-3.4.  **Activation des règles de pare-feu.** Mise en application immédiate et au démarrage du service.
+---
 
-> [!warning] Vérification critique de l'accès distant
-> Avant d'exécuter la commande suivante, assurez-vous de bien vérifier que le port 22 (SSH) est autorisé. Dans le cas contraire, la connexion au serveur sera définitivement coupée.
+## 6. Activation du service de filtrage
+
+> [!warning] Vérification préalable de l'adresse IP source
+> Avant d'activer UFW, assurez-vous d'être connecté depuis une machine située dans le **VLAN 20 (Administration : `192.168.4.192/28`)** ou le **VLAN 53 (Bastion : `192.168.4.208/28`)**. Si vous lancez l'activation depuis un autre réseau (ex: VLAN 10 Clients ou VLAN 54 Production), votre session SSH sera immédiatement coupée.
+
+6.1. **Activation et persistance au démarrage.**
 
 ```bash
 sudo ufw enable
 ```
 
-- `enable` : Active le pare-feu en production et configure son lancement automatique au démarrage du système.
+- `enable` : Charge immédiatement les règles dans le pare-feu du noyau et active le service au démarrage de la machine.
 
-3.5.  **Vérification de l'état.** Contrôle visuel du bon fonctionnement des règles.
+---
+
+## 7. Vérification de l'état opérationnel et recette
+
+7.1. **Contrôle de l'état et de la politique active.**
 
 ```bash
 sudo ufw status verbose
 ```
 
-- `status` : Affiche l'état actuel d'UFW (actif/inactif).
-- `verbose` : Ajoute un niveau de détail supplémentaire (politiques par défaut, logs, routage).
+- `status verbose` : Affiche l'état d'activation, les politiques globales par défaut et la liste détaillée des règles numérotées avec leurs commentaires.
 
-```text title="Exemple de sortie attendue"
+```text title="Sortie attendue sur la console"
 Status: active
 Logging: on (low)
 Default: deny (incoming), allow (outgoing), deny (routed)
 New profiles: skip
 
 To                         Action      From
--- ------ ----
-22/tcp                     ALLOW IN    Anywhere
-8080/tcp                   ALLOW IN    Anywhere
-8443/tcp                   ALLOW IN    Anywhere
-443/tcp                    ALLOW IN    Anywhere
-22/tcp (v6)                ALLOW IN    Anywhere (v6)
-8080/tcp (v6)              ALLOW IN    Anywhere (v6)
-8443/tcp (v6)              ALLOW IN    Anywhere (v6)
-443/tcp (v6)               ALLOW IN    Anywhere (v6)
+--                         ------      ----
+22/tcp                     ALLOW IN    192.168.4.192/28           # SSH depuis VLAN 20 Admin
+22/tcp                     ALLOW IN    192.168.4.208/28           # SSH depuis VLAN 53 Bastion
+8080/tcp                   ALLOW IN    Anywhere                   # Serveur Web GLPI (ITSM)
+443/tcp                    ALLOW IN    Anywhere                   # Serveur Web HTTPS
+8443/tcp                   ALLOW IN    Anywhere                   # Portail Bastion Guacamole
 ```

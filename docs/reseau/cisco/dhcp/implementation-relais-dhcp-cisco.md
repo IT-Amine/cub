@@ -7,7 +7,7 @@ description: "Implémentation du Relais DHCP sur équipement Cisco"
 ![Bannière CUB](../../../assets/banniere-cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** KADA Amine
+    - **Auteur :** INFRAMINE
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 05/09/2026
     - **Sujet :** Implémentation du Relais DHCP sur équipement Cisco
@@ -26,16 +26,17 @@ Le protocole DHCP repose nativement sur des requêtes de diffusion (Broadcast) s
     La commande `ip helper-address` transmet par défaut 8 services UDP (dont TFTP, DNS, Time, et DHCP). Dans des environnements de très haute sécurité, il est recommandé de filtrer les ports relayés avec `no ip forward-protocol udp`.
 
 ```text
-Switch(config)# interface Vlan 10
-Switch(config-if)# ip address 192.168.10.254 255.255.255.0
-Switch(config-if)# ip helper-address 10.0.99.5
-Switch(config-if)# end
-Switch# write memory
-
+dmd-sw-c1(config)# interface Vlan 10
+dmd-sw-c1(config-if)# description VLAN CLIENTS
+dmd-sw-c1(config-if)# ip address 192.168.4.190 255.255.255.192
+dmd-sw-c1(config-if)# ip helper-address 192.168.4.3
+dmd-sw-c1(config-if)# ip helper-address 192.168.4.4
+dmd-sw-c1(config-if)# end
+dmd-sw-c1# write memory
 ```
 
-* `interface Vlan 10` : Sélectionne l'interface de routage associée au sous-réseau devant bénéficier du service DHCP (Interface Virtuelle Switchée).
-* `ip address` : Assigne l'adresse IP de passerelle. Cette adresse est cruciale, car elle est insérée dans le champ "GIADDR" (Gateway IP Address) du paquet DHCP relayé, permettant au serveur DHCP d'identifier depuis quel sous-réseau provient la demande.
-* `ip helper-address 10.0.99.5` : Active la fonction relais. Transforme la diffusion locale en requête Unicast ciblée vers l'adresse IP du serveur DHCP central (`10.0.99.5` dans cet exemple).
-* `end` : Quitte la configuration de l'interface pour revenir au mode privilégié.
-* `write memory` : Sauvegarde la configuration active de l'agent relais dans la NVRAM.
+- `interface Vlan 10` : Sélectionne l'interface de routage SVI associée au sous-réseau des postes de travail clients (`192.168.4.128/26`).
+- `ip address 192.168.4.190 255.255.255.192` : Assigne l'adresse IP de passerelle par défaut. Cette adresse est insérée dans le champ `giaddr` (Gateway IP Address) des paquets DHCP relayés, instruisant les serveurs DHCP sur l'étendue (Scope) à distribuer.
+- `ip helper-address 192.168.4.3` : Relaie les requêtes Broadcast DHCP (ports UDP 67/68) en Unicast vers le serveur DHCP principal (`ServeurDHCP0` en VLAN 54).
+- `ip helper-address 192.168.4.4` : Relaie simultanément vers le serveur DHCP secondaire (`ServeurDHCP1` en VLAN 54) pour assurer le basculement et la haute disponibilité (Load Balancing 50/50 ou Hot Standby).
+- `write memory` : Sauvegarde la configuration active dans la mémoire non volatile (NVRAM).

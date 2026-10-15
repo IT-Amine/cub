@@ -3,7 +3,7 @@
 ![Bannière CUB](https://cub.bts.loutik.fr/assets/banniere_cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** KADA Amine
+    - **Auteur :** INFRAMINE
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 26/09/2026
     - **Sujet :** Créer un utilisateur sur GLPI
@@ -50,7 +50,7 @@ Menu de navigation : Administration > Utilisateurs > Bouton "Ajouter"
 
 ```text
 Identifiant : d.robic
-Mot de passe : [Généré aléatoirement et stocké dans un vault]
+Mot de passe : StrongPassword123!
 Actif : Oui
 ```
 

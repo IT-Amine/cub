@@ -57,7 +57,7 @@ services:
   nginx:
     container_name: nginx_cub
     restart: always
-    image: nginx:latest
+    image: nginx:1.26-alpine
     volumes:
       - ./nginx/templates:/etc/nginx/templates:ro
       - ./nginx/ssl/self.cert:/etc/nginx/ssl/self.cert:ro

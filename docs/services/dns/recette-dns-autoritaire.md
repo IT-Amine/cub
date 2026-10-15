@@ -7,7 +7,7 @@ description: "Fiche Recette : DNS Autoritaire Esclave"
 ![Bannière CUB](../../assets/banniere-cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** KADA Amine
+    - **Auteur :** INFRAMINE
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 08/10/2026
     - **Sujet :** Fiche Recette : DNS Autoritaire Esclave

@@ -7,7 +7,7 @@ description: "Fiche recette - Commutateur L3"
 ![Bannière CUB](../../../assets/banniere-cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** KADA Amine
+    - **Auteur :** INFRAMINE
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 11/09/2026
     - **Sujet :** Fiche recette - Commutateur L3

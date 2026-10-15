@@ -7,7 +7,7 @@ description: "Configuration d'une sous-interface (VLAN 802.1Q) sur Stormshield"
 ![Bannière CUB](../../../assets/banniere-cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** KADA Amine
+    - **Auteur :** INFRAMINE
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 12/09/2026
     - **Sujet :** Configuration d'une sous-interface (VLAN 802.1Q) sur Stormshield

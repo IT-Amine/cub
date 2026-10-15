@@ -94,11 +94,71 @@ Créez simplement un fichier `.md` dans le dossier thématique correspondant (`r
 
 ---
 
+## Bonnes pratiques Git & GitHub (Workflow de contribution)
+
+Afin de maintenir une base de code et une documentation saines, prévisibles et exemptes de conflits, tout contributeur doit appliquer les standards d'ingénierie suivants :
+
+### 1. Cycle de vie des branches (Branching Strategy)
+- **Protection de `main` :** Aucun commit direct n'est autorisé sur la branche `main`. Toute évolution transite obligatoirement par une branche dédiée et une Pull Request.
+- **Convention de nommage :**
+  - `feat/<sujet>` : Ajout d'une fonctionnalité ou d'une nouvelle procédure (ex : `feat/ajout-docs-dns`).
+  - `fix/<sujet>` : Correction d'une anomalie technique, typographique ou de routage (ex : `fix/masque-vlan53`).
+  - `docs/<sujet>` : Mise à jour éditoriale de documentation existante.
+  - `refactor/<sujet>` : Restructuration sans modification fonctionnelle.
+- **Création d'une branche propre :**
+  ```bash
+  git fetch origin
+  git checkout -b feat/ma-fonctionnalite origin/main
+  ```
+
+### 2. Norme des messages de commit (Conventional Commits)
+Les commits doivent être atomiques et respecter la nomenclature standard :
+```text
+<type>(<portée>): <description concise à l'impératif>
+
+[corps optionnel détaillant les choix techniques]
+```
+- **Types autorisés :**
+  - `feat` : Nouvelle fonctionnalité / nouvelle documentation.
+  - `fix` : Correction d'un bug ou d'une coquille.
+  - `refactor` : Réécriture ou réorganisation de configurations / templates.
+  - `ci` : Modification des workflows d'intégration continue (`.github/workflows/`).
+  - `chore` : Tâche de maintenance courante (dépendances, gitignore).
+- **Exemple :**
+  ```bash
+  git commit -m "feat(securite): durcissement des regles UFW et integration Gitleaks"
+  ```
+
+### 3. Checklist pré-push (Zéro régression)
+Avant de pousser vos modifications sur le serveur distant :
+1. **Compilation locale :** Valider qu'aucune erreur ou avertissement Zensical n'est présent :
+   ```bash
+   zensical build
+   ```
+2. **Synchronisation avec `main` :** Réappliquer vos commits par-dessus la dernière version du dépôt pour garantir un historique linéaire et prévenir les conflits de fusion :
+   ```bash
+   git fetch origin
+   git rebase origin/main
+   ```
+3. **Push avec suivi :**
+   - Premier push : `git push -u origin feat/ma-fonctionnalite`
+   - Pushs ultérieurs : `git push`
+   - En cas de push post-rebase : `git push --force-with-lease` (l'usage de `--force` brut est strictement proscrit).
+
+### 4. Revue de code et intégration continue (Pull Requests)
+- Ouvrir une Pull Request vers la branche `main`.
+- Vérifier le statut des contrôles automatisés exécutés par GitHub Actions :
+  - **Documentation :** Validation de la compilation Zensical.
+  - **Security :** Scan anti-fuite de secrets (TruffleHog & Gitleaks) et audit de vulnérabilités des dépendances (`pip-audit`).
+- Après validation et approbation de la revue, effectuer la fusion via **Squash and merge** ou **Rebase and merge**.
+
+---
+
 ## Déploiement
 
 Le site est automatiquement déployé sur **GitHub Pages** à chaque push sur la branche `main` via le workflow `.github/workflows/docs.yml`.
 
-- 🌐 [Docs CUB — Amine Kada](https://IT-Amine.github.io/cub)
+- 🌐 [Docs CUB — INFRAMINE](https://IT-Amine.github.io/cub)
 - 🌐 [Docs CUB — Partenaire (Louis)](https://cub.bts.loutik.fr/)
 - 🌐 [Docs CUB — Professeur](https://cubdocumentation.sioplc.fr/)
 
@@ -106,4 +166,4 @@ Le site est automatiquement déployé sur **GitHub Pages** à chaque push sur la
 
 ## Mainteneurs
 
-- **Amine KADA** | [GitHub](https://github.com/IT-Amine)
+- **INFRAMINE** | [GitHub](https://github.com/IT-Amine)
