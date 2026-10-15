@@ -2,7 +2,7 @@
 description: "Procédure d'installation et de configuration durcie du pare-feu hôte UFW sur Debian"
 ---
 
-# BLOC 2 - Installation et Configuration du Pare-feu UFW
+# Procédure et configuration durcie du pare-feu hôte UFW sur Debian"
 
 ![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
 

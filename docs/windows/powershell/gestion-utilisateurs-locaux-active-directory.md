@@ -54,11 +54,11 @@ Remove-LocalUser -Name "SRE_Admin"
 4.1.  **Provisionner un compte Active Directory.** Création standardisée d'une identité réseau et assignation dans la structure hiérarchique (Unité d'Organisation).
 
 ```powershell title="creation_ad.ps1" hl_lines="2"
-$SecurePwd = ConvertTo-SecureString -String "AdminCUB2026!" -AsPlainText -Force
+$SecurePwd = Read-Host "Saisir le mot de passe du compte AD" -AsSecureString
 New-ADUser -Name "JDOE" -GivenName "John" -Surname "Doe" -UserPrincipalName "jdoe@local.dortmund.cub.sioplc.fr" -Path "OU=Utilisateurs,DC=local,DC=dortmund,DC=cub,DC=sioplc,DC=fr" -AccountPassword $SecurePwd -Enabled $true
 ```
 
-- `ConvertTo-SecureString` : Force la conversion d'une chaîne de caractères en clair vers un objet sécurisé requis par l'AD.
+- `Read-Host -AsSecureString` : Capture le mot de passe à l'invite sans l'afficher et instancie directement l'objet `SecureString` en mémoire (recommandation ANSSI : évite tout mot de passe en clair dans les scripts ou l'historique).
 - `New-ADUser` : Cmdlet déclenchant l'écriture de l'objet utilisateur dans l'annuaire LDAP.
 - `-UserPrincipalName` : Définit le suffixe de routage UPN (format email) utilisé pour l'authentification Kerberos.
 - `-Path` : Désigne le chemin LDAP (Distinguished Name) pointant vers l'Unité d'Organisation (OU) de destination.
