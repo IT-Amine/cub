@@ -54,7 +54,7 @@ Remove-LocalUser -Name "SRE_Admin"
 4.1.  **Provisionner un compte Active Directory.** Création standardisée d'une identité réseau et assignation dans la structure hiérarchique (Unité d'Organisation).
 
 ```powershell title="creation_ad.ps1" hl_lines="2"
-$SecurePwd = ConvertTo-SecureString -String "P@ssw0rd2026!" -AsPlainText -Force
+$SecurePwd = ConvertTo-SecureString -String "AdminCUB2026!" -AsPlainText -Force
 New-ADUser -Name "JDOE" -GivenName "John" -Surname "Doe" -UserPrincipalName "jdoe@local.dortmund.cub.sioplc.fr" -Path "OU=Utilisateurs,DC=local,DC=dortmund,DC=cub,DC=sioplc,DC=fr" -AccountPassword $SecurePwd -Enabled $true
 ```
 

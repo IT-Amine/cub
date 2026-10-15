@@ -103,7 +103,7 @@ mariadb -u root -p
 
 ```sql
 CREATE DATABASE wordpress_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-CREATE USER 'wp_admin'@'localhost' IDENTIFIED BY 'MDP_BITWARDEN';
+CREATE USER 'wp_admin'@'localhost' IDENTIFIED BY 'AdminCUB2026!';
 GRANT ALL PRIVILEGES ON wordpress_db.* TO 'wp_admin'@'localhost';
 FLUSH PRIVILEGES;
 EXIT;
@@ -164,7 +164,7 @@ if ( file_exists( __DIR__ . '/.env' ) ) {
 sudo tee .env <<EOF
 DB_NAME=wordpress_db
 DB_USER=wp_admin
-DB_PASSWORD=MDP_BITWARDEN # Placeholder issu du gestionnaire de mots de passe
+DB_PASSWORD=AdminCUB2026!
 EOF
 
 chmod 640 wp-config.php

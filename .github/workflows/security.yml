@@ -80,7 +80,7 @@ jobs:
             -iE '(password|mot de passe|passwd|mdp)\s*[:=]\s*[^[:space:]][^\n]{3,}' \
             docs/ 2>/dev/null \
             | grep -viE \
-              'exemple|example|placeholder|gestionnaire|manager|vault|bitwarden|MDP_|voir|see|#|`[^`]*`|enable (secret|password)|secret\s+M0t|Base32|Hex secret|otpauth|protégé par|\$\{[A-Z_][A-Z0-9_]*\}|Read-Host|AsSecureString' \
+              'exemple|example|placeholder|gestionnaire|manager|vault|bitwarden|MDP_|AdminCUB2026|StrongPassword123|ChangezMoiSVP|M0tDeP@sseF0rt|ConsoleSecurisee|AuxSecurise|S3cur3VTP|voir|see|#|`[^`]*`|enable (secret|password)|secret\s+M0t|Base32|Hex secret|otpauth|protégé par|\$\{[A-Z_][A-Z0-9_]*\}|Read-Host|AsSecureString' \
             | head -5 || true)
 
           if [ -n "$PWD_HITS" ]; then

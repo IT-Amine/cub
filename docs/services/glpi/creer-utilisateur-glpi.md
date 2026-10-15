@@ -50,7 +50,7 @@ Menu de navigation : Administration > Utilisateurs > Bouton "Ajouter"
 
 ```text
 Identifiant : d.robic
-Mot de passe : [Généré aléatoirement et stocké dans un vault]
+Mot de passe : StrongPassword123!
 Actif : Oui
 ```
 

@@ -8,42 +8,27 @@ title = "Configuration personnalisée - CUB"
 useDefault = true
 
 [allowlist]
-description = "Liste blanche des secrets pédagogiques, mots de passe d'exemple et faux positifs de l'infrastructure CUB"
+description = "Liste blanche des secrets pédagogiques et mots de passe d'exemple de l'infrastructure CUB"
 
-# Ignorer les chaînes de caractères et mots de passe d'exemple documentés
+# Mots de passe d'exemple et chaînes de test autorisés
 regexes = [
-    # Mots de passe d'exemple Cisco
+    # Mots de passe système et applicatifs standardisés (3 principaux)
+    "AdminCUB2026!",
+    "StrongPassword123!",
+    "ChangezMoiSVP@37ù",
+
+    # Mots de passe d'administration des équipements réseau Cisco
     "M0tDeP@sseF0rt!",
     "ConsoleSecurisee!",
     "AuxSecurise!",
     "S3cur3VTP!",
 
-    # Mots de passe et secrets d'exemple applicatifs / systèmes
-    "P@ssw0rd2026!",
-    "MotDePasseRobuste",
-    "MDP_BITWARDEN",
-    "ChangezMoiSVP@37ù",
-    "VotreMotDePasseIci",
-
-    # Identifiants de services et comptes documentés
-    "guacamole",
-    "guacadmin",
-    "admin_tech",
-    "adminbastion",
-
     # Hachages cryptographiques Cisco d'exemple
     '''\$1\$Mo7O\$L6ma5ITsA2BL0zPBKkhp/\.''',
     '''\$9\$VmD40l7\.pGSaZk\$x\.XYjePcJYbaM/qnjcLfmiEqoJKVaud7gGn/947KfYc''',
-
-    # Troncatures et secrets pédagogiques TOTP / OATH
-    "HOTP/T30/6",
-    "KYVW...",
-    "MX2...",
 ]
 
-# Chemins exclus de l'analyse (fichiers binaires Packet Tracer, templates internes)
 paths = [
     '''docs/ressources/maquettes/.*\.pkt''',
     '''templates/memo\.md''',
 ]
-

@@ -75,7 +75,7 @@ sudo mysql -u root -p
 
 ```sql
 CREATE DATABASE glpi;
-GRANT ALL PRIVILEGES ON glpi.* TO glpi_adm@localhost IDENTIFIED BY "MotDePasseRobuste";
+GRANT ALL PRIVILEGES ON glpi.* TO glpi_adm@localhost IDENTIFIED BY "AdminCUB2026!";
 FLUSH PRIVILEGES;
 EXIT
 ```
