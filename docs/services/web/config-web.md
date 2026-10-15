@@ -2,7 +2,7 @@
 description: "Procédure de configuration d'un serveur Web LAMP et d'hôtes virtuels (WordPress et Scanner) en DMZ"
 ---
 
-# BLOC 2 - Configuration d'un Serveur Web LAMP et Hôtes Virtuels en DMZ
+# Configuration d'un Serveur Web LAMP et Hôtes Virtuels en DMZ
 
 ![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
 
