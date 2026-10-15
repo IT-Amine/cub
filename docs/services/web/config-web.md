@@ -164,7 +164,7 @@ if ( file_exists( __DIR__ . '/.env' ) ) {
 sudo tee .env <<EOF
 DB_NAME=wordpress_db
 DB_USER=wp_admin
-DB_PASSWORD=MDP_BITWARDEN
+DB_PASSWORD=MDP_BITWARDEN # Placeholder issu du gestionnaire de mots de passe
 EOF
 
 chmod 640 wp-config.php
