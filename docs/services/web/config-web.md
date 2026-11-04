@@ -10,7 +10,7 @@ description: "Procédure de configuration d'un serveur Web LAMP et d'hôtes virt
 
 > [!note] "Informations"
 >
-> - **Auteur :** INFRAMINE
+> - **Auteur :** Amine
 > - **Date :** 15/10/2026
 > - **Domaine :** Services Web (LAMP)
 

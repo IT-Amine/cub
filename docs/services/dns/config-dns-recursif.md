@@ -10,7 +10,7 @@ description: "Procédure de configuration d'un serveur DNS récursif avec Unboun
 
 > [!note] "Informations"
 >
-> - **Auteur :** INFRAMINE
+> - **Auteur :** Amine
 > - **Date :** 23/09/2026
 > - **Domaine :** Services Réseau (DNS)
 

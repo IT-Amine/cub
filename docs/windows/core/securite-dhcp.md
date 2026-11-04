@@ -10,7 +10,7 @@ description: "Note Technique de Sécurité : Vulnérabilités DHCP (Starvation, 
 
 > [!note] "Informations"
 >
-> - **Auteur :** INFRAMINE
+> - **Auteur :** Amine
 > - **Date :** 15/10/2026
 > - **Domaine :** Cybersécurité & Réseau (DHCP)
 

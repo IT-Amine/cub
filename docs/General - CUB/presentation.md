@@ -7,7 +7,7 @@ description: "Contexte CUB - BTS SIO"
 ![Bannière CUB](../assets/banniere-cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** INFRAMINE
+    - **Auteur :** Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 16/09/2026
     - **Sujet :** Contexte CUB - BTS SIO
@@ -38,7 +38,7 @@ Le siège social est le cœur du système d'information interne de CUB, mais un 
 
 ### BLOC 2 — Exploitation des systèmes
 
-* [**Commande CUB**](../reseau/cisco/configurations/commande-cub.md) : Les commandes essentielles et l'administration système.
+* [**Configurations des équipements**](../ressources/configurations.md) : Les fichiers de configuration essentiels et l'administration système.
 * [**Exploitation des services**](../services/exploitation-services.md) : Mise en œuvre et gestion des services réseau (DNS, Bastion, etc.).
 
 ### BLOC 3 — Cybersécurité & Réseaux

@@ -7,7 +7,7 @@ description: "Administration et supervision des Réseaux"
 ![Bannière CUB](../assets/banniere-cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** INFRAMINE
+    - **Auteur :** Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 16/09/2026
     - **Sujet :** Administration et supervision des Réseaux

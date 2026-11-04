@@ -7,7 +7,7 @@ description: "Configurations"
 ![Bannière CUB](../assets/banniere-cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** INFRAMINE
+    - **Auteur :** Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 11/09/2026
     - **Sujet :** Configurations
