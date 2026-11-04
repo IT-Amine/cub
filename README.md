@@ -158,7 +158,7 @@ Avant de pousser vos modifications sur le serveur distant :
 
 Le site est automatiquement déployé sur **GitHub Pages** à chaque push sur la branche `main` via le workflow `.github/workflows/docs.yml`.
 
-- 🌐 [Docs CUB — INFRAMINE](https://IT-Amine.github.io/cub)
+- 🌐 [Docs CUB — Amine](https://IT-Amine.github.io/cub)
 - 🌐 [Docs CUB — Partenaire (Louis)](https://cub.bts.loutik.fr/)
 - 🌐 [Docs CUB — Professeur](https://cubdocumentation.sioplc.fr/)
 
@@ -166,4 +166,4 @@ Le site est automatiquement déployé sur **GitHub Pages** à chaque push sur la
 
 ## Mainteneurs
 
-- **INFRAMINE** | [GitHub](https://github.com/IT-Amine)
+- **Amine** | [GitHub](https://github.com/IT-Amine)

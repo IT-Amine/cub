@@ -7,7 +7,7 @@ description: "Annuaire des machines et services"
 ![Bannière CUB](../assets/banniere-cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** INFRAMINE
+    - **Auteur :** Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 14/10/2026
     - **Sujet :** Annuaire des machines et des services de l'infrastructure CUB
@@ -29,8 +29,8 @@ Ce document recense l'inventaire complet des machines virtuelles, des équipemen
 | :--- | :--- | :--- | :--- |
 | **ServeurAD0** | `ad0.local.dortmund.cub.sioplc.fr` | `192.168.4.1/25` | Contrôleur de domaine AD DS Maître (PDC) & DNS intégré |
 | **ServeurAD1** | `ad1.local.dortmund.cub.sioplc.fr` | `192.168.4.2/25` | Contrôleur de domaine AD DS Réplica (Secondaire) & DNS intégré |
-| **ServeurDHCP0** | `dhcp0.local.dortmund.cub.sioplc.fr` | `192.168.4.3/25` | Serveur DHCP principal (Windows Server Core) |
-| **ServeurDHCP1** | `dhcp1.local.dortmund.cub.sioplc.fr` | `192.168.4.4/25` | Serveur DHCP secondaire (Windows Server Core) |
+| **ServeurDHCP0** | `dhcp0.local.dortmund.cub.sioplc.fr` | `192.168.4.3/25` | Serveur DHCP principal (Windows Server Core - Actif / Maître) |
+| **ServeurDHCP1** | `dhcp1.local.dortmund.cub.sioplc.fr` | `192.168.4.4/25` | Serveur DHCP de secours (Windows Server Core - Standby / Esclave) |
 | **ServeurWAC0** | `wac0.local.dortmund.cub.sioplc.fr` | `192.168.4.5/25` | Windows Admin Center principal (Portail d'administration) |
 | **ServeurWAC1** | `wac1.local.dortmund.cub.sioplc.fr` | `192.168.4.6/25` | Windows Admin Center secondaire (Nœud d'administration) |
 | **ServeurDNS0** | `dns0.local.dortmund.cub.sioplc.fr` | `192.168.4.10/25` | Serveur DNS récursif interne Maître (Unbound) |
@@ -80,8 +80,8 @@ Ce document recense l'inventaire complet des machines virtuelles, des équipemen
 | :--- | :--- | :--- | :--- | :--- |
 | **Active Directory Maître** | ServeurAD0 | `ad0.local.dortmund.cub.sioplc.fr` | `192.168.4.1:389 / 636` | LDAP / LDAPS / Kerberos (Port 88) |
 | **Active Directory Esclave** | ServeurAD1 | `ad1.local.dortmund.cub.sioplc.fr` | `192.168.4.2:389 / 636` | LDAP / LDAPS / Kerberos (Port 88) |
-| **Service DHCP0 (Principal)**| ServeurDHCP0 | `dhcp0.local.dortmund.cub.sioplc.fr` | `192.168.4.3:67` | UDP 67 (DHCPv4 Server) |
-| **Service DHCP1 (Secondaire)**| ServeurDHCP1 | `dhcp1.local.dortmund.cub.sioplc.fr` | `192.168.4.4:67` | UDP 67 (DHCPv4 Server) |
+| **Service DHCP0 (Actif / Principal)**| ServeurDHCP0 | `dhcp0.local.dortmund.cub.sioplc.fr` | `192.168.4.3:67` | UDP 67 (DHCPv4 Server) |
+| **Service DHCP1 (Secours / Standby)**| ServeurDHCP1 | `dhcp1.local.dortmund.cub.sioplc.fr` | `192.168.4.4:67` | UDP 67 (DHCPv4 Server) |
 | **WAC Principal** | ServeurWAC0 | [https://wac0.local.dortmund.cub.sioplc.fr:10443](https://192.168.4.5:10443) | `192.168.4.5:10443` | HTTPS / WinRM |
 | **WAC Secondaire** | ServeurWAC1 | [https://wac1.local.dortmund.cub.sioplc.fr:10443](https://192.168.4.6:10443) | `192.168.4.6:10443` | HTTPS / WinRM |
 | **DNS Récursif Maître** | ServeurDNS0 | `dns0.local.dortmund.cub.sioplc.fr` | `192.168.4.10:53` | TCP/UDP 53 (Unbound) |

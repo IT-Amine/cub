@@ -7,7 +7,7 @@ description: "Implémentation du Relais DHCP sur équipement Cisco"
 ![Bannière CUB](../../../assets/banniere-cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** INFRAMINE
+    - **Auteur :** Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 05/09/2026
     - **Sujet :** Implémentation du Relais DHCP sur équipement Cisco
@@ -37,6 +37,6 @@ dmd-sw-c1# write memory
 
 - `interface Vlan 10` : Sélectionne l'interface de routage SVI associée au sous-réseau des postes de travail clients (`192.168.4.128/26`).
 - `ip address 192.168.4.190 255.255.255.192` : Assigne l'adresse IP de passerelle par défaut. Cette adresse est insérée dans le champ `giaddr` (Gateway IP Address) des paquets DHCP relayés, instruisant les serveurs DHCP sur l'étendue (Scope) à distribuer.
-- `ip helper-address 192.168.4.3` : Relaie les requêtes Broadcast DHCP (ports UDP 67/68) en Unicast vers le serveur DHCP principal (`ServeurDHCP0` en VLAN 54).
-- `ip helper-address 192.168.4.4` : Relaie simultanément vers le serveur DHCP secondaire (`ServeurDHCP1` en VLAN 54) pour assurer le basculement et la haute disponibilité (Load Balancing 50/50 ou Hot Standby).
+- `ip helper-address 192.168.4.3` : Relaie les requêtes Broadcast DHCP (ports UDP 67/68) en Unicast vers le serveur DHCP principal actif (`SERVEURDHCP0` en VLAN 54).
+- `ip helper-address 192.168.4.4` : Relaie simultanément vers le serveur DHCP de secours (`SERVEURDHCP1` en VLAN 54) pour assurer le basculement et la haute disponibilité (Hot Standby).
 - `write memory` : Sauvegarde la configuration active dans la mémoire non volatile (NVRAM).

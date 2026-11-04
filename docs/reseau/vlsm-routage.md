@@ -7,7 +7,7 @@ description: "Vlsm Routage"
 ![Bannière CUB](../assets/banniere-cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** INFRAMINE
+    - **Auteur :** Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 22/01/2026
     - **Sujet :** Vlsm Routage

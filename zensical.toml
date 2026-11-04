@@ -2,9 +2,9 @@
 site_url = "https://IT-Amine.github.io/cub"
 site_name = "Documentation infrastructure - CUB"
 site_description = "Documentation du contexte CUB du BTS SIO Paul-Louis Courier."
-site_author = "INFRAMINE"
+site_author = "Amine"
 
-copyright = "Copyright &copy; 2026 INFRAMINE"
+copyright = "Copyright &copy; 2026 Amine"
 
 repo_url = "https://github.com/IT-Amine/cub"
 repo_name = "IT-Amine/cub"

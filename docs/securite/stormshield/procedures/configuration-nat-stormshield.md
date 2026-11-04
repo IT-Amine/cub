@@ -7,7 +7,7 @@ description: "Configuration du NAT sur Stormshield"
 ![Bannière CUB](../../../assets/banniere-cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** INFRAMINE
+    - **Auteur :** Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 12/09/2026
     - **Sujet :** Configuration du NAT sur Stormshield

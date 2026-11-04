@@ -10,7 +10,7 @@ description: "Procédure d'initialisation et de configuration du contrôleur de 
 
 > [!note] "Informations"
 >
-> - **Auteur :** INFRAMINE
+> - **Auteur :** Amine
 > - **Date :** 09/09/2026
 > - **Domaine :** Système & Annuaire (Active Directory)
 

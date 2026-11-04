@@ -10,7 +10,7 @@ description: "Procédure d'installation et de configuration durcie du pare-feu h
 
 > [!note] "Informations"
 >
-> - **Auteur :** INFRAMINE
+> - **Auteur :** Amine
 > - **Date :** 01/10/2026
 > - **Domaine :** Cybersécurité & Pare-feu hôte (UFW)
 

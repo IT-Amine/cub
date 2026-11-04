@@ -7,7 +7,7 @@ description: "Résolution de l'erreur d'objets dérivés sur ethernet0"
 ![Bannière CUB](../../../assets/banniere-cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** INFRAMINE
+    - **Auteur :** Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 09/09/2026
     - **Sujet :** Résolution de l'erreur d'objets dérivés sur ethernet0

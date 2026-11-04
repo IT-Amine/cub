@@ -7,7 +7,7 @@ description: "Mise en place de l'authentification TOTP sur Debian"
 ![Bannière CUB](../../assets/banniere-cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** INFRAMINE
+    - **Auteur :** Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 05/09/2026
     - **Sujet :** Mise en place de l'authentification TOTP sur Debian

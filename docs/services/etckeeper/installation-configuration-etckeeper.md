@@ -7,7 +7,7 @@ description: "Installation et configuration de Etckeeper"
 ![Bannière CUB](../../assets/banniere-cub.png)
 
 !!! abstract "Informations sur le document"
-    - **Auteur :** INFRAMINE
+    - **Auteur :** Amine
     - **Classe :** BTS SIO 2 - Option SISR
     - **Date :** 05/09/2026
     - **Sujet :** Installation et configuration de Etckeeper
