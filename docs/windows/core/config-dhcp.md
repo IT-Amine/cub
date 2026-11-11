@@ -98,10 +98,10 @@ Restart-Service -Name DHCPServer
 5.1. **Création de l'étendue et configuration de la plage IP.** Opérations à exécuter uniquement sur **SERVEURDHCP0 (`192.168.4.3`)**. La plage ne doit pas exister sur le partenaire `SERVEURDHCP1` (elle sera répliquée par le Failover).
 
 ```powershell
-Add-DhcpServerv4Scope -Name "Clients - VLAN 10" -ScopeId 192.168.4.128 -StartRange 192.168.4.130 -EndRange 192.168.4.189 -SubnetMask 255.255.255.192 -LeaseDuration 4.00:00:00 -State Active
+Add-DhcpServerv4Scope -Name "Clients - VLAN 10" -StartRange 192.168.4.130 -EndRange 192.168.4.189 -SubnetMask 255.255.255.192 -LeaseDuration 4.00:00:00 -State Active
 ```
 
-- `-ScopeId 192.168.4.128` : Identifiant réseau (adresse réseau) de l'étendue Clients.
+- L’identifiant de l’étendue est `192.168.4.128`, déduit de la plage et du masque.
 - `-StartRange 192.168.4.130` / `-EndRange 192.168.4.189` : Bornes de la plage de distribution dynamique d'adresses IPv4.
 - `-SubnetMask 255.255.255.192` : Masque de sous-réseau `/26` correspondant au découpage VLSM.
 - `-LeaseDuration 4.00:00:00` : Durée du bail fixée à 4 jours.
@@ -109,19 +109,21 @@ Add-DhcpServerv4Scope -Name "Clients - VLAN 10" -ScopeId 192.168.4.128 -StartRan
 
 5.2. **Définition de l'exclusion, de la réservation et des options DHCP.**
 
+> [!note] Les postes membres utilisent les DNS AD ; ceux-ci peuvent transmettre les requêtes non locales à Unbound. Voir la [procédure de coopération DNS](../../services/dns/cooperation-dns-ad-unbound-bind.md).
+
 ```powershell
 Add-DhcpServerv4ExclusionRange -ScopeId 192.168.4.128 -StartRange 192.168.4.180 -EndRange 192.168.4.189
 Add-DhcpServerv4Reservation -ScopeId 192.168.4.128 -IPAddress 192.168.4.179 -ClientId "00-15-5D-01-A2-34" -Name "Poste-VIP-Clients"
 Set-DhcpServerv4OptionValue -ScopeId 192.168.4.128 -Router 192.168.4.190
-Set-DhcpServerv4OptionValue -ScopeId 192.168.4.128 -DnsServer 8.8.8.8
-Set-DhcpServerv4OptionValue -ScopeId 192.168.4.128 -DnsDomain "dortmund.cub.sioplc.fr"
+Set-DhcpServerv4OptionValue -ScopeId 192.168.4.128 -DnsServer 192.168.4.1,192.168.4.2
+Set-DhcpServerv4OptionValue -ScopeId 192.168.4.128 -DnsDomain "local.dortmund.cub.sioplc.fr"
 ```
 
 - `Add-DhcpServerv4ExclusionRange` : Exclut la plage `192.168.4.180` à `192.168.4.189` pour les équipements à adressage fixe (imprimantes réseau, bornes).
 - `Add-DhcpServerv4Reservation` : Réserve l'adresse IP statique `192.168.4.179` liée à l'adresse MAC du poste client VIP.
 - `-Router 192.168.4.190` : Injection de l'option 3 (Passerelle par défaut / SVI VLAN 10 du commutateur L3).
-- `-DnsServer 8.8.8.8` : Injection de l'option 6 (Serveur de résolution de noms externe ou résolveurs internes de production `192.168.4.10`, `192.168.4.11`).
-- `-DnsDomain "dortmund.cub.sioplc.fr"` : Injection de l'option 15 (Suffixe DNS principal).
+- `-DnsServer 192.168.4.1,192.168.4.2` : Contrôleurs de domaine DNS internes (option 6). Vérifier leur résolution des noms externes et les flux DNS avant déploiement.
+- `-DnsDomain "local.dortmund.cub.sioplc.fr"` : Injection de l'option 15 (Suffixe DNS principal).
 
 ---
 

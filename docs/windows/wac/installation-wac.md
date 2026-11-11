@@ -31,7 +31,6 @@ winget install Microsoft.WindowsAdminCenter --interactive
 
 3.2. **Sélection du mode d'installation.** Sélectionner l'option **Installation personnalisée**.
 
-![Installation personnalisée](../../assets/windows-wac/installation-wac/01-installation-personnalisee.png)
 
 3.3. **Configuration de l'accès réseau.** Cocher **Accès à distance** pour permettre l'administration depuis d'autres appareils via un nom de machine ou un FQDN.
 

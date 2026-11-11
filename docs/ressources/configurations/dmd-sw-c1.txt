@@ -30,7 +30,7 @@ switch 1 provision c9200l-24t-4g
 ip routing
 !         
 no ip domain lookup
-ip domain name dmd-sw-c1.local.agence.cub.sioplc.fr
+ip domain name dmd-sw-c1.dortmund.cub.sioplc.fr
 !
 !
 !
@@ -172,32 +172,32 @@ interface GigabitEthernet1/0/7
  no shutdown
 !
 interface GigabitEthernet1/0/8
- description VLAN PRODUCTION
- switchport access vlan 54
+ description VLAN BASTION
+ switchport access vlan 53
  switchport mode access
  no shutdown
 !
 interface GigabitEthernet1/0/9
- description VLAN PRODUCTION
- switchport access vlan 54
+ description VLAN BASTION
+ switchport access vlan 53
  switchport mode access
  no shutdown
 !
 interface GigabitEthernet1/0/10
- description VLAN PRODUCTION
- switchport access vlan 54
+ description VLAN BASTION
+ switchport access vlan 53
  switchport mode access
  no shutdown
 !
 interface GigabitEthernet1/0/11
- description VLAN PRODUCTION
- switchport access vlan 54
+ description VLAN BASTION
+ switchport access vlan 53
  switchport mode access
  no shutdown
 !
 interface GigabitEthernet1/0/12
- description VLAN PRODUCTION
- switchport access vlan 54
+ description VLAN BASTION
+ switchport access vlan 53
  switchport mode access
  no shutdown
 !
@@ -252,6 +252,8 @@ interface Vlan2
 interface Vlan10
  description VLAN CLIENTS
  ip address 192.168.4.190 255.255.255.192
+ ip helper-address 192.168.4.3
+ ip helper-address 192.168.4.4
  no shutdown
 !
 interface Vlan20
@@ -263,7 +265,6 @@ interface Vlan53
  description VLAN BASTION
  ip address 192.168.4.214 255.255.255.240
  no shutdown
-!
 !
 interface Vlan54
  description VLAN PRODUCTION

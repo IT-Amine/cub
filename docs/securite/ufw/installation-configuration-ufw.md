@@ -2,7 +2,7 @@
 description: "Procédure d'installation et de configuration durcie du pare-feu hôte UFW sur Debian"
 ---
 
-# Procédure et configuration durcie du pare-feu hôte UFW sur Debian"
+# Procédure et configuration durcie du pare-feu hôte UFW sur Debian
 
 ![CUB](https://github.com/IT-Amine/cub/blob/main/docs/assets/banniere-cub.png?raw=true)
 
@@ -33,7 +33,7 @@ UFW (Uncomplicated Firewall) constitue une interface d'administration simplifié
 
 Au sein de l'infrastructure CUB, UFW est déployé en tant que pare-feu d'hôte local (défense en profondeur) sur les serveurs applicatifs sous Debian. Il permet d'isoler strictement chaque composant logiciel et d'appliquer le principe de moindre privilège :
 - Les accès d'administration distante (SSH - Port 22) sont strictement réservés aux adresses du **VLAN 20 (Administration : `192.168.4.192/28`)** et du **VLAN 53 (Bastion Guacamole : `192.168.4.208/28`)**.
-- Le port alternatif **8080/tcp** est ouvert spécifiquement pour exposer l'interface de gestion de parc informatique **GLPI**.
+- Les ports applicatifs sont ouverts selon le rôle de la machine, le port réellement en écoute et les sources autorisées. La procédure GLPI présente un exemple Apache sur **80/tcp**.
 - Les ports sécurisés **443/tcp** (HTTPS) et **8443/tcp** (Portail Bastion Guacamole) sont autorisés pour les consultations sécurisées.
 
 ---
@@ -74,18 +74,30 @@ sudo ufw default allow outgoing
 sudo ufw allow from 192.168.4.192/28 to any port 22 proto tcp comment 'SSH depuis VLAN 20 Admin'
 sudo ufw allow from 192.168.4.208/28 to any port 22 proto tcp comment 'SSH depuis VLAN 53 Bastion'
 
-# 2. Ouverture des flux applicatifs Web
-sudo ufw allow 8080/tcp comment 'Serveur Web GLPI (ITSM)'
-sudo ufw allow 443/tcp comment 'Serveur Web HTTPS'
-sudo ufw allow 8443/tcp comment 'Portail Bastion Guacamole'
+# Les règles applicatives sont à choisir séparément selon le service hébergé.
 ```
 
 - `allow from 192.168.4.192/28 ...` : Restreint l'administration SSH au sous-réseau VLAN 20 d'administration.
 - `allow from 192.168.4.208/28 ...` : Autorise le serveur de rebond Apache Guacamole (VLAN 53) à relayer les sessions d'administration.
-- `8080/tcp` : Port d'écoute du serveur Web GLPI.
-- `443/tcp` / `8443/tcp` : Ports d'accès Web chiffrés en HTTPS.
+- `80/tcp` : Port de l’exemple Apache GLPI ; à autoriser uniquement pour les sources et la machine concernées après vérification.
+- `443/tcp` / `8443/tcp` : Ports possibles selon le service et le proxy ; ne pas les ouvrir automatiquement sur tous les serveurs.
 
 ---
+
+5.2. **Identifier les services et appliquer seulement les règles nécessaires.**
+
+```bash
+sudo ss -lntup
+sudo ufw status numbered
+```
+
+Par exemple, si Apache GLPI écoute effectivement sur TCP 80 et que le VLAN clients doit y accéder directement, autoriser ce flux sur le serveur GLPI :
+
+```bash
+sudo ufw allow from 192.168.4.128/26 to any port 80 proto tcp comment 'GLPI HTTP depuis VLAN clients'
+```
+
+Adapter la source au réseau autorisé ; si un reverse proxy accède au serveur, autoriser son adresse plutôt que l’ensemble des clients. En HTTPS ou sur un autre port, vérifier l’écoute et ouvrir le port correspondant. Pour un DNS, prévoir explicitement les flux UDP et TCP 53 depuis les réseaux autorisés avant activation. Tester depuis les sources permises et refusées.
 
 ## 6. Activation du service de filtrage
 
@@ -112,7 +124,9 @@ sudo ufw status verbose
 
 - `status verbose` : Affiche l'état d'activation, les politiques globales par défaut et la liste détaillée des règles numérotées avec leurs commentaires.
 
-```text title="Sortie attendue sur la console"
+Les règles applicatives varient selon le rôle de la machine. Exemple pour GLPI si la règle 80/tcp ci-dessus a été choisie :
+
+```text title="Exemple de sortie"
 Status: active
 Logging: on (low)
 Default: deny (incoming), allow (outgoing), deny (routed)
@@ -122,7 +136,5 @@ To                         Action      From
 --                         ------      ----
 22/tcp                     ALLOW IN    192.168.4.192/28           # SSH depuis VLAN 20 Admin
 22/tcp                     ALLOW IN    192.168.4.208/28           # SSH depuis VLAN 53 Bastion
-8080/tcp                   ALLOW IN    Anywhere                   # Serveur Web GLPI (ITSM)
-443/tcp                    ALLOW IN    Anywhere                   # Serveur Web HTTPS
-8443/tcp                   ALLOW IN    Anywhere                   # Portail Bastion Guacamole
+80/tcp                     ALLOW IN    192.168.4.128/26          # Exemple GLPI HTTP depuis VLAN clients
 ```

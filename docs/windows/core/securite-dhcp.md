@@ -20,7 +20,7 @@ description: "Note Technique de Sécurité : Vulnérabilités DHCP (Starvation, 
 > Cette note technique s'inscrit dans le cadre de la **Situation 4 (Bloc 2 - Contexte CUB)**. Elle formalise l'analyse de sécurité requise sur le service DHCP et complète la documentation de déploiement opérationnelle :
 > 
 > - [Déploiement et Haute Disponibilité DHCP sous Windows Server 2025 Core](config-dhcp.md)
-> - [Annuaire officiel des machines et services](../../ressources/annuaire-machines.md)
+> - [Annuaire officiel des machines et services](../../General%20-%20CUB/annuaire-machines.md)
 > - [Plan d'adressage et découpage VLSM CUB](../../ressources/plan-adressage.md)
 > - [Fiche Synthèse n°5 - L'exploitation du service DHCP](../assets/config-dhcp/BTS%20SIO%20BLOC%202%20AdminSys%20-%20synth%C3%A8se%205%20-%20Lexploitation%20du%20service%20DHCP.pdf)
 

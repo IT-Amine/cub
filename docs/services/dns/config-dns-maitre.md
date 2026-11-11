@@ -101,7 +101,7 @@ ns1         IN  A   192.36.4.11
 5.2. **Application des droits.** Attribution du fichier à l'utilisateur et au groupe `bind`.
 
 ```bash
-sudo chown bind:bind /var/cache/bind/db.dortmund.cub.sioplc.fr
+sudo chown bind:bind /etc/bind/db.dortmund.cub.sioplc.fr
 ```
 
 - `chown` : Modifie le propriétaire et le groupe d'un fichier.
