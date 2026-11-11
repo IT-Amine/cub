@@ -149,7 +149,7 @@ define('GLPI_LOG_DIR', '/var/log/glpi');
 
 ## Configuration Apache2 et PHP-FPM
 
-6.1. **Création du VirtualHost.** Configuration du site Apache2 dédié pour GLPI.
+6.1. **Création du VirtualHost.** Configuration du site Apache2 dédié pour GLPI. Le VirtualHost écoute sur TCP 80. L'ouverture des flux sur le pare-feu hôte est décrite dans la [procédure UFW](../../securite/ufw/installation-configuration-ufw.md).
 
 ```bash
 sudoedit /etc/apache2/sites-available/glpi.conf

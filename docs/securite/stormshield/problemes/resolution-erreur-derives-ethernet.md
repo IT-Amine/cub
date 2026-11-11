@@ -20,6 +20,8 @@ Lors de la configuration d'une adresse IP fixe sur l'interface WAN (`ethernet0`)
 
 ## Dissociation de l'objet de routage
 
+3.0. **Relevé avant intervention.** Noter la passerelle par défaut, son objet associé, les routes et la configuration WAN. Prévoir un accès de secours. La table de routage CUB indique `192.36.253.254` comme passerelle WAN ; vérifier la valeur réellement utilisée.
+
 3.1.  **Désactivation de la passerelle par défaut.** Retirer l'association bloquante sur l'interface en modifiant le statut du routeur par défaut.
 
 * **Configuration** > **Network** > **Routing** > **default gateway (router)** = `none`
@@ -39,3 +41,13 @@ Lors de la configuration d'une adresse IP fixe sur l'interface WAN (`ethernet0`)
 
 - `Out (WAN)` : Ciblage de l'interface externe (`ethernet0`) pour la saisie de l'adresse IP statique.
 - `Apply` : Validation des paramètres pour forcer l'application de la nouvelle configuration réseau.
+
+
+## Rétablissement et validation du routage
+
+5.1. **Rétablir la passerelle.** Après application de l’adresse WAN, réassocier la passerelle relevée avant l’intervention dans **Configuration > Réseau > Routage**. Au besoin suivre la [procédure de configuration du routage](../procedures/configuration-routage-stormshield.md).
+
+5.2. **Vérifier la route et les accès.** Contrôler la route par défaut et les routes LAN et DMZ nécessaires. Depuis le pare-feu puis depuis un poste autorisé, tester une destination hors des réseaux directement connectés ; vérifier aussi la résolution DNS et le filtrage si le test échoue.
+
+> [!warning] Retour arrière
+> Si la connectivité reste interrompue, rétablir la configuration WAN et la passerelle relevées avant l’intervention, puis contrôler les routes et les flux.

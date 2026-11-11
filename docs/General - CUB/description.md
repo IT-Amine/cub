@@ -57,8 +57,8 @@ description: "Description de l'infrastructure"
 
 | Matériel | Administration | Description |
 |:---|:---|:---|
-| **fw.local.agence.cub.sioplc.fr** | `192.168.XX.254/30`<br>_depuis_ `192.168.X.192/28` uniquement | Le pare-feu de l'agence doit être administré uniquement sur son interface IN (réseau d'interconnexion) depuis le VLAN d'Administration. |
-| **sw0.local.agence.cub.sioplc.fr** | `192.168.X.205/28`<br>_depuis_ `192.168.X.192/28` uniquement | Le switch cœur de réseau L3 doit disposer d'une configuration IP dans le VLAN d'Administration uniquement et être administré depuis ce VLAN. |
+| **Stormshield Dortmund** | `192.168.4.205/28`<br>depuis le VLAN Administration | Adresse de gestion indiquée dans l’annuaire ; accès et filtrage à vérifier sur le pare-feu. |
+| **sw0.local.agence.cub.sioplc.fr** | `192.168.X.206/28`<br>_depuis_ `192.168.X.192/28` uniquement | Le switch cœur de réseau L3 doit disposer d'une configuration IP dans le VLAN d'Administration uniquement et être administré depuis ce VLAN. |
 | **sw1.local.agence.cub.sioplc.fr** | `192.168.X.204/28`<br>_depuis_ `192.168.X.192/28` uniquement | Le switch de distribution (L2) doit disposer d'une configuration réseau dans le VLAN d'Administration uniquement et être administré depuis ce VLAN. |
 
 ---

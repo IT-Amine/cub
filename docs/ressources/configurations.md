@@ -25,3 +25,9 @@ description: "Configurations"
 ## Configuration `dmd-sw-a1` (Switch accès)
 
 - **Ficher de configuration :** [dmd-sw-a1](./configurations/dmd-sw-a1.txt)
+
+---
+
+## Administration des commutateurs
+
+- [Contrôle des accès d’administration Cisco](cisco/securite/controle-acces-administration-cisco.md)
