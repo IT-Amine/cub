@@ -55,12 +55,12 @@ Ce document recense l'inventaire complet des machines virtuelles, des équipemen
 ## Réseau BASTION (VLAN 53)
 
 > **Passerelle par défaut (SVI Switch L3) :** `192.168.4.214`  
-> **Masque de sous-réseau :** `255.255.255.240 (/28)`
+> **Masque de sous-réseau :** `255.255.255.248 (/29)`
 
 | Nom machine | FQDN | Adresse IP | Rôle / Fonction |
 | :--- | :--- | :--- | :--- |
-| **ServeurBastion0** | `bastion0.local.dortmund.cub.sioplc.fr` | `192.168.4.210/28` | Passerelle Bastion Apache Guacamole 0 (Principal) |
-| **ServeurBastion1** | `bastion1.local.dortmund.cub.sioplc.fr` | `192.168.4.211/28` | Passerelle Bastion Apache Guacamole 1 (Secondaire) |
+| **ServeurBastion0** | `bastion0.local.dortmund.cub.sioplc.fr` | `192.168.4.210/29` | Passerelle Bastion Apache Guacamole 0 (Principal) |
+| **ServeurBastion1** | `bastion1.local.dortmund.cub.sioplc.fr` | `192.168.4.211/29` | Passerelle Bastion Apache Guacamole 1 (Secondaire) |
 
 ---
 
@@ -69,7 +69,7 @@ Ce document recense l'inventaire complet des machines virtuelles, des équipemen
 | Nom équipement | Modèle | FQDN d'administration | Adresses IP d'interfaces |
 | :--- | :--- | :--- | :--- |
 | **STORMSHIELD01** | Stormshield SN210 | `stormshield01.dortmund.cub.sioplc.fr` | `192.168.4.205/28` (Admin VLAN 20)<br>`192.36.4.254/24` (DMZ VLAN 84)<br>`192.168.44.254/29` (Inter-co VLAN 2)<br>`192.36.253.40/24` (WAN) |
-| **dmd-sw-coeur01** | Cisco Catalyst C9200L-24T-4G (L3 ; modèle à confirmer sur le matériel) | `dmd-sw-c1.local.dortmund.cub.sioplc.fr` | `192.168.4.126/25` (SVI Prod 54)<br>`192.168.4.190/26` (SVI Clients 10)<br>`192.168.4.206/28` (SVI Admin 20)<br>`192.168.4.214/28` (SVI Bastion 53)<br>`192.168.44.253/29` (SVI Inter-co 2) |
+| **dmd-sw-coeur01** | Cisco Catalyst C9200L-24T-4G (L3 ; modèle à confirmer sur le matériel) | `dmd-sw-c1.local.dortmund.cub.sioplc.fr` | `192.168.4.126/25` (SVI Prod 54)<br>`192.168.4.190/26` (SVI Clients 10)<br>`192.168.4.206/28` (SVI Admin 20)<br>`192.168.4.214/29` (SVI Bastion 53)<br>`192.168.44.253/29` (SVI Inter-co 2) |
 | **dmd-sw-acces01** | Cisco Catalyst 2960 (L2) | `dmd-sw-a1.local.dortmund.cub.sioplc.fr` | `192.168.4.204/28` (SVI Management VLAN 20) |
 
 ---
