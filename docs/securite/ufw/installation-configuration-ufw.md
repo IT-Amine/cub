@@ -32,7 +32,7 @@ description: "Procédure d'installation et de configuration durcie du pare-feu h
 UFW (Uncomplicated Firewall) constitue une interface d'administration simplifiée pour le sous-système de filtrage de paquets du noyau Linux (`iptables` / `nftables`). 
 
 Au sein de l'infrastructure CUB, UFW est déployé en tant que pare-feu d'hôte local (défense en profondeur) sur les serveurs applicatifs sous Debian. Il permet d'isoler strictement chaque composant logiciel et d'appliquer le principe de moindre privilège :
-- Les accès d'administration distante (SSH - Port 22) sont strictement réservés aux adresses du **VLAN 20 (Administration : `192.168.4.192/28`)** et du **VLAN 53 (Bastion Guacamole : `192.168.4.208/28`)**.
+- Les accès d'administration distante (SSH - Port 22) sont strictement réservés aux adresses du **VLAN 20 (Administration : `192.168.4.192/28`)** et du **VLAN 53 (Bastion Guacamole : `192.168.4.208/29`)**.
 - Les ports applicatifs sont ouverts selon le rôle de la machine, le port réellement en écoute et les sources autorisées. La procédure GLPI présente un exemple Apache sur **80/tcp**.
 - Les ports sécurisés **443/tcp** (HTTPS) et **8443/tcp** (Portail Bastion Guacamole) sont autorisés pour les consultations sécurisées.
 
@@ -72,13 +72,13 @@ sudo ufw default allow outgoing
 ```bash
 # 1. Restriction stricte de l'accès SSH (Port 22 TCP)
 sudo ufw allow from 192.168.4.192/28 to any port 22 proto tcp comment 'SSH depuis VLAN 20 Admin'
-sudo ufw allow from 192.168.4.208/28 to any port 22 proto tcp comment 'SSH depuis VLAN 53 Bastion'
+sudo ufw allow from 192.168.4.208/29 to any port 22 proto tcp comment 'SSH depuis VLAN 53 Bastion'
 
 # Les règles applicatives sont à choisir séparément selon le service hébergé.
 ```
 
 - `allow from 192.168.4.192/28 ...` : Restreint l'administration SSH au sous-réseau VLAN 20 d'administration.
-- `allow from 192.168.4.208/28 ...` : Autorise le serveur de rebond Apache Guacamole (VLAN 53) à relayer les sessions d'administration.
+- `allow from 192.168.4.208/29 ...` : Autorise le serveur de rebond Apache Guacamole (VLAN 53) à relayer les sessions d'administration.
 - `80/tcp` : Port de l’exemple Apache GLPI ; à autoriser uniquement pour les sources et la machine concernées après vérification.
 - `443/tcp` / `8443/tcp` : Ports possibles selon le service et le proxy ; ne pas les ouvrir automatiquement sur tous les serveurs.
 
@@ -102,7 +102,7 @@ Adapter la source au réseau autorisé ; si un reverse proxy accède au serveur,
 ## 6. Activation du service de filtrage
 
 > [!warning] Vérification préalable de l'adresse IP source
-> Avant d'activer UFW, assurez-vous d'être connecté depuis une machine située dans le **VLAN 20 (Administration : `192.168.4.192/28`)** ou le **VLAN 53 (Bastion : `192.168.4.208/28`)**. Si vous lancez l'activation depuis un autre réseau (ex: VLAN 10 Clients ou VLAN 54 Production), votre session SSH sera immédiatement coupée.
+> Avant d'activer UFW, assurez-vous d'être connecté depuis une machine située dans le **VLAN 20 (Administration : `192.168.4.192/28`)** ou le **VLAN 53 (Bastion : `192.168.4.208/29`)**. Si vous lancez l'activation depuis un autre réseau (ex: VLAN 10 Clients ou VLAN 54 Production), votre session SSH sera immédiatement coupée.
 
 6.1. **Activation et persistance au démarrage.**
 
@@ -135,6 +135,6 @@ New profiles: skip
 To                         Action      From
 --                         ------      ----
 22/tcp                     ALLOW IN    192.168.4.192/28           # SSH depuis VLAN 20 Admin
-22/tcp                     ALLOW IN    192.168.4.208/28           # SSH depuis VLAN 53 Bastion
+22/tcp                     ALLOW IN    192.168.4.208/29           # SSH depuis VLAN 53 Bastion
 80/tcp                     ALLOW IN    192.168.4.128/26          # Exemple GLPI HTTP depuis VLAN clients
 ```
