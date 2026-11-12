@@ -30,4 +30,4 @@ description: "Configurations"
 
 ## Administration des commutateurs
 
-- [Contrôle des accès d’administration Cisco](cisco/securite/controle-acces-administration-cisco.md)
+- [Contrôle des accès d’administration Cisco](../reseau/cisco/securite/controle-acces-administration-cisco.md)
