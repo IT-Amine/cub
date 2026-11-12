@@ -33,8 +33,8 @@ UFW (Uncomplicated Firewall) constitue une interface d'administration simplifié
 
 Au sein de l'infrastructure CUB, UFW est déployé en tant que pare-feu d'hôte local (défense en profondeur) sur les serveurs applicatifs sous Debian. Il permet d'isoler strictement chaque composant logiciel et d'appliquer le principe de moindre privilège :
 - Les accès d'administration distante (SSH - Port 22) sont strictement réservés aux adresses du **VLAN 20 (Administration : `192.168.4.192/28`)** et du **VLAN 53 (Bastion Guacamole : `192.168.4.208/29`)**.
-- Les ports applicatifs sont ouverts selon le rôle de la machine, le port réellement en écoute et les sources autorisées. La procédure GLPI présente un exemple Apache sur **80/tcp**.
-- Les ports sécurisés **443/tcp** (HTTPS) et **8443/tcp** (Portail Bastion Guacamole) sont autorisés pour les consultations sécurisées.
+- Le port **80/tcp** permet l’accès HTTP aux sites WordPress et scanner hébergés sur le serveur Web.
+- Les ports HTTPS sont autorisés uniquement pour les services configurés sur le serveur concerné.
 
 ---
 
@@ -79,7 +79,7 @@ sudo ufw allow from 192.168.4.208/29 to any port 22 proto tcp comment 'SSH depui
 
 - `allow from 192.168.4.192/28 ...` : Restreint l'administration SSH au sous-réseau VLAN 20 d'administration.
 - `allow from 192.168.4.208/29 ...` : Autorise le serveur de rebond Apache Guacamole (VLAN 53) à relayer les sessions d'administration.
-- `80/tcp` : Port de l’exemple Apache GLPI ; à autoriser uniquement pour les sources et la machine concernées après vérification.
+- `80/tcp` : Port HTTP des VirtualHosts Apache WordPress et scanner.
 - `443/tcp` / `8443/tcp` : Ports possibles selon le service et le proxy ; ne pas les ouvrir automatiquement sur tous les serveurs.
 
 ---
@@ -91,13 +91,13 @@ sudo ss -lntup
 sudo ufw status numbered
 ```
 
-Par exemple, si Apache GLPI écoute effectivement sur TCP 80 et que le VLAN clients doit y accéder directement, autoriser ce flux sur le serveur GLPI :
+Sur le serveur Web, autoriser les connexions HTTP vers les VirtualHosts Apache :
 
 ```bash
-sudo ufw allow from 192.168.4.128/26 to any port 80 proto tcp comment 'GLPI HTTP depuis VLAN clients'
+sudo ufw allow 80/tcp comment 'HTTP Apache'
 ```
 
-Adapter la source au réseau autorisé ; si un reverse proxy accède au serveur, autoriser son adresse plutôt que l’ensemble des clients. En HTTPS ou sur un autre port, vérifier l’écoute et ouvrir le port correspondant. Pour un DNS, prévoir explicitement les flux UDP et TCP 53 depuis les réseaux autorisés avant activation. Tester depuis les sources permises et refusées.
+Les deux VirtualHosts utilisent le port 80. La restriction du scanner au VLAN Administration est configurée dans Apache. En présence d’un reverse proxy ou de NAT, vérifier l’adresse source reçue par Apache. En HTTPS ou sur un autre port, autoriser le port correspondant au service configuré.
 
 ## 6. Activation du service de filtrage
 
@@ -124,7 +124,7 @@ sudo ufw status verbose
 
 - `status verbose` : Affiche l'état d'activation, les politiques globales par défaut et la liste détaillée des règles numérotées avec leurs commentaires.
 
-Les règles applicatives varient selon le rôle de la machine. Exemple pour GLPI si la règle 80/tcp ci-dessus a été choisie :
+Exemple pour le serveur Web avec HTTP autorisé :
 
 ```text title="Exemple de sortie"
 Status: active
@@ -136,5 +136,5 @@ To                         Action      From
 --                         ------      ----
 22/tcp                     ALLOW IN    192.168.4.192/28           # SSH depuis VLAN 20 Admin
 22/tcp                     ALLOW IN    192.168.4.208/29           # SSH depuis VLAN 53 Bastion
-80/tcp                     ALLOW IN    192.168.4.128/26          # Exemple GLPI HTTP depuis VLAN clients
+80/tcp                     ALLOW IN    Anywhere                   # HTTP Apache
 ```
